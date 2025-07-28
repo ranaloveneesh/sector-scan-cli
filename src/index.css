@@ -143,18 +143,23 @@ All colors MUST be HSL.
     animation: minimal-pulse 2s ease-in-out infinite;
   }
   
-  /* Glitch animation keyframes */
-  @keyframes glitch-shake {
-    0%, 100% { transform: translateX(0); }
-    10% { transform: translateX(-2px) translateY(1px); }
-    20% { transform: translateX(2px) translateY(-1px); }
-    30% { transform: translateX(-1px) translateY(2px); }
-    40% { transform: translateX(1px) translateY(-2px); }
-    50% { transform: translateX(-2px) translateY(1px); }
-    60% { transform: translateX(2px) translateY(-1px); }
-    70% { transform: translateX(-1px) translateY(1px); }
-    80% { transform: translateX(1px) translateY(-1px); }
-    90% { transform: translateX(-1px) translateY(2px); }
+  /* Hover glitch effect */
+  .hover-glitch:hover span {
+    text-shadow: 1px 0 #ff0040, -1px 0 #00ffff;
+    animation: glitch-hover 0.5s ease-out;
+  }
+
+  @keyframes glitch-hover {
+    0%, 100% { transform: translateX(0); text-shadow: none; }
+    10% { transform: translateX(-1px); text-shadow: 1px 0 #ff0040, -1px 0 #00ffff; }
+    20% { transform: translateX(1px); text-shadow: -1px 0 #ff0040, 1px 0 #00ffff; }
+    30% { transform: translateX(-1px); text-shadow: 1px 0 #ff0040, -1px 0 #00ffff; }
+    40% { transform: translateX(1px); text-shadow: -1px 0 #ff0040, 1px 0 #00ffff; }
+    50% { transform: translateX(0); text-shadow: 2px 0 #ff0040, -2px 0 #00ffff; }
+    60% { transform: translateX(-1px); text-shadow: 1px 0 #ff0040, -1px 0 #00ffff; }
+    70% { transform: translateX(1px); text-shadow: -1px 0 #ff0040, 1px 0 #00ffff; }
+    80% { transform: translateX(0); text-shadow: 1px 0 #ff0040, -1px 0 #00ffff; }
+    90% { transform: translateX(-1px); text-shadow: none; }
   }
 
   @keyframes minimal-pulse {
