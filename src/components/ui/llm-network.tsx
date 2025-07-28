@@ -109,6 +109,29 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
       positions.push({ x, y, id: option });
     });
 
+    // Manual adjustments for specific nodes
+    positions.forEach(pos => {
+      if (pos.id === 'Qwen') {
+        // Move Qwen down to Phi height level
+        const phiNode = positions.find(p => p.id === 'Phi');
+        if (phiNode) pos.y = phiNode.y;
+      }
+      if (pos.id === 'Llama') {
+        // Move Llama down to same level as Qwen/Phi
+        const phiNode = positions.find(p => p.id === 'Phi');
+        if (phiNode) pos.y = phiNode.y;
+      }
+      if (pos.id === 'Mistral') {
+        // Move Mistral more centered
+        pos.x = containerWidth / 2 + (Math.random() - 0.5) * 60;
+        pos.y = containerHeight / 2 + (Math.random() - 0.5) * 40;
+      }
+      if (pos.id === 'DeepSeek') {
+        // Move DeepSeek more to the left
+        pos.x = Math.max(margin + 20, pos.x - 80);
+      }
+    });
+
     setNodePositions(positions);
 
     // Generate connections - ensure each node has exactly 3 connections
