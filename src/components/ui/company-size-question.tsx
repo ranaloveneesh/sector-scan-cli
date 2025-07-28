@@ -74,8 +74,8 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
 
       {/* Static text box positioned high */}
       {data.isStatic && data.title && (
-        <div className="absolute top-32 left-6 right-6 md:top-40 md:left-16 md:right-16 z-10 animate-fade-in" style={{ animationDelay: '250ms' }}>
-          <p className="text-2xl md:text-3xl lg:text-4xl font-medium text-white font-open-sauce leading-relaxed max-w-4xl">
+        <div className="absolute top-32 left-6 right-6 md:top-40 md:left-16 md:right-16 z-10 animate-fade-in flex justify-center" style={{ animationDelay: '250ms' }}>
+          <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-white font-open-sauce leading-relaxed max-w-4xl text-center">
             {data.title}
           </p>
         </div>
