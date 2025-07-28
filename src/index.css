@@ -143,23 +143,49 @@ All colors MUST be HSL.
     animation: minimal-pulse 2s ease-in-out infinite;
   }
   
-  /* Hover glitch effect */
-  .hover-glitch:hover span {
-    text-shadow: 1px 0 #ff0040, -1px 0 #00ffff;
-    animation: glitch-hover 0.5s ease-out;
+  /* Digital glitch effect */
+  .digital-glitch:hover span {
+    position: relative;
   }
-
-  @keyframes glitch-hover {
-    0%, 100% { transform: translateX(0); text-shadow: none; }
-    10% { transform: translateX(-1px); text-shadow: 1px 0 #ff0040, -1px 0 #00ffff; }
-    20% { transform: translateX(1px); text-shadow: -1px 0 #ff0040, 1px 0 #00ffff; }
-    30% { transform: translateX(-1px); text-shadow: 1px 0 #ff0040, -1px 0 #00ffff; }
-    40% { transform: translateX(1px); text-shadow: -1px 0 #ff0040, 1px 0 #00ffff; }
-    50% { transform: translateX(0); text-shadow: 2px 0 #ff0040, -2px 0 #00ffff; }
-    60% { transform: translateX(-1px); text-shadow: 1px 0 #ff0040, -1px 0 #00ffff; }
-    70% { transform: translateX(1px); text-shadow: -1px 0 #ff0040, 1px 0 #00ffff; }
-    80% { transform: translateX(0); text-shadow: 1px 0 #ff0040, -1px 0 #00ffff; }
-    90% { transform: translateX(-1px); text-shadow: none; }
+  
+  .digital-glitch:hover span::before,
+  .digital-glitch:hover span::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .digital-glitch:hover span::before {
+    animation: digital-glitch-1 0.5s ease-out;
+    color: #ff0040;
+    z-index: -1;
+  }
+  
+  .digital-glitch:hover span::after {
+    animation: digital-glitch-2 0.5s ease-out;
+    color: #00ffff;
+    z-index: -2;
+  }
+  
+  @keyframes digital-glitch-1 {
+    0%, 100% { transform: translateX(0); clip-path: inset(0); }
+    10% { transform: translateX(-3px); clip-path: inset(0 0 85% 0); }
+    20% { transform: translateX(3px); clip-path: inset(20% 0 60% 0); }
+    30% { transform: translateX(-2px); clip-path: inset(40% 0 40% 0); }
+    40% { transform: translateX(2px); clip-path: inset(60% 0 20% 0); }
+    50% { transform: translateX(-1px); clip-path: inset(80% 0 0 0); }
+  }
+  
+  @keyframes digital-glitch-2 {
+    0%, 100% { transform: translateX(0); clip-path: inset(0); }
+    15% { transform: translateX(2px); clip-path: inset(0 0 90% 0); }
+    25% { transform: translateX(-2px); clip-path: inset(15% 0 70% 0); }
+    35% { transform: translateX(1px); clip-path: inset(35% 0 50% 0); }
+    45% { transform: translateX(-1px); clip-path: inset(55% 0 30% 0); }
+    55% { transform: translateX(2px); clip-path: inset(75% 0 0 0); }
   }
 
   @keyframes minimal-pulse {
