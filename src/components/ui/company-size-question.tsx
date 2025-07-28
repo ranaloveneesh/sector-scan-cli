@@ -13,6 +13,7 @@ interface CompanySizeQuestionProps {
       animation_text: string;
       next_button_color: string;
       selector_style: string;
+      label?: string;
     };
     validation: {
       required: boolean;
@@ -65,9 +66,9 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
         </div>
       </div>
 
-      {/* User company size label in top right */}
+      {/* User label in top right */}
       <div className="absolute top-6 right-6 md:top-12 md:right-16 z-10 flex items-end">
-        <span className="font-tomorrow text-responsive-label text-[#5CE1E6] neon-glow">company_size</span>
+        <span className="font-tomorrow text-responsive-label text-[#5CE1E6] neon-glow">{data.ui.label || 'company_size'}</span>
       </div>
 
       {/* Main content */}
@@ -100,7 +101,7 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
       <div className="absolute bottom-6 left-6 md:bottom-12 md:left-16">
         <div className="font-mono text-gray-400 text-responsive-terminal flex items-baseline">
           <span className="mr-2">{'>'}</span>
-          <span className="terminal-text">calculating team size...</span>
+          <span className="terminal-text">{animationText}</span>
         </div>
       </div>
 
