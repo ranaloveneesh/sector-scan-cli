@@ -299,7 +299,7 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
               {/* SVG for connections */}
               <svg 
                 ref={svgRef}
-                className="absolute inset-0 w-full h-full z-0"
+                className="absolute inset-0 w-full h-full -z-10"
                 viewBox="0 0 800 400"
                 preserveAspectRatio="xMidYMid meet"
                 style={{ pointerEvents: 'none' }}
