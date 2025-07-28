@@ -81,7 +81,6 @@ const LLMNodeComponent: React.FC<{
         color={node.selected ? '#00ffff' : '#ffffff'}
         anchorX="center"
         anchorY="middle"
-        font="/fonts/inter-medium.woff"
       >
         {node.name}
       </Text>
@@ -127,7 +126,6 @@ const ConnectionLines: React.FC<{ connections: Connection[] }> = ({ connections 
             color={connection.active ? '#00ffff' : '#333333'}
             transparent
             opacity={connection.active ? 0.8 : 0.3}
-            linewidth={connection.active ? 3 : 1}
           />
         </line>
       ))}
