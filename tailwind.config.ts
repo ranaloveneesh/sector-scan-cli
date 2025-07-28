@@ -31,9 +31,9 @@ export default {
 				'responsive-3xl': 'clamp(1.875rem, 5vw, 3rem)',         // 30px to 48px
 				'responsive-title': 'clamp(1.5rem, 4vw, 2.25rem)',      // 24px to 36px - optimized for titles
 				'responsive-subtitle': 'clamp(1rem, 2.5vw, 1.25rem)',   // 16px to 20px - optimized for subtitles
-				'responsive-terminal': 'clamp(0.875rem, 2vw, 1rem)',    // 14px to 16px - for terminal text
-				'responsive-label': 'clamp(0.875rem, 2vw, 1.125rem)',   // 14px to 18px - for user_industry
-				'responsive-button': 'clamp(1.25rem, 3vw, 1.75rem)',    // 20px to 28px - for next button
+				'responsive-terminal': 'clamp(1rem, 2.4vw, 1.2rem)',      // 16px to 19.2px - for terminal text (20% larger)
+				'responsive-label': 'clamp(1rem, 2.4vw, 1.35rem)',     // 16px to 21.6px - for user_industry (20% larger)
+				'responsive-button': 'clamp(1.5rem, 3.6vw, 2.1rem)',   // 24px to 33.6px - for next button (20% larger)
 			},
 			colors: {
 				border: 'hsl(var(--border))',
