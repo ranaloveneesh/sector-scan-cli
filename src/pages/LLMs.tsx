@@ -9,7 +9,7 @@ const LLMs = () => {
 
   const questionData = {
     id: "llms",
-    title: "Which of these AI models have you heard of or used?",
+    title: "Which of these AI models have you tried?",
     subtitle: "select all that apply",
     options: [
       "ChatGPT",
