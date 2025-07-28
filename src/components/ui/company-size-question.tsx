@@ -87,73 +87,25 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
             </p>
           </div>
 
-          {/* Options grid */}
-          <div className="grid grid-cols-3 gap-6 mb-16">
+          {/* Options list */}
+          <div className="space-y-4 mb-16 max-w-2xl">
             {data.options.map((option, index) => (
               <button
                 key={option}
                 onClick={() => handleOptionSelect(option)}
                 className={cn(
-                  "group relative px-2 py-3 bg-transparent border-0 transition-all duration-300 text-left min-h-[70px] flex items-center justify-center",
-                  "hover:bg-[#5CE1E6]/5 focus:outline-none",
+                  "group relative w-full px-6 py-4 bg-transparent border-0 transition-all duration-300 text-left flex items-center",
+                  "hover:bg-[#5CE1E6]/5 focus:outline-none cursor-pointer",
                   selectedOption === option ? "text-[#5CE1E6]" : "text-white"
                 )}
               >
-                {/* Corner brackets */}
+                {/* Custom bullet point */}
                 <div className={cn(
-                  "absolute inset-0 transition-all duration-300",
-                  selectedOption === option ? "opacity-100" : "opacity-60 group-hover:opacity-80"
-                )}>
-                  {/* Top left corner */}
-                  <div className="absolute top-0 left-0 w-4 h-4">
-                    <div className={cn(
-                      "absolute top-0 left-0 w-4 h-0.5",
-                      selectedOption === option ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]"
-                    )}></div>
-                    <div className={cn(
-                      "absolute top-0 left-0 w-0.5 h-4",
-                      selectedOption === option ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]"
-                    )}></div>
-                  </div>
-                  
-                  {/* Top right corner */}
-                  <div className="absolute top-0 right-0 w-4 h-4">
-                    <div className={cn(
-                      "absolute top-0 right-0 w-4 h-0.5",
-                      selectedOption === option ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]"
-                    )}></div>
-                    <div className={cn(
-                      "absolute top-0 right-0 w-0.5 h-4",
-                      selectedOption === option ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]"
-                    )}></div>
-                  </div>
-                  
-                  {/* Bottom left corner */}
-                  <div className="absolute bottom-0 left-0 w-4 h-4">
-                    <div className={cn(
-                      "absolute bottom-0 left-0 w-4 h-0.5",
-                      selectedOption === option ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]"
-                    )}></div>
-                    <div className={cn(
-                      "absolute bottom-0 left-0 w-0.5 h-4",
-                      selectedOption === option ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]"
-                    )}></div>
-                  </div>
-                  
-                  {/* Bottom right corner */}
-                  <div className="absolute bottom-0 right-0 w-4 h-4">
-                    <div className={cn(
-                      "absolute bottom-0 right-0 w-4 h-0.5",
-                      selectedOption === option ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]"
-                    )}></div>
-                    <div className={cn(
-                      "absolute bottom-0 right-0 w-0.5 h-4",
-                      selectedOption === option ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]"
-                    )}></div>
-                  </div>
-                </div>
+                  "w-2 h-2 rounded-full mr-4 flex-shrink-0 transition-all duration-300",
+                  selectedOption === option ? "bg-[#5CE1E6] shadow-[0_0_8px_#5CE1E6]" : "bg-[#5CE1E6]/60"
+                )}></div>
                 
-                <span className="text-responsive-base font-medium relative z-10 font-open-sauce">
+                <span className="text-responsive-base font-medium font-open-sauce">
                   {option}
                 </span>
               </button>
