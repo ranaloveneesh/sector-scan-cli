@@ -84,7 +84,7 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({ data, onSubm
         <div className="max-w-6xl w-full">
           {/* Question content */}
           <div className="text-left mb-16">
-            <h1 className="text-6xl font-bold mb-6 text-white">
+            <h1 className="text-3xl font-bold mb-6 text-white">
               What's your industry?
             </h1>
             <p className="text-xl text-gray-300 flex items-center">
