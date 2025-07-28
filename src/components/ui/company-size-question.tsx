@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-
 interface CompanySizeQuestionProps {
   data: {
     id: string;
@@ -22,7 +21,6 @@ interface CompanySizeQuestionProps {
   };
   onSubmit: (selectedOptions: string[]) => void;
 }
-
 export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
   data,
   onSubmit
@@ -45,12 +43,10 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
     }, 100);
     return () => clearInterval(interval);
   }, [data.ui.animation_text]);
-
   const handleOptionSelect = (option: string) => {
     setSelectedOption(option);
     setShowError(false);
   };
-
   const handleSubmit = () => {
     if (data.validation.required && !selectedOption) {
       setShowError(true);
@@ -58,12 +54,13 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
     }
     onSubmit([selectedOption]);
   };
-
-  return (
-    <div className="min-h-screen bg-[#0a1628] text-white relative overflow-hidden">
+  return <div className="min-h-screen bg-[#0a1628] text-white relative overflow-hidden">
       {/* Hexagonal logo in top left */}
       <div className="absolute top-6 left-6 md:top-12 md:left-16 z-10 flex items-end">
-        <div className="flex items-center justify-center" style={{width: 'clamp(4rem, 6vw, 6.25rem)', height: 'clamp(4rem, 6vw, 6.25rem)'}}>
+        <div className="flex items-center justify-center" style={{
+        width: 'clamp(4rem, 6vw, 6.25rem)',
+        height: 'clamp(4rem, 6vw, 6.25rem)'
+      }}>
           <img src="/lovable-uploads/a8d760f4-8e0c-410d-ae83-a3e6dd4b23e9.png" alt="Logo" className="w-full h-full object-contain" />
         </div>
       </div>
@@ -78,9 +75,7 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
         <div className="max-w-4xl w-full">
           {/* Question content */}
           <div className="text-left mb-16">
-            <h1 className="text-responsive-title font-bold mb-1 text-white font-open-sauce">
-              What's the size of your company?
-            </h1>
+            <h1 className="text-responsive-title font-bold mb-1 text-white font-open-sauce">Do you know what an AI agent is?</h1>
             <p className="text-responsive-subtitle flex items-center text-slate-50 px-0 pt-2 pl-2 md:pl-8 font-normal font-open-sauce">
               <span className="mr-2 text-slate-50 px-0 py-0 pl-2 md:pl-8">→</span>
               select your team size.
@@ -89,32 +84,14 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
 
           {/* Options list */}
           <div className="space-y-2 mb-16 max-w-2xl">
-            {data.options.map((option, index) => (
-              <button
-                key={option}
-                onClick={() => handleOptionSelect(option)}
-                className={cn(
-                  "group relative w-full px-4 py-2 bg-transparent border-0 text-left flex items-center digital-glitch",
-                  "hover:bg-[#5CE1E6]/5 hover:text-[#5CE1E6] focus:outline-none cursor-pointer transition-none",
-                  selectedOption === option ? "text-[#5CE1E6]" : "text-white"
-                )}
-              >
+            {data.options.map((option, index) => <button key={option} onClick={() => handleOptionSelect(option)} className={cn("group relative w-full px-4 py-2 bg-transparent border-0 text-left flex items-center digital-glitch", "hover:bg-[#5CE1E6]/5 hover:text-[#5CE1E6] focus:outline-none cursor-pointer transition-none", selectedOption === option ? "text-[#5CE1E6]" : "text-white")}>
                 {/* Custom bullet point */}
-                <div className={cn(
-                  "w-2 h-2 rounded-full mr-4 flex-shrink-0 transition-all duration-300",
-                  selectedOption === option 
-                    ? "bg-[#5CE1E6] shadow-[0_0_12px_#5CE1E6] scale-110" 
-                    : "bg-[#5CE1E6]/80 hover:bg-[#5CE1E6]/90"
-                )}></div>
+                <div className={cn("w-2 h-2 rounded-full mr-4 flex-shrink-0 transition-all duration-300", selectedOption === option ? "bg-[#5CE1E6] shadow-[0_0_12px_#5CE1E6] scale-110" : "bg-[#5CE1E6]/80 hover:bg-[#5CE1E6]/90")}></div>
                 
-                <span className={cn(
-                  "text-responsive-base font-medium font-open-sauce transition-all duration-300",
-                  selectedOption === option && "transform scale-105"
-                )} data-text={option}>
+                <span className={cn("text-responsive-base font-medium font-open-sauce transition-all duration-300", selectedOption === option && "transform scale-105")} data-text={option}>
                   {option}
                 </span>
-              </button>
-            ))}
+              </button>)}
           </div>
         </div>
       </div>
@@ -129,24 +106,19 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
 
       {/* Bottom right next button */}
       <div className="absolute bottom-6 right-6 md:bottom-12 md:right-16">
-        <button
-          onClick={handleSubmit}
-          className="sci-fi-arrow font-mono text-[#5CE1E6] text-responsive-button neon-glow transition-all duration-300 relative hover:text-[#5CE1E6]/80 digital-glitch-click cursor-pointer"
-          data-text="next"
-          style={{ pointerEvents: 'auto', zIndex: 10 }}
-        >
+        <button onClick={handleSubmit} className="sci-fi-arrow font-mono text-[#5CE1E6] text-responsive-button neon-glow transition-all duration-300 relative hover:text-[#5CE1E6]/80 digital-glitch-click cursor-pointer" data-text="next" style={{
+        pointerEvents: 'auto',
+        zIndex: 10
+      }}>
           next
         </button>
       </div>
 
       {/* Error message */}
-      {showError && (
-        <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2">
+      {showError && <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2">
           <p className="text-red-400 font-medium animate-pulse">
             {data.validation.error_message}
           </p>
-        </div>
-      )}
-    </div>
-  );
+        </div>}
+    </div>;
 };
