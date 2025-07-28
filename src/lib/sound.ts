@@ -1,22 +1,40 @@
-// Simple UI beep using Web Audio API
-export const playUIBeep = (frequency: number = 800, duration: number = 100, volume: number = 0.1) => {
+// Futuristic spaceship panel click sound
+export const playSpaceshipClick = (volume: number = 0.12) => {
   try {
     const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-    const oscillator = audioContext.createOscillator();
+    
+    // Create two oscillators for a richer sound
+    const osc1 = audioContext.createOscillator();
+    const osc2 = audioContext.createOscillator();
     const gainNode = audioContext.createGain();
     
-    oscillator.connect(gainNode);
+    // Connect oscillators to gain
+    osc1.connect(gainNode);
+    osc2.connect(gainNode);
     gainNode.connect(audioContext.destination);
     
-    oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
-    oscillator.type = 'sine';
+    // Set up the frequencies (main tone + harmonic)
+    osc1.frequency.setValueAtTime(1200, audioContext.currentTime);
+    osc1.frequency.exponentialRampToValueAtTime(800, audioContext.currentTime + 0.15);
     
+    osc2.frequency.setValueAtTime(2400, audioContext.currentTime);
+    osc2.frequency.exponentialRampToValueAtTime(1600, audioContext.currentTime + 0.1);
+    
+    // Use square wave for digital character
+    osc1.type = 'square';
+    osc2.type = 'triangle';
+    
+    // Sharp attack, quick decay
     gainNode.gain.setValueAtTime(0, audioContext.currentTime);
-    gainNode.gain.linearRampToValueAtTime(volume, audioContext.currentTime + 0.01);
-    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration / 1000);
+    gainNode.gain.linearRampToValueAtTime(volume, audioContext.currentTime + 0.005);
+    gainNode.gain.exponentialRampToValueAtTime(volume * 0.3, audioContext.currentTime + 0.05);
+    gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.15);
     
-    oscillator.start(audioContext.currentTime);
-    oscillator.stop(audioContext.currentTime + duration / 1000);
+    // Start and stop
+    osc1.start(audioContext.currentTime);
+    osc2.start(audioContext.currentTime);
+    osc1.stop(audioContext.currentTime + 0.15);
+    osc2.stop(audioContext.currentTime + 0.15);
   } catch (err) {
     console.debug('Audio creation failed:', err);
   }
