@@ -286,7 +286,7 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-8 md:px-32 lg:px-48 animate-fade-in" style={{ animationDelay: '200ms' }}>
         <div className="max-w-4xl w-full">
           {/* Question content */}
-          <div className="text-center mb-8">
+          <div className="text-center mb-8 mt-16">
             <h1 className="text-responsive-title font-bold mb-1 text-white font-open-sauce">{data.title}</h1>
             <p className="text-responsive-subtitle text-slate-50 font-normal font-open-sauce">
               {data.subtitle}
