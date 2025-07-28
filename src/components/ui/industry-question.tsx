@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 interface IndustryQuestionProps {
   data: {
@@ -130,8 +129,7 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({
 
       {/* Bottom right next button */}
       <div className="absolute bottom-6 right-6 md:bottom-12 md:right-16">
-        <button onClick={handleSubmit} className="sci-fi-arrow font-mono text-[#5CE1E6] text-responsive-button neon-glow transition-all duration-300 flex items-center gap-2 relative hover:text-[#5CE1E6]/80">
-          <ChevronRight className="w-5 h-5" />
+        <button onClick={handleSubmit} className="sci-fi-arrow font-mono text-[#5CE1E6] text-responsive-button neon-glow transition-all duration-300 relative hover:text-[#5CE1E6]/80">
           next
         </button>
       </div>
