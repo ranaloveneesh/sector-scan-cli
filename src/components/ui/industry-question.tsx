@@ -68,7 +68,7 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-8">
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-12 md:px-16">
         <div className="max-w-6xl w-full">
           {/* Question content */}
           <div className="text-left mb-16">

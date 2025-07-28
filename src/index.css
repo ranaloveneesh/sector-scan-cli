@@ -109,7 +109,7 @@ All colors MUST be HSL.
   
   /* NEON glow effects */
   .neon-glow {
-    text-shadow: 0 0 5px #5CE1E6, 0 0 10px #5CE1E6, 0 0 15px #5CE1E6, 0 0 20px #5CE1E6;
+    text-shadow: 0 0 3px #5CE1E6, 0 0 6px #5CE1E6, 0 0 9px #5CE1E6;
   }
   
   .neon-glow-hover:hover {
