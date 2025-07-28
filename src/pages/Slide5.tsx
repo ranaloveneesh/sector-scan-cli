@@ -41,7 +41,7 @@ const Slide5 = () => {
   };
 
   const handleSubmit = () => {
-    navigate('/'); // Update this to next slide when created
+    navigate('/rag-pipeline');
   };
 
   return (
