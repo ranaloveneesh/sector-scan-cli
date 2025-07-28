@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { SurveyProvider } from "@/contexts/SurveyContext";
+import { PageTransition } from "@/components/ui/page-transition";
 import Index from "./pages/Index";
 import CompanySize from "./pages/CompanySize";
 import Department from "./pages/Department";
@@ -20,12 +21,12 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/company-size" element={<CompanySize />} />
-            <Route path="/department" element={<Department />} />
-            <Route path="/aiagents" element={<Slide4 />} />
+            <Route path="/" element={<PageTransition><Index /></PageTransition>} />
+            <Route path="/company-size" element={<PageTransition><CompanySize /></PageTransition>} />
+            <Route path="/department" element={<PageTransition><Department /></PageTransition>} />
+            <Route path="/aiagents" element={<PageTransition><Slide4 /></PageTransition>} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
+            <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>

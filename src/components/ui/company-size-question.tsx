@@ -57,7 +57,7 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
   };
   return <div className="min-h-screen bg-[#0a1628] text-white relative overflow-hidden">
       {/* Hexagonal logo in top left */}
-      <div className="absolute top-6 left-6 md:top-12 md:left-16 z-10 flex items-end">
+      <div className="absolute top-6 left-6 md:top-12 md:left-16 z-10 flex items-end animate-fade-in" style={{ animationDelay: '100ms' }}>
         <div className="flex items-center justify-center" style={{
         width: 'clamp(4rem, 6vw, 6.25rem)',
         height: 'clamp(4rem, 6vw, 6.25rem)'
@@ -67,12 +67,12 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
       </div>
 
       {/* User label in top right */}
-      <div className="absolute top-6 right-6 md:top-12 md:right-16 z-10 flex items-end">
+      <div className="absolute top-6 right-6 md:top-12 md:right-16 z-10 flex items-end animate-fade-in" style={{ animationDelay: '150ms' }}>
         <span className="font-tomorrow text-responsive-label text-[#5CE1E6] neon-glow">{data.ui.label || 'company_size'}</span>
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-8 md:px-32 lg:px-48">
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-8 md:px-32 lg:px-48 animate-fade-in" style={{ animationDelay: '200ms' }}>
         <div className="max-w-4xl w-full">
           {/* Question content */}
           <div className="text-left mb-16">
@@ -85,7 +85,7 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
 
           {/* Options list */}
           <div className="space-y-2 mb-16 max-w-2xl">
-            {data.options.map((option, index) => <button key={option} onClick={() => handleOptionSelect(option)} className={cn("group relative w-full px-4 py-2 bg-transparent border-0 text-left flex items-center digital-glitch", "hover:bg-[#5CE1E6]/5 hover:text-[#5CE1E6] focus:outline-none cursor-pointer transition-none", selectedOption === option ? "text-[#5CE1E6]" : "text-white")}>
+            {data.options.map((option, index) => <button key={option} onClick={() => handleOptionSelect(option)} className={cn("group relative w-full px-4 py-2 bg-transparent border-0 text-left flex items-center digital-glitch animate-fade-in", "hover:bg-[#5CE1E6]/5 hover:text-[#5CE1E6] focus:outline-none cursor-pointer transition-none", selectedOption === option ? "text-[#5CE1E6]" : "text-white")} style={{ animationDelay: `${300 + index * 50}ms` }}>
                 {/* Custom bullet point */}
                 <div className={cn("w-2 h-2 rounded-full mr-4 flex-shrink-0 transition-all duration-300", selectedOption === option ? "bg-[#5CE1E6] shadow-[0_0_12px_#5CE1E6] scale-110" : "bg-[#5CE1E6]/80 hover:bg-[#5CE1E6]/90")}></div>
                 
@@ -98,7 +98,7 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
       </div>
 
       {/* Bottom left terminal text */}
-      <div className="absolute bottom-6 left-6 md:bottom-12 md:left-16">
+      <div className="absolute bottom-6 left-6 md:bottom-12 md:left-16 animate-fade-in" style={{ animationDelay: '400ms' }}>
         <div className="font-mono text-gray-400 text-responsive-terminal flex items-baseline">
           <span className="mr-2">{'>'}</span>
           <span className="terminal-text">{animationText}</span>
@@ -106,8 +106,8 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
       </div>
 
       {/* Bottom right next button */}
-      <div className="absolute bottom-6 right-6 md:bottom-12 md:right-16">
-        <button onClick={handleSubmit} className="sci-fi-arrow font-mono text-[#5CE1E6] text-responsive-button neon-glow transition-all duration-300 relative hover:text-[#5CE1E6]/80 digital-glitch-click cursor-pointer" data-text="next" style={{
+      <div className="absolute bottom-6 right-6 md:bottom-12 md:right-16 animate-fade-in" style={{ animationDelay: '450ms' }}>
+        <button onClick={handleSubmit} className="sci-fi-arrow font-mono text-[#5CE1E6] text-responsive-button neon-glow transition-all duration-300 relative hover:text-[#5CE1E6]/80 digital-glitch-click cursor-pointer hover:scale-105" data-text="next" style={{
         pointerEvents: 'auto',
         zIndex: 10
       }}>
