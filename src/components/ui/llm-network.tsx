@@ -418,11 +418,12 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
       </div>
 
       {/* Bottom right next button */}
-      <div className="absolute bottom-6 right-6 md:bottom-12 md:right-16 animate-fade-in" style={{ animationDelay: '450ms' }}>
+      <div className="absolute bottom-6 right-6 md:bottom-12 md:right-16 animate-fade-in z-50" style={{ animationDelay: '450ms' }}>
         <button 
           onClick={handleSubmit} 
-          className="sci-fi-arrow font-mono text-[#5CE1E6] text-responsive-button neon-glow transition-all duration-300 relative hover:text-[#5CE1E6]/80 digital-glitch-click cursor-pointer hover:scale-105" 
+          className="sci-fi-arrow font-mono text-[#5CE1E6] text-responsive-button neon-glow transition-all duration-300 relative hover:text-[#5CE1E6]/80 digital-glitch-click cursor-pointer hover:scale-105 z-50 pointer-events-auto" 
           data-text="next"
+          style={{ pointerEvents: 'auto' }}
         >
           next
         </button>
