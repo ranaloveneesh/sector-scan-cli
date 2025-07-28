@@ -83,7 +83,7 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({
 
           {/* Options grid */}
           <div className="grid grid-cols-3 gap-6 mb-16">
-            {data.options.map((option, index) => <button key={option} onClick={() => handleOptionSelect(option)} className={cn("group relative px-2 py-3 bg-transparent border-0 transition-all duration-300 text-left min-h-[70px] flex items-center justify-center", "hover:bg-[#5CE1E6]/5 focus:outline-none", selectedOption === option ? "text-[#5CE1E6]" : "text-white")}>
+            {data.options.map((option, index) => <button key={option} onClick={() => handleOptionSelect(option)} className={cn("group relative px-2 py-3 bg-transparent border-0 transition-all duration-300 text-left min-h-[70px] flex items-center justify-center", "hover:bg-[#5CE1E6]/5 focus:outline-none", selectedOption === option ? "text-[#5CE1E6] bg-[#5CE1E6]/5" : "text-white")}>
                 {/* Corner brackets */}
                 <div className={cn("absolute inset-0 transition-all duration-300", selectedOption === option ? "opacity-100" : "opacity-60 group-hover:opacity-80")}>
                   {/* Top left corner */}
