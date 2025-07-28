@@ -9,7 +9,7 @@ const Slide4 = () => {
 
   const questionData = {
     id: "slide4",
-    title: "AIagents",
+    title: "Do you know what an AI agent is?",
     subtitle: "Select your answer.",
     options: [
       "A chatbot",
