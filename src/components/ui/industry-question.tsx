@@ -83,31 +83,31 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({
 
           {/* Options grid */}
           <div className="grid grid-cols-3 gap-6 mb-16">
-            {data.options.map((option, index) => <button key={option} onClick={() => handleOptionToggle(option)} className={cn("group relative p-1 bg-transparent border-0 transition-all duration-300 text-left min-h-[120px] flex items-center justify-center", "hover:bg-[#5CE1E6]/5 focus:outline-none", selectedOptions.includes(option) ? "text-[#5CE1E6]" : "text-white")}>
+            {data.options.map((option, index) => <button key={option} onClick={() => handleOptionToggle(option)} className={cn("group relative p-1 bg-transparent border-0 transition-all duration-300 text-left min-h-[80px] flex items-center justify-center", "hover:bg-[#5CE1E6]/5 focus:outline-none", selectedOptions.includes(option) ? "text-[#5CE1E6]" : "text-white")}>
                 {/* Corner brackets */}
                 <div className={cn("absolute inset-0 transition-all duration-300", selectedOptions.includes(option) ? "opacity-100" : "opacity-60 group-hover:opacity-80")}>
                   {/* Top left corner */}
-                  <div className="absolute top-0 left-0 w-6 h-6">
-                    <div className={cn("absolute top-0 left-0 w-6 h-0.5", selectedOptions.includes(option) ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]")}></div>
-                    <div className={cn("absolute top-0 left-0 w-0.5 h-6", selectedOptions.includes(option) ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]")}></div>
+                  <div className="absolute top-0 left-0 w-4 h-4">
+                    <div className={cn("absolute top-0 left-0 w-4 h-0.5", selectedOptions.includes(option) ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]")}></div>
+                    <div className={cn("absolute top-0 left-0 w-0.5 h-4", selectedOptions.includes(option) ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]")}></div>
                   </div>
                   
                   {/* Top right corner */}
-                  <div className="absolute top-0 right-0 w-6 h-6">
-                    <div className={cn("absolute top-0 right-0 w-6 h-0.5", selectedOptions.includes(option) ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]")}></div>
-                    <div className={cn("absolute top-0 right-0 w-0.5 h-6", selectedOptions.includes(option) ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]")}></div>
+                  <div className="absolute top-0 right-0 w-4 h-4">
+                    <div className={cn("absolute top-0 right-0 w-4 h-0.5", selectedOptions.includes(option) ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]")}></div>
+                    <div className={cn("absolute top-0 right-0 w-0.5 h-4", selectedOptions.includes(option) ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]")}></div>
                   </div>
                   
                   {/* Bottom left corner */}
-                  <div className="absolute bottom-0 left-0 w-6 h-6">
-                    <div className={cn("absolute bottom-0 left-0 w-6 h-0.5", selectedOptions.includes(option) ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]")}></div>
-                    <div className={cn("absolute bottom-0 left-0 w-0.5 h-6", selectedOptions.includes(option) ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]")}></div>
+                  <div className="absolute bottom-0 left-0 w-4 h-4">
+                    <div className={cn("absolute bottom-0 left-0 w-4 h-0.5", selectedOptions.includes(option) ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]")}></div>
+                    <div className={cn("absolute bottom-0 left-0 w-0.5 h-4", selectedOptions.includes(option) ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]")}></div>
                   </div>
                   
                   {/* Bottom right corner */}
-                  <div className="absolute bottom-0 right-0 w-6 h-6">
-                    <div className={cn("absolute bottom-0 right-0 w-6 h-0.5", selectedOptions.includes(option) ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]")}></div>
-                    <div className={cn("absolute bottom-0 right-0 w-0.5 h-6", selectedOptions.includes(option) ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]")}></div>
+                  <div className="absolute bottom-0 right-0 w-4 h-4">
+                    <div className={cn("absolute bottom-0 right-0 w-4 h-0.5", selectedOptions.includes(option) ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]")}></div>
+                    <div className={cn("absolute bottom-0 right-0 w-0.5 h-4", selectedOptions.includes(option) ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]")}></div>
                   </div>
                 </div>
                 
