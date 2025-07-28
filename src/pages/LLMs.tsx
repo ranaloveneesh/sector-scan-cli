@@ -9,14 +9,18 @@ const LLMs = () => {
 
   const questionData = {
     id: "llms",
-    title: "Have you ever heard of a RAG pipeline?",
-    subtitle: "select your answer",
+    title: "Which of these AI models have you heard of or used?",
+    subtitle: "select all that apply",
     options: [
-      "It's a tool that scrapes data from websites",
-      "A method to teach AI how to generate images", 
-      "A system where an AI model retrieves external data before generating a response",
-      "I've seen it mentioned, but not sure what it means",
-      "Nope, this is new to me"
+      "ChatGPT",
+      "Claude",
+      "Gemini",
+      "Grok",
+      "Mistral",
+      "Llama",
+      "Qwen",
+      "DeepSeek",
+      "Phi"
     ],
     ui: {
       logo_position: "top-left",
@@ -24,16 +28,16 @@ const LLMs = () => {
       animation_text: "analyzing LLM knowledge...",
       next_button_color: "primary",
       selector_style: "modern",
-      label: "llms"
+      label: "large_language_models"
     },
     validation: {
       required: true,
-      error_message: "Please select an option."
+      error_message: "Please select at least one option."
     }
   };
 
   const handleSubmit = (selectedOptions: string[]) => {
-    updateSurveyData('llmKnowledge', selectedOptions[0]);
+    updateSurveyData('llmKnowledge', selectedOptions.join(', '));
     navigate('/'); // Update to next slide when created
   };
 
