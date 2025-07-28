@@ -4,6 +4,7 @@ interface SurveyData {
   industry?: string;
   companySize?: string;
   department?: string;
+  aiAgentKnowledge?: string;
   // Add more fields as we build more slides
 }
 
