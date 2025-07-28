@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { playSpaceshipClick } from '@/lib/sound';
 interface IndustryQuestionProps {
   data: {
     id: string;
@@ -45,7 +44,6 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({
     return () => clearInterval(interval);
   }, [data.ui.animation_text]);
   const handleOptionSelect = (option: string) => {
-    playSpaceshipClick(); // Futuristic spaceship panel click
     setSelectedOption(option);
     setShowError(false);
   };
