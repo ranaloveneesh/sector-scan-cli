@@ -48,10 +48,16 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({
     setShowError(false);
   };
   const handleSubmit = () => {
+    console.log('handleSubmit called, selectedOption:', selectedOption);
+    console.log('validation required:', data.validation.required);
+    
     if (data.validation.required && !selectedOption) {
+      console.log('Showing error because no option selected');
       setShowError(true);
       return;
     }
+    
+    console.log('Calling onSubmit with:', [selectedOption]);
     onSubmit([selectedOption]);
   };
   return <div className="min-h-screen bg-[#0a1628] text-white relative overflow-hidden">
