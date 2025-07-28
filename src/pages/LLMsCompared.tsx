@@ -7,24 +7,39 @@ const LLMsCompared = () => {
   const navigate = useNavigate();
   const { surveyData } = useSurvey();
 
-  const getTitleBasedOnAnswer = () => {
+  const getContentBasedOnAnswer = () => {
     const selectedLLMs = surveyData.llmKnowledge || '';
     const llmCount = selectedLLMs.split(', ').filter(llm => llm.trim() !== '').length;
     
-    if (llmCount === 0) {
-      return "Let's explore what makes each LLM unique.";
-    } else if (llmCount === 1) {
-      return "Great choice! Here's how it compares to other leading models.";
-    } else if (llmCount <= 3) {
-      return "Nice selection! Here's how these models stack up against each other.";
+    if (llmCount === 1) {
+      return {
+        title: "You've picked one — great start.",
+        subtitle: "But with so many new models being released, it's worth knowing what else is out there — and what each one does best. Here's a quick comparison of the 4 most widely used models today. It might open up some options for your future AI stack."
+      };
+    } else if (llmCount >= 2 && llmCount <= 5) {
+      return {
+        title: "You're already familiar with some of the key players.",
+        subtitle: "But even among the most used models, the differences can be subtle — and they really matter when building agents. Here's a quick comparison to help you understand what each one excels at."
+      };
+    } else if (llmCount >= 6 && llmCount <= 10) {
+      return {
+        title: "Impressive — looks like you're pretty up to date.",
+        subtitle: "As you probably know, when it comes to building with agents, model selection is fundamental and it depends entirely on the job to be done. Here's a side-by-side breakdown to make that choice easier."
+      };
     } else {
-      return "Wow, you've tried quite a few! Here's a breakdown of the key differences.";
+      return {
+        title: "Let's explore what makes each LLM unique.",
+        subtitle: "Understanding the strengths of different models will help you make better choices for your AI projects."
+      };
     }
   };
 
+  const content = getContentBasedOnAnswer();
+  
   const questionData = {
     id: "llms-compared",
-    title: getTitleBasedOnAnswer(),
+    title: content.title,
+    subtitle: content.subtitle,
     ui: {
       logo_position: "top-left",
       animation_style: "terminal",
