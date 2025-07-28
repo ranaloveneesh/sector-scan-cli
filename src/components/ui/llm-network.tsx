@@ -294,7 +294,7 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
           </div>
 
           {/* Network visualization */}
-          <div className="relative flex justify-center mb-8">
+          <div className="relative flex justify-center mb-8 -mt-8">
             <div className="relative w-full max-w-4xl h-96 z-10">{/* Higher z-index for buttons */}
               {/* SVG for connections */}
               <svg 
