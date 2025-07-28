@@ -106,4 +106,27 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* NEON glow effects */
+  .neon-glow {
+    text-shadow: 0 0 5px #5CE1E6, 0 0 10px #5CE1E6, 0 0 15px #5CE1E6, 0 0 20px #5CE1E6;
+  }
+  
+  .neon-glow-hover:hover {
+    text-shadow: none;
+    transition: text-shadow 0.3s ease;
+  }
+  
+  .neon-glow-active:active {
+    text-shadow: none;
+  }
+  
+  /* Terminal typing animation */
+  .terminal-text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid #5CE1E6;
+    animation: terminal-typing 3s steps(22, end) infinite, cursor-blink 1s ease-in-out infinite;
+  }
 }

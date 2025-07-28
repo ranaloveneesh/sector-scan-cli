@@ -20,6 +20,7 @@ export default {
 		extend: {
 			fontFamily: {
 				'open-sauce': ['Open Sauce One', 'sans-serif'],
+				'tomorrow': ['Tomorrow', 'sans-serif'],
 			},
 			fontSize: {
 				'responsive-sm': 'clamp(0.875rem, 2vw, 1.125rem)',      // 14px to 18px
@@ -30,6 +31,9 @@ export default {
 				'responsive-3xl': 'clamp(1.875rem, 5vw, 3rem)',         // 30px to 48px
 				'responsive-title': 'clamp(1.5rem, 4vw, 2.25rem)',      // 24px to 36px - optimized for titles
 				'responsive-subtitle': 'clamp(1rem, 2.5vw, 1.25rem)',   // 16px to 20px - optimized for subtitles
+				'responsive-terminal': 'clamp(0.875rem, 2vw, 1rem)',    // 14px to 16px - for terminal text
+				'responsive-label': 'clamp(0.875rem, 2vw, 1.125rem)',   // 14px to 18px - for user_industry
+				'responsive-button': 'clamp(1.25rem, 3vw, 1.75rem)',    // 20px to 28px - for next button
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -102,11 +106,21 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'terminal-typing': {
+					'0%': { width: '0' },
+					'100%': { width: '100%' }
+				},
+				'cursor-blink': {
+					'0%, 50%': { opacity: '1' },
+					'51%, 100%': { opacity: '0' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'terminal-typing': 'terminal-typing 3s ease-out infinite',
+				'cursor-blink': 'cursor-blink 1s ease-in-out infinite'
 			}
 		}
 	},

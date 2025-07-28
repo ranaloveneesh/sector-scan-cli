@@ -64,7 +64,7 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({
 
       {/* User industry label in top right */}
       <div className="absolute top-8 right-8 z-10">
-        <span className="font-mono text-[#5CE1E6] text-lg">user_industry</span>
+        <span className="font-tomorrow text-responsive-label text-[#5CE1E6] neon-glow">user_industry</span>
       </div>
 
       {/* Main content */}
@@ -121,15 +121,15 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({
 
       {/* Bottom left terminal text */}
       <div className="absolute bottom-8 left-8">
-        <div className="font-mono text-gray-400 text-responsive-lg flex items-center">
+        <div className="font-mono text-gray-400 text-responsive-terminal flex items-center">
           <span className="mr-2">{'>'}</span>
-          scanning your sector...
+          <span className="terminal-text">scanning your sector...</span>
         </div>
       </div>
 
       {/* Bottom right next button */}
       <div className="absolute bottom-8 right-8">
-        <button onClick={handleSubmit} className="font-mono text-[#5CE1E6] text-responsive-2xl hover:text-[#5CE1E6]/80 transition-colors">
+        <button onClick={handleSubmit} className="font-mono text-[#5CE1E6] text-responsive-button neon-glow neon-glow-hover neon-glow-active transition-all duration-300">
           next
         </button>
       </div>
