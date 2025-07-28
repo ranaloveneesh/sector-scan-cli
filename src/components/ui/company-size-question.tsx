@@ -96,7 +96,7 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
                 className={cn(
                   "group relative w-full px-4 py-2 bg-transparent border-0 transition-all duration-300 text-left flex items-center",
                   "hover:bg-[#5CE1E6]/5 focus:outline-none cursor-pointer",
-                  selectedOption === option ? "text-[#5CE1E6] animate-pulse" : "text-white"
+                  selectedOption === option ? "text-[#5CE1E6] animate-[scale-in_0.5s_ease-out]" : "text-white"
                 )}
               >
                 {/* Custom bullet point */}
