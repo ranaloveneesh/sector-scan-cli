@@ -66,11 +66,11 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({ data, onSubm
       {/* Hexagonal logo in top left */}
       <div className="absolute top-8 left-8 z-10">
         <div className="w-16 h-16 flex items-center justify-center">
-          <svg viewBox="0 0 100 100" className="w-full h-full fill-[#5CE1E6]">
-            <polygon points="25,15 75,15 90,50 75,85 25,85 10,50" strokeWidth="2" stroke="#5CE1E6" fill="#5CE1E6" opacity="0.8"/>
-            <polygon points="35,35 65,35 70,50 65,65 35,65 30,50" fill="#0a1628"/>
-            <circle cx="50" cy="50" r="8" fill="#5CE1E6"/>
-          </svg>
+          <img 
+            src="/lovable-uploads/9a09eb3b-fced-4996-861e-53d664c56749.png" 
+            alt="Logo" 
+            className="w-full h-full object-contain"
+          />
         </div>
       </div>
 
