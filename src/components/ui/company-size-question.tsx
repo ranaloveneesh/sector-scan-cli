@@ -85,7 +85,7 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
 
           {/* Options list */}
           <div className="space-y-2 mb-16 max-w-2xl">
-            {data.options.map((option, index) => <button key={option} onClick={() => handleOptionSelect(option)} className={cn("group relative w-full px-4 py-2 bg-transparent border-0 text-left flex items-center digital-glitch animate-fade-in", "hover:bg-[#5CE1E6]/5 hover:text-[#5CE1E6] focus:outline-none cursor-pointer transition-none", selectedOption === option ? "text-[#5CE1E6]" : "text-white")} style={{ animationDelay: `${300 + index * 50}ms` }}>
+            {data.options.map((option, index) => <button key={option} onClick={() => handleOptionSelect(option)} className={cn("group relative w-full px-4 py-2 bg-transparent border-0 text-left flex items-center digital-glitch animate-fade-in rounded-lg transition-all duration-300", "hover:bg-[#5CE1E6]/5 hover:text-[#5CE1E6] focus:outline-none cursor-pointer", selectedOption === option ? "text-[#5CE1E6] bg-[#5CE1E6]/5" : "text-white")} style={{ animationDelay: `${300 + index * 50}ms` }}>
                 {/* Custom bullet point */}
                 <div className={cn("w-2 h-2 rounded-full mr-4 flex-shrink-0 transition-all duration-300", selectedOption === option ? "bg-[#5CE1E6] shadow-[0_0_12px_#5CE1E6] scale-110" : "bg-[#5CE1E6]/80 hover:bg-[#5CE1E6]/90")}></div>
                 
