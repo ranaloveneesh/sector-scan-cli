@@ -1,6 +1,8 @@
 import { CompanySizeQuestion } from '@/components/ui/company-size-question';
+import { useNavigate } from 'react-router-dom';
 
 const CompanySize = () => {
+  const navigate = useNavigate();
   const questionData = {
     id: "Q2_company_size",
     type: "question",
@@ -33,7 +35,7 @@ const CompanySize = () => {
 
   const handleSubmit = (selectedOptions: string[]) => {
     console.log('Selected company size:', selectedOptions);
-    // Handle the submission here - could navigate to next question, save to state, etc.
+    navigate('/department');
   };
 
   return <CompanySizeQuestion data={questionData} onSubmit={handleSubmit} />;
