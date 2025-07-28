@@ -1,8 +1,10 @@
 import { CompanySizeQuestion } from '@/components/ui/company-size-question';
 import { useNavigate } from 'react-router-dom';
+import { useSurvey } from '@/contexts/SurveyContext';
 
 const CompanySize = () => {
   const navigate = useNavigate();
+  const { updateSurveyData } = useSurvey();
   const questionData = {
     id: "Q2_company_size",
     type: "question",
@@ -35,6 +37,7 @@ const CompanySize = () => {
 
   const handleSubmit = (selectedOptions: string[]) => {
     console.log('Selected company size:', selectedOptions);
+    updateSurveyData('companySize', selectedOptions[0]);
     navigate('/department');
   };
 

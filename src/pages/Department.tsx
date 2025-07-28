@@ -1,8 +1,10 @@
 import { DepartmentQuestion } from '@/components/ui/department-question';
 import { useNavigate } from 'react-router-dom';
+import { useSurvey } from '@/contexts/SurveyContext';
 
 const Department = () => {
   const navigate = useNavigate();
+  const { updateSurveyData } = useSurvey();
   const questionData = {
     id: "Q3_user_department",
     type: "question",
@@ -38,7 +40,8 @@ const Department = () => {
 
   const handleSubmit = (selectedOptions: string[]) => {
     console.log('Selected department:', selectedOptions);
-    // Handle the submission here - could navigate to next question, save to state, etc.
+    updateSurveyData('department', selectedOptions[0]);
+    // Navigate to next slide or continue with survey flow
   };
 
   return <DepartmentQuestion data={questionData} onSubmit={handleSubmit} />;
