@@ -65,57 +65,133 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
 
     const containerWidth = 800;
     const containerHeight = 400;
-    const margin = 80;
+    const margin = 100;
 
-    // Generate random positions for each node
-    const positions: NodePosition[] = data.options.map((option, index) => {
-      // Use a combination of random and circular distribution to avoid clustering
-      const angle = (index / data.options!.length) * 2 * Math.PI + Math.random() * 0.5;
-      const radius = 120 + Math.random() * 100;
+    // Generate better distributed positions using "ordered chaos"
+    const positions: NodePosition[] = [];
+    const gridCols = Math.ceil(Math.sqrt(data.options.length * 1.5));
+    const gridRows = Math.ceil(data.options.length / gridCols);
+    
+    data.options.forEach((option, index) => {
+      // Start with a loose grid
+      const col = index % gridCols;
+      const row = Math.floor(index / gridCols);
       
-      const x = Math.max(margin, Math.min(containerWidth - margin, 
-        containerWidth / 2 + Math.cos(angle) * radius + (Math.random() - 0.5) * 60
-      ));
-      const y = Math.max(margin, Math.min(containerHeight - margin, 
-        containerHeight / 2 + Math.sin(angle) * radius + (Math.random() - 0.5) * 60
-      ));
-
-      return { x, y, id: option };
+      const baseX = margin + ((containerWidth - 2 * margin) / (gridCols - 1)) * col;
+      const baseY = margin + ((containerHeight - 2 * margin) / (gridRows - 1)) * row;
+      
+      // Add controlled randomness for "ordered chaos"
+      const randomOffsetX = (Math.random() - 0.5) * 80;
+      const randomOffsetY = (Math.random() - 0.5) * 60;
+      
+      let x = baseX + randomOffsetX;
+      let y = baseY + randomOffsetY;
+      
+      // Ensure minimum distance from other nodes and boundaries
+      let attempts = 0;
+      while (attempts < 50) {
+        const tooClose = positions.some(pos => {
+          const distance = Math.sqrt(Math.pow(x - pos.x, 2) + Math.pow(y - pos.y, 2));
+          return distance < 60; // Minimum distance between nodes
+        });
+        
+        if (!tooClose && x >= margin && x <= containerWidth - margin && 
+            y >= margin && y <= containerHeight - margin) {
+          break;
+        }
+        
+        // Adjust position if too close or out of bounds
+        x = baseX + (Math.random() - 0.5) * 100;
+        y = baseY + (Math.random() - 0.5) * 80;
+        attempts++;
+      }
+      
+      positions.push({ x, y, id: option });
     });
 
     setNodePositions(positions);
 
-    // Generate connections between nodes (create a web-like structure)
+    // Generate connections - ensure each node has exactly 3 connections
     const newConnections: Connection[] = [];
+    const nodeConnections: { [key: string]: number } = {};
     
-    positions.forEach((node, i) => {
-      // Connect to 2-3 nearest nodes to create a network
-      const distances = positions
-        .map((other, j) => ({
-          index: j,
+    // Initialize connection count for each node
+    positions.forEach(pos => {
+      nodeConnections[pos.id] = 0;
+    });
+
+    // First pass: connect each node to its 3 nearest neighbors
+    positions.forEach((node) => {
+      if (nodeConnections[node.id] >= 3) return;
+      
+      // Find nearest nodes that still need connections
+      const availableNodes = positions
+        .filter(other => 
+          other.id !== node.id && 
+          nodeConnections[other.id] < 3 &&
+          !newConnections.some(conn => 
+            (conn.from === node.id && conn.to === other.id) ||
+            (conn.from === other.id && conn.to === node.id)
+          )
+        )
+        .map(other => ({
+          node: other,
           distance: Math.sqrt(Math.pow(node.x - other.x, 2) + Math.pow(node.y - other.y, 2))
         }))
-        .filter((_, j) => j !== i)
-        .sort((a, b) => a.distance - b.distance)
-        .slice(0, Math.floor(Math.random() * 2) + 2); // 2-3 connections
+        .sort((a, b) => a.distance - b.distance);
 
-      distances.forEach(({ index }) => {
-        const target = positions[index];
-        // Check if connection already exists (to avoid duplicates)
-        const connectionExists = newConnections.some(conn => 
-          (conn.from === node.id && conn.to === target.id) ||
-          (conn.from === target.id && conn.to === node.id)
-        );
-
-        if (!connectionExists) {
+      // Connect to up to 3 nearest available nodes
+      const connectionsNeeded = Math.min(3 - nodeConnections[node.id], availableNodes.length);
+      
+      for (let i = 0; i < connectionsNeeded; i++) {
+        const target = availableNodes[i].node;
+        
+        if (nodeConnections[target.id] < 3) {
           const pathD = `M ${node.x} ${node.y} L ${target.x} ${target.y}`;
           newConnections.push({
             from: node.id,
             to: target.id,
             pathD
           });
+          
+          nodeConnections[node.id]++;
+          nodeConnections[target.id]++;
         }
-      });
+      }
+    });
+
+    // Second pass: ensure all nodes have at least 3 connections
+    positions.forEach((node) => {
+      if (nodeConnections[node.id] < 3) {
+        const availableNodes = positions
+          .filter(other => 
+            other.id !== node.id &&
+            !newConnections.some(conn => 
+              (conn.from === node.id && conn.to === other.id) ||
+              (conn.from === other.id && conn.to === node.id)
+            )
+          )
+          .map(other => ({
+            node: other,
+            distance: Math.sqrt(Math.pow(node.x - other.x, 2) + Math.pow(node.y - other.y, 2))
+          }))
+          .sort((a, b) => a.distance - b.distance);
+
+        const connectionsNeeded = 3 - nodeConnections[node.id];
+        
+        for (let i = 0; i < Math.min(connectionsNeeded, availableNodes.length); i++) {
+          const target = availableNodes[i].node;
+          const pathD = `M ${node.x} ${node.y} L ${target.x} ${target.y}`;
+          newConnections.push({
+            from: node.id,
+            to: target.id,
+            pathD
+          });
+          
+          nodeConnections[node.id]++;
+          nodeConnections[target.id]++;
+        }
+      }
     });
 
     setConnections(newConnections);
@@ -131,17 +207,18 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
     });
     setShowError(false);
 
-    // Trigger spark animation on connected paths
+    // Trigger spark animation only on the selected node's connections
     const connectedPaths = connections.filter(conn => 
       conn.from === option || conn.to === option
     );
     
-    connectedPaths.forEach((conn, index) => {
-      setTimeout(() => {
-        setSparkingPath(conn.pathD);
-        setTimeout(() => setSparkingPath(null), 800);
-      }, index * 100);
+    // Light up all connections of the selected node simultaneously
+    connectedPaths.forEach((conn) => {
+      setSparkingPath(conn.pathD);
     });
+    
+    // Clear the sparking after animation
+    setTimeout(() => setSparkingPath(null), 1200);
   };
 
   const handleSubmit = () => {
@@ -191,31 +268,27 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
                 preserveAspectRatio="xMidYMid meet"
               >
                 {/* Connection lines */}
-                {connections.map((connection, index) => (
-                  <g key={`${connection.from}-${connection.to}`}>
-                    <path
-                      d={connection.pathD}
-                      stroke="#6b7280"
-                      strokeWidth="1"
-                      fill="none"
-                      className="opacity-40"
-                    />
-                    {/* Spark animation */}
-                    {sparkingPath === connection.pathD && (
+                {connections.map((connection, index) => {
+                  const isConnectedToSelected = selectedOptions.some(selected => 
+                    connection.from === selected || connection.to === selected
+                  );
+                  
+                  return (
+                    <g key={`${connection.from}-${connection.to}`}>
                       <path
                         d={connection.pathD}
-                        stroke="#5CE1E6"
-                        strokeWidth="2"
+                        stroke={isConnectedToSelected ? "#5CE1E6" : "#6b7280"}
+                        strokeWidth={isConnectedToSelected ? "2" : "1"}
                         fill="none"
-                        className="animate-pulse"
-                        style={{
-                          filter: 'drop-shadow(0 0 6px #5CE1E6)',
-                          animation: 'pulse 0.8s ease-in-out'
-                        }}
+                        className={isConnectedToSelected ? "opacity-80" : "opacity-40"}
+                        style={isConnectedToSelected ? {
+                          filter: 'drop-shadow(0 0 4px #5CE1E6)',
+                          animation: sparkingPath === connection.pathD ? 'pulse 1.2s ease-in-out' : 'none'
+                        } : {}}
                       />
-                    )}
-                  </g>
-                ))}
+                    </g>
+                  );
+                })}
               </svg>
 
               {/* LLM nodes */}
