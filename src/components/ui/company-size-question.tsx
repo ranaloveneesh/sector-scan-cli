@@ -91,7 +91,7 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
                 <h1 className="text-responsive-title font-bold mb-1 text-white font-open-sauce">{data.title}</h1>
                 <p className="text-responsive-subtitle flex items-center text-slate-50 px-0 pt-2 pl-2 md:pl-8 font-normal font-open-sauce">
                   <span className="mr-2 text-slate-50 px-0 py-0 pl-2 md:pl-8">→</span>
-                  select your team size.
+                  {data.subtitle}
                 </p>
               </div>
 
