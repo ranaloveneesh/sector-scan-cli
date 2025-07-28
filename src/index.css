@@ -79,6 +79,14 @@ All colors MUST be HSL.
     --border: 180 50% 25%;
     --input: 215 28% 12%;
     --ring: 180 100% 70%;
+    
+    /* Custom cyberpunk colors for dark mode */
+    --neon-cyan: 180 100% 70%;
+    --neon-cyan-glow: 180 100% 85%;
+    --terminal-green: 120 100% 75%;
+    --dark-surface: 215 28% 8%;
+    --darker-surface: 215 28% 4%;
+    
     --sidebar-background: 215 28% 8%;
     --sidebar-foreground: 180 50% 60%;
     --sidebar-primary: 180 100% 70%;
