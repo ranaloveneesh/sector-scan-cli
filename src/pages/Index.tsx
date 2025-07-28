@@ -1,6 +1,8 @@
 import { IndustryQuestion } from '@/components/ui/industry-question';
+import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
+  const navigate = useNavigate();
   const questionData = {
     id: "Q1_user_industry",
     type: "question",
@@ -36,7 +38,7 @@ const Index = () => {
 
   const handleSubmit = (selectedOptions: string[]) => {
     console.log('Selected industries:', selectedOptions);
-    // Handle the submission here - could navigate to next question, save to state, etc.
+    navigate('/company-size');
   };
 
   return <IndustryQuestion data={questionData} onSubmit={handleSubmit} />;
