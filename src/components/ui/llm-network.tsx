@@ -42,7 +42,9 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
   const [nodePositions, setNodePositions] = useState<NodePosition[]>([]);
   const [connections, setConnections] = useState<Connection[]>([]);
   const [sparkingPath, setSparkingPath] = useState<string | null>(null);
+  const [containerDimensions, setContainerDimensions] = useState({ width: 800, height: 400 });
   const svgRef = useRef<SVGSVGElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   // Terminal animation effect
   useEffect(() => {
@@ -59,13 +61,28 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
     return () => clearInterval(interval);
   }, [data.ui.animation_text]);
 
+  // Handle resize
+  useEffect(() => {
+    const handleResize = () => {
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        const newWidth = Math.min(800, rect.width);
+        const newHeight = Math.min(400, rect.height);
+        setContainerDimensions({ width: newWidth, height: newHeight });
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   // Generate random positions and connections
   useEffect(() => {
     if (!data.options || data.options.length === 0) return;
 
-    const containerWidth = 800;
-    const containerHeight = 400;
-    const margin = 80; // Reduced margin to move whole network higher
+    const { width: containerWidth, height: containerHeight } = containerDimensions;
+    const margin = Math.max(50, containerWidth * 0.1); // Responsive margin
 
     // Generate better distributed positions using "ordered chaos"
     const positions: NodePosition[] = [];
@@ -231,7 +248,7 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
     });
 
     setConnections(newConnections);
-  }, [data.options]);
+  }, [data.options, containerDimensions]);
 
   const handleOptionSelect = (option: string) => {
     setSelectedOptions(prev => {
@@ -295,12 +312,15 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
 
           {/* Network visualization */}
           <div className="relative flex justify-center mb-8 -mt-8">
-            <div className="relative w-full max-w-4xl h-96 z-10">{/* Higher z-index for buttons */}
+            <div 
+              ref={containerRef}
+              className="relative w-full max-w-4xl h-96 z-10"
+            >
               {/* SVG for connections */}
               <svg 
                 ref={svgRef}
                 className="absolute inset-0 w-full h-full z-0"
-                viewBox="0 0 800 400"
+                viewBox={`0 0 ${containerDimensions.width} ${containerDimensions.height}`}
                 preserveAspectRatio="xMidYMid meet"
                 style={{ pointerEvents: 'none' }}
               >
@@ -341,8 +361,8 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
                       : "bg-[#1e293b]/80 text-white border border-gray-600 hover:bg-[#5CE1E6]/10 hover:text-[#5CE1E6]"
                   )}
                   style={{
-                    left: `${(position.x / 800) * 100}%`,
-                    top: `${(position.y / 400) * 100}%`,
+                    left: `${(position.x / containerDimensions.width) * 100}%`,
+                    top: `${(position.y / containerDimensions.height) * 100}%`,
                     animationDelay: `${300 + index * 100}ms`
                   }}
                 >
