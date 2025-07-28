@@ -76,11 +76,13 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({ data, onSubm
         </div>
       </div>
 
-      {/* Logo positioned top right */}
-      <div className="absolute top-8 right-8 z-10">
-        <div className="w-12 h-12 rounded-lg border-2 border-neon-cyan bg-dark-surface flex items-center justify-center">
-          <div className="w-6 h-6 bg-neon-cyan rounded-sm animate-pulse" />
-        </div>
+      {/* Logo positioned top left */}
+      <div className="absolute top-8 left-8 z-10">
+        <img 
+          src="/lovable-uploads/11e6e5b7-bfc4-4779-b6fa-3ea16d7b2fe2.png" 
+          alt="Company Logo" 
+          className="w-12 h-12 object-contain"
+        />
       </div>
 
       {/* Main content */}
