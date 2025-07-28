@@ -62,123 +62,114 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({ data, onSubm
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
-      {/* Animated background grid */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="grid grid-cols-12 gap-4 h-full">
-          {Array.from({ length: 48 }).map((_, i) => (
-            <div 
-              key={i} 
-              className="border-l border-neon-cyan/20 animate-pulse"
-              style={{ animationDelay: `${i * 0.1}s` }}
-            />
-          ))}
+    <div className="min-h-screen bg-[#0a1628] text-white relative overflow-hidden">
+      {/* Hexagonal logo in top left */}
+      <div className="absolute top-8 left-8 z-10">
+        <div className="w-16 h-16 flex items-center justify-center">
+          <svg viewBox="0 0 100 100" className="w-full h-full fill-[#5CE1E6]">
+            <polygon points="25,15 75,15 90,50 75,85 25,85 10,50" strokeWidth="2" stroke="#5CE1E6" fill="#5CE1E6" opacity="0.8"/>
+            <polygon points="35,35 65,35 70,50 65,65 35,65 30,50" fill="#0a1628"/>
+            <circle cx="50" cy="50" r="8" fill="#5CE1E6"/>
+          </svg>
         </div>
       </div>
 
-      {/* Logo positioned top left */}
-      <div className="absolute top-8 left-8 z-10">
-        <img 
-          src="/lovable-uploads/11e6e5b7-bfc4-4779-b6fa-3ea16d7b2fe2.png" 
-          alt="Company Logo" 
-          className="w-12 h-12 object-contain"
-        />
+      {/* User industry label in top right */}
+      <div className="absolute top-8 right-8 z-10">
+        <span className="font-mono text-[#5CE1E6] text-lg">user_industry</span>
       </div>
 
       {/* Main content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-8">
-        <div className="max-w-4xl w-full">
-          {/* Terminal animation */}
-          <div className="mb-12 text-center">
-            <div className="font-mono text-terminal-green text-lg mb-4">
-              {animationText}
-              <span className="animate-pulse">_</span>
-            </div>
-          </div>
-
+        <div className="max-w-6xl w-full">
           {/* Question content */}
-          <div className="text-center mb-12">
-            <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-neon-cyan to-neon-cyan-glow bg-clip-text text-transparent">
-              {data.title}
+          <div className="text-left mb-16">
+            <h1 className="text-6xl font-bold mb-6 text-white">
+              What's your industry?
             </h1>
-            <p className="text-xl text-muted-foreground">
-              {data.subtitle}
+            <p className="text-xl text-gray-300 flex items-center">
+              <span className="mr-3 text-[#5CE1E6]">→</span>
+              select the field you operate in.
             </p>
           </div>
 
           {/* Options grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+          <div className="grid grid-cols-3 gap-6 mb-16">
             {data.options.map((option, index) => (
               <button
                 key={option}
                 onClick={() => handleOptionToggle(option)}
                 className={cn(
-                  "group relative p-6 rounded-lg border-2 transition-all duration-300 text-left",
-                  "hover:border-neon-cyan hover:bg-dark-surface/50",
-                  "focus:outline-none focus:ring-2 focus:ring-neon-cyan",
-                  selectedOptions.includes(option)
-                    ? "border-neon-cyan bg-dark-surface shadow-lg shadow-neon-cyan/25"
-                    : "border-border bg-card"
+                  "group relative p-8 bg-transparent border-0 transition-all duration-300 text-left min-h-[120px] flex items-center justify-center",
+                  "hover:bg-[#5CE1E6]/5 focus:outline-none",
+                  selectedOptions.includes(option) ? "text-[#5CE1E6]" : "text-white"
                 )}
               >
-                {/* Neon brackets for selected items */}
-                {selectedOptions.includes(option) && (
-                  <>
-                    <span className="absolute -left-2 top-1/2 -translate-y-1/2 text-neon-cyan font-mono text-2xl">
-                      [
-                    </span>
-                    <span className="absolute -right-2 top-1/2 -translate-y-1/2 text-neon-cyan font-mono text-2xl">
-                      ]
-                    </span>
-                  </>
-                )}
-                
-                <div className="flex items-center justify-between">
-                  <span className={cn(
-                    "text-lg font-medium transition-colors",
-                    selectedOptions.includes(option) ? "text-neon-cyan" : "text-foreground"
-                  )}>
-                    {option}
-                  </span>
+                {/* Corner brackets */}
+                <div className={cn(
+                  "absolute inset-0 transition-all duration-300",
+                  selectedOptions.includes(option) ? "opacity-100" : "opacity-60 group-hover:opacity-80"
+                )}>
+                  {/* Top left corner */}
+                  <div className="absolute top-0 left-0 w-6 h-6">
+                    <div className={cn("absolute top-0 left-0 w-6 h-0.5", selectedOptions.includes(option) ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]")}></div>
+                    <div className={cn("absolute top-0 left-0 w-0.5 h-6", selectedOptions.includes(option) ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]")}></div>
+                  </div>
                   
-                  {/* Selection indicator */}
-                  <div className={cn(
-                    "w-4 h-4 rounded-full border-2 transition-all",
-                    selectedOptions.includes(option)
-                      ? "border-neon-cyan bg-neon-cyan shadow-md shadow-neon-cyan/50"
-                      : "border-muted-foreground"
-                  )}>
-                    {selectedOptions.includes(option) && (
-                      <div className="w-full h-full rounded-full bg-neon-cyan animate-pulse" />
-                    )}
+                  {/* Top right corner */}
+                  <div className="absolute top-0 right-0 w-6 h-6">
+                    <div className={cn("absolute top-0 right-0 w-6 h-0.5", selectedOptions.includes(option) ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]")}></div>
+                    <div className={cn("absolute top-0 right-0 w-0.5 h-6", selectedOptions.includes(option) ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]")}></div>
+                  </div>
+                  
+                  {/* Bottom left corner */}
+                  <div className="absolute bottom-0 left-0 w-6 h-6">
+                    <div className={cn("absolute bottom-0 left-0 w-6 h-0.5", selectedOptions.includes(option) ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]")}></div>
+                    <div className={cn("absolute bottom-0 left-0 w-0.5 h-6", selectedOptions.includes(option) ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]")}></div>
+                  </div>
+                  
+                  {/* Bottom right corner */}
+                  <div className="absolute bottom-0 right-0 w-6 h-6">
+                    <div className={cn("absolute bottom-0 right-0 w-6 h-0.5", selectedOptions.includes(option) ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]")}></div>
+                    <div className={cn("absolute bottom-0 right-0 w-0.5 h-6", selectedOptions.includes(option) ? "bg-[#5CE1E6]" : "bg-[#5CE1E6]")}></div>
                   </div>
                 </div>
+                
+                <span className="text-2xl font-medium relative z-10">
+                  {option}
+                </span>
               </button>
             ))}
           </div>
-
-          {/* Error message */}
-          {showError && (
-            <div className="text-center mb-6">
-              <p className="text-destructive font-medium animate-pulse">
-                {data.validation.error_message}
-              </p>
-            </div>
-          )}
-
-          {/* Submit button */}
-          <div className="text-center">
-            <Button
-              onClick={handleSubmit}
-              className="px-12 py-4 text-lg font-semibold bg-neon-cyan text-primary-foreground hover:bg-neon-cyan-glow transition-all duration-300 shadow-lg shadow-neon-cyan/25 hover:shadow-neon-cyan/40"
-              disabled={selectedOptions.length === 0}
-            >
-              Continue
-              <span className="ml-2 font-mono">→</span>
-            </Button>
-          </div>
         </div>
       </div>
+
+      {/* Bottom left terminal text */}
+      <div className="absolute bottom-8 left-8">
+        <div className="font-mono text-gray-400 text-lg flex items-center">
+          <span className="mr-2">{'>'}</span>
+          scanning your sector...
+        </div>
+      </div>
+
+      {/* Bottom right next button */}
+      <div className="absolute bottom-8 right-8">
+        <button
+          onClick={handleSubmit}
+          className="font-mono text-[#5CE1E6] text-2xl hover:text-[#5CE1E6]/80 transition-colors"
+        >
+          next
+        </button>
+      </div>
+
+      {/* Error message */}
+      {showError && (
+        <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2">
+          <p className="text-red-400 font-medium animate-pulse">
+            {data.validation.error_message}
+          </p>
+        </div>
+      )}
     </div>
   );
 };
