@@ -10,12 +10,6 @@ interface LLMNode {
   selected: boolean;
 }
 
-interface Connection {
-  from: [number, number, number];
-  to: [number, number, number];
-  active: boolean;
-}
-
 interface SynapticWebProps {
   models: string[];
   selectedModels: string[];
@@ -26,8 +20,7 @@ interface SynapticWebProps {
 const LLMNodeComponent: React.FC<{
   node: LLMNode;
   onClick: () => void;
-  connections: Connection[];
-}> = ({ node, onClick, connections }) => {
+}> = ({ node, onClick }) => {
   const meshRef = useRef<THREE.Mesh>(null);
   const [hovered, setHovered] = useState(false);
 
@@ -88,64 +81,54 @@ const LLMNodeComponent: React.FC<{
   );
 };
 
-// Connection lines component
-const ConnectionLines: React.FC<{ connections: Connection[] }> = ({ connections }) => {
-  const lineRefs = useRef<THREE.BufferGeometry[]>([]);
+// Simplified connection lines using individual Line components
+const ConnectionLine: React.FC<{ 
+  start: [number, number, number]; 
+  end: [number, number, number]; 
+  active: boolean;
+}> = ({ start, end, active }) => {
+  const points = useMemo(() => {
+    const startVec = new THREE.Vector3(...start);
+    const endVec = new THREE.Vector3(...end);
+    const mid = startVec.clone().lerp(endVec, 0.5);
+    mid.y += 0.5; // Arc the connection upward
+    
+    // Create curve points
+    const curve = new THREE.QuadraticBezierCurve3(startVec, mid, endVec);
+    return curve.getPoints(20);
+  }, [start, end]);
 
-  useFrame((state) => {
-    lineRefs.current.forEach((geometry, index) => {
-      if (geometry && connections[index]) {
-        const connection = connections[index];
-        const points = [];
-        
-        // Create a curved path between nodes
-        const start = new THREE.Vector3(...connection.from);
-        const end = new THREE.Vector3(...connection.to);
-        const mid = start.clone().lerp(end, 0.5);
-        mid.y += 0.5; // Arc the connection upward
-        
-        // Create smooth curve
-        for (let i = 0; i <= 20; i++) {
-          const t = i / 20;
-          const point = new THREE.Vector3();
-          point.lerpVectors(start, mid, t).lerp(end, t);
-          points.push(point);
-        }
-        
-        geometry.setFromPoints(points);
-      }
-    });
-  });
+  const geometry = useMemo(() => {
+    const geo = new THREE.BufferGeometry().setFromPoints(points);
+    return geo;
+  }, [points]);
 
   return (
-    <>
-      {connections.map((connection, index) => (
-        <line key={index}>
-          <bufferGeometry ref={(ref) => ref && (lineRefs.current[index] = ref)} />
-          <lineBasicMaterial
-            color={connection.active ? '#00ffff' : '#333333'}
-            transparent
-            opacity={connection.active ? 0.8 : 0.3}
-          />
-        </line>
-      ))}
-    </>
+    <mesh>
+      <bufferGeometry attach="geometry" {...geometry} />
+      <lineBasicMaterial
+        attach="material"
+        color={active ? '#00ffff' : '#333333'}
+        transparent
+        opacity={active ? 0.8 : 0.3}
+      />
+    </mesh>
   );
 };
 
-// Neural particles effect
+// Neural particles background
 const NeuralParticles: React.FC = () => {
   const particlesRef = useRef<THREE.Points>(null);
-  const particleCount = 50;
-
-  const positions = useMemo(() => {
-    const pos = new Float32Array(particleCount * 3);
-    for (let i = 0; i < particleCount; i++) {
+  
+  const { positions, particleCount } = useMemo(() => {
+    const count = 50;
+    const pos = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++) {
       pos[i * 3] = (Math.random() - 0.5) * 10;
       pos[i * 3 + 1] = (Math.random() - 0.5) * 6;
       pos[i * 3 + 2] = (Math.random() - 0.5) * 4;
     }
-    return pos;
+    return { positions: pos, particleCount: count };
   }, []);
 
   useFrame((state) => {
@@ -202,18 +185,22 @@ export const SynapticWeb: React.FC<SynapticWebProps> = ({
     }));
   }, [models, selectedModels]);
 
-  // Generate connections between nodes
-  const connections: Connection[] = useMemo(() => {
-    const conns: Connection[] = [];
+  // Generate connections between nearby nodes
+  const connections = useMemo(() => {
+    const conns: Array<{
+      start: [number, number, number];
+      end: [number, number, number];
+      active: boolean;
+    }> = [];
+    
     for (let i = 0; i < nodes.length; i++) {
       for (let j = i + 1; j < nodes.length; j++) {
-        // Create connections between nearby nodes
         const distance = new THREE.Vector3(...nodes[i].position)
           .distanceTo(new THREE.Vector3(...nodes[j].position));
         if (distance < 3) {
           conns.push({
-            from: nodes[i].position,
-            to: nodes[j].position,
+            start: nodes[i].position,
+            end: nodes[j].position,
             active: nodes[i].selected || nodes[j].selected,
           });
         }
@@ -244,7 +231,14 @@ export const SynapticWeb: React.FC<SynapticWebProps> = ({
         <NeuralParticles />
         
         {/* Connection lines */}
-        <ConnectionLines connections={connections} />
+        {connections.map((connection, index) => (
+          <ConnectionLine
+            key={index}
+            start={connection.start}
+            end={connection.end}
+            active={connection.active}
+          />
+        ))}
         
         {/* LLM nodes */}
         {nodes.map((node) => (
@@ -252,7 +246,6 @@ export const SynapticWeb: React.FC<SynapticWebProps> = ({
             key={node.id}
             node={node}
             onClick={() => handleNodeClick(node.id)}
-            connections={connections}
           />
         ))}
       </Canvas>
