@@ -56,14 +56,14 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({
   };
   return <div className="min-h-screen bg-[#0a1628] text-white relative overflow-hidden">
       {/* Hexagonal logo in top left */}
-      <div className="absolute top-6 left-6 z-10">
+      <div className="absolute top-6 left-6 md:top-12 md:left-16 z-10">
         <div className="flex items-center justify-center" style={{width: 'clamp(4rem, 6vw, 5rem)', height: 'clamp(4rem, 6vw, 5rem)'}}>
           <img src="/lovable-uploads/a8d760f4-8e0c-410d-ae83-a3e6dd4b23e9.png" alt="Logo" className="w-full h-full object-contain" />
         </div>
       </div>
 
       {/* User industry label in top right */}
-      <div className="absolute top-6 right-6 z-10">
+      <div className="absolute top-6 right-6 md:top-12 md:right-16 z-10">
         <span className="font-tomorrow text-responsive-label text-[#5CE1E6] neon-glow">user_industry</span>
       </div>
 
@@ -120,7 +120,7 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({
       </div>
 
       {/* Bottom left terminal text */}
-      <div className="absolute bottom-6 left-6">
+      <div className="absolute bottom-6 left-6 md:bottom-12 md:left-16">
         <div className="font-mono text-gray-400 text-responsive-terminal flex items-center">
           <span className="mr-2">{'>'}</span>
           <span className="terminal-text">determining your sector...</span>
