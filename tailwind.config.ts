@@ -28,6 +28,8 @@ export default {
 				'responsive-xl': 'clamp(1.25rem, 3.5vw, 2rem)',         // 20px to 32px
 				'responsive-2xl': 'clamp(1.5rem, 4vw, 2.5rem)',         // 24px to 40px
 				'responsive-3xl': 'clamp(1.875rem, 5vw, 3rem)',         // 30px to 48px
+				'responsive-title': 'clamp(1.5rem, 4vw, 2.25rem)',      // 24px to 36px - optimized for titles
+				'responsive-subtitle': 'clamp(1rem, 2.5vw, 1.25rem)',   // 16px to 20px - optimized for subtitles
 			},
 			colors: {
 				border: 'hsl(var(--border))',
