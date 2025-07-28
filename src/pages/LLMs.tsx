@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSurvey } from '@/contexts/SurveyContext';
-import { CompanySizeQuestion } from '@/components/ui/company-size-question';
+import { LLMNetwork } from '@/components/ui/llm-network';
 
 const LLMs = () => {
   const navigate = useNavigate();
@@ -42,7 +42,7 @@ const LLMs = () => {
   };
 
   return (
-    <CompanySizeQuestion
+    <LLMNetwork
       data={questionData}
       onSubmit={handleSubmit}
     />
