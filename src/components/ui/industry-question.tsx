@@ -45,7 +45,7 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({
     return () => clearInterval(interval);
   }, [data.ui.animation_text]);
   const handleOptionSelect = (option: string) => {
-    playSound(sounds.sciFiClick);
+    playSound(sounds.minimalClick);
     setSelectedOption(option);
     setShowError(false);
   };

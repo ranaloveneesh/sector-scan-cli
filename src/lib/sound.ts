@@ -13,4 +13,5 @@ export const playSound = (soundPath: string, volume: number = 0.3) => {
 
 export const sounds = {
   sciFiClick: '/sounds/sci-fi-click.wav',
+  minimalClick: '/sounds/minimal-click.wav',
 } as const;
