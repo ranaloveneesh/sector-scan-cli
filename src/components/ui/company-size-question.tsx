@@ -88,13 +88,13 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
           </div>
 
           {/* Options list */}
-          <div className="space-y-4 mb-16 max-w-2xl">
+          <div className="space-y-2 mb-16 max-w-2xl">
             {data.options.map((option, index) => (
               <button
                 key={option}
                 onClick={() => handleOptionSelect(option)}
                 className={cn(
-                  "group relative w-full px-6 py-4 bg-transparent border-0 transition-all duration-300 text-left flex items-center",
+                  "group relative w-full px-4 py-2 bg-transparent border-0 transition-all duration-300 text-left flex items-center",
                   "hover:bg-[#5CE1E6]/5 focus:outline-none cursor-pointer",
                   selectedOption === option ? "text-[#5CE1E6]" : "text-white"
                 )}
@@ -105,7 +105,7 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
                   selectedOption === option ? "bg-[#5CE1E6] shadow-[0_0_8px_#5CE1E6]" : "bg-[#5CE1E6]/60"
                 )}></div>
                 
-                <span className="text-responsive-base font-medium font-open-sauce">
+                <span className="text-[95%] font-medium font-open-sauce">
                   {option}
                 </span>
               </button>
