@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { useSurvey } from '@/contexts/SurveyContext';
 import { CompanySizeQuestion } from '@/components/ui/company-size-question';
 
-const Slide4 = () => {
+const Slide5 = () => {
   const navigate = useNavigate();
   const { updateSurveyData } = useSurvey();
 
   const questionData = {
-    id: "slide4",
-    title: "Do you know what an AI agent is?",
+    id: "slide5",
+    title: "AI Agent Explained",
     subtitle: "Select your answer.",
     options: [
       "A chatbot",
@@ -21,10 +21,10 @@ const Slide4 = () => {
     ui: {
       logo_position: "top-left",
       animation_style: "terminal",
-      animation_text: "evaluating user knowledge...",
+      animation_text: "explaining AI agents...",
       next_button_color: "primary",
       selector_style: "modern",
-      label: "ai_agents"
+      label: "ai_agent_explained"
     },
     validation: {
       required: true,
@@ -33,8 +33,8 @@ const Slide4 = () => {
   };
 
   const handleSubmit = (selectedOptions: string[]) => {
-    updateSurveyData('aiAgentKnowledge', selectedOptions[0]);
-    navigate('/aiagent-explained');
+    updateSurveyData('aiAgentExplained', selectedOptions[0]);
+    navigate('/'); // Update this to next slide when created
   };
 
   return (
@@ -45,4 +45,4 @@ const Slide4 = () => {
   );
 };
 
-export default Slide4;
+export default Slide5;
