@@ -34,7 +34,7 @@ const RagPipeline = () => {
 
   const handleSubmit = (selectedOptions: string[]) => {
     updateSurveyData('ragPipelineKnowledge', selectedOptions[0]);
-    navigate('/'); // Update to next slide when created
+    navigate('/ragpipeline-explained');
   };
 
   return (
