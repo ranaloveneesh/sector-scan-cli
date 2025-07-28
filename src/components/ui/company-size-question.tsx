@@ -61,42 +61,38 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
 
   return (
     <div className="min-h-screen bg-[#0a1628] text-white relative overflow-hidden">
-      {/* Hexagonal logo in top left */}
-      <div className="absolute top-6 left-6 md:top-12 md:left-16 z-10 flex items-end">
+      {/* Header with logo and label */}
+      <div className="absolute top-6 left-6 right-6 md:top-12 md:left-16 md:right-16 z-10 flex justify-between items-center">
         <div className="flex items-center justify-center" style={{width: 'clamp(4rem, 6vw, 6.25rem)', height: 'clamp(4rem, 6vw, 6.25rem)'}}>
           <img src="/lovable-uploads/a8d760f4-8e0c-410d-ae83-a3e6dd4b23e9.png" alt="Logo" className="w-full h-full object-contain" />
         </div>
-      </div>
-
-      {/* User company size label in top right */}
-      <div className="absolute top-6 right-6 md:top-12 md:right-16 z-10 flex items-end">
         <span className="font-tomorrow text-responsive-label text-[#5CE1E6] neon-glow">company_size</span>
       </div>
 
-      {/* Main content */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-8 md:px-32 lg:px-48">
-        <div className="max-w-4xl w-full">
-          {/* Question content */}
-          <div className="text-left mb-16">
-            <h1 className="text-responsive-title font-bold mb-1 text-white font-open-sauce">
+      {/* Main content container */}
+      <div className="flex flex-col justify-center min-h-screen px-8 md:px-16 lg:px-24 pt-24 pb-24">
+        <div className="max-w-3xl mx-auto w-full">
+          {/* Question header */}
+          <div className="mb-8">
+            <h1 className="text-responsive-title font-bold mb-2 text-white font-open-sauce">
               What's the size of your company?
             </h1>
-            <p className="text-responsive-subtitle flex items-center text-slate-50 px-0 pt-2 pl-2 md:pl-8 font-normal font-open-sauce">
-              <span className="mr-2 text-slate-50 px-0 py-0 pl-2 md:pl-8">→</span>
+            <p className="text-responsive-subtitle text-slate-50 font-normal font-open-sauce flex items-center">
+              <span className="mr-2">→</span>
               select your team size.
             </p>
           </div>
 
           {/* Options list */}
-          <div className="space-y-4 mb-16 max-w-2xl">
+          <div className="space-y-3 mb-8">
             {data.options.map((option, index) => (
               <button
                 key={option}
                 onClick={() => handleOptionSelect(option)}
                 className={cn(
-                  "group relative w-full px-6 py-4 bg-transparent border-0 transition-all duration-300 text-left flex items-center",
+                  "group relative w-full px-6 py-3 bg-transparent border-0 transition-all duration-300 text-left flex items-center rounded-lg",
                   "hover:bg-[#5CE1E6]/5 focus:outline-none cursor-pointer",
-                  selectedOption === option ? "text-[#5CE1E6]" : "text-white"
+                  selectedOption === option ? "text-[#5CE1E6] bg-[#5CE1E6]/5" : "text-white"
                 )}
               >
                 {/* Custom bullet point */}
@@ -111,25 +107,24 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
               </button>
             ))}
           </div>
-        </div>
-      </div>
 
-      {/* Bottom left terminal text */}
-      <div className="absolute bottom-6 left-6 md:bottom-12 md:left-16">
-        <div className="font-mono text-gray-400 text-responsive-terminal flex items-baseline">
-          <span className="mr-2">{'>'}</span>
-          <span className="terminal-text">calculating team size...</span>
+          {/* Bottom section with terminal text and button */}
+          <div className="flex justify-between items-end mt-12">
+            <div className="font-mono text-gray-400 text-responsive-terminal flex items-baseline">
+              <span className="mr-2">{'>'}</span>
+              <span className="terminal-text">calculating team size...</span>
+            </div>
+            
+            <button
+              onClick={handleSubmit}
+              className="sci-fi-arrow font-mono text-[#5CE1E6] text-responsive-button neon-glow transition-all duration-300 relative hover:text-[#5CE1E6]/80 cursor-pointer"
+              style={{ pointerEvents: 'auto', zIndex: 10 }}
+              data-text="next"
+            >
+              next
+            </button>
+          </div>
         </div>
-      </div>
-
-      {/* Bottom right next button */}
-      <div className="absolute bottom-6 right-6 md:bottom-12 md:right-16">
-        <button
-          onClick={handleSubmit}
-          className="sci-fi-arrow font-mono text-[#5CE1E6] text-responsive-button neon-glow transition-all duration-300 relative hover:text-[#5CE1E6]/80"
-        >
-          next
-        </button>
       </div>
 
       {/* Error message */}
