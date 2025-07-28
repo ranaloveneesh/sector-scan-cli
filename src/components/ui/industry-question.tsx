@@ -75,7 +75,7 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({
             <h1 className="text-3xl font-bold mb-1 text-white">
               What's your industry?
             </h1>
-            <p className="text-xl flex items-center text-slate-50 px-0 pt-2 pl-8">
+            <p className="text-xl flex items-center text-slate-50 px-0 pt-2 pl-8 font-normal">
               <span className="mr-2 text-slate-50 px-0 py-0 pl-8">→</span>
               select the field you operate in.
             </p>
