@@ -4,9 +4,9 @@ import { cn } from '@/lib/utils';
 interface CompanySizeQuestionProps {
   data: {
     id: string;
-    title: string;
-    subtitle: string;
-    options: string[];
+    title?: string;
+    subtitle?: string;
+    options?: string[];
     ui: {
       logo_position: string;
       animation_style: string;
@@ -15,10 +15,11 @@ interface CompanySizeQuestionProps {
       selector_style: string;
       label?: string;
     };
-    validation: {
+    validation?: {
       required: boolean;
       error_message: string;
     };
+    isStatic?: boolean;
   };
   onSubmit: (selectedOptions: string[]) => void;
 }
@@ -49,11 +50,11 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
     setShowError(false);
   };
   const handleSubmit = () => {
-    if (data.validation.required && !selectedOption) {
+    if (data.validation?.required && !selectedOption && !data.isStatic) {
       setShowError(true);
       return;
     }
-    onSubmit([selectedOption]);
+    onSubmit(data.isStatic ? [] : [selectedOption]);
   };
   return <div className="min-h-screen bg-[#0a1628] text-white relative overflow-hidden">
       {/* Hexagonal logo in top left */}
@@ -74,26 +75,30 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
       {/* Main content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-8 md:px-32 lg:px-48 animate-fade-in" style={{ animationDelay: '200ms' }}>
         <div className="max-w-4xl w-full">
-          {/* Question content */}
-          <div className="text-left mb-16">
-            <h1 className="text-responsive-title font-bold mb-1 text-white font-open-sauce">{data.title}</h1>
-            <p className="text-responsive-subtitle flex items-center text-slate-50 px-0 pt-2 pl-2 md:pl-8 font-normal font-open-sauce">
-              <span className="mr-2 text-slate-50 px-0 py-0 pl-2 md:pl-8">→</span>
-              select your team size.
-            </p>
-          </div>
+          {!data.isStatic && (
+            <>
+              {/* Question content */}
+              <div className="text-left mb-16">
+                <h1 className="text-responsive-title font-bold mb-1 text-white font-open-sauce">{data.title}</h1>
+                <p className="text-responsive-subtitle flex items-center text-slate-50 px-0 pt-2 pl-2 md:pl-8 font-normal font-open-sauce">
+                  <span className="mr-2 text-slate-50 px-0 py-0 pl-2 md:pl-8">→</span>
+                  select your team size.
+                </p>
+              </div>
 
-          {/* Options list */}
-          <div className="space-y-2 mb-16 max-w-2xl">
-            {data.options.map((option, index) => <button key={option} onClick={() => handleOptionSelect(option)} className={cn("group relative w-full px-4 py-2 bg-transparent border-0 text-left flex items-center digital-glitch animate-fade-in rounded-lg transition-all duration-300", "hover:bg-[#5CE1E6]/5 hover:text-[#5CE1E6] focus:outline-none cursor-pointer", selectedOption === option ? "text-[#5CE1E6] bg-[#5CE1E6]/5" : "text-white")} style={{ animationDelay: `${300 + index * 50}ms` }}>
-                {/* Custom bullet point */}
-                <div className={cn("w-2 h-2 rounded-full mr-4 flex-shrink-0 transition-all duration-300", selectedOption === option ? "bg-[#5CE1E6] shadow-[0_0_12px_#5CE1E6] scale-110" : "bg-[#5CE1E6]/80 hover:bg-[#5CE1E6]/90")}></div>
-                
-                <span className={cn("text-responsive-base font-medium font-open-sauce transition-all duration-300", selectedOption === option && "transform scale-102")} data-text={option}>
-                  {option}
-                </span>
-              </button>)}
-          </div>
+              {/* Options list */}
+              <div className="space-y-2 mb-16 max-w-2xl">
+                {data.options?.map((option, index) => <button key={option} onClick={() => handleOptionSelect(option)} className={cn("group relative w-full px-4 py-2 bg-transparent border-0 text-left flex items-center digital-glitch animate-fade-in rounded-lg transition-all duration-300", "hover:bg-[#5CE1E6]/5 hover:text-[#5CE1E6] focus:outline-none cursor-pointer", selectedOption === option ? "text-[#5CE1E6] bg-[#5CE1E6]/5" : "text-white")} style={{ animationDelay: `${300 + index * 50}ms` }}>
+                    {/* Custom bullet point */}
+                    <div className={cn("w-2 h-2 rounded-full mr-4 flex-shrink-0 transition-all duration-300", selectedOption === option ? "bg-[#5CE1E6] shadow-[0_0_12px_#5CE1E6] scale-110" : "bg-[#5CE1E6]/80 hover:bg-[#5CE1E6]/90")}></div>
+                    
+                    <span className={cn("text-responsive-base font-medium font-open-sauce transition-all duration-300", selectedOption === option && "transform scale-102")} data-text={option}>
+                      {option}
+                    </span>
+                  </button>)}
+              </div>
+            </>
+          )}
         </div>
       </div>
 

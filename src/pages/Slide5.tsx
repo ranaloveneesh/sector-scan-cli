@@ -9,15 +9,6 @@ const Slide5 = () => {
 
   const questionData = {
     id: "slide5",
-    title: "AI Agent Explained",
-    subtitle: "Select your answer.",
-    options: [
-      "A chatbot",
-      "A tool that automates repetitive tasks", 
-      "A software entity that can perceive, reason, and act autonomously",
-      "No idea, but I'm curious",
-      "I thought I did... now I'm not so sure 😅"
-    ],
     ui: {
       logo_position: "top-left",
       animation_style: "terminal",
@@ -26,14 +17,10 @@ const Slide5 = () => {
       selector_style: "modern",
       label: "ai_agent_explained"
     },
-    validation: {
-      required: true,
-      error_message: "Please select an option."
-    }
+    isStatic: true
   };
 
-  const handleSubmit = (selectedOptions: string[]) => {
-    updateSurveyData('aiAgentExplained', selectedOptions[0]);
+  const handleSubmit = () => {
     navigate('/'); // Update this to next slide when created
   };
 
