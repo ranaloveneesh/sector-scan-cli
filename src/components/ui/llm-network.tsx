@@ -66,8 +66,21 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
     const handleResize = () => {
       if (containerRef.current) {
         const rect = containerRef.current.getBoundingClientRect();
-        const newWidth = Math.min(800, rect.width);
-        const newHeight = Math.min(400, rect.height);
+        const isMobile = window.innerWidth < 768;
+        const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
+        
+        let newWidth, newHeight;
+        if (isMobile) {
+          newWidth = Math.min(400, rect.width);
+          newHeight = Math.min(300, rect.height);
+        } else if (isTablet) {
+          newWidth = Math.min(600, rect.width);
+          newHeight = Math.min(350, rect.height);
+        } else {
+          newWidth = Math.min(800, rect.width);
+          newHeight = Math.min(400, rect.height);
+        }
+        
         setContainerDimensions({ width: newWidth, height: newHeight });
       }
     };
@@ -82,11 +95,17 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
     if (!data.options || data.options.length === 0) return;
 
     const { width: containerWidth, height: containerHeight } = containerDimensions;
-    const margin = Math.max(50, containerWidth * 0.1); // Responsive margin
+    const isMobile = window.innerWidth < 768;
+    const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
+    
+    // Responsive margins and spacing
+    const margin = isMobile ? Math.max(30, containerWidth * 0.08) : Math.max(50, containerWidth * 0.1);
+    const minDistance = isMobile ? 40 : isTablet ? 50 : 60; // Reduced distance on smaller screens
+    const randomOffsetScale = isMobile ? 0.6 : isTablet ? 0.8 : 1;
 
     // Generate better distributed positions using "ordered chaos"
     const positions: NodePosition[] = [];
-    const gridCols = Math.ceil(Math.sqrt(data.options.length * 1.5));
+    const gridCols = Math.ceil(Math.sqrt(data.options.length * (isMobile ? 1.2 : 1.5)));
     const gridRows = Math.ceil(data.options.length / gridCols);
     
     data.options.forEach((option, index) => {
@@ -94,12 +113,12 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
       const col = index % gridCols;
       const row = Math.floor(index / gridCols);
       
-      const baseX = margin + ((containerWidth - 2 * margin) / (gridCols - 1)) * col;
-      const baseY = margin + ((containerHeight - 2 * margin) / (gridRows - 1)) * row;
+      const baseX = margin + ((containerWidth - 2 * margin) / Math.max(1, gridCols - 1)) * col;
+      const baseY = margin + ((containerHeight - 2 * margin) / Math.max(1, gridRows - 1)) * row;
       
       // Add controlled randomness for "ordered chaos"
-      const randomOffsetX = (Math.random() - 0.5) * 80;
-      const randomOffsetY = (Math.random() - 0.5) * 60;
+      const randomOffsetX = (Math.random() - 0.5) * 80 * randomOffsetScale;
+      const randomOffsetY = (Math.random() - 0.5) * 60 * randomOffsetScale;
       
       let x = baseX + randomOffsetX;
       let y = baseY + randomOffsetY;
@@ -109,7 +128,7 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
       while (attempts < 50) {
         const tooClose = positions.some(pos => {
           const distance = Math.sqrt(Math.pow(x - pos.x, 2) + Math.pow(y - pos.y, 2));
-          return distance < 60; // Minimum distance between nodes
+          return distance < minDistance;
         });
         
         if (!tooClose && x >= margin && x <= containerWidth - margin && 
@@ -314,7 +333,7 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
           <div className="relative flex justify-center mb-8 -mt-8">
             <div 
               ref={containerRef}
-              className="relative w-full max-w-4xl h-96 z-10"
+              className="relative w-full max-w-4xl h-64 sm:h-80 md:h-96 z-10"
             >
               {/* SVG for connections */}
               <svg 
@@ -354,8 +373,9 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
                   key={position.id}
                   onClick={() => handleOptionSelect(position.id)}
                   className={cn(
-                    "absolute transform -translate-x-1/2 -translate-y-1/2 px-4 py-2 rounded-lg transition-all duration-300 font-medium z-20",
+                    "absolute transform -translate-x-1/2 -translate-y-1/2 rounded-lg transition-all duration-300 font-medium z-20",
                     "hover:scale-110 focus:outline-none cursor-pointer animate-fade-in",
+                    "px-2 py-1 text-xs sm:px-3 sm:py-1.5 sm:text-sm md:px-4 md:py-2 md:text-base", // Responsive sizing
                     selectedOptions.includes(position.id)
                       ? "bg-[#5CE1E6]/20 text-[#5CE1E6] border-2 border-[#5CE1E6] shadow-[0_0_20px_#5CE1E6]"
                       : "bg-[#1e293b]/80 text-white border border-gray-600 hover:bg-[#5CE1E6]/10 hover:text-[#5CE1E6]"
