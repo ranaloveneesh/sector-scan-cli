@@ -121,7 +121,7 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({
 
       {/* Bottom left terminal text */}
       <div className="absolute bottom-6 left-6 md:bottom-12 md:left-16">
-        <div className="font-mono text-gray-400 text-responsive-terminal flex items-center">
+        <div className="font-mono text-gray-400 text-responsive-terminal flex items-baseline">
           <span className="mr-2">{'>'}</span>
           <span className="terminal-text">determining your sector...</span>
         </div>
@@ -129,7 +129,7 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({
 
       {/* Bottom right next button */}
       <div className="absolute bottom-6 right-6 md:bottom-12 md:right-16">
-        <button onClick={handleSubmit} className="font-mono text-[#5CE1E6] text-responsive-button neon-glow neon-glow-hover neon-glow-active transition-all duration-300 flex items-center">
+        <button onClick={handleSubmit} className="font-mono text-[#5CE1E6] text-responsive-button neon-glow neon-glow-hover neon-glow-active transition-all duration-300">
           next
         </button>
       </div>
