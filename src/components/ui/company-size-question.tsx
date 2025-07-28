@@ -94,9 +94,9 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
                 key={option}
                 onClick={() => handleOptionSelect(option)}
                 className={cn(
-                  "group relative w-full px-4 py-2 bg-transparent border-0 transition-all duration-300 text-left flex items-center",
+                  "group relative w-full px-4 py-2 bg-transparent border-0 transition-all duration-300 text-left flex items-center digital-glitch",
                   "hover:bg-[#5CE1E6]/5 focus:outline-none cursor-pointer",
-                  selectedOption === option ? "text-[#5CE1E6] digital-glitch-click" : "text-white digital-glitch"
+                  selectedOption === option ? "text-[#5CE1E6]" : "text-white"
                 )}
               >
                 {/* Custom bullet point */}
