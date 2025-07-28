@@ -57,7 +57,7 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({
   return <div className="min-h-screen bg-[#0a1628] text-white relative overflow-hidden">
       {/* Hexagonal logo in top left */}
       <div className="absolute top-6 left-6 z-10">
-        <div className="w-20 h-20 flex items-center justify-center">
+        <div className="flex items-center justify-center" style={{width: 'clamp(4rem, 6vw, 5rem)', height: 'clamp(4rem, 6vw, 5rem)'}}>
           <img src="/lovable-uploads/a8d760f4-8e0c-410d-ae83-a3e6dd4b23e9.png" alt="Logo" className="w-full h-full object-contain" />
         </div>
       </div>
