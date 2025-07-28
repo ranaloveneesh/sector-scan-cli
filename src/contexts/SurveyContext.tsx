@@ -6,6 +6,7 @@ interface SurveyData {
   department?: string;
   ragPipelineKnowledge?: string;
   ragPipelineExplained?: string;
+  llmKnowledge?: string;
   aiAgentKnowledge?: string;
   aiAgentExplained?: string;
   // Add more fields as we build more slides

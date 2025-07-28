@@ -41,7 +41,7 @@ const RagPipelineExplained = () => {
   };
 
   const handleSubmit = () => {
-    navigate('/'); // Update to next slide when created
+    navigate('/LLMs');
   };
 
   return (
