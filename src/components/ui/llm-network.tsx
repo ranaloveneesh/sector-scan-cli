@@ -137,7 +137,11 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
       }
       if (pos.id === 'Gemini') {
         // Move Gemini significantly higher than GPT, Claude, and Grok
-        pos.y = Math.max(margin + 20, pos.y - 50); // 50px higher, but not too close to top
+        pos.y = Math.max(margin + 20, pos.y - 65); // 65px higher, but not too close to top
+      }
+      if (pos.id === 'Claude') {
+        // Move Claude a bit to the right
+        pos.x = pos.x + 40; // 40px to the right
       }
     });
 
