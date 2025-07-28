@@ -72,10 +72,10 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({
         <div className="max-w-6xl w-full">
           {/* Question content */}
           <div className="text-left mb-16">
-            <h1 className="text-3xl font-bold mb-1 text-white">
+            <h1 className="text-3xl font-bold mb-1 text-white font-open-sauce">
               What's your industry?
             </h1>
-            <p className="text-xl flex items-center text-slate-50 px-0 pt-2 pl-8 font-normal">
+            <p className="text-xl flex items-center text-slate-50 px-0 pt-2 pl-8 font-normal font-open-sauce">
               <span className="mr-2 text-slate-50 px-0 py-0 pl-8">→</span>
               select the field you operate in.
             </p>
@@ -111,7 +111,7 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({
                   </div>
                 </div>
                 
-                <span className="text-2xl font-medium relative z-10">
+                <span className="text-2xl font-medium relative z-10 font-open-sauce">
                   {option}
                 </span>
               </button>)}
