@@ -5,10 +5,30 @@ import { CompanySizeQuestion } from '@/components/ui/company-size-question';
 
 const Slide5 = () => {
   const navigate = useNavigate();
-  const { updateSurveyData } = useSurvey();
+  const { surveyData } = useSurvey();
+
+  const getTitleBasedOnAnswer = () => {
+    const previousAnswer = surveyData.aiAgentKnowledge;
+    
+    switch (previousAnswer) {
+      case "A chatbot":
+        return "That's a common assumption — but AI agents go way beyond chatbots.";
+      case "A tool that automates repetitive tasks":
+        return "You're partially right — agents often automate things, but there's more to it.";
+      case "A software entity that can perceive, reason, and act autonomously":
+        return "Exactly. You nailed it — that's what makes agents different from regular tools.";
+      case "No idea, but I'm curious":
+        return "Curiosity is the perfect place to start — let's break it down together.";
+      case "I thought I did... now I'm not so sure 😅":
+        return "Love the honesty — you're definitely not alone. Let's clear it up.";
+      default:
+        return "Let's explore what AI agents really are.";
+    }
+  };
 
   const questionData = {
     id: "slide5",
+    title: getTitleBasedOnAnswer(),
     ui: {
       logo_position: "top-left",
       animation_style: "terminal",
