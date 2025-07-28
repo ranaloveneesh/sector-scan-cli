@@ -38,7 +38,7 @@ const LLMs = () => {
 
   const handleSubmit = (selectedOptions: string[]) => {
     updateSurveyData('llmKnowledge', selectedOptions.join(', '));
-    navigate('/'); // Update to next slide when created
+    navigate('/llms_compared');
   };
 
   return (
