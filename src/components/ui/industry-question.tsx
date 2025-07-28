@@ -72,10 +72,10 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({
         <div className="max-w-6xl w-full">
           {/* Question content */}
           <div className="text-left mb-16">
-            <h1 className="text-3xl font-bold mb-1 text-white font-open-sauce">
+            <h1 className="text-responsive-3xl font-bold mb-1 text-white font-open-sauce">
               What's your industry?
             </h1>
-            <p className="text-xl flex items-center text-slate-50 px-0 pt-2 pl-8 font-normal font-open-sauce">
+            <p className="text-responsive-lg flex items-center text-slate-50 px-0 pt-2 pl-8 font-normal font-open-sauce">
               <span className="mr-2 text-slate-50 px-0 py-0 pl-8">→</span>
               select the field you operate in.
             </p>
@@ -111,7 +111,7 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({
                   </div>
                 </div>
                 
-                <span className="text-base font-medium relative z-10 font-open-sauce">
+                <span className="text-responsive-base font-medium relative z-10 font-open-sauce">
                   {option}
                 </span>
               </button>)}
@@ -121,7 +121,7 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({
 
       {/* Bottom left terminal text */}
       <div className="absolute bottom-8 left-8">
-        <div className="font-mono text-gray-400 text-lg flex items-center">
+        <div className="font-mono text-gray-400 text-responsive-lg flex items-center">
           <span className="mr-2">{'>'}</span>
           scanning your sector...
         </div>
@@ -129,7 +129,7 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({
 
       {/* Bottom right next button */}
       <div className="absolute bottom-8 right-8">
-        <button onClick={handleSubmit} className="font-mono text-[#5CE1E6] text-2xl hover:text-[#5CE1E6]/80 transition-colors">
+        <button onClick={handleSubmit} className="font-mono text-[#5CE1E6] text-responsive-2xl hover:text-[#5CE1E6]/80 transition-colors">
           next
         </button>
       </div>
