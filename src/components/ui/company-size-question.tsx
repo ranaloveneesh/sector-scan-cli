@@ -72,14 +72,18 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
         <span className="font-tomorrow text-responsive-label text-[#5CE1E6] neon-glow">{data.ui.label || 'company_size'}</span>
       </div>
 
+      {/* Static text box positioned high */}
+      {data.isStatic && data.title && (
+        <div className="absolute top-32 left-6 right-6 md:top-40 md:left-16 md:right-16 z-10 animate-fade-in" style={{ animationDelay: '250ms' }}>
+          <p className="text-2xl md:text-3xl lg:text-4xl font-medium text-white font-open-sauce leading-relaxed max-w-4xl">
+            {data.title}
+          </p>
+        </div>
+      )}
+
       {/* Main content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-8 md:px-32 lg:px-48 animate-fade-in" style={{ animationDelay: '200ms' }}>
         <div className="max-w-4xl w-full">
-          {data.isStatic && data.title && (
-            <div className="text-left mb-8 mt-8">
-              <h1 className="text-responsive-subtitle font-bold mb-1 text-white font-open-sauce">{data.title}</h1>
-            </div>
-          )}
           {!data.isStatic && (
             <>
               {/* Question content */}
