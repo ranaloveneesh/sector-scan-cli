@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { playSound, sounds } from '@/lib/sound';
+import { playUIBeep } from '@/lib/sound';
 interface IndustryQuestionProps {
   data: {
     id: string;
@@ -45,7 +45,7 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({
     return () => clearInterval(interval);
   }, [data.ui.animation_text]);
   const handleOptionSelect = (option: string) => {
-    playSound(sounds.minimalClick);
+    playUIBeep(600, 80, 0.08); // Clean, soft UI beep
     setSelectedOption(option);
     setShowError(false);
   };
