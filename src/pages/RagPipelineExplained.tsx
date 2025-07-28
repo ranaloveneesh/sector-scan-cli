@@ -12,15 +12,15 @@ const RagPipelineExplained = () => {
     
     switch (previousAnswer) {
       case "It's a tool that scrapes data from websites":
-        return "Close, but RAG goes beyond simple data scraping.";
+        return "Close... but not quite. Scraping is something else entirely.";
       case "A method to teach AI how to generate images":
-        return "Not quite — RAG is actually about enhancing text generation with external data.";
+        return "Nope — RAG has nothing to do with image generation.";
       case "A system where an AI model retrieves external data before generating a response":
-        return "Exactly right! You understand what makes RAG so powerful.";
+        return "That's right! It's one of the most useful architectures for building smart, reliable AI agents.";
       case "I've seen it mentioned, but not sure what it means":
-        return "Perfect timing to learn — RAG is becoming essential in AI.";
+        return "No worries - here's a quick explainer.";
       case "Nope, this is new to me":
-        return "Welcome to RAG — you're about to discover a game-changing AI technique.";
+        return "All good! This one's worth knowing, so...";
       default:
         return "Let's explore what RAG pipelines really are.";
     }
