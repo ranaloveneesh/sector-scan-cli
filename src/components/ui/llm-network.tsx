@@ -354,7 +354,7 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
 
           {/* Selected count indicator */}
           {selectedOptions.length > 0 && (
-            <div className="text-center mb-4">
+            <div className="text-center mb-8 -mt-4">
               <span className="text-[#5CE1E6] font-medium">
                 {selectedOptions.length} selected: {selectedOptions.join(', ')}
               </span>
