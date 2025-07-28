@@ -28,6 +28,7 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({
   const [selectedOption, setSelectedOption] = useState<string>('');
   const [animationText, setAnimationText] = useState('');
   const [showError, setShowError] = useState(false);
+  const [glitchingOption, setGlitchingOption] = useState<string>('');
 
   // Terminal animation effect
   useEffect(() => {
@@ -46,6 +47,10 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({
   const handleOptionSelect = (option: string) => {
     setSelectedOption(option);
     setShowError(false);
+    
+    // Trigger glitch animation
+    setGlitchingOption(option);
+    setTimeout(() => setGlitchingOption(''), 1000);
   };
   const handleSubmit = () => {
     if (data.validation.required && !selectedOption) {
@@ -111,7 +116,13 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({
                   </div>
                 </div>
                 
-                <span className="text-responsive-base font-medium relative z-10 font-open-sauce">
+                <span className={cn("text-responsive-base font-medium relative z-10 font-open-sauce transition-all duration-100", 
+                  glitchingOption === option && "animate-pulse")} 
+                  style={glitchingOption === option ? {
+                    textShadow: '2px 0 #ff0040, -2px 0 #00ffff, 0 0 #5CE1E6',
+                    transform: 'translateX(2px)',
+                    animation: 'glitch-shake 1s ease-out'
+                  } : {}}>
                   {option}
                 </span>
               </button>)}
