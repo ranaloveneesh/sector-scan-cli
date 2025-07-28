@@ -76,8 +76,8 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-8 md:px-32 lg:px-48 animate-fade-in" style={{ animationDelay: '200ms' }}>
         <div className="max-w-4xl w-full">
           {data.isStatic && data.title && (
-            <div className="text-left mb-16">
-              <h1 className="text-responsive-title font-bold mb-1 text-white font-open-sauce">{data.title}</h1>
+            <div className="text-left mb-8 mt-8">
+              <h1 className="text-responsive-subtitle font-bold mb-1 text-white font-open-sauce">{data.title}</h1>
             </div>
           )}
           {!data.isStatic && (
