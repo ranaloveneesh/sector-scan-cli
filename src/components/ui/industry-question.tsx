@@ -111,7 +111,7 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({
                   </div>
                 </div>
                 
-                <span className="text-xl font-medium relative z-10 font-open-sauce">
+                <span className="text-3xl font-medium relative z-10 font-open-sauce">
                   {option}
                 </span>
               </button>)}
