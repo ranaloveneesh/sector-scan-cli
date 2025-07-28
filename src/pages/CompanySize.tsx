@@ -10,7 +10,7 @@ const CompanySize = () => {
     type: "question",
     code_label: "company_size",
     code_label_color: "#000000",
-    title: "What's the size of your company?",
+    title: "What's your company size?",
     subtitle: "Select your team size.",
     question_type: "multi_choice",
     options_style: "block",
@@ -25,7 +25,7 @@ const CompanySize = () => {
     ui: {
       logo_position: "top_right",
       animation_style: "terminal_simulation",
-      animation_text: "> calculating team size...",
+      animation_text: "calculating team size...",
       next_button_color: "#5CE1E6",
       selector_style: "neon_block_brackets"
     },
