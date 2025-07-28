@@ -117,9 +117,9 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
         if (phiNode) pos.y = phiNode.y;
       }
       if (pos.id === 'Llama') {
-        // Move Llama down to same level as Qwen/Phi
+        // Move Llama slightly below Phi/Qwen/DeepSeek level
         const phiNode = positions.find(p => p.id === 'Phi');
-        if (phiNode) pos.y = phiNode.y;
+        if (phiNode) pos.y = phiNode.y + 25; // 25px below the main level
       }
       if (pos.id === 'Mistral') {
         // Move Mistral more centered
@@ -132,8 +132,12 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
         const phiNode = positions.find(p => p.id === 'Phi');
         if (grokNode && phiNode) {
           pos.x = grokNode.x + 30; // Slightly to the right of Grok
-          pos.y = phiNode.y; // Same height as Phi/Qwen/Llama
+          pos.y = phiNode.y; // Same height as Phi/Qwen
         }
+      }
+      if (pos.id === 'Gemini') {
+        // Move Gemini slightly higher than GPT, Claude, and Grok
+        pos.y = Math.max(margin + 20, pos.y - 30); // 30px higher, but not too close to top
       }
     });
 
