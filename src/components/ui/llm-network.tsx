@@ -99,13 +99,14 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
     const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
     
     // Responsive margins and spacing
-    const margin = isMobile ? Math.max(30, containerWidth * 0.08) : Math.max(50, containerWidth * 0.1);
-    const minDistance = isMobile ? 40 : isTablet ? 50 : 60; // Reduced distance on smaller screens
-    const randomOffsetScale = isMobile ? 0.6 : isTablet ? 0.8 : 1;
+    const margin = isMobile ? Math.max(40, containerWidth * 0.12) : Math.max(50, containerWidth * 0.1);
+    const minDistance = isMobile ? 50 : isTablet ? 55 : 60; // Increased distance on mobile
+    const randomOffsetScale = isMobile ? 0.4 : isTablet ? 0.7 : 1; // Reduced randomness on mobile
 
     // Generate better distributed positions using "ordered chaos"
     const positions: NodePosition[] = [];
-    const gridCols = Math.ceil(Math.sqrt(data.options.length * (isMobile ? 1.2 : 1.5)));
+    // More structured grid on mobile to prevent overlaps
+    const gridCols = isMobile ? Math.max(2, Math.ceil(Math.sqrt(data.options.length * 0.8))) : Math.ceil(Math.sqrt(data.options.length * (isTablet ? 1.2 : 1.5)));
     const gridRows = Math.ceil(data.options.length / gridCols);
     
     data.options.forEach((option, index) => {
@@ -145,41 +146,43 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
       positions.push({ x, y, id: option });
     });
 
-    // Manual adjustments for specific nodes
-    positions.forEach(pos => {
-      if (pos.id === 'Qwen') {
-        // Move Qwen down to Phi height level
-        const phiNode = positions.find(p => p.id === 'Phi');
-        if (phiNode) pos.y = phiNode.y;
-      }
-      if (pos.id === 'Llama') {
-        // Move Llama slightly below Phi/Qwen/DeepSeek level
-        const phiNode = positions.find(p => p.id === 'Phi');
-        if (phiNode) pos.y = phiNode.y + 25; // 25px below the main level
-      }
-      if (pos.id === 'Mistral') {
-        // Move Mistral more centered and a bit lower
-        pos.x = containerWidth / 2 + (Math.random() - 0.5) * 60;
-        pos.y = containerHeight / 2 + (Math.random() - 0.5) * 40 + 30; // 30px lower
-      }
-      if (pos.id === 'DeepSeek') {
-        // Move DeepSeek under Grok, slightly to the right, same height as Qwen/Llama/Phi
-        const grokNode = positions.find(p => p.id === 'Grok');
-        const phiNode = positions.find(p => p.id === 'Phi');
-        if (grokNode && phiNode) {
-          pos.x = grokNode.x + 30; // Slightly to the right of Grok
-          pos.y = phiNode.y; // Same height as Phi/Qwen
+    // Manual adjustments for specific nodes (disabled on mobile to prevent overlaps)
+    if (!isMobile) {
+      positions.forEach(pos => {
+        if (pos.id === 'Qwen') {
+          // Move Qwen down to Phi height level
+          const phiNode = positions.find(p => p.id === 'Phi');
+          if (phiNode) pos.y = phiNode.y;
         }
-      }
-      if (pos.id === 'Gemini') {
-        // Move Gemini significantly higher than GPT, Claude, and Grok
-        pos.y = Math.max(margin + 20, pos.y - 65); // 65px higher, but not too close to top
-      }
-      if (pos.id === 'Claude') {
-        // Move Claude a bit to the right
-        pos.x = pos.x + 40; // 40px to the right
-      }
-    });
+        if (pos.id === 'Llama') {
+          // Move Llama slightly below Phi/Qwen/DeepSeek level
+          const phiNode = positions.find(p => p.id === 'Phi');
+          if (phiNode) pos.y = phiNode.y + 25; // 25px below the main level
+        }
+        if (pos.id === 'Mistral') {
+          // Move Mistral more centered and a bit lower
+          pos.x = containerWidth / 2 + (Math.random() - 0.5) * 60;
+          pos.y = containerHeight / 2 + (Math.random() - 0.5) * 40 + 30; // 30px lower
+        }
+        if (pos.id === 'DeepSeek') {
+          // Move DeepSeek under Grok, slightly to the right, same height as Qwen/Llama/Phi
+          const grokNode = positions.find(p => p.id === 'Grok');
+          const phiNode = positions.find(p => p.id === 'Phi');
+          if (grokNode && phiNode) {
+            pos.x = grokNode.x + 30; // Slightly to the right of Grok
+            pos.y = phiNode.y; // Same height as Phi/Qwen
+          }
+        }
+        if (pos.id === 'Gemini') {
+          // Move Gemini significantly higher than GPT, Claude, and Grok
+          pos.y = Math.max(margin + 20, pos.y - 65); // 65px higher, but not too close to top
+        }
+        if (pos.id === 'Claude') {
+          // Move Claude a bit to the right
+          pos.x = pos.x + 40; // 40px to the right
+        }
+      });
+    }
 
     setNodePositions(positions);
 
