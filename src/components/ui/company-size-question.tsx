@@ -131,7 +131,9 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
       <div className="absolute bottom-6 right-6 md:bottom-12 md:right-16">
         <button
           onClick={handleSubmit}
-          className="sci-fi-arrow font-mono text-[#5CE1E6] text-responsive-button neon-glow transition-all duration-300 relative hover:text-[#5CE1E6]/80"
+          className="sci-fi-arrow font-mono text-[#5CE1E6] text-responsive-button neon-glow transition-all duration-300 relative hover:text-[#5CE1E6]/80 digital-glitch-click cursor-pointer"
+          data-text="next"
+          style={{ pointerEvents: 'auto', zIndex: 10 }}
         >
           next
         </button>
