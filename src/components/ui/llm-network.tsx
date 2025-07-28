@@ -297,10 +297,13 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
   };
 
   const handleSubmit = () => {
+    console.log('Submit clicked, selected options:', selectedOptions);
     if (data.validation?.required && selectedOptions.length === 0) {
       setShowError(true);
+      console.log('Validation failed - no options selected');
       return;
     }
+    console.log('Calling onSubmit with:', selectedOptions);
     onSubmit(selectedOptions);
   };
 
