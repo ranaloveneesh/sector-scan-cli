@@ -41,7 +41,7 @@ const Department = () => {
   const handleSubmit = (selectedOptions: string[]) => {
     console.log('Selected department:', selectedOptions);
     updateSurveyData('department', selectedOptions[0]);
-    // Navigate to next slide or continue with survey flow
+    navigate('/slide4');
   };
 
   return <DepartmentQuestion data={questionData} onSubmit={handleSubmit} />;
