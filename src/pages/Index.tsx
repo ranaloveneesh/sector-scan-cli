@@ -5,7 +5,7 @@ const Index = () => {
     id: "Q1_user_industry",
     type: "question",
     code_label: "user_industry",
-    code_label_color: "#5CE1E6",
+    code_label_color: "#000000",
     title: "What's your industry?",
     subtitle: "Select the field you operate in.",
     question_type: "multi_choice",
