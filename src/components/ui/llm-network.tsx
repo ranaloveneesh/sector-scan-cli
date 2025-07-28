@@ -65,7 +65,7 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
 
     const containerWidth = 800;
     const containerHeight = 400;
-    const margin = 100;
+    const margin = 80; // Reduced margin to move whole network higher
 
     // Generate better distributed positions using "ordered chaos"
     const positions: NodePosition[] = [];
@@ -122,9 +122,9 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
         if (phiNode) pos.y = phiNode.y + 25; // 25px below the main level
       }
       if (pos.id === 'Mistral') {
-        // Move Mistral more centered
+        // Move Mistral more centered and a bit lower
         pos.x = containerWidth / 2 + (Math.random() - 0.5) * 60;
-        pos.y = containerHeight / 2 + (Math.random() - 0.5) * 40;
+        pos.y = containerHeight / 2 + (Math.random() - 0.5) * 40 + 30; // 30px lower
       }
       if (pos.id === 'DeepSeek') {
         // Move DeepSeek under Grok, slightly to the right, same height as Qwen/Llama/Phi
