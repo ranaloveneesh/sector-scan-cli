@@ -56,14 +56,14 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({
   };
   return <div className="min-h-screen bg-[#0a1628] text-white relative overflow-hidden">
       {/* Hexagonal logo in top left */}
-      <div className="absolute top-8 left-8 z-10">
+      <div className="absolute top-6 left-6 z-10">
         <div className="w-16 h-16 flex items-center justify-center">
           <img src="/lovable-uploads/a8d760f4-8e0c-410d-ae83-a3e6dd4b23e9.png" alt="Logo" className="w-full h-full object-contain" />
         </div>
       </div>
 
       {/* User industry label in top right */}
-      <div className="absolute top-8 right-8 z-10">
+      <div className="absolute top-6 right-6 z-10">
         <span className="font-tomorrow text-responsive-label text-[#5CE1E6] neon-glow">user_industry</span>
       </div>
 
@@ -83,7 +83,7 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({
 
           {/* Options grid */}
           <div className="grid grid-cols-3 gap-6 mb-16">
-            {data.options.map((option, index) => <button key={option} onClick={() => handleOptionSelect(option)} className={cn("group relative px-1 py-2 bg-transparent border-0 transition-all duration-300 text-left min-h-[60px] flex items-center justify-center", "hover:bg-[#5CE1E6]/5 focus:outline-none", selectedOption === option ? "text-[#5CE1E6]" : "text-white")}>
+            {data.options.map((option, index) => <button key={option} onClick={() => handleOptionSelect(option)} className={cn("group relative px-2 py-3 bg-transparent border-0 transition-all duration-300 text-left min-h-[70px] flex items-center justify-center", "hover:bg-[#5CE1E6]/5 focus:outline-none", selectedOption === option ? "text-[#5CE1E6]" : "text-white")}>
                 {/* Corner brackets */}
                 <div className={cn("absolute inset-0 transition-all duration-300", selectedOption === option ? "opacity-100" : "opacity-60 group-hover:opacity-80")}>
                   {/* Top left corner */}
@@ -120,15 +120,15 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({
       </div>
 
       {/* Bottom left terminal text */}
-      <div className="absolute bottom-8 left-8">
+      <div className="absolute bottom-6 left-6">
         <div className="font-mono text-gray-400 text-responsive-terminal flex items-center">
           <span className="mr-2">{'>'}</span>
-          <span className="terminal-text">scanning your sector...</span>
+          <span className="terminal-text">determining your sector...</span>
         </div>
       </div>
 
       {/* Bottom right next button */}
-      <div className="absolute bottom-8 right-8">
+      <div className="absolute bottom-6 right-6">
         <button onClick={handleSubmit} className="font-mono text-[#5CE1E6] text-responsive-button neon-glow neon-glow-hover neon-glow-active transition-all duration-300">
           next
         </button>
