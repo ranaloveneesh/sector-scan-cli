@@ -127,8 +127,13 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
         pos.y = containerHeight / 2 + (Math.random() - 0.5) * 40;
       }
       if (pos.id === 'DeepSeek') {
-        // Move DeepSeek more to the left
-        pos.x = Math.max(margin + 20, pos.x - 80);
+        // Move DeepSeek under Grok, slightly to the right, same height as Qwen/Llama/Phi
+        const grokNode = positions.find(p => p.id === 'Grok');
+        const phiNode = positions.find(p => p.id === 'Phi');
+        if (grokNode && phiNode) {
+          pos.x = grokNode.x + 30; // Slightly to the right of Grok
+          pos.y = phiNode.y; // Same height as Phi/Qwen/Llama
+        }
       }
     });
 
