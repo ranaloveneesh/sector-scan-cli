@@ -6,6 +6,7 @@ interface CompanySizeQuestionProps {
     id: string;
     title?: string;
     subtitle?: string;
+    description?: string;
     options?: string[];
     ui: {
       logo_position: string;
@@ -74,10 +75,15 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
 
       {/* Static text box positioned high */}
       {data.isStatic && data.title && (
-        <div className="absolute top-32 left-6 right-6 md:top-40 md:left-16 md:right-16 z-10 animate-fade-in flex justify-center" style={{ animationDelay: '250ms' }}>
-          <p className="text-2xl md:text-3xl lg:text-3.5xl font-bold text-white font-open-sauce leading-relaxed max-w-4xl text-center">
+        <div className="absolute top-32 left-6 right-6 md:top-40 md:left-16 md:right-16 z-10 animate-fade-in flex flex-col items-center" style={{ animationDelay: '250ms' }}>
+          <h1 className="text-2xl md:text-3xl lg:text-3.5xl font-bold text-white font-open-sauce leading-relaxed max-w-4xl text-center mb-2">
             {data.title}
-          </p>
+          </h1>
+          {data.description && (
+            <p className="text-lg md:text-xl lg:text-xl font-normal text-slate-100 font-open-sauce leading-relaxed max-w-4xl text-center">
+              {data.description}
+            </p>
+          )}
         </div>
       )}
 

@@ -32,7 +32,7 @@ const App = () => (
             <Route path="/rag-pipeline" element={<PageTransition><RagPipeline /></PageTransition>} />
             <Route path="/ragpipeline-explained" element={<PageTransition><RagPipelineExplained /></PageTransition>} />
             <Route path="/LLMs" element={<PageTransition><LLMs /></PageTransition>} />
-            <Route path="/llms_compared" element={<PageTransition><LLMsCompared /></PageTransition>} />
+            <Route path="/llms-compared" element={<PageTransition><LLMsCompared /></PageTransition>} />
             <Route path="/aiagents" element={<PageTransition><Slide4 /></PageTransition>} />
             <Route path="/aiagent-explained" element={<PageTransition><Slide5 /></PageTransition>} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
