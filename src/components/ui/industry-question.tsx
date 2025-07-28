@@ -128,7 +128,7 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({
       </div>
 
       {/* Bottom right next button */}
-      <div className="absolute bottom-6 right-6">
+      <div className="absolute bottom-6 right-6 md:bottom-12 md:right-16">
         <button onClick={handleSubmit} className="font-mono text-[#5CE1E6] text-responsive-button neon-glow neon-glow-hover neon-glow-active transition-all duration-300">
           next
         </button>
