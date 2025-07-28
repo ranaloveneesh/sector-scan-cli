@@ -10,7 +10,7 @@ const RagPipeline = () => {
   const questionData = {
     id: "slide6",
     title: "Have you ever heard of a RAG pipeline?",
-    subtitle: "Select your answer.",
+    subtitle: "Select your knowledge level.",
     options: [
       "It's a tool that scrapes data from websites",
       "A method to teach AI how to generate images", 
