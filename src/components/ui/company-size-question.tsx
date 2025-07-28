@@ -89,7 +89,7 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
                 {/* Custom bullet point */}
                 <div className={cn("w-2 h-2 rounded-full mr-4 flex-shrink-0 transition-all duration-300", selectedOption === option ? "bg-[#5CE1E6] shadow-[0_0_12px_#5CE1E6] scale-110" : "bg-[#5CE1E6]/80 hover:bg-[#5CE1E6]/90")}></div>
                 
-                <span className={cn("text-responsive-base font-medium font-open-sauce transition-all duration-300", selectedOption === option && "transform scale-105")} data-text={option}>
+                <span className={cn("text-responsive-base font-medium font-open-sauce transition-all duration-300", selectedOption === option && "transform scale-102")} data-text={option}>
                   {option}
                 </span>
               </button>)}
