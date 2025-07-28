@@ -139,7 +139,7 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
 
     setNodePositions(positions);
 
-    // Generate connections - ensure each node has exactly 3 connections
+    // Generate connections - ensure each node has exactly 4 connections
     const newConnections: Connection[] = [];
     const nodeConnections: { [key: string]: number } = {};
     
@@ -148,15 +148,15 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
       nodeConnections[pos.id] = 0;
     });
 
-    // First pass: connect each node to its 3 nearest neighbors
+    // First pass: connect each node to its 4 nearest neighbors
     positions.forEach((node) => {
-      if (nodeConnections[node.id] >= 3) return;
+      if (nodeConnections[node.id] >= 4) return;
       
       // Find nearest nodes that still need connections
       const availableNodes = positions
         .filter(other => 
           other.id !== node.id && 
-          nodeConnections[other.id] < 3 &&
+          nodeConnections[other.id] < 4 &&
           !newConnections.some(conn => 
             (conn.from === node.id && conn.to === other.id) ||
             (conn.from === other.id && conn.to === node.id)
@@ -168,13 +168,13 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
         }))
         .sort((a, b) => a.distance - b.distance);
 
-      // Connect to up to 3 nearest available nodes
-      const connectionsNeeded = Math.min(3 - nodeConnections[node.id], availableNodes.length);
+      // Connect to up to 4 nearest available nodes
+      const connectionsNeeded = Math.min(4 - nodeConnections[node.id], availableNodes.length);
       
       for (let i = 0; i < connectionsNeeded; i++) {
         const target = availableNodes[i].node;
         
-        if (nodeConnections[target.id] < 3) {
+        if (nodeConnections[target.id] < 4) {
           const pathD = `M ${node.x} ${node.y} L ${target.x} ${target.y}`;
           newConnections.push({
             from: node.id,
@@ -188,9 +188,9 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
       }
     });
 
-    // Second pass: ensure all nodes have at least 3 connections
+    // Second pass: ensure all nodes have at least 4 connections
     positions.forEach((node) => {
-      if (nodeConnections[node.id] < 3) {
+      if (nodeConnections[node.id] < 4) {
         const availableNodes = positions
           .filter(other => 
             other.id !== node.id &&
@@ -205,7 +205,7 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
           }))
           .sort((a, b) => a.distance - b.distance);
 
-        const connectionsNeeded = 3 - nodeConnections[node.id];
+        const connectionsNeeded = 4 - nodeConnections[node.id];
         
         for (let i = 0; i < Math.min(connectionsNeeded, availableNodes.length); i++) {
           const target = availableNodes[i].node;
@@ -287,13 +287,14 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
 
           {/* Network visualization */}
           <div className="relative flex justify-center mb-8">
-            <div className="relative w-full max-w-4xl h-96">
+            <div className="relative w-full max-w-4xl h-96 z-10">{/* Higher z-index for buttons */}
               {/* SVG for connections */}
               <svg 
                 ref={svgRef}
-                className="absolute inset-0 w-full h-full"
+                className="absolute inset-0 w-full h-full z-0"
                 viewBox="0 0 800 400"
                 preserveAspectRatio="xMidYMid meet"
+                style={{ pointerEvents: 'none' }}
               >
                 {/* Connection lines */}
                 {connections.map((connection, index) => {
@@ -325,7 +326,7 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
                   key={position.id}
                   onClick={() => handleOptionSelect(position.id)}
                   className={cn(
-                    "absolute transform -translate-x-1/2 -translate-y-1/2 px-4 py-2 rounded-lg transition-all duration-300 font-medium",
+                    "absolute transform -translate-x-1/2 -translate-y-1/2 px-4 py-2 rounded-lg transition-all duration-300 font-medium z-20",
                     "hover:scale-110 focus:outline-none cursor-pointer animate-fade-in",
                     selectedOptions.includes(position.id)
                       ? "bg-[#5CE1E6]/20 text-[#5CE1E6] border-2 border-[#5CE1E6] shadow-[0_0_20px_#5CE1E6]"
