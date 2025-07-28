@@ -362,9 +362,9 @@ export const LLMNetwork: React.FC<LLMNetworkProps> = ({ data, onSubmit }) => {
                         stroke={isConnectedToSelected ? "#5CE1E6" : "#6b7280"}
                         strokeWidth={isConnectedToSelected ? "2" : "1"}
                         fill="none"
-                        className={isConnectedToSelected ? "opacity-80" : "opacity-40"}
+                        className={isConnectedToSelected ? "opacity-25" : "opacity-20"}
                         style={isConnectedToSelected ? {
-                          filter: 'drop-shadow(0 0 4px #5CE1E6)',
+                          filter: 'drop-shadow(0 0 2px #5CE1E6)',
                           animation: sparkingPath === connection.pathD ? 'pulse 1.2s ease-in-out' : 'none'
                         } : {}}
                       />
