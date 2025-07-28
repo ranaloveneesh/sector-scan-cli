@@ -21,7 +21,7 @@ const Slide4 = () => {
     ui: {
       logo_position: "top-left",
       animation_style: "terminal",
-      animation_text: "> evaluating user knowledge...",
+      animation_text: "evaluating user knowledge...",
       next_button_color: "primary",
       selector_style: "modern",
       label: "ai_agents"
