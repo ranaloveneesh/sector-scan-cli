@@ -9,14 +9,13 @@ const AIModels = () => {
 
   const questionData = {
     id: "aimodels",
-    title: "Do you know what an AI agent is?",
-    subtitle: "Select your answer.",
+    title: "What do you think defines a modern AI model?",
+    subtitle: "let's test your AI knowledge",
     options: [
-      "A chatbot",
-      "A tool that automates repetitive tasks", 
-      "A software entity that can perceive, reason, and act autonomously",
-      "No idea, but I'm curious",
-      "I thought I did... now I'm not so sure 😅"
+      "A way to store and retrieve data",
+      "A trained mathematical structure that learns patterns from data", 
+      "An automation script with lots of IF/THEN rules",
+      "Not sure, I just use the output 😅"
     ],
     ui: {
       logo_position: "top-left",
