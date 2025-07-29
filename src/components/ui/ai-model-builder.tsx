@@ -339,27 +339,6 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
       </div>
 
 
-      {/* Status Messages - Fixed positioned to prevent layout shift */}
-      <div className="relative h-16 text-center">
-        {gameState === 'success' && (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <p className="text-[#5CE1E6] text-xl font-mono">
-              ⚡ Reactor Online! AI Model Powered Up! ⚡
-            </p>
-          </div>
-        )}
-        
-        {gameState === 'error' && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center space-y-1">
-            <p className="text-red-400 text-lg font-mono">
-              💥 Reactor Overload! Wrong Components!
-            </p>
-            <p className="text-slate-400 text-sm font-mono">
-              Try different components to stabilize the reactor
-            </p>
-          </div>
-        )}
-      </div>
     </div>
   );
 };
