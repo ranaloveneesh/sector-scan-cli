@@ -238,58 +238,6 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                 strokeDasharray={placedComponents.length === 4 ? "none" : "8 4"}
                 opacity="0.6"
               />
-
-              {/* Inner Core Details - Following reference */}
-              <circle
-                cx="192"
-                cy="192"
-                r="45"
-                fill="none"
-                stroke="#5CE1E6"
-                strokeWidth="1"
-                opacity="0.5"
-              />
-
-              <circle
-                cx="192"
-                cy="192"
-                r="30"
-                fill={gameState === 'success' ? '#5CE1E6' : '#1a4a52'}
-                fillOpacity={gameState === 'success' ? '0.8' : '0.3'}
-                stroke="#5CE1E6"
-                strokeWidth="2"
-                opacity="0.8"
-              />
-
-              {/* Central glowing core */}
-              <circle
-                cx="192"
-                cy="192"
-                r="15"
-                fill="#5CE1E6"
-                opacity={gameState === 'success' ? '1' : '0.6'}
-                className={gameState === 'success' ? 'animate-pulse' : ''}
-              />
-
-              {/* Inner ring details */}
-              {Array.from({ length: 8 }, (_, i) => {
-                const angle = (i / 8) * 360;
-                const isActive = gameState === 'success';
-                return (
-                  <rect
-                    key={`core-${i}`}
-                    x="190"
-                    y="162"
-                    width="4"
-                    height="8"
-                    fill="#5CE1E6"
-                    opacity={isActive ? "0.9" : "0.4"}
-                    transform={`rotate(${angle} 192 192)`}
-                    className={isActive ? "animate-pulse" : ""}
-                    style={{ animationDelay: `${i * 0.1}s` }}
-                  />
-                );
-              })}
               
               {gameState === 'success' && (
                 <>
