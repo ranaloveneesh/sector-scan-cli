@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import brainOutlineTransparent from '@/assets/brain-outline-transparent.png';
+import brainPureTransparent from '@/assets/brain-pure-transparent.png';
 
 interface Component {
   id: string;
@@ -147,7 +147,7 @@ const BrainMiniGame: React.FC<BrainMiniGameProps> = ({ onGameComplete }) => {
 
         {/* Center brain */}
         <div className="relative flex-shrink-0">
-          <img src={brainOutlineTransparent} alt="AI Brain" className="w-64 h-64" />
+          <img src={brainPureTransparent} alt="AI Brain" className="w-64 h-64" />
           
           {/* Drop zones over brain hemispheres */}
           <div className="absolute inset-0 grid grid-cols-2 grid-rows-2 gap-1 p-8">
