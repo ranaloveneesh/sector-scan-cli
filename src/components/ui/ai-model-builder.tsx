@@ -189,7 +189,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                         x={isPrimarySegment ? "172" : isSecondarySegment ? "175" : "178"}
                         y="14"
                         width={isPrimarySegment ? "40" : isSecondarySegment ? "34" : "28"}
-                        height={isPrimarySegment ? "68" : isSecondarySegment ? "55" : "45"}
+                        height={isPrimarySegment ? "68" : isSecondarySegment ? "55" : "38"}
                         fill={isActive ? "url(#segmentGradient)" : "#5CE1E6"}
                         opacity={isActive ? (isPrimarySegment ? "1" : isSecondarySegment ? "0.8" : "0.6") : "0.3"}
                         transform={`rotate(${angle} 192 192)`}
