@@ -7,14 +7,16 @@ interface Component {
 }
 
 const components: Component[] = [
-  { id: 'training-data', name: 'Training Data', isCorrect: true },
-  { id: 'algorithm', name: 'Algorithm', isCorrect: true },
+  // Correct components
+  { id: 'training-data', name: 'Data', isCorrect: true },
+  { id: 'algorithm', name: 'Algorithms', isCorrect: true },
   { id: 'weights', name: 'Weights', isCorrect: true },
   { id: 'inference', name: 'Inference', isCorrect: true },
+  // Distractors
   { id: 'dashboard', name: 'Dashboard', isCorrect: false },
-  { id: 'cloud-access', name: 'Cloud Access', isCorrect: false },
+  { id: 'cloud-access', name: 'Cloud', isCorrect: false },
   { id: 'prompt', name: 'Prompt', isCorrect: false },
-  { id: 'ui-design', name: 'UI Design', isCorrect: false },
+  { id: 'ui-design', name: 'UI', isCorrect: false },
 ];
 
 interface AIModelBuilderProps {
@@ -72,12 +74,23 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
     setShowFlash(false);
   };
 
-  const getNodePosition = (index: number) => {
-    const angle = (index / 8) * 2 * Math.PI - Math.PI / 2;
-    const radius = 140;
-    const x = Math.cos(angle) * radius;
-    const y = Math.sin(angle) * radius;
-    return { x, y, angle };
+  // Position components in 4 hemispheres around the reactor
+  const getHemispherePosition = (index: number) => {
+    const positions = [
+      // Top-left hemisphere
+      { x: -120, y: -80, label: 'top-left' },   // Data
+      { x: -120, y: -120, label: 'top-left' },  // Dashboard
+      // Top-right hemisphere  
+      { x: 120, y: -80, label: 'top-right' },   // Algorithms
+      { x: 120, y: -120, label: 'top-right' },  // Cloud
+      // Bottom-left hemisphere
+      { x: -120, y: 80, label: 'bottom-left' }, // Weights
+      { x: -120, y: 120, label: 'bottom-left' }, // Prompt
+      // Bottom-right hemisphere
+      { x: 120, y: 80, label: 'bottom-right' }, // Inference
+      { x: 120, y: 120, label: 'bottom-right' }, // UI
+    ];
+    return positions[index] || { x: 0, y: 0, label: 'center' };
   };
 
   const isNodeActive = (componentId: string) => {
@@ -108,7 +121,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
 
       {/* Arc Reactor Container */}
       <div className="relative w-full flex justify-center">
-        <div className="relative w-80 h-80">
+        <div className="relative w-96 h-96">
           {/* Flash Effect */}
           {showFlash && (
             <div className="absolute inset-0 bg-white rounded-full animate-ping z-30" />
@@ -116,15 +129,15 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
           
           {/* Arc Reactor SVG */}
           <svg 
-            viewBox="0 0 320 320" 
+            viewBox="0 0 384 384" 
             className="absolute inset-0 w-full h-full z-10 pointer-events-none"
             style={{ filter: gameState === 'success' ? 'drop-shadow(0 0 20px #5CE1E6)' : '' }}
           >
             {/* Outer Ring */}
             <circle
-              cx="160"
-              cy="160"
-              r="150"
+              cx="192"
+              cy="192"
+              r="70"
               fill="none"
               stroke="#5CE1E6"
               strokeWidth="2"
@@ -133,9 +146,9 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
             
             {/* Middle Ring */}
             <circle
-              cx="160"
-              cy="160"
-              r="120"
+              cx="192"
+              cy="192"
+              r="50"
               fill="none"
               stroke="#5CE1E6"
               strokeWidth="1"
@@ -144,9 +157,9 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
             
             {/* Inner Ring */}
             <circle
-              cx="160"
-              cy="160"
-              r="80"
+              cx="192"
+              cy="192"
+              r="30"
               fill="none"
               stroke="#5CE1E6"
               strokeWidth="2"
@@ -155,9 +168,9 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
             
             {/* Core */}
             <circle
-              cx="160"
-              cy="160"
-              r="30"
+              cx="192"
+              cy="192"
+              r="15"
               fill={gameState === 'success' ? '#5CE1E6' : 'none'}
               stroke="#5CE1E6"
               strokeWidth="2"
@@ -170,10 +183,10 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                 {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => (
                   <g key={angle}>
                     <line
-                      x1="160"
-                      y1="160"
-                      x2={160 + Math.cos((angle * Math.PI) / 180) * 70}
-                      y2={160 + Math.sin((angle * Math.PI) / 180) * 70}
+                      x1="192"
+                      y1="192"
+                      x2={192 + Math.cos((angle * Math.PI) / 180) * 40}
+                      y2={192 + Math.sin((angle * Math.PI) / 180) * 40}
                       stroke="#5CE1E6"
                       strokeWidth="2"
                       opacity="0.8"
@@ -185,9 +198,9 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                 
                 {/* Rotating Energy Ring */}
                 <circle
-                  cx="160"
-                  cy="160"
-                  r="100"
+                  cx="192"
+                  cy="192"
+                  r="60"
                   fill="none"
                   stroke="#5CE1E6"
                   strokeWidth="3"
@@ -202,7 +215,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
           
           {/* Component Nodes */}
           {components.map((component, index) => {
-            const { x, y } = getNodePosition(index);
+            const { x, y } = getHemispherePosition(index);
             const status = getNodeStatus(component);
             
             return (
