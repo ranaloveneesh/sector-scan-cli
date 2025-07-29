@@ -138,7 +138,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                 viewBox="0 0 384 384" 
                 className="absolute inset-0 w-full h-full z-10"
                 style={{ 
-                  filter: gameState === 'success' ? 'drop-shadow(0 0 20px #5CE1E6) drop-shadow(0 0 40px #5CE1E6)' : 'none'
+                  filter: gameState === 'success' ? 'drop-shadow(0 0 15px #5CE1E6)' : 'none'
                 }}
               >
                 <defs>
@@ -200,9 +200,6 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                   stroke="#5CE1E6"
                   strokeWidth="1"
                   opacity={gameState === 'success' ? "0.6" : "0.3"}
-                  style={gameState === 'success' ? { 
-                    filter: 'drop-shadow(0 0 8px #5CE1E6)'
-                  } : {}}
                 />
                 <circle
                   cx="192"
@@ -212,9 +209,6 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                   stroke="#5CE1E6"
                   strokeWidth="1"
                   opacity={gameState === 'success' ? "0.7" : "0.4"}
-                  style={gameState === 'success' ? { 
-                    filter: 'drop-shadow(0 0 6px #5CE1E6)'
-                  } : {}}
                 />
                 
                 {/* Reactor Core Details - Between outer ring and center */}
@@ -231,9 +225,6 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                         fill="#5CE1E6"
                         opacity={gameState === 'success' ? "0.8" : "0.5"}
                         transform={`rotate(${angle} 192 192)`}
-                        style={gameState === 'success' ? { 
-                          filter: 'drop-shadow(0 0 4px #5CE1E6)'
-                        } : {}}
                       />
                     </g>
                   );
