@@ -187,17 +187,6 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                         opacity={isActive ? (isPrimarySegment ? "1" : isSecondarySegment ? "0.8" : "0.6") : "0.3"}
                         transform={`rotate(${angle} 192 192)`}
                       />
-                      {isPrimarySegment && (
-                        <rect
-                          x="190"
-                          y="15"
-                          width="4"
-                          height="26"
-                          fill="#ffffff"
-                          opacity={isActive ? "0.6" : "0.2"}
-                          transform={`rotate(${angle} 192 192)`}
-                        />
-                      )}
                     </g>
                   );
                 })}
