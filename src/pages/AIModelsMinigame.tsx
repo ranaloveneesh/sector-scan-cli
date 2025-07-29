@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSurvey } from '@/contexts/SurveyContext';
-import { CompanySizeQuestion } from '@/components/ui/company-size-question';
+import { AIBrainGame } from '@/components/ui/ai-brain-game';
 
 const AIModelsMinigame = () => {
   const navigate = useNavigate();
@@ -24,29 +24,24 @@ const AIModelsMinigame = () => {
     }
   };
 
-  const questionData = {
-    id: "aimodels-minigame",
-    title: getTitleBasedOnAnswer(),
-    ui: {
-      logo_position: "top-left",
-      animation_style: "terminal",
-      animation_text: "explaining AI models...",
-      next_button_color: "primary",
-      selector_style: "modern",
-      label: "ai_models_minigame"
-    },
-    isStatic: true
-  };
-
-  const handleSubmit = () => {
+  const handleComplete = () => {
     navigate('/aiagents');
   };
 
   return (
-    <CompanySizeQuestion
-      data={questionData}
-      onSubmit={handleSubmit}
-    />
+    <div className="min-h-screen bg-background flex flex-col">
+      {/* Header with dynamic title */}
+      <div className="flex-shrink-0 p-6 text-center border-b">
+        <h1 className="text-3xl font-bold text-foreground">
+          {getTitleBasedOnAnswer()}
+        </h1>
+      </div>
+      
+      {/* Game Container */}
+      <div className="flex-1 flex items-center justify-center p-6">
+        <AIBrainGame onComplete={handleComplete} />
+      </div>
+    </div>
   );
 };
 
