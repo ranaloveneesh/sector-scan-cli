@@ -165,11 +165,13 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                   fill="none"
                   stroke="url(#outerRingGradient)"
                   strokeWidth="4"
-                  opacity={gameState === 'success' ? "1" : "0.4"}
+                  opacity={gameState === 'success' ? "1" : "0.6"}
                   className={gameState === 'success' ? "animate-pulse" : ""}
                   style={gameState === 'success' ? { 
                     filter: 'drop-shadow(0 0 35px #5CE1E6) drop-shadow(0 0 60px #5CE1E6) drop-shadow(0 0 80px #5CE1E6)'
-                  } : {}}
+                  } : {
+                    filter: 'drop-shadow(0 0 8px #5CE1E6)'
+                  }}
                 />
 
                 {Array.from({ length: 20 }, (_, i) => {
