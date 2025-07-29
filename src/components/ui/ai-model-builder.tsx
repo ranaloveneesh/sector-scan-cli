@@ -323,34 +323,9 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                     </div>
                   );
                 })}
+              </div>
             </div>
           </div>
-          
-          {/* Control Buttons - Under the reactor */}
-          <div className="flex justify-center gap-4 mt-6">
-            <button
-              onClick={handleTest}
-              disabled={placedComponents.length !== 4 || gameState === 'testing'}
-              className={`
-                px-6 py-2 rounded-lg font-mono text-sm transition-all duration-300
-                ${placedComponents.length === 4 && gameState === 'playing'
-                  ? 'bg-[#5CE1E6] text-black hover:bg-[#5CE1E6]/80 shadow-[0_0_15px_#5CE1E6]'
-                  : 'bg-slate-700 text-slate-400 cursor-not-allowed'
-                }
-                ${gameState === 'testing' ? 'animate-pulse' : ''}
-              `}
-            >
-              {gameState === 'testing' ? 'Testing...' : 'Test Reactor'}
-            </button>
-            
-            <button
-              onClick={handleReset}
-              className="px-6 py-2 rounded-lg font-mono text-sm bg-slate-700 text-slate-300 hover:bg-slate-600 transition-all duration-300"
-            >
-              Reset
-            </button>
-          </div>
-        </div>
         </div>
 
         {/* Placed Components List */}
@@ -382,6 +357,30 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
         </div>
       </div>
 
+      {/* Control Buttons */}
+      <div className="flex justify-center gap-4">
+        <button
+          onClick={handleTest}
+          disabled={placedComponents.length !== 4 || gameState === 'testing'}
+          className={`
+            px-6 py-2 rounded-lg font-mono text-sm transition-all duration-300
+            ${placedComponents.length === 4 && gameState === 'playing'
+              ? 'bg-[#5CE1E6] text-black hover:bg-[#5CE1E6]/80 shadow-[0_0_15px_#5CE1E6]'
+              : 'bg-slate-700 text-slate-400 cursor-not-allowed'
+            }
+            ${gameState === 'testing' ? 'animate-pulse' : ''}
+          `}
+        >
+          {gameState === 'testing' ? 'Testing...' : 'Test Reactor'}
+        </button>
+        
+        <button
+          onClick={handleReset}
+          className="px-6 py-2 rounded-lg font-mono text-sm bg-slate-700 text-slate-300 hover:bg-slate-600 transition-all duration-300"
+        >
+          Reset
+        </button>
+      </div>
 
       {/* Status Messages */}
       {gameState === 'success' && (
