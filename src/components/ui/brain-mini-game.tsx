@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import brainPureTransparent from '@/assets/brain-pure-transparent.png';
+// Removed image import - using SVG instead
 
 interface Component {
   id: string;
@@ -145,9 +145,36 @@ const BrainMiniGame: React.FC<BrainMiniGameProps> = ({ onGameComplete }) => {
           ))}
         </div>
 
-        {/* Center brain */}
+        {/* Center brain - SVG version */}
         <div className="relative flex-shrink-0">
-          <img src={brainPureTransparent} alt="AI Brain" className="w-64 h-64" />
+          {/* SVG Brain with 4 sections */}
+          <svg width="256" height="256" viewBox="0 0 256 256" className="w-64 h-64">
+            {/* Brain outline with 4 sections */}
+            <g stroke="#64748b" strokeWidth="2" fill="none">
+              {/* Main brain outline */}
+              <path d="M128 20 C180 20, 220 50, 230 100 C235 130, 225 160, 210 180 C200 200, 180 220, 150 230 C130 235, 100 235, 80 230 C50 220, 30 200, 20 180 C5 160, -5 130, 0 100 C10 50, 50 20, 128 20 Z" />
+              
+              {/* Top-left section details */}
+              <path d="M40 80 C50 75, 60 80, 70 75 M45 95 C55 90, 65 95, 75 90 M50 110 C60 105, 70 110, 80 105" />
+              <path d="M60 60 C70 65, 80 60, 90 65 M65 125 C75 120, 85 125, 95 120" />
+              
+              {/* Top-right section details */}
+              <path d="M160 75 C170 80, 180 75, 190 80 M165 90 C175 95, 185 90, 195 95 M170 105 C180 110, 190 105, 200 110" />
+              <path d="M180 60 C190 65, 200 60, 210 65 M185 120 C195 125, 205 120, 215 125" />
+              
+              {/* Bottom-left section details */}
+              <path d="M40 140 C50 145, 60 140, 70 145 M45 155 C55 160, 65 155, 75 160 M50 170 C60 175, 70 170, 80 175" />
+              <path d="M60 185 C70 180, 80 185, 90 180 M65 200 C75 195, 85 200, 95 195" />
+              
+              {/* Bottom-right section details */}
+              <path d="M160 145 C170 140, 180 145, 190 140 M165 160 C175 155, 185 160, 195 155 M170 175 C180 170, 190 175, 200 170" />
+              <path d="M180 195 C190 200, 200 195, 210 200 M185 180 C195 185, 205 180, 215 185" />
+              
+              {/* Central division lines */}
+              <line x1="128" y1="30" x2="128" y2="220" strokeWidth="1" opacity="0.7" />
+              <line x1="40" y1="128" x2="216" y2="128" strokeWidth="1" opacity="0.7" />
+            </g>
+          </svg>
           
           {/* Drop zones over brain hemispheres */}
           <div className="absolute inset-0 grid grid-cols-2 grid-rows-2 gap-1 p-8">
