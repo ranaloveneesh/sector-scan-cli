@@ -276,7 +276,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                     fill="none"
                     stroke="#5CE1E6"
                     strokeWidth="6"
-                    strokeDasharray="30 10"
+                    strokeDasharray="none"
                     opacity="0.9"
                     className="animate-spin"
                     style={{ 
@@ -293,7 +293,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                     fill="none"
                     stroke="#ffffff"
                     strokeWidth="2"
-                    strokeDasharray="15 5"
+                    strokeDasharray="none"
                     opacity="0.7"
                     className="animate-spin"
                     style={{ 
