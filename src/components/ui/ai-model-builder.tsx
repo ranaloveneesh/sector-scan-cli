@@ -276,7 +276,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
               className="absolute inset-0 rounded-full flex items-center justify-center z-20"
             >
               {/* Placed Components in Center */}
-              <div className="grid grid-cols-2 gap-2 w-24 h-24">
+              <div className="grid grid-cols-2 gap-3 w-28 h-28 place-items-center">
                 {Array.from({ length: 4 }, (_, i) => {
                   const component = placedComponents[i];
                   return (
