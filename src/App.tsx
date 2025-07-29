@@ -14,6 +14,7 @@ import LLMs from "./pages/LLMs";
 import LLMsCompared from "./pages/LLMsCompared";
 import CompanyStats from "./pages/CompanyStats";
 import AIModels from "./pages/AIModels";
+import AIModelsMinigame from "./pages/AIModelsMinigame";
 import Slide4 from "./pages/Slide4";
 import Slide5 from "./pages/Slide5";
 import NotFound from "./pages/NotFound";
@@ -37,6 +38,7 @@ const App = () => (
             <Route path="/llms-compared" element={<PageTransition><LLMsCompared /></PageTransition>} />
             <Route path="/company-stats" element={<PageTransition><CompanyStats /></PageTransition>} />
             <Route path="/aimodels" element={<PageTransition><AIModels /></PageTransition>} />
+            <Route path="/aimodels-minigame" element={<PageTransition><AIModelsMinigame /></PageTransition>} />
             <Route path="/aiagents" element={<PageTransition><Slide4 /></PageTransition>} />
             <Route path="/aiagent-explained" element={<PageTransition><Slide5 /></PageTransition>} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
