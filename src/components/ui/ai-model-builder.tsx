@@ -24,40 +24,59 @@ interface AIModelBuilderProps {
 }
 
 const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
-  const [selectedComponents, setSelectedComponents] = useState<string[]>([]);
+  const [availableComponents, setAvailableComponents] = useState(components);
+  const [placedComponents, setPlacedComponents] = useState<Component[]>([]);
   const [gameState, setGameState] = useState<'playing' | 'testing' | 'success' | 'error' | 'flash'>('playing');
+  const [draggedComponent, setDraggedComponent] = useState<Component | null>(null);
   const [showFlash, setShowFlash] = useState(false);
 
-  const handleComponentClick = (componentId: string) => {
+  const handleDragStart = (component: Component) => {
     if (gameState !== 'playing') return;
+    setDraggedComponent(component);
+  };
 
-    let newSelected;
-    if (selectedComponents.includes(componentId)) {
-      newSelected = selectedComponents.filter(id => id !== componentId);
-    } else if (selectedComponents.length < 4) {
-      newSelected = [...selectedComponents, componentId];
-    } else {
-      newSelected = [...selectedComponents.slice(1), componentId];
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    if (!draggedComponent || placedComponents.length >= 4) return;
+
+    setPlacedComponents(prev => [...prev, draggedComponent]);
+    setAvailableComponents(prev => prev.filter(c => c.id !== draggedComponent.id));
+    setDraggedComponent(null);
+  };
+
+  const handleComponentClick = (component: Component) => {
+    if (gameState !== 'playing') return;
+    
+    if (placedComponents.find(c => c.id === component.id)) {
+      // Remove from reactor
+      setPlacedComponents(prev => prev.filter(c => c.id !== component.id));
+      setAvailableComponents(prev => [...prev, component]);
+    } else if (placedComponents.length < 4) {
+      // Add to reactor
+      setPlacedComponents(prev => [...prev, component]);
+      setAvailableComponents(prev => prev.filter(c => c.id !== component.id));
     }
-
-    setSelectedComponents(newSelected);
   };
 
   const handleTest = () => {
-    if (selectedComponents.length !== 4) return;
+    if (placedComponents.length !== 4) return;
     
     setGameState('testing');
     
     setTimeout(() => {
-      const correctComponents = components.filter(c => c.isCorrect).map(c => c.id);
-      const isCorrect = selectedComponents.every(id => correctComponents.includes(id)) &&
-                       correctComponents.every(id => selectedComponents.includes(id));
+      const correctComponents = components.filter(c => c.isCorrect);
+      const isCorrect = placedComponents.every(placed => 
+        correctComponents.some(correct => correct.id === placed.id)
+      ) && placedComponents.length === 4;
       
       if (isCorrect) {
         setGameState('success');
         onGameComplete(true);
       } else {
-        // Flash effect
         setShowFlash(true);
         setGameState('flash');
         setTimeout(() => {
@@ -69,199 +88,243 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
   };
 
   const handleReset = () => {
-    setSelectedComponents([]);
+    setAvailableComponents(components);
+    setPlacedComponents([]);
     setGameState('playing');
     setShowFlash(false);
   };
 
-  // Position components in 4 hemispheres around the reactor
-  const getHemispherePosition = (index: number) => {
-    const positions = [
-      // Top-left hemisphere
-      { x: -120, y: -80, label: 'top-left' },   // Data
-      { x: -120, y: -120, label: 'top-left' },  // Dashboard
-      // Top-right hemisphere  
-      { x: 120, y: -80, label: 'top-right' },   // Algorithms
-      { x: 120, y: -120, label: 'top-right' },  // Cloud
-      // Bottom-left hemisphere
-      { x: -120, y: 80, label: 'bottom-left' }, // Weights
-      { x: -120, y: 120, label: 'bottom-left' }, // Prompt
-      // Bottom-right hemisphere
-      { x: 120, y: 80, label: 'bottom-right' }, // Inference
-      { x: 120, y: 120, label: 'bottom-right' }, // UI
-    ];
-    return positions[index] || { x: 0, y: 0, label: 'center' };
-  };
-
-  const isNodeActive = (componentId: string) => {
-    return selectedComponents.includes(componentId);
-  };
-
-  const getNodeStatus = (component: Component) => {
-    if (gameState === 'success' || gameState === 'error') {
-      if (selectedComponents.includes(component.id)) {
-        return component.isCorrect ? 'correct' : 'incorrect';
-      }
-      return component.isCorrect ? 'missed' : 'default';
-    }
-    return selectedComponents.includes(component.id) ? 'selected' : 'default';
-  };
-
   return (
-    <div className="w-full max-w-4xl mx-auto space-y-6">
+    <div className="w-full max-w-6xl mx-auto space-y-6">
       {/* Instructions */}
       <div className="text-center">
         <p className="text-[#5CE1E6] font-mono text-lg mb-2">
-          Power up the AI reactor by selecting 4 core components
+          Drag 4 core components into the reactor to power it up
         </p>
         <p className="text-slate-400 text-sm font-mono">
-          {selectedComponents.length}/4 components selected
+          {placedComponents.length}/4 components placed
         </p>
       </div>
 
-      {/* Arc Reactor Container */}
-      <div className="relative w-full flex justify-center">
-        <div className="relative w-96 h-96">
+      <div className="flex gap-8 items-center justify-center">
+        {/* Available Components */}
+        <div className="flex flex-col gap-3">
+          <h3 className="text-[#5CE1E6] font-mono text-sm text-center mb-2">Available Components</h3>
+          {availableComponents.map((component) => (
+            <button
+              key={component.id}
+              draggable={gameState === 'playing'}
+              onDragStart={() => handleDragStart(component)}
+              onClick={() => handleComponentClick(component)}
+              className={`
+                w-24 h-24 rounded-lg border-2 font-mono text-xs 
+                flex items-center justify-center transition-all duration-300
+                cursor-pointer hover:scale-105
+                ${gameState === 'error' && component.isCorrect ? 
+                  'bg-yellow-500/10 border-yellow-400 text-yellow-300' : 
+                  'bg-slate-800/80 border-slate-500 text-white hover:border-[#5CE1E6]/50 hover:bg-[#5CE1E6]/10'
+                }
+              `}
+            >
+              {component.name}
+            </button>
+          ))}
+        </div>
+
+        {/* Arc Reactor */}
+        <div className="relative">
           {/* Flash Effect */}
           {showFlash && (
             <div className="absolute inset-0 bg-white rounded-full animate-ping z-30" />
           )}
           
-          {/* Arc Reactor SVG */}
-          <svg 
-            viewBox="0 0 384 384" 
-            className="absolute inset-0 w-full h-full z-10 pointer-events-none"
-            style={{ filter: gameState === 'success' ? 'drop-shadow(0 0 20px #5CE1E6)' : '' }}
-          >
-            {/* Outer Ring */}
-            <circle
-              cx="192"
-              cy="192"
-              r="70"
-              fill="none"
-              stroke="#5CE1E6"
-              strokeWidth="2"
-              opacity="0.3"
-            />
-            
-            {/* Middle Ring */}
-            <circle
-              cx="192"
-              cy="192"
-              r="50"
-              fill="none"
-              stroke="#5CE1E6"
-              strokeWidth="1"
-              opacity="0.5"
-            />
-            
-            {/* Inner Ring */}
-            <circle
-              cx="192"
-              cy="192"
-              r="30"
-              fill="none"
-              stroke="#5CE1E6"
-              strokeWidth="2"
-              opacity="0.7"
-            />
-            
-            {/* Core */}
-            <circle
-              cx="192"
-              cy="192"
-              r="15"
-              fill={gameState === 'success' ? '#5CE1E6' : 'none'}
-              stroke="#5CE1E6"
-              strokeWidth="2"
-              opacity={gameState === 'success' ? '0.8' : '0.4'}
-            />
-            
-            {/* Energy Flow Lines - only visible on success */}
-            {gameState === 'success' && (
-              <>
-                {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => (
-                  <g key={angle}>
-                    <line
-                      x1="192"
-                      y1="192"
-                      x2={192 + Math.cos((angle * Math.PI) / 180) * 40}
-                      y2={192 + Math.sin((angle * Math.PI) / 180) * 40}
-                      stroke="#5CE1E6"
-                      strokeWidth="2"
-                      opacity="0.8"
-                      className="animate-pulse"
-                      style={{ animationDelay: `${i * 0.1}s` }}
-                    />
-                  </g>
-                ))}
-                
-                {/* Rotating Energy Ring */}
-                <circle
-                  cx="192"
-                  cy="192"
-                  r="60"
-                  fill="none"
-                  stroke="#5CE1E6"
-                  strokeWidth="3"
-                  strokeDasharray="20 10"
-                  opacity="0.6"
-                  className="animate-spin"
-                  style={{ animationDuration: '3s' }}
-                />
-              </>
-            )}
-          </svg>
-          
-          {/* Component Nodes */}
-          {components.map((component, index) => {
-            const { x, y } = getHemispherePosition(index);
-            const status = getNodeStatus(component);
-            
-            return (
-              <button
-                key={component.id}
-                onClick={() => handleComponentClick(component.id)}
-                disabled={gameState !== 'playing'}
-                className={`
-                  absolute w-20 h-20 rounded-full border-2 font-mono text-xs 
-                  flex items-center justify-center transition-all duration-300
-                  transform -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-auto
-                  ${status === 'selected' ? 'bg-[#5CE1E6]/20 border-[#5CE1E6] text-[#5CE1E6] scale-110 shadow-[0_0_15px_#5CE1E6]' : ''}
-                  ${status === 'correct' ? 'bg-green-500/20 border-green-400 text-green-300 shadow-[0_0_15px_rgba(34,197,94,0.5)]' : ''}
-                  ${status === 'incorrect' ? 'bg-red-500/20 border-red-400 text-red-300' : ''}
-                  ${status === 'missed' ? 'bg-yellow-500/10 border-yellow-400 text-yellow-300' : ''}
-                  ${status === 'default' ? 'bg-slate-800/80 border-slate-500 text-white hover:border-[#5CE1E6]/50 hover:bg-[#5CE1E6]/10' : ''}
-                  ${gameState === 'playing' ? 'cursor-pointer hover:scale-105' : 'cursor-default'}
-                `}
-                style={{
-                  left: `calc(50% + ${x}px)`,
-                  top: `calc(50% + ${y}px)`,
-                }}
-              >
-                <span className="text-center leading-tight px-1 text-xs font-semibold">
-                  {component.name.length > 8 ? 
-                    component.name.split(' ').map(word => word.slice(0, 4)).join('\n') :
-                    component.name
-                  }
-                </span>
-                
-                {/* Connection line to center when selected */}
-                {isNodeActive(component.id) && gameState === 'success' && (
-                  <div
-                    className="absolute bg-[#5CE1E6] opacity-60 animate-pulse"
-                    style={{
-                      width: '2px',
-                      height: `${Math.sqrt(x * x + y * y)}px`,
-                      transformOrigin: 'bottom',
-                      transform: `rotate(${Math.atan2(y, x) * 180 / Math.PI + 90}deg)`,
-                      bottom: '50%',
-                      left: '50%',
-                      marginLeft: '-1px'
-                    }}
+          <div className="relative w-80 h-80">
+            <svg 
+              viewBox="0 0 320 320" 
+              className="absolute inset-0 w-full h-full z-10"
+              style={{ filter: gameState === 'success' ? 'drop-shadow(0 0 30px #5CE1E6)' : '' }}
+            >
+              {/* Outer Grid Pattern */}
+              {gameState === 'success' && (
+                <>
+                  {/* Outer Ring Segments */}
+                  {Array.from({ length: 16 }, (_, i) => {
+                    const angle = (i / 16) * 360;
+                    const isActive = i % 2 === 0;
+                    return (
+                      <rect
+                        key={i}
+                        x="140"
+                        y="10"
+                        width="40"
+                        height="15"
+                        fill={isActive ? "#5CE1E6" : "#5CE1E6"}
+                        opacity={isActive ? "0.9" : "0.6"}
+                        transform={`rotate(${angle} 160 160)`}
+                        className="animate-pulse"
+                        style={{ animationDelay: `${i * 0.1}s` }}
+                      />
+                    );
+                  })}
+                  
+                  {/* Middle Ring Segments */}
+                  {Array.from({ length: 12 }, (_, i) => {
+                    const angle = (i / 12) * 360;
+                    return (
+                      <rect
+                        key={i}
+                        x="145"
+                        y="40"
+                        width="30"
+                        height="12"
+                        fill="#5CE1E6"
+                        opacity="0.7"
+                        transform={`rotate(${angle} 160 160)`}
+                        className="animate-pulse"
+                        style={{ animationDelay: `${i * 0.15}s` }}
+                      />
+                    );
+                  })}
+                </>
+              )}
+              
+              {/* Static Reactor Structure */}
+              <circle
+                cx="160"
+                cy="160"
+                r="140"
+                fill="none"
+                stroke="#5CE1E6"
+                strokeWidth="2"
+                opacity="0.3"
+              />
+              
+              <circle
+                cx="160"
+                cy="160"
+                r="100"
+                fill="none"
+                stroke="#5CE1E6"
+                strokeWidth="1"
+                opacity="0.4"
+              />
+              
+              {/* Drop Zone */}
+              <circle
+                cx="160"
+                cy="160"
+                r="60"
+                fill={placedComponents.length > 0 ? "#5CE1E6" : "none"}
+                fillOpacity={placedComponents.length > 0 ? "0.1" : "0"}
+                stroke="#5CE1E6"
+                strokeWidth="2"
+                strokeDasharray={placedComponents.length === 4 ? "none" : "10 5"}
+                opacity="0.6"
+              />
+              
+              {/* Core */}
+              <circle
+                cx="160"
+                cy="160"
+                r="25"
+                fill={gameState === 'success' ? '#5CE1E6' : 'none'}
+                stroke="#5CE1E6"
+                strokeWidth="2"
+                opacity={gameState === 'success' ? '0.8' : '0.4'}
+              />
+              
+              {/* Energy Pulses on Success */}
+              {gameState === 'success' && (
+                <>
+                  <circle
+                    cx="160"
+                    cy="160"
+                    r="80"
+                    fill="none"
+                    stroke="#5CE1E6"
+                    strokeWidth="3"
+                    strokeDasharray="20 10"
+                    opacity="0.6"
+                    className="animate-spin"
+                    style={{ animationDuration: '3s' }}
                   />
-                )}
-              </button>
+                  
+                  <circle
+                    cx="160"
+                    cy="160"
+                    r="120"
+                    fill="none"
+                    stroke="#5CE1E6"
+                    strokeWidth="2"
+                    strokeDasharray="15 8"
+                    opacity="0.4"
+                    className="animate-spin"
+                    style={{ animationDuration: '4s', animationDirection: 'reverse' }}
+                  />
+                </>
+              )}
+            </svg>
+            
+            {/* Drop Zone Overlay */}
+            <div
+              onDragOver={handleDragOver}
+              onDrop={handleDrop}
+              className="absolute inset-0 rounded-full flex items-center justify-center z-20"
+            >
+              {/* Placed Components in Center */}
+              <div className="grid grid-cols-2 gap-2 w-20 h-20">
+                {Array.from({ length: 4 }, (_, i) => {
+                  const component = placedComponents[i];
+                  return (
+                    <div
+                      key={i}
+                      onClick={() => component && handleComponentClick(component)}
+                      className={`
+                        w-8 h-8 rounded border text-xs flex items-center justify-center
+                        cursor-pointer transition-all duration-300 font-mono
+                        ${component ? 
+                          `${gameState === 'success' ? 'bg-[#5CE1E6]/20 border-[#5CE1E6] text-[#5CE1E6]' : 
+                            gameState === 'error' ? 
+                              (component.isCorrect ? 'bg-green-500/20 border-green-400 text-green-300' : 'bg-red-500/20 border-red-400 text-red-300') :
+                              'bg-slate-700 border-slate-500 text-white hover:border-[#5CE1E6]'
+                          }` :
+                          'border-dashed border-slate-600 text-slate-600'
+                        }
+                      `}
+                    >
+                      {component ? component.name.slice(0, 3) : '?'}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Placed Components List */}
+        <div className="flex flex-col gap-3">
+          <h3 className="text-[#5CE1E6] font-mono text-sm text-center mb-2">In Reactor</h3>
+          {Array.from({ length: 4 }, (_, i) => {
+            const component = placedComponents[i];
+            return (
+              <div
+                key={i}
+                onClick={() => component && handleComponentClick(component)}
+                className={`
+                  w-24 h-16 rounded border text-xs flex items-center justify-center
+                  cursor-pointer transition-all duration-300 font-mono
+                  ${component ? 
+                    `${gameState === 'success' ? 'bg-[#5CE1E6]/20 border-[#5CE1E6] text-[#5CE1E6]' : 
+                      gameState === 'error' ? 
+                        (component.isCorrect ? 'bg-green-500/20 border-green-400 text-green-300' : 'bg-red-500/20 border-red-400 text-red-300') :
+                        'bg-slate-700 border-slate-500 text-white hover:border-[#5CE1E6]'
+                    }` :
+                    'border-dashed border-slate-600 text-slate-600'
+                  }
+                `}
+              >
+                {component ? component.name : `Slot ${i + 1}`}
+              </div>
             );
           })}
         </div>
@@ -271,10 +334,10 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
       <div className="flex justify-center gap-4">
         <button
           onClick={handleTest}
-          disabled={selectedComponents.length !== 4 || gameState === 'testing'}
+          disabled={placedComponents.length !== 4 || gameState === 'testing'}
           className={`
             px-6 py-2 rounded-lg font-mono text-sm transition-all duration-300
-            ${selectedComponents.length === 4 && gameState === 'playing'
+            ${placedComponents.length === 4 && gameState === 'playing'
               ? 'bg-[#5CE1E6] text-black hover:bg-[#5CE1E6]/80 shadow-[0_0_15px_#5CE1E6]'
               : 'bg-slate-700 text-slate-400 cursor-not-allowed'
             }
