@@ -96,41 +96,42 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
       {/* Instructions */}
       <div className="text-center">
         <p className="text-[#5CE1E6] font-mono text-lg mb-2">
-          Drag 4 core components into the reactor to power it up
+          Click 4 core components to move them into the reactor
         </p>
         <p className="text-slate-400 text-sm font-mono">
           {placedComponents.length}/4 components placed
         </p>
       </div>
 
-      <div className="flex gap-8 items-center justify-center">
-        {/* Available Components - 2 rows of 4 */}
-        <div className="flex flex-col gap-4">
-          <h3 className="text-[#5CE1E6] font-mono text-sm text-center mb-2">Available Components</h3>
-          <div className="grid grid-cols-4 gap-3">
+      {/* Test button */}
+      <div className="text-center mb-4">
+        <button 
+          onClick={() => {
+            console.log('TEST BUTTON WORKS!');
+            alert('Test button clicked!');
+          }}
+          className="bg-red-500 text-white px-4 py-2 rounded cursor-pointer hover:bg-red-600"
+        >
+          TEST BUTTON - Click me first!
+        </button>
+      </div>
+
+      <div className="flex gap-8 items-start justify-center">
+        {/* Available Components - Completely isolated */}
+        <div className="bg-slate-900 p-4 rounded-lg">
+          <h3 className="text-[#5CE1E6] font-mono text-sm text-center mb-4">Available Components</h3>
+          <div className="grid grid-cols-2 gap-4 max-w-xs">
             {availableComponents.map((component) => (
               <button
                 key={component.id}
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  console.log('Component clicked:', component.name);
+                type="button"
+                onClick={() => {
+                  console.log('COMPONENT BUTTON CLICKED:', component.name);
+                  alert(`Clicked: ${component.name}`);
                   handleComponentClick(component);
                 }}
-                className={`
-                  w-20 h-16 rounded-lg border-2 font-mono text-xs 
-                  flex items-center justify-center transition-all duration-300
-                  cursor-pointer hover:scale-105 relative z-50 pointer-events-auto
-                  ${gameState === 'error' && component.isCorrect ? 
-                    'bg-yellow-500/10 border-yellow-400 text-yellow-300' : 
-                    'bg-slate-800/80 border-slate-500 text-white hover:border-[#5CE1E6]/50 hover:bg-[#5CE1E6]/10'
-                  }
-                `}
-                style={{ 
-                  pointerEvents: 'auto',
-                  cursor: 'pointer',
-                  zIndex: 50
-                }}
+                onMouseEnter={() => console.log('Mouse entered:', component.name)}
+                className="w-24 h-16 rounded-lg border-2 border-slate-500 bg-slate-800 text-white font-mono text-xs flex items-center justify-center hover:bg-slate-700 hover:border-[#5CE1E6] cursor-pointer transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#5CE1E6]"
               >
                 {component.name}
               </button>
@@ -138,7 +139,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
           </div>
         </div>
 
-        {/* Arc Reactor */}
+        {/* Arc Reactor - Keeping the perfect structure */}
         <div className="relative">
           {/* Flash Effect */}
           {showFlash && (
@@ -151,7 +152,6 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
               className="absolute inset-0 w-full h-full z-10"
               style={{ filter: gameState === 'success' ? 'drop-shadow(0 0 30px #5CE1E6)' : '' }}
             >
-              {/* Metallic Outer Ring Structure - Iron Man Style */}
               <defs>
                 <radialGradient id="metalGradient" cx="50%" cy="50%" r="50%">
                   <stop offset="0%" stopColor="#5CE1E6" stopOpacity="0.8"/>
@@ -171,7 +171,6 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                 </linearGradient>
               </defs>
 
-              {/* Outermost Ring - Main Structure */}
               <circle
                 cx="192"
                 cy="192"
@@ -182,7 +181,6 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                 opacity={gameState === 'success' ? "0.8" : "0.4"}
               />
 
-              {/* Outer Ring Segments - Primary Segments */}
               {Array.from({ length: 20 }, (_, i) => {
                 const angle = (i / 20) * 360;
                 const isPrimarySegment = i % 4 === 0;
@@ -191,7 +189,6 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                 
                 return (
                   <g key={`outer-${i}`}>
-                    {/* Main segments */}
                     <rect
                       x={isPrimarySegment ? "172" : isSecondarySegment ? "175" : "178"}
                       y="14"
@@ -203,8 +200,6 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                       className={isActive ? "animate-pulse" : ""}
                       style={{ animationDelay: `${i * 0.03}s` }}
                     />
-                    
-                    {/* Inner connector segments */}
                     <rect
                       x={isPrimarySegment ? "176" : "179"}
                       y="45"
@@ -216,8 +211,6 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                       className={isActive ? "animate-pulse" : ""}
                       style={{ animationDelay: `${i * 0.03 + 0.1}s` }}
                     />
-                    
-                    {/* Detail lines for realism */}
                     {isPrimarySegment && (
                       <rect
                         x="190"
@@ -235,101 +228,6 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                 );
               })}
 
-              {/* Secondary Ring Structure */}
-              <circle
-                cx="192"
-                cy="192"
-                r="135"
-                fill="none"
-                stroke="#5CE1E6"
-                strokeWidth="3"
-                opacity={gameState === 'success' ? "0.7" : "0.3"}
-              />
-
-              {/* Middle Ring Segments - More detailed */}
-              {Array.from({ length: 16 }, (_, i) => {
-                const angle = (i / 16) * 360;
-                const isActive = gameState === 'success';
-                const isMajor = i % 2 === 0;
-                return (
-                  <g key={`middle-${i}`}>
-                    <rect
-                      x={isMajor ? "180" : "183"}
-                      y="70"
-                      width={isMajor ? "24" : "18"}
-                      height={isMajor ? "16" : "12"}
-                      fill="url(#segmentGradient)"
-                      opacity={isActive ? (isMajor ? "0.9" : "0.7") : "0.4"}
-                      transform={`rotate(${angle} 192 192)`}
-                      className={isActive ? "animate-pulse" : ""}
-                      style={{ animationDelay: `${i * 0.06}s` }}
-                    />
-                    
-                    {/* Inner detail for major segments */}
-                    {isMajor && (
-                      <rect
-                        x="187"
-                        y="88"
-                        width="10"
-                        height="8"
-                        fill="#ffffff"
-                        opacity={isActive ? "0.8" : "0.3"}
-                        transform={`rotate(${angle} 192 192)`}
-                        className={isActive ? "animate-pulse" : ""}
-                        style={{ animationDelay: `${i * 0.06 + 0.15}s` }}
-                      />
-                    )}
-                  </g>
-                );
-              })}
-
-              {/* Inner Ring Structure */}
-              <circle
-                cx="192"
-                cy="192"
-                r="108"
-                fill="none"
-                stroke="#5CE1E6"
-                strokeWidth="2"
-                opacity={gameState === 'success' ? "0.8" : "0.4"}
-              />
-
-              {/* Inner Ring Segments - Finest detail */}
-              {Array.from({ length: 12 }, (_, i) => {
-                const angle = (i / 12) * 360;
-                const isActive = gameState === 'success';
-                return (
-                  <g key={`inner-${i}`}>
-                    <rect
-                      x="186"
-                      y="96"
-                      width="12"
-                      height="10"
-                      fill="#5CE1E6"
-                      opacity={isActive ? "0.9" : "0.5"}
-                      transform={`rotate(${angle} 192 192)`}
-                      className={isActive ? "animate-pulse" : ""}
-                      style={{ animationDelay: `${i * 0.08}s` }}
-                    />
-                    
-                    {/* Fine detail lines */}
-                    <line
-                      x1="192"
-                      y1="96"
-                      x2="192"
-                      y2="106"
-                      stroke="#ffffff"
-                      strokeWidth="1"
-                      opacity={isActive ? "0.6" : "0.2"}
-                      transform={`rotate(${angle} 192 192)`}
-                      className={isActive ? "animate-pulse" : ""}
-                      style={{ animationDelay: `${i * 0.08 + 0.1}s` }}
-                    />
-                  </g>
-                );
-              })}
-
-              {/* Drop Zone - Keep as is */}
               <circle
                 cx="192"
                 cy="192"
@@ -341,10 +239,8 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                 opacity="0.6"
               />
               
-              {/* Energy Pulses on Success - Enhanced */}
               {gameState === 'success' && (
                 <>
-                  {/* Primary energy ring */}
                   <circle
                     cx="192"
                     cy="192"
@@ -357,8 +253,6 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                     className="animate-spin"
                     style={{ animationDuration: '2s' }}
                   />
-                  
-                  {/* Secondary energy ring */}
                   <circle
                     cx="192"
                     cy="192"
@@ -371,29 +265,12 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                     className="animate-spin"
                     style={{ animationDuration: '3s', animationDirection: 'reverse' }}
                   />
-                  
-                  {/* Outer energy pulse */}
-                  <circle
-                    cx="192"
-                    cy="192"
-                    r="150"
-                    fill="none"
-                    stroke="#5CE1E6"
-                    strokeWidth="1"
-                    strokeDasharray="10 4"
-                    opacity="0.4"
-                    className="animate-spin"
-                    style={{ animationDuration: '4s' }}
-                  />
                 </>
               )}
             </svg>
             
-            {/* Drop Zone Overlay */}
-            <div
-              className="absolute inset-0 rounded-full flex items-center justify-center z-20"
-            >
-              {/* Placed Components in Center */}
+            {/* Placed Components in Center */}
+            <div className="absolute inset-0 rounded-full flex items-center justify-center z-20">
               <div className="grid grid-cols-2 gap-0 w-24 h-24 place-items-center">
                 {Array.from({ length: 4 }, (_, i) => {
                   const component = placedComponents[i];
