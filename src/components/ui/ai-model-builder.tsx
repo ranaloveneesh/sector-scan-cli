@@ -103,18 +103,6 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
         </p>
       </div>
 
-      {/* Test button */}
-      <div className="text-center mb-4">
-        <button 
-          onClick={() => {
-            console.log('TEST BUTTON WORKS!');
-            alert('Test button clicked!');
-          }}
-          className="bg-red-500 text-white px-4 py-2 rounded cursor-pointer hover:bg-red-600"
-        >
-          TEST BUTTON - Click me first!
-        </button>
-      </div>
 
       <div className="flex gap-8 items-start justify-center">
         {/* Available Components - Completely isolated */}
