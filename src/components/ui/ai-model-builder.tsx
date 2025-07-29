@@ -92,7 +92,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
   };
 
   return (
-    <div className="w-full max-w-6xl mx-auto space-y-6">
+    <div className="w-full max-w-7xl mx-auto space-y-8">
       {/* Instructions */}
       <div className="text-center">
         <p className="text-[#5CE1E6] font-mono text-lg mb-2">
@@ -103,10 +103,9 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
         </p>
       </div>
 
-
-      <div className="flex items-center justify-center min-h-screen relative">
-        {/* Available Components - moved more to the right */}
-        <div className="absolute left-8 top-1/2 transform -translate-y-1/2 bg-slate-900 p-4 rounded-lg">
+      <div className="flex gap-12 items-center justify-center">
+        {/* Available Components */}
+        <div className="bg-slate-900 p-4 rounded-lg">
           <h3 className="text-[#5CE1E6] font-mono text-sm text-center mb-4">Available Components</h3>
           <div className="grid grid-cols-2 gap-4 max-w-xs">
             {availableComponents.map((component) => (
@@ -127,7 +126,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
           </div>
         </div>
 
-        {/* Arc Reactor - exactly centered */}
+        {/* Arc Reactor */}
         <div className="relative flex flex-col items-center">
           <div className="relative">
             {/* Flash Effect */}
@@ -329,8 +328,8 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
             </div>
           </div>
 
-          {/* Control Buttons - centered under reactor */}
-          <div className="flex justify-center gap-4 mt-8">
+          {/* Control Buttons - under reactor */}
+          <div className="flex justify-center gap-4 mt-6">
             <button
               onClick={handleTest}
               disabled={placedComponents.length !== 4 || gameState === 'testing'}
@@ -355,8 +354,8 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
           </div>
         </div>
 
-        {/* Placed Components List - moved farther to the right with more distance */}
-        <div className="absolute right-8 top-1/2 transform -translate-y-1/2 flex flex-col gap-3">
+        {/* Placed Components List */}
+        <div className="flex flex-col gap-3">
           <h3 className="text-[#5CE1E6] font-mono text-sm text-center mb-2">In Reactor</h3>
           {Array.from({ length: 4 }, (_, i) => {
             const component = placedComponents[i];
