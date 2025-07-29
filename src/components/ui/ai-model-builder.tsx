@@ -275,23 +275,6 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                   </g>
                 );
               })}
-              
-              {/* Inner reactor details */}
-              {Array.from({ length: 12 }, (_, i) => {
-                const angle = (i / 12) * 360;
-                return (
-                  <rect
-                    key={`inner-${i}`}
-                    x="190"
-                    y="95"
-                    width="4"
-                    height="16"
-                    fill="#5CE1E6"
-                    opacity="0.4"
-                    transform={`rotate(${angle} 192 192)`}
-                  />
-                );
-              })}
 
               {/* Central Drop Zone */}
               <circle
