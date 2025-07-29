@@ -115,17 +115,24 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
               <button
                 key={component.id}
                 draggable={gameState === 'playing'}
-                onDragStart={() => handleDragStart(component)}
-                onClick={() => handleComponentClick(component)}
+                onDragStart={(e) => {
+                  console.log('Drag started:', component.name);
+                  handleDragStart(component);
+                }}
+                onClick={(e) => {
+                  console.log('Component clicked:', component.name);
+                  handleComponentClick(component);
+                }}
                 className={`
                   w-20 h-16 rounded-lg border-2 font-mono text-xs 
                   flex items-center justify-center transition-all duration-300
-                  cursor-pointer hover:scale-105
+                  cursor-pointer hover:scale-105 relative z-30
                   ${gameState === 'error' && component.isCorrect ? 
                     'bg-yellow-500/10 border-yellow-400 text-yellow-300' : 
                     'bg-slate-800/80 border-slate-500 text-white hover:border-[#5CE1E6]/50 hover:bg-[#5CE1E6]/10'
                   }
                 `}
+                style={{ pointerEvents: 'auto' }}
               >
                 {component.name}
               </button>
