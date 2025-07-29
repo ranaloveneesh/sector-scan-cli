@@ -164,11 +164,11 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                   r="168"
                   fill="none"
                   stroke="url(#outerRingGradient)"
-                  strokeWidth="4"
+                  strokeWidth={gameState === 'success' ? "8" : "4"}
                   opacity={gameState === 'success' ? "1" : "0.4"}
+                  className={gameState === 'success' ? "animate-pulse" : ""}
                   style={gameState === 'success' ? { 
-                    filter: 'drop-shadow(0 0 35px #5CE1E6) drop-shadow(0 0 60px #5CE1E6) drop-shadow(0 0 80px #5CE1E6)',
-                    strokeWidth: '8'
+                    filter: 'drop-shadow(0 0 35px #5CE1E6) drop-shadow(0 0 60px #5CE1E6) drop-shadow(0 0 80px #5CE1E6)'
                   } : {}}
                 />
 
@@ -278,26 +278,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                   strokeDasharray={placedComponents.length === 4 ? "none" : "8 4"}
                   opacity="0.6"
                 />
-              
-              {gameState === 'success' && (
-                <>
-                  {/* Enhanced Pulse Ring */}
-                  <circle
-                    cx="192"
-                    cy="192"
-                    r="190"
-                    fill="none"
-                    stroke="#5CE1E6"
-                    strokeWidth="4"
-                    opacity="0.9"
-                    className="animate-pulse"
-                    style={{ 
-                      filter: 'drop-shadow(0 0 40px #5CE1E6) drop-shadow(0 0 70px #5CE1E6)'
-                    }}
-                  />
-                </>
-              )}
-              </svg>
+               </svg>
               
               {/* Placed Components in Center */}
               <div className="absolute inset-0 rounded-full flex items-center justify-center z-20">
