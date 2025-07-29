@@ -256,7 +256,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                           w-12 h-12 rounded border text-xs flex items-center justify-center
                           cursor-pointer font-mono
                           ${component ? 
-                            `${gameState === 'success' ? 'bg-[#5CE1E6]/20 border-[#5CE1E6] text-[#5CE1E6]' : 
+                            `${gameState === 'success' ? 'border-[#5CE1E6] text-[#5CE1E6]' :
                               gameState === 'error' ? 
                                 (component.isCorrect ? 'bg-green-500/20 border-green-400 text-green-300' : 'bg-red-500/20 border-red-400 text-red-300') :
                                 'bg-slate-700 border-slate-500 text-white hover:border-[#5CE1E6]'
@@ -313,7 +313,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                   w-20 h-12 rounded border text-xs flex items-center justify-center
                   cursor-pointer font-mono
                   ${component ? 
-                    `${gameState === 'success' ? 'bg-[#5CE1E6]/20 border-[#5CE1E6] text-[#5CE1E6]' : 
+                    `${gameState === 'success' ? 'border-[#5CE1E6] text-[#5CE1E6]' : 
                       gameState === 'error' ? 
                         (component.isCorrect ? 'bg-green-500/20 border-green-400 text-green-300' : 'bg-red-500/20 border-red-400 text-red-300') :
                         'bg-slate-700 border-slate-500 text-white hover:border-[#5CE1E6]'
