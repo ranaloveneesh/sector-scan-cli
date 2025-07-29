@@ -101,7 +101,10 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
       `}</style>
       {/* Instructions */}
       <div className="text-center">
-        <p className="text-white font-mono text-lg mb-0">
+        <h1 className="text-white font-mono text-2xl mb-2">
+          Close, but there's much more...
+        </h1>
+        <p className="text-slate-400 font-mono text-base mb-0">
           Guess the 4 right components of an AI model. Then test it, and see if you are correct
         </p>
       </div>
