@@ -263,7 +263,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                         onClick={() => component && handleComponentClick(component)}
                         className={`
                           w-12 h-12 rounded border text-xs flex items-center justify-center
-                          cursor-pointer transition-all duration-300 font-mono
+                          cursor-pointer font-mono
                           ${component ? 
                             `${gameState === 'success' ? 'bg-[#5CE1E6]/20 border-[#5CE1E6] text-[#5CE1E6]' : 
                               gameState === 'error' ? 
@@ -320,7 +320,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                 onClick={() => component && handleComponentClick(component)}
                 className={`
                   w-20 h-12 rounded border text-xs flex items-center justify-center
-                  cursor-pointer transition-all duration-300 font-mono
+                  cursor-pointer font-mono
                   ${component ? 
                     `${gameState === 'success' ? 'bg-[#5CE1E6]/20 border-[#5CE1E6] text-[#5CE1E6]' : 
                       gameState === 'error' ? 
