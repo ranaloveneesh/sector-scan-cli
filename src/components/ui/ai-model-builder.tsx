@@ -106,7 +106,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
         </p>
       </div>
 
-      <div className="flex gap-12 items-center justify-center mt-16">
+      <div className="flex gap-12 items-center justify-center">
         {/* Available Components */}
         <div className="bg-slate-900 p-4 rounded-lg">
           <h3 className="text-[#5CE1E6] font-mono text-sm text-center mb-4">Available Components</h3>
