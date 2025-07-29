@@ -111,13 +111,13 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
         <div className="relative w-80 h-80">
           {/* Flash Effect */}
           {showFlash && (
-            <div className="absolute inset-0 bg-white rounded-full animate-ping z-20" />
+            <div className="absolute inset-0 bg-white rounded-full animate-ping z-30" />
           )}
           
           {/* Arc Reactor SVG */}
           <svg 
             viewBox="0 0 320 320" 
-            className="absolute inset-0 w-full h-full"
+            className="absolute inset-0 w-full h-full z-10 pointer-events-none"
             style={{ filter: gameState === 'success' ? 'drop-shadow(0 0 20px #5CE1E6)' : '' }}
           >
             {/* Outer Ring */}
@@ -213,7 +213,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                 className={`
                   absolute w-16 h-16 rounded-full border-2 font-mono text-xs 
                   flex items-center justify-center transition-all duration-300
-                  transform -translate-x-1/2 -translate-y-1/2
+                  transform -translate-x-1/2 -translate-y-1/2 z-20
                   ${status === 'selected' ? 'bg-[#5CE1E6]/20 border-[#5CE1E6] text-[#5CE1E6] scale-110 shadow-[0_0_15px_#5CE1E6]' : ''}
                   ${status === 'correct' ? 'bg-green-500/20 border-green-400 text-green-300 shadow-[0_0_15px_rgba(34,197,94,0.5)]' : ''}
                   ${status === 'incorrect' ? 'bg-red-500/20 border-red-400 text-red-300' : ''}
