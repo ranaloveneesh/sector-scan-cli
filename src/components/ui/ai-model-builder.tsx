@@ -92,7 +92,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto space-y-6">
+    <div className="w-full max-w-7xl mx-auto space-y-3">
       <style>{`
         @keyframes custom-pulse {
           0%, 100% { opacity: 1; }
