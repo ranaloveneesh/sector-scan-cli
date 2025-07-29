@@ -265,35 +265,58 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                   strokeDasharray={placedComponents.length === 4 ? "none" : "8 4"}
                   opacity="0.6"
                 />
-                
-                {gameState === 'success' && (
-                  <>
-                    <circle
-                      cx="192"
-                      cy="192"
-                      r="84"
-                      fill="none"
-                      stroke="#5CE1E6"
-                      strokeWidth="4"
-                      strokeDasharray="20 8"
-                      opacity="0.8"
-                      className="animate-spin"
-                      style={{ animationDuration: '2s' }}
-                    />
-                    <circle
-                      cx="192"
-                      cy="192"
-                      r="120"
-                      fill="none"
-                      stroke="#5CE1E6"
-                      strokeWidth="2"
-                      strokeDasharray="15 6"
-                      opacity="0.6"
-                      className="animate-spin"
-                      style={{ animationDuration: '3s', animationDirection: 'reverse' }}
-                    />
-                  </>
-                )}
+              
+              {gameState === 'success' && (
+                <>
+                  {/* Energy Flow Ring - Counter-clockwise */}
+                  <circle
+                    cx="192"
+                    cy="192"
+                    r="178"
+                    fill="none"
+                    stroke="#5CE1E6"
+                    strokeWidth="6"
+                    strokeDasharray="30 10"
+                    opacity="0.9"
+                    className="animate-spin"
+                    style={{ 
+                      animationDuration: '1.5s',
+                      animationDirection: 'reverse',
+                      filter: 'drop-shadow(0 0 10px #5CE1E6)'
+                    }}
+                  />
+                  {/* Inner Energy Ring */}
+                  <circle
+                    cx="192"
+                    cy="192"
+                    r="158"
+                    fill="none"
+                    stroke="#ffffff"
+                    strokeWidth="2"
+                    strokeDasharray="15 5"
+                    opacity="0.7"
+                    className="animate-spin"
+                    style={{ 
+                      animationDuration: '2s',
+                      animationDirection: 'reverse'
+                    }}
+                  />
+                  {/* Pulse Ring */}
+                  <circle
+                    cx="192"
+                    cy="192"
+                    r="190"
+                    fill="none"
+                    stroke="#5CE1E6"
+                    strokeWidth="2"
+                    opacity="0.5"
+                    className="animate-pulse"
+                    style={{ 
+                      filter: 'drop-shadow(0 0 20px #5CE1E6)'
+                    }}
+                  />
+                </>
+              )}
               </svg>
               
               {/* Placed Components in Center */}
