@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import BrainMiniGame from './brain-mini-game';
 interface CompanySizeQuestionProps {
   data: {
     id: string;
@@ -20,7 +21,8 @@ interface CompanySizeQuestionProps {
       required: boolean;
       error_message: string;
     };
-    isStatic?: boolean;
+  isStatic?: boolean;
+  showBrainGame?: boolean;
   };
   onSubmit: (selectedOptions: string[]) => void;
 }
@@ -31,6 +33,7 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
   const [selectedOption, setSelectedOption] = useState<string>('');
   const [animationText, setAnimationText] = useState('');
   const [showError, setShowError] = useState(false);
+  const [brainGameCompleted, setBrainGameCompleted] = useState<boolean>(false);
 
   // Terminal animation effect
   useEffect(() => {
@@ -50,8 +53,21 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
     setSelectedOption(option);
     setShowError(false);
   };
+
+  const handleBrainGameComplete = (success: boolean) => {
+    setBrainGameCompleted(true);
+    if (success) {
+      setShowError(false);
+    }
+  };
+
   const handleSubmit = () => {
-    if (data.validation?.required && !selectedOption && !data.isStatic) {
+    if (data.showBrainGame && !brainGameCompleted) {
+      setShowError(true);
+      return;
+    }
+    
+    if (data.validation?.required && !selectedOption && !data.isStatic && !data.showBrainGame) {
       setShowError(true);
       return;
     }
@@ -74,7 +90,7 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
       </div>
 
       {/* Static text box positioned high */}
-      {data.isStatic && data.title && (
+      {data.isStatic && !data.showBrainGame && data.title && (
         <div className="absolute top-32 left-6 right-6 md:top-40 md:left-16 md:right-16 z-10 animate-fade-in flex flex-col items-center" style={{ animationDelay: '250ms' }}>
           <h1 className="text-2xl md:text-3xl lg:text-3.5xl font-bold text-white font-open-sauce leading-relaxed max-w-4xl text-center mb-2">
             {data.title}
@@ -87,10 +103,22 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
         </div>
       )}
 
+      {/* Brain Game */}
+      {data.showBrainGame && (
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full z-10 animate-fade-in" style={{ animationDelay: '200ms' }}>
+          <div className="text-center mb-8">
+            <h1 className="text-2xl md:text-3xl lg:text-3.5xl font-bold text-white font-open-sauce leading-relaxed max-w-4xl mx-auto">
+              {data.title}
+            </h1>
+          </div>
+          <BrainMiniGame onGameComplete={handleBrainGameComplete} />
+        </div>
+      )}
+
       {/* Main content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-8 md:px-32 lg:px-48 animate-fade-in" style={{ animationDelay: '200ms' }}>
         <div className="max-w-4xl w-full">
-          {!data.isStatic && (
+          {!data.isStatic && !data.showBrainGame && (
             <>
               {/* Question content */}
               <div className="text-left mb-16">
@@ -127,18 +155,28 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
 
       {/* Bottom right next button */}
       <div className="absolute bottom-6 right-6 md:bottom-12 md:right-16 animate-fade-in" style={{ animationDelay: '450ms' }}>
-        <button onClick={handleSubmit} className="sci-fi-arrow font-mono text-[#5CE1E6] text-responsive-button neon-glow transition-all duration-300 relative hover:text-[#5CE1E6]/80 digital-glitch-click cursor-pointer hover:scale-105" data-text="next" style={{
-        pointerEvents: 'auto',
-        zIndex: 10
-      }}>
+        <button 
+          onClick={handleSubmit} 
+          className={`sci-fi-arrow font-mono text-responsive-button neon-glow transition-all duration-300 relative digital-glitch-click cursor-pointer hover:scale-105 ${
+            (data.showBrainGame && brainGameCompleted) || (!data.showBrainGame && (selectedOption || data.isStatic))
+              ? 'text-[#5CE1E6] hover:text-[#5CE1E6]/80' 
+              : 'text-gray-500 cursor-not-allowed'
+          }`}
+          data-text="next" 
+          style={{
+            pointerEvents: 'auto',
+            zIndex: 10
+          }}
+          disabled={data.showBrainGame ? !brainGameCompleted : (!selectedOption && !data.isStatic)}
+        >
           next
         </button>
       </div>
 
       {/* Error message */}
       {showError && <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2">
-          <p className="text-red-400 font-medium animate-pulse">
-            {data.validation.error_message}
+          <p className="text-red-400 font-medium animate-pulse font-mono">
+            {data.showBrainGame ? "Complete the brain game to continue!" : (data.validation?.error_message || "Please complete the task to continue!")}
           </p>
         </div>}
     </div>;
