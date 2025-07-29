@@ -101,8 +101,8 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
       `}</style>
       {/* Instructions */}
       <div className="text-center">
-        <p className="text-[#5CE1E6] font-mono text-lg mb-2">
-          Click 4 core components to move them into the reactor
+        <p className="text-[#5CE1E6] font-mono text-lg mb-1">
+          Guess the 4 right components of an AI model. Then test it, and see if you are correct
         </p>
         <p className="text-slate-400 text-sm font-mono">
           {placedComponents.length}/4 components placed
