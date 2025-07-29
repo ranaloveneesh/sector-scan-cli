@@ -284,7 +284,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                       key={i}
                       onClick={() => component && handleComponentClick(component)}
                       className={`
-                        w-10 h-10 rounded border text-xs flex items-center justify-center
+                        w-12 h-12 rounded border text-xs flex items-center justify-center
                         cursor-pointer transition-all duration-300 font-mono
                         ${component ? 
                           `${gameState === 'success' ? 'bg-[#5CE1E6]/20 border-[#5CE1E6] text-[#5CE1E6]' : 
