@@ -33,7 +33,7 @@ const AIModelsMinigame = () => {
       animation_text: "explaining AI models...",
       next_button_color: "primary",
       selector_style: "modern",
-      label: "ai_models_minigame"
+      label: "ai_models_test"
     },
     isStatic: true,
     showBrainGame: true
