@@ -228,6 +228,72 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                 );
               })}
 
+              {/* Middle Ring Structure */}
+              <circle
+                cx="192"
+                cy="192"
+                r="140"
+                fill="none"
+                stroke="#5CE1E6"
+                strokeWidth="1"
+                opacity="0.3"
+              />
+              <circle
+                cx="192"
+                cy="192"
+                r="110"
+                fill="none"
+                stroke="#5CE1E6"
+                strokeWidth="1"
+                opacity="0.4"
+              />
+              
+              {/* Reactor Core Details - Between outer ring and center */}
+              {Array.from({ length: 8 }, (_, i) => {
+                const angle = (i / 8) * 360;
+                return (
+                  <g key={`mid-${i}`}>
+                    {/* Radial Segments */}
+                    <rect
+                      x="188"
+                      y="80"
+                      width="8"
+                      height="32"
+                      fill="#5CE1E6"
+                      opacity="0.5"
+                      transform={`rotate(${angle} 192 192)`}
+                    />
+                    <rect
+                      x="189"
+                      y="130"
+                      width="6"
+                      height="24"
+                      fill="#5CE1E6"
+                      opacity="0.3"
+                      transform={`rotate(${angle} 192 192)`}
+                    />
+                  </g>
+                );
+              })}
+              
+              {/* Inner reactor details */}
+              {Array.from({ length: 12 }, (_, i) => {
+                const angle = (i / 12) * 360;
+                return (
+                  <rect
+                    key={`inner-${i}`}
+                    x="190"
+                    y="95"
+                    width="4"
+                    height="16"
+                    fill="#5CE1E6"
+                    opacity="0.4"
+                    transform={`rotate(${angle} 192 192)`}
+                  />
+                );
+              })}
+
+              {/* Central Drop Zone */}
               <circle
                 cx="192"
                 cy="192"
