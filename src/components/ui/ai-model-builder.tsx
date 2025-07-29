@@ -167,10 +167,9 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                   strokeWidth="4"
                   opacity={gameState === 'success' ? "1" : "0.6"}
                   className={gameState === 'success' ? "animate-pulse" : ""}
-                  style={gameState === 'success' ? { 
-                    filter: 'drop-shadow(0 0 35px #5CE1E6) drop-shadow(0 0 60px #5CE1E6) drop-shadow(0 0 80px #5CE1E6)'
-                  } : {
-                    filter: 'drop-shadow(0 0 8px #5CE1E6)'
+                  style={{
+                    filter: `drop-shadow(0 0 20px rgba(92, 225, 230, ${gameState === 'success' ? '0.8' : '0.3'})) drop-shadow(0 0 40px rgba(92, 225, 230, ${gameState === 'success' ? '0.6' : '0.2'}))`,
+                    transition: 'filter 0.5s ease-in-out, opacity 0.3s ease-in-out'
                   }}
                 />
 
