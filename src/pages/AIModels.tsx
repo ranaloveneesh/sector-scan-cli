@@ -12,9 +12,9 @@ const AIModels = () => {
     title: "What do you think defines a modern AI model?",
     subtitle: "let's test your AI knowledge",
     options: [
-      "A way to store and retrieve data",
-      "A trained mathematical structure that learns patterns from data", 
-      "An automation script with lots of IF/THEN rules",
+      "A way to store and retrieve data 📦",
+      "A trained mathematical structure that learns patterns from data 🧮", 
+      "An automation script with lots of IF/THEN rules ☝️",
       "Not sure, I just use the output 😅"
     ],
     ui: {
