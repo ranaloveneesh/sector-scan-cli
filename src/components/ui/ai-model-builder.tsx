@@ -93,6 +93,12 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
 
   return (
     <div className="w-full max-w-7xl mx-auto space-y-8">
+      <style>{`
+        @keyframes custom-pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.7; }
+        }
+      `}</style>
       {/* Instructions */}
       <div className="text-center">
         <p className="text-[#5CE1E6] font-mono text-lg mb-2">
@@ -136,9 +142,10 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
             <div className="relative w-96 h-96">
                 <svg 
                 viewBox="0 0 384 384" 
-                className={`absolute inset-0 w-full h-full z-10 ${gameState === 'success' ? 'animate-pulse' : ''}`}
+                className="absolute inset-0 w-full h-full z-10"
                 style={{ 
-                  filter: gameState === 'success' ? 'drop-shadow(0 0 30px #5CE1E6) drop-shadow(0 0 60px #5CE1E6)' : 'none'
+                  filter: gameState === 'success' ? 'drop-shadow(0 0 30px #5CE1E6) drop-shadow(0 0 60px #5CE1E6)' : 'none',
+                  animation: gameState === 'success' ? 'custom-pulse 1s ease-in-out infinite' : 'none'
                 }}
               >
                 <defs>
