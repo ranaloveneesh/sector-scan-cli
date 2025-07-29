@@ -114,7 +114,6 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                 type="button"
                 onClick={() => {
                   console.log('COMPONENT BUTTON CLICKED:', component.name);
-                  alert(`Clicked: ${component.name}`);
                   handleComponentClick(component);
                 }}
                 onMouseEnter={() => console.log('Mouse entered:', component.name)}
