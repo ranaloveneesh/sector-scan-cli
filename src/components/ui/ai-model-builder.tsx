@@ -187,8 +187,9 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                         fill={isActive ? "url(#segmentGradient)" : "#5CE1E6"}
                         opacity={isActive ? (isPrimarySegment ? "1" : isSecondarySegment ? "0.8" : "0.6") : "0.3"}
                         transform={`rotate(${angle} 192 192)`}
-                        className={isActive ? "animate-pulse" : ""}
-                        style={{ animationDelay: `${i * 0.03}s` }}
+                        style={{ 
+                          transition: 'fill 0.3s ease-in-out, opacity 0.3s ease-in-out'
+                        }}
                       />
                       <rect
                         x={isPrimarySegment ? "176" : "179"}
@@ -198,8 +199,9 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                         fill={isActive ? "#5CE1E6" : "#5CE1E6"}
                         opacity={isActive ? "0.7" : "0.2"}
                         transform={`rotate(${angle} 192 192)`}
-                        className={isActive ? "animate-pulse" : ""}
-                        style={{ animationDelay: `${i * 0.03 + 0.1}s` }}
+                        style={{ 
+                          transition: 'opacity 0.3s ease-in-out'
+                        }}
                       />
                       {isPrimarySegment && (
                         <rect
@@ -210,8 +212,9 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                           fill="#ffffff"
                           opacity={isActive ? "0.6" : "0.2"}
                           transform={`rotate(${angle} 192 192)`}
-                          className={isActive ? "animate-pulse" : ""}
-                          style={{ animationDelay: `${i * 0.03 + 0.2}s` }}
+                          style={{ 
+                            transition: 'opacity 0.3s ease-in-out'
+                          }}
                         />
                       )}
                     </g>
