@@ -253,14 +253,14 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                 const angle = (i / 8) * 360;
                 return (
                   <g key={`mid-${i}`}>
-                    {/* Outer radial segments only */}
+                    {/* Outer radial segments - outside dotted circle */}
                     <rect
-                      x="189"
-                      y="130"
-                      width="6"
-                      height="24"
+                      x="188"
+                      y="80"
+                      width="8"
+                      height="32"
                       fill="#5CE1E6"
-                      opacity="0.3"
+                      opacity="0.5"
                       transform={`rotate(${angle} 192 192)`}
                     />
                   </g>
