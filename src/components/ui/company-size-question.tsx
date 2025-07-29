@@ -106,7 +106,7 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
       {/* AI Model Builder Game */}
       {data.showBrainGame && (
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full z-50 animate-fade-in px-8" style={{ animationDelay: '200ms' }}>
-          <div className="text-center mb-4">
+          <div className="text-center mb-8">
             <h1 className="text-2xl md:text-3xl lg:text-3.5xl font-bold text-white font-open-sauce leading-relaxed max-w-4xl mx-auto">
               {data.title}
             </h1>
