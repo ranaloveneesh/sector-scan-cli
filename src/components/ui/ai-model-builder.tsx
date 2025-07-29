@@ -104,9 +104,6 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
         <p className="text-white font-mono text-lg mb-0">
           Guess the 4 right components of an AI model. Then test it, and see if you are correct
         </p>
-        <p className="text-slate-400 text-sm font-mono">
-          {placedComponents.length}/4 components placed
-        </p>
       </div>
 
       <div className="flex gap-12 items-center justify-center">
