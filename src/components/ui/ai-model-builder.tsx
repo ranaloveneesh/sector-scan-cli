@@ -146,7 +146,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
               className="absolute inset-0 w-full h-full z-10"
               style={{ filter: gameState === 'success' ? 'drop-shadow(0 0 30px #5CE1E6)' : '' }}
             >
-              {/* Metallic Outer Ring Structure */}
+              {/* Metallic Outer Ring Structure - Iron Man Style */}
               <defs>
                 <radialGradient id="metalGradient" cx="50%" cy="50%" r="50%">
                   <stop offset="0%" stopColor="#5CE1E6" stopOpacity="0.8"/>
@@ -154,47 +154,131 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                   <stop offset="100%" stopColor="#5CE1E6" stopOpacity="0.1"/>
                 </radialGradient>
                 <linearGradient id="segmentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#5CE1E6" stopOpacity="1"/>
+                  <stop offset="30%" stopColor="#ffffff" stopOpacity="0.8"/>
+                  <stop offset="70%" stopColor="#5CE1E6" stopOpacity="0.6"/>
+                  <stop offset="100%" stopColor="#1a1a1a" stopOpacity="0.4"/>
+                </linearGradient>
+                <linearGradient id="outerRingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stopColor="#5CE1E6" stopOpacity="0.9"/>
-                  <stop offset="50%" stopColor="#5CE1E6" stopOpacity="0.7"/>
-                  <stop offset="100%" stopColor="#5CE1E6" stopOpacity="0.5"/>
+                  <stop offset="50%" stopColor="#ffffff" stopOpacity="0.6"/>
+                  <stop offset="100%" stopColor="#5CE1E6" stopOpacity="0.3"/>
                 </linearGradient>
               </defs>
 
-              {/* Outer Ring Segments - Detailed metallic look */}
-              {Array.from({ length: 24 }, (_, i) => {
-                const angle = (i / 24) * 360;
-                const isLargeSegment = i % 3 === 0;
+              {/* Outermost Ring - Main Structure */}
+              <circle
+                cx="192"
+                cy="192"
+                r="168"
+                fill="none"
+                stroke="url(#outerRingGradient)"
+                strokeWidth="4"
+                opacity={gameState === 'success' ? "0.8" : "0.4"}
+              />
+
+              {/* Outer Ring Segments - Primary Segments */}
+              {Array.from({ length: 20 }, (_, i) => {
+                const angle = (i / 20) * 360;
+                const isPrimarySegment = i % 4 === 0;
+                const isSecondarySegment = i % 2 === 0 && !isPrimarySegment;
                 const isActive = gameState === 'success';
+                
                 return (
-                  <g key={i}>
+                  <g key={`outer-${i}`}>
+                    {/* Main segments */}
                     <rect
-                      x={isLargeSegment ? "177" : "180"}
-                      y="24"
-                      width={isLargeSegment ? "30" : "24"}
-                      height={isLargeSegment ? "20" : "15"}
+                      x={isPrimarySegment ? "172" : isSecondarySegment ? "175" : "178"}
+                      y="14"
+                      width={isPrimarySegment ? "40" : isSecondarySegment ? "34" : "28"}
+                      height={isPrimarySegment ? "28" : isSecondarySegment ? "24" : "20"}
                       fill={isActive ? "url(#segmentGradient)" : "#5CE1E6"}
-                      opacity={isActive ? (isLargeSegment ? "0.9" : "0.7") : "0.3"}
+                      opacity={isActive ? (isPrimarySegment ? "1" : isSecondarySegment ? "0.8" : "0.6") : "0.3"}
                       transform={`rotate(${angle} 192 192)`}
                       className={isActive ? "animate-pulse" : ""}
-                      style={{ animationDelay: `${i * 0.05}s` }}
+                      style={{ animationDelay: `${i * 0.03}s` }}
                     />
-                    {/* Inner edge detail */}
+                    
+                    {/* Inner connector segments */}
                     <rect
-                      x={isLargeSegment ? "182" : "183"}
-                      y="50"
-                      width={isLargeSegment ? "20" : "18"}
-                      height="8"
+                      x={isPrimarySegment ? "176" : "179"}
+                      y="45"
+                      width={isPrimarySegment ? "32" : "26"}
+                      height="12"
                       fill={isActive ? "#5CE1E6" : "#5CE1E6"}
-                      opacity={isActive ? "0.8" : "0.2"}
+                      opacity={isActive ? "0.7" : "0.2"}
                       transform={`rotate(${angle} 192 192)`}
                       className={isActive ? "animate-pulse" : ""}
-                      style={{ animationDelay: `${i * 0.05 + 0.1}s` }}
+                      style={{ animationDelay: `${i * 0.03 + 0.1}s` }}
                     />
+                    
+                    {/* Detail lines for realism */}
+                    {isPrimarySegment && (
+                      <rect
+                        x="190"
+                        y="15"
+                        width="4"
+                        height="26"
+                        fill="#ffffff"
+                        opacity={isActive ? "0.6" : "0.2"}
+                        transform={`rotate(${angle} 192 192)`}
+                        className={isActive ? "animate-pulse" : ""}
+                        style={{ animationDelay: `${i * 0.03 + 0.2}s` }}
+                      />
+                    )}
                   </g>
                 );
               })}
 
-              {/* Middle Ring Structure */}
+              {/* Secondary Ring Structure */}
+              <circle
+                cx="192"
+                cy="192"
+                r="135"
+                fill="none"
+                stroke="#5CE1E6"
+                strokeWidth="3"
+                opacity={gameState === 'success' ? "0.7" : "0.3"}
+              />
+
+              {/* Middle Ring Segments - More detailed */}
+              {Array.from({ length: 16 }, (_, i) => {
+                const angle = (i / 16) * 360;
+                const isActive = gameState === 'success';
+                const isMajor = i % 2 === 0;
+                return (
+                  <g key={`middle-${i}`}>
+                    <rect
+                      x={isMajor ? "180" : "183"}
+                      y="70"
+                      width={isMajor ? "24" : "18"}
+                      height={isMajor ? "16" : "12"}
+                      fill="url(#segmentGradient)"
+                      opacity={isActive ? (isMajor ? "0.9" : "0.7") : "0.4"}
+                      transform={`rotate(${angle} 192 192)`}
+                      className={isActive ? "animate-pulse" : ""}
+                      style={{ animationDelay: `${i * 0.06}s` }}
+                    />
+                    
+                    {/* Inner detail for major segments */}
+                    {isMajor && (
+                      <rect
+                        x="187"
+                        y="88"
+                        width="10"
+                        height="8"
+                        fill="#ffffff"
+                        opacity={isActive ? "0.8" : "0.3"}
+                        transform={`rotate(${angle} 192 192)`}
+                        className={isActive ? "animate-pulse" : ""}
+                        style={{ animationDelay: `${i * 0.06 + 0.15}s` }}
+                      />
+                    )}
+                  </g>
+                );
+              })}
+
+              {/* Inner Ring Structure */}
               <circle
                 cx="192"
                 cy="192"
@@ -202,30 +286,45 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                 fill="none"
                 stroke="#5CE1E6"
                 strokeWidth="2"
-                opacity={gameState === 'success' ? "0.7" : "0.3"}
+                opacity={gameState === 'success' ? "0.8" : "0.4"}
               />
 
-              {/* Inner Ring with segmented pattern */}
+              {/* Inner Ring Segments - Finest detail */}
               {Array.from({ length: 12 }, (_, i) => {
                 const angle = (i / 12) * 360;
                 const isActive = gameState === 'success';
                 return (
-                  <rect
-                    key={i}
-                    x="184"
-                    y="102"
-                    width="16"
-                    height="10"
-                    fill="#5CE1E6"
-                    opacity={isActive ? "0.8" : "0.4"}
-                    transform={`rotate(${angle} 192 192)`}
-                    className={isActive ? "animate-pulse" : ""}
-                    style={{ animationDelay: `${i * 0.08}s` }}
-                  />
+                  <g key={`inner-${i}`}>
+                    <rect
+                      x="186"
+                      y="96"
+                      width="12"
+                      height="10"
+                      fill="#5CE1E6"
+                      opacity={isActive ? "0.9" : "0.5"}
+                      transform={`rotate(${angle} 192 192)`}
+                      className={isActive ? "animate-pulse" : ""}
+                      style={{ animationDelay: `${i * 0.08}s` }}
+                    />
+                    
+                    {/* Fine detail lines */}
+                    <line
+                      x1="192"
+                      y1="96"
+                      x2="192"
+                      y2="106"
+                      stroke="#ffffff"
+                      strokeWidth="1"
+                      opacity={isActive ? "0.6" : "0.2"}
+                      transform={`rotate(${angle} 192 192)`}
+                      className={isActive ? "animate-pulse" : ""}
+                      style={{ animationDelay: `${i * 0.08 + 0.1}s` }}
+                    />
+                  </g>
                 );
               })}
 
-              {/* Drop Zone - No small circle inside */}
+              {/* Drop Zone - Keep as is */}
               <circle
                 cx="192"
                 cy="192"
@@ -237,33 +336,49 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                 opacity="0.6"
               />
               
-              {/* Energy Pulses on Success */}
+              {/* Energy Pulses on Success - Enhanced */}
               {gameState === 'success' && (
                 <>
+                  {/* Primary energy ring */}
                   <circle
                     cx="192"
                     cy="192"
                     r="84"
                     fill="none"
                     stroke="#5CE1E6"
-                    strokeWidth="3"
-                    strokeDasharray="15 8"
-                    opacity="0.6"
+                    strokeWidth="4"
+                    strokeDasharray="20 8"
+                    opacity="0.8"
                     className="animate-spin"
                     style={{ animationDuration: '2s' }}
                   />
                   
+                  {/* Secondary energy ring */}
                   <circle
                     cx="192"
                     cy="192"
-                    r="132"
+                    r="120"
                     fill="none"
                     stroke="#5CE1E6"
                     strokeWidth="2"
-                    strokeDasharray="12 6"
-                    opacity="0.4"
+                    strokeDasharray="15 6"
+                    opacity="0.6"
                     className="animate-spin"
                     style={{ animationDuration: '3s', animationDirection: 'reverse' }}
+                  />
+                  
+                  {/* Outer energy pulse */}
+                  <circle
+                    cx="192"
+                    cy="192"
+                    r="150"
+                    fill="none"
+                    stroke="#5CE1E6"
+                    strokeWidth="1"
+                    strokeDasharray="10 4"
+                    opacity="0.4"
+                    className="animate-spin"
+                    style={{ animationDuration: '4s' }}
                   />
                 </>
               )}
