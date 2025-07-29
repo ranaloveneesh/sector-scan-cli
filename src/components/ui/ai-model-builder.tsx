@@ -27,42 +27,36 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
   const [availableComponents, setAvailableComponents] = useState(components);
   const [placedComponents, setPlacedComponents] = useState<Component[]>([]);
   const [gameState, setGameState] = useState<'playing' | 'testing' | 'success' | 'error' | 'flash'>('playing');
-  const [draggedComponent, setDraggedComponent] = useState<Component | null>(null);
   const [showFlash, setShowFlash] = useState(false);
 
-  const handleDragStart = (component: Component) => {
-    if (gameState !== 'playing') return;
-    setDraggedComponent(component);
-  };
-
-  const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
-  };
-
-  const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault();
-    if (!draggedComponent || placedComponents.length >= 4) return;
-
-    setPlacedComponents(prev => [...prev, draggedComponent]);
-    setAvailableComponents(prev => prev.filter(c => c.id !== draggedComponent.id));
-    setDraggedComponent(null);
-  };
-
   const handleComponentClick = (component: Component) => {
-    if (gameState !== 'playing') return;
+    console.log('Component clicked:', component.name, 'Game state:', gameState);
     
-    if (placedComponents.find(c => c.id === component.id)) {
-      // Remove from reactor
+    if (gameState !== 'playing') {
+      console.log('Game not in playing state, ignoring click');
+      return;
+    }
+    
+    const isInReactor = placedComponents.find(c => c.id === component.id);
+    const isAvailable = availableComponents.find(c => c.id === component.id);
+    
+    if (isInReactor) {
+      // Remove from reactor, add back to available
+      console.log('Removing from reactor:', component.name);
       setPlacedComponents(prev => prev.filter(c => c.id !== component.id));
       setAvailableComponents(prev => [...prev, component]);
-    } else if (placedComponents.length < 4) {
-      // Add to reactor
+    } else if (isAvailable && placedComponents.length < 4) {
+      // Add to reactor, remove from available
+      console.log('Adding to reactor:', component.name);
       setPlacedComponents(prev => [...prev, component]);
       setAvailableComponents(prev => prev.filter(c => c.id !== component.id));
+    } else {
+      console.log('Cannot move component - reactor full or component not available');
     }
   };
 
   const handleTest = () => {
+    console.log('Test button clicked, placed components:', placedComponents.length);
     if (placedComponents.length !== 4) return;
     
     setGameState('testing');
@@ -72,6 +66,8 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
       const isCorrect = placedComponents.every(placed => 
         correctComponents.some(correct => correct.id === placed.id)
       ) && placedComponents.length === 4;
+      
+      console.log('Test result:', isCorrect);
       
       if (isCorrect) {
         setGameState('success');
@@ -88,6 +84,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
   };
 
   const handleReset = () => {
+    console.log('Reset clicked');
     setAvailableComponents(components);
     setPlacedComponents([]);
     setGameState('playing');
@@ -114,12 +111,9 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
             {availableComponents.map((component) => (
               <button
                 key={component.id}
-                draggable={gameState === 'playing'}
-                onDragStart={(e) => {
-                  console.log('Drag started:', component.name);
-                  handleDragStart(component);
-                }}
                 onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
                   console.log('Component clicked:', component.name);
                   handleComponentClick(component);
                 }}
@@ -393,8 +387,6 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
             
             {/* Drop Zone Overlay */}
             <div
-              onDragOver={handleDragOver}
-              onDrop={handleDrop}
               className="absolute inset-0 rounded-full flex items-center justify-center z-20"
             >
               {/* Placed Components in Center */}
