@@ -164,7 +164,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                   r="168"
                   fill="none"
                   stroke="url(#outerRingGradient)"
-                  strokeWidth={gameState === 'success' ? "8" : "4"}
+                  strokeWidth="4"
                   opacity={gameState === 'success' ? "1" : "0.4"}
                   className={gameState === 'success' ? "animate-pulse" : ""}
                   style={gameState === 'success' ? { 
