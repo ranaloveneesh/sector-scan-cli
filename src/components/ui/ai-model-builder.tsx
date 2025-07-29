@@ -211,14 +211,14 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                 onClick={() => handleComponentClick(component.id)}
                 disabled={gameState !== 'playing'}
                 className={`
-                  absolute w-16 h-16 rounded-full border-2 font-mono text-xs 
+                  absolute w-20 h-20 rounded-full border-2 font-mono text-xs 
                   flex items-center justify-center transition-all duration-300
-                  transform -translate-x-1/2 -translate-y-1/2 z-20
+                  transform -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-auto
                   ${status === 'selected' ? 'bg-[#5CE1E6]/20 border-[#5CE1E6] text-[#5CE1E6] scale-110 shadow-[0_0_15px_#5CE1E6]' : ''}
                   ${status === 'correct' ? 'bg-green-500/20 border-green-400 text-green-300 shadow-[0_0_15px_rgba(34,197,94,0.5)]' : ''}
                   ${status === 'incorrect' ? 'bg-red-500/20 border-red-400 text-red-300' : ''}
                   ${status === 'missed' ? 'bg-yellow-500/10 border-yellow-400 text-yellow-300' : ''}
-                  ${status === 'default' ? 'bg-slate-800/50 border-slate-600 text-slate-300 hover:border-[#5CE1E6]/50' : ''}
+                  ${status === 'default' ? 'bg-slate-800/80 border-slate-500 text-white hover:border-[#5CE1E6]/50 hover:bg-[#5CE1E6]/10' : ''}
                   ${gameState === 'playing' ? 'cursor-pointer hover:scale-105' : 'cursor-default'}
                 `}
                 style={{
@@ -226,8 +226,11 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                   top: `calc(50% + ${y}px)`,
                 }}
               >
-                <span className="text-center leading-tight px-1">
-                  {component.name.split(' ').map(word => word.slice(0, 3)).join(' ')}
+                <span className="text-center leading-tight px-1 text-xs font-semibold">
+                  {component.name.length > 8 ? 
+                    component.name.split(' ').map(word => word.slice(0, 4)).join('\n') :
+                    component.name
+                  }
                 </span>
                 
                 {/* Connection line to center when selected */}
