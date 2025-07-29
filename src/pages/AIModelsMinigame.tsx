@@ -11,18 +11,16 @@ const AIModelsMinigame = () => {
     const previousAnswer = surveyData.aiAgentKnowledge;
     
     switch (previousAnswer) {
-      case "A chatbot":
-        return "That's a common assumption — but AI agents go way beyond chatbots.";
-      case "A tool that automates repetitive tasks":
-        return "You're partially right — agents often automate things, but there's more to it.";
-      case "A software entity that can perceive, reason, and act autonomously":
-        return "Exactly. You nailed it — that's what makes agents different from regular tools.";
-      case "No idea, but I'm curious":
-        return "Curiosity is the perfect place to start — let's break it down together.";
-      case "I thought I did... now I'm not so sure 😅":
-        return "Love the honesty — you're definitely not alone. Let's clear it up.";
+      case "A way to store and retrieve data 📦":
+        return "Close, but there's much more to it. Try to guess what";
+      case "A trained mathematical structure that learns patterns from data 🧮":
+        return "Solid answer. Now let's see if you can piece it together.";
+      case "An automation script with lots of IF/THEN rules ☝️":
+        return "Old-school thinking, but modern models are built differently. Try for yourself.";
+      case "Not sure, I just use the output 😅":
+        return "Fair enough, but let's fix that. You're about to build your first AI model";
       default:
-        return "Let's explore what AI agents really are.";
+        return "Let's explore what AI models really are.";
     }
   };
 
