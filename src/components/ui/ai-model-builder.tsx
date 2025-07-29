@@ -120,13 +120,17 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                 className={`
                   w-20 h-16 rounded-lg border-2 font-mono text-xs 
                   flex items-center justify-center transition-all duration-300
-                  cursor-pointer hover:scale-105 relative z-30
+                  cursor-pointer hover:scale-105 relative z-50 pointer-events-auto
                   ${gameState === 'error' && component.isCorrect ? 
                     'bg-yellow-500/10 border-yellow-400 text-yellow-300' : 
                     'bg-slate-800/80 border-slate-500 text-white hover:border-[#5CE1E6]/50 hover:bg-[#5CE1E6]/10'
                   }
                 `}
-                style={{ pointerEvents: 'auto' }}
+                style={{ 
+                  pointerEvents: 'auto',
+                  cursor: 'pointer',
+                  zIndex: 50
+                }}
               >
                 {component.name}
               </button>
