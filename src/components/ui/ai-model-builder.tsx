@@ -165,7 +165,11 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                   fill="none"
                   stroke="url(#outerRingGradient)"
                   strokeWidth="4"
-                  opacity={gameState === 'success' ? "0.8" : "0.4"}
+                  opacity={gameState === 'success' ? "1" : "0.4"}
+                  style={gameState === 'success' ? { 
+                    filter: 'drop-shadow(0 0 25px #5CE1E6) drop-shadow(0 0 40px #5CE1E6)',
+                    strokeWidth: '6'
+                  } : {}}
                 />
 
                 {Array.from({ length: 20 }, (_, i) => {
@@ -268,18 +272,18 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
               
               {gameState === 'success' && (
                 <>
-                  {/* Pulse Ring */}
+                  {/* Enhanced Pulse Ring */}
                   <circle
                     cx="192"
                     cy="192"
                     r="190"
                     fill="none"
                     stroke="#5CE1E6"
-                    strokeWidth="2"
-                    opacity="0.5"
+                    strokeWidth="3"
+                    opacity="0.8"
                     className="animate-pulse"
                     style={{ 
-                      filter: 'drop-shadow(0 0 20px #5CE1E6)'
+                      filter: 'drop-shadow(0 0 30px #5CE1E6) drop-shadow(0 0 50px #5CE1E6)'
                     }}
                   />
                 </>
