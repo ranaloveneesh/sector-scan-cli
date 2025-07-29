@@ -107,28 +107,30 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
       </div>
 
       <div className="flex gap-8 items-center justify-center">
-        {/* Available Components */}
-        <div className="flex flex-col gap-3">
+        {/* Available Components - 2 rows of 4 */}
+        <div className="flex flex-col gap-4">
           <h3 className="text-[#5CE1E6] font-mono text-sm text-center mb-2">Available Components</h3>
-          {availableComponents.map((component) => (
-            <button
-              key={component.id}
-              draggable={gameState === 'playing'}
-              onDragStart={() => handleDragStart(component)}
-              onClick={() => handleComponentClick(component)}
-              className={`
-                w-24 h-24 rounded-lg border-2 font-mono text-xs 
-                flex items-center justify-center transition-all duration-300
-                cursor-pointer hover:scale-105
-                ${gameState === 'error' && component.isCorrect ? 
-                  'bg-yellow-500/10 border-yellow-400 text-yellow-300' : 
-                  'bg-slate-800/80 border-slate-500 text-white hover:border-[#5CE1E6]/50 hover:bg-[#5CE1E6]/10'
-                }
-              `}
-            >
-              {component.name}
-            </button>
-          ))}
+          <div className="grid grid-cols-4 gap-3">
+            {availableComponents.map((component) => (
+              <button
+                key={component.id}
+                draggable={gameState === 'playing'}
+                onDragStart={() => handleDragStart(component)}
+                onClick={() => handleComponentClick(component)}
+                className={`
+                  w-20 h-16 rounded-lg border-2 font-mono text-xs 
+                  flex items-center justify-center transition-all duration-300
+                  cursor-pointer hover:scale-105
+                  ${gameState === 'error' && component.isCorrect ? 
+                    'bg-yellow-500/10 border-yellow-400 text-yellow-300' : 
+                    'bg-slate-800/80 border-slate-500 text-white hover:border-[#5CE1E6]/50 hover:bg-[#5CE1E6]/10'
+                  }
+                `}
+              >
+                {component.name}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Arc Reactor */}
@@ -144,93 +146,95 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
               className="absolute inset-0 w-full h-full z-10"
               style={{ filter: gameState === 'success' ? 'drop-shadow(0 0 30px #5CE1E6)' : '' }}
             >
-              {/* Outer Grid Pattern */}
-              {gameState === 'success' && (
-                <>
-                  {/* Outer Ring Segments */}
-                  {Array.from({ length: 16 }, (_, i) => {
-                    const angle = (i / 16) * 360;
-                    const isActive = i % 2 === 0;
-                    return (
-                      <rect
-                        key={i}
-                        x="140"
-                        y="10"
-                        width="40"
-                        height="15"
-                        fill={isActive ? "#5CE1E6" : "#5CE1E6"}
-                        opacity={isActive ? "0.9" : "0.6"}
-                        transform={`rotate(${angle} 160 160)`}
-                        className="animate-pulse"
-                        style={{ animationDelay: `${i * 0.1}s` }}
-                      />
-                    );
-                  })}
-                  
-                  {/* Middle Ring Segments */}
-                  {Array.from({ length: 12 }, (_, i) => {
-                    const angle = (i / 12) * 360;
-                    return (
-                      <rect
-                        key={i}
-                        x="145"
-                        y="40"
-                        width="30"
-                        height="12"
-                        fill="#5CE1E6"
-                        opacity="0.7"
-                        transform={`rotate(${angle} 160 160)`}
-                        className="animate-pulse"
-                        style={{ animationDelay: `${i * 0.15}s` }}
-                      />
-                    );
-                  })}
-                </>
-              )}
-              
-              {/* Static Reactor Structure */}
+              {/* Metallic Outer Ring Structure */}
+              <defs>
+                <radialGradient id="metalGradient" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#5CE1E6" stopOpacity="0.8"/>
+                  <stop offset="50%" stopColor="#5CE1E6" stopOpacity="0.4"/>
+                  <stop offset="100%" stopColor="#5CE1E6" stopOpacity="0.1"/>
+                </radialGradient>
+                <linearGradient id="segmentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#5CE1E6" stopOpacity="0.9"/>
+                  <stop offset="50%" stopColor="#5CE1E6" stopOpacity="0.7"/>
+                  <stop offset="100%" stopColor="#5CE1E6" stopOpacity="0.5"/>
+                </linearGradient>
+              </defs>
+
+              {/* Outer Ring Segments - Detailed metallic look */}
+              {Array.from({ length: 24 }, (_, i) => {
+                const angle = (i / 24) * 360;
+                const isLargeSegment = i % 3 === 0;
+                const isActive = gameState === 'success';
+                return (
+                  <g key={i}>
+                    <rect
+                      x={isLargeSegment ? "145" : "148"}
+                      y="20"
+                      width={isLargeSegment ? "30" : "24"}
+                      height={isLargeSegment ? "20" : "15"}
+                      fill={isActive ? "url(#segmentGradient)" : "#5CE1E6"}
+                      opacity={isActive ? (isLargeSegment ? "0.9" : "0.7") : "0.3"}
+                      transform={`rotate(${angle} 160 160)`}
+                      className={isActive ? "animate-pulse" : ""}
+                      style={{ animationDelay: `${i * 0.05}s` }}
+                    />
+                    {/* Inner edge detail */}
+                    <rect
+                      x={isLargeSegment ? "150" : "151"}
+                      y="42"
+                      width={isLargeSegment ? "20" : "18"}
+                      height="8"
+                      fill={isActive ? "#5CE1E6" : "#5CE1E6"}
+                      opacity={isActive ? "0.8" : "0.2"}
+                      transform={`rotate(${angle} 160 160)`}
+                      className={isActive ? "animate-pulse" : ""}
+                      style={{ animationDelay: `${i * 0.05 + 0.1}s` }}
+                    />
+                  </g>
+                );
+              })}
+
+              {/* Middle Ring Structure */}
               <circle
                 cx="160"
                 cy="160"
-                r="140"
+                r="90"
                 fill="none"
                 stroke="#5CE1E6"
                 strokeWidth="2"
-                opacity="0.3"
+                opacity={gameState === 'success' ? "0.7" : "0.3"}
               />
-              
-              <circle
-                cx="160"
-                cy="160"
-                r="100"
-                fill="none"
-                stroke="#5CE1E6"
-                strokeWidth="1"
-                opacity="0.4"
-              />
-              
-              {/* Drop Zone */}
+
+              {/* Inner Ring with segmented pattern */}
+              {Array.from({ length: 12 }, (_, i) => {
+                const angle = (i / 12) * 360;
+                const isActive = gameState === 'success';
+                return (
+                  <rect
+                    key={i}
+                    x="152"
+                    y="85"
+                    width="16"
+                    height="10"
+                    fill="#5CE1E6"
+                    opacity={isActive ? "0.8" : "0.4"}
+                    transform={`rotate(${angle} 160 160)`}
+                    className={isActive ? "animate-pulse" : ""}
+                    style={{ animationDelay: `${i * 0.08}s` }}
+                  />
+                );
+              })}
+
+              {/* Drop Zone - No small circle inside */}
               <circle
                 cx="160"
                 cy="160"
                 r="60"
-                fill={placedComponents.length > 0 ? "#5CE1E6" : "none"}
-                fillOpacity={placedComponents.length > 0 ? "0.1" : "0"}
+                fill={placedComponents.length > 0 ? "url(#metalGradient)" : "none"}
                 stroke="#5CE1E6"
                 strokeWidth="2"
-                strokeDasharray={placedComponents.length === 4 ? "none" : "10 5"}
+                strokeDasharray={placedComponents.length === 4 ? "none" : "8 4"}
                 opacity="0.6"
-              />
-              
-              {/* Core */}
-              <circle
-                cx="160"
-                cy="160"
-                r="25"
-                fill={gameState === 'success' ? '#5CE1E6' : 'none'}
-                stroke="#5CE1E6"
-                strokeWidth="2"
-                opacity={gameState === 'success' ? '0.8' : '0.4'}
               />
               
               {/* Energy Pulses on Success */}
@@ -239,27 +243,27 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                   <circle
                     cx="160"
                     cy="160"
-                    r="80"
+                    r="70"
                     fill="none"
                     stroke="#5CE1E6"
                     strokeWidth="3"
-                    strokeDasharray="20 10"
+                    strokeDasharray="15 8"
                     opacity="0.6"
                     className="animate-spin"
-                    style={{ animationDuration: '3s' }}
+                    style={{ animationDuration: '2s' }}
                   />
                   
                   <circle
                     cx="160"
                     cy="160"
-                    r="120"
+                    r="110"
                     fill="none"
                     stroke="#5CE1E6"
                     strokeWidth="2"
-                    strokeDasharray="15 8"
+                    strokeDasharray="12 6"
                     opacity="0.4"
                     className="animate-spin"
-                    style={{ animationDuration: '4s', animationDirection: 'reverse' }}
+                    style={{ animationDuration: '3s', animationDirection: 'reverse' }}
                   />
                 </>
               )}
@@ -272,7 +276,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
               className="absolute inset-0 rounded-full flex items-center justify-center z-20"
             >
               {/* Placed Components in Center */}
-              <div className="grid grid-cols-2 gap-2 w-20 h-20">
+              <div className="grid grid-cols-2 gap-2 w-24 h-24">
                 {Array.from({ length: 4 }, (_, i) => {
                   const component = placedComponents[i];
                   return (
@@ -280,7 +284,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                       key={i}
                       onClick={() => component && handleComponentClick(component)}
                       className={`
-                        w-8 h-8 rounded border text-xs flex items-center justify-center
+                        w-10 h-10 rounded border text-xs flex items-center justify-center
                         cursor-pointer transition-all duration-300 font-mono
                         ${component ? 
                           `${gameState === 'success' ? 'bg-[#5CE1E6]/20 border-[#5CE1E6] text-[#5CE1E6]' : 
@@ -311,7 +315,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                 key={i}
                 onClick={() => component && handleComponentClick(component)}
                 className={`
-                  w-24 h-16 rounded border text-xs flex items-center justify-center
+                  w-20 h-12 rounded border text-xs flex items-center justify-center
                   cursor-pointer transition-all duration-300 font-mono
                   ${component ? 
                     `${gameState === 'success' ? 'bg-[#5CE1E6]/20 border-[#5CE1E6] text-[#5CE1E6]' : 
