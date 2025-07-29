@@ -166,7 +166,6 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                   stroke={gameState === 'success' ? "#5CE1E6" : "url(#outerRingGradient)"}
                   strokeWidth="4"
                   opacity={gameState === 'success' ? "1" : "0.6"}
-                  className={gameState === 'success' ? "animate-pulse" : ""}
                   style={{
                     transition: 'stroke 0.3s ease-in-out, opacity 0.3s ease-in-out'
                   }}
