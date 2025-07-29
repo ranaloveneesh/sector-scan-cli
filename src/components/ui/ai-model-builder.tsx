@@ -172,7 +172,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                   cy="192"
                   r="168"
                   fill="none"
-                  stroke={gameState === 'success' ? "#5CE1E6" : "url(#outerRingGradient)"}
+                  stroke={gameState === 'success' ? "#5CE1E6" : "#5CE1E6"}
                   strokeWidth="4"
                   opacity={gameState === 'success' ? "1" : "0.6"}
                 />
