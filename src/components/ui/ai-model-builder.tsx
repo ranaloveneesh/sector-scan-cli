@@ -134,10 +134,12 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
             )}
             
             <div className="relative w-96 h-96">
-              <svg 
+                <svg 
                 viewBox="0 0 384 384" 
                 className="absolute inset-0 w-full h-full z-10"
-                style={{ filter: gameState === 'success' ? 'drop-shadow(0 0 30px #5CE1E6)' : '' }}
+                style={{ 
+                  filter: gameState === 'success' ? 'drop-shadow(0 0 20px #5CE1E6) drop-shadow(0 0 40px #5CE1E6)' : 'none'
+                }}
               >
                 <defs>
                   <radialGradient id="metalGradient" cx="50%" cy="50%" r="50%">
@@ -166,9 +168,6 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                   stroke={gameState === 'success' ? "#5CE1E6" : "url(#outerRingGradient)"}
                   strokeWidth="4"
                   opacity={gameState === 'success' ? "1" : "0.6"}
-                  style={{
-                    transition: 'stroke 0.3s ease-in-out, opacity 0.3s ease-in-out'
-                  }}
                 />
 
                 {Array.from({ length: 20 }, (_, i) => {
@@ -187,9 +186,6 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                         fill={isActive ? "url(#segmentGradient)" : "#5CE1E6"}
                         opacity={isActive ? (isPrimarySegment ? "1" : isSecondarySegment ? "0.8" : "0.6") : "0.3"}
                         transform={`rotate(${angle} 192 192)`}
-                        style={{ 
-                          transition: 'fill 0.3s ease-in-out, opacity 0.3s ease-in-out'
-                        }}
                       />
                       <rect
                         x={isPrimarySegment ? "176" : "179"}
@@ -199,9 +195,6 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                         fill={isActive ? "#5CE1E6" : "#5CE1E6"}
                         opacity={isActive ? "0.7" : "0.2"}
                         transform={`rotate(${angle} 192 192)`}
-                        style={{ 
-                          transition: 'opacity 0.3s ease-in-out'
-                        }}
                       />
                       {isPrimarySegment && (
                         <rect
@@ -212,9 +205,6 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                           fill="#ffffff"
                           opacity={isActive ? "0.6" : "0.2"}
                           transform={`rotate(${angle} 192 192)`}
-                          style={{ 
-                            transition: 'opacity 0.3s ease-in-out'
-                          }}
                         />
                       )}
                     </g>
@@ -372,7 +362,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
       {/* Status Messages */}
       {gameState === 'success' && (
         <div className="text-center">
-          <p className="text-[#5CE1E6] text-xl font-mono animate-pulse">
+          <p className="text-[#5CE1E6] text-xl font-mono">
             ⚡ Reactor Online! AI Model Powered Up! ⚡
           </p>
         </div>
