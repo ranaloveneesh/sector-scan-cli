@@ -136,9 +136,9 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
             <div className="relative w-96 h-96">
                 <svg 
                 viewBox="0 0 384 384" 
-                className="absolute inset-0 w-full h-full z-10"
+                className={`absolute inset-0 w-full h-full z-10 ${gameState === 'success' ? 'animate-pulse' : ''}`}
                 style={{ 
-                  filter: gameState === 'success' ? 'drop-shadow(0 0 15px #5CE1E6)' : 'none'
+                  filter: gameState === 'success' ? 'drop-shadow(0 0 30px #5CE1E6) drop-shadow(0 0 60px #5CE1E6)' : 'none'
                 }}
               >
                 <defs>
@@ -313,7 +313,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                   w-20 h-12 rounded border text-xs flex items-center justify-center
                   cursor-pointer font-mono
                   ${component ? 
-                    `${gameState === 'success' ? 'border-[#5CE1E6] text-[#5CE1E6]' : 
+                    `${gameState === 'success' ? 'border-[#5CE1E6] text-[#5CE1E6] shadow-[0_0_10px_#5CE1E6]' :
                       gameState === 'error' ? 
                         (component.isCorrect ? 'bg-green-500/20 border-green-400 text-green-300' : 'bg-red-500/20 border-red-400 text-red-300') :
                         'bg-slate-700 border-slate-500 text-white hover:border-[#5CE1E6]'
