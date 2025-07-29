@@ -140,9 +140,9 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
             <div className="absolute inset-0 bg-white rounded-full animate-ping z-30" />
           )}
           
-          <div className="relative w-80 h-80">
+          <div className="relative w-96 h-96">
             <svg 
-              viewBox="0 0 320 320" 
+              viewBox="0 0 384 384" 
               className="absolute inset-0 w-full h-full z-10"
               style={{ filter: gameState === 'success' ? 'drop-shadow(0 0 30px #5CE1E6)' : '' }}
             >
@@ -168,25 +168,25 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                 return (
                   <g key={i}>
                     <rect
-                      x={isLargeSegment ? "145" : "148"}
-                      y="20"
+                      x={isLargeSegment ? "177" : "180"}
+                      y="24"
                       width={isLargeSegment ? "30" : "24"}
                       height={isLargeSegment ? "20" : "15"}
                       fill={isActive ? "url(#segmentGradient)" : "#5CE1E6"}
                       opacity={isActive ? (isLargeSegment ? "0.9" : "0.7") : "0.3"}
-                      transform={`rotate(${angle} 160 160)`}
+                      transform={`rotate(${angle} 192 192)`}
                       className={isActive ? "animate-pulse" : ""}
                       style={{ animationDelay: `${i * 0.05}s` }}
                     />
                     {/* Inner edge detail */}
                     <rect
-                      x={isLargeSegment ? "150" : "151"}
-                      y="42"
+                      x={isLargeSegment ? "182" : "183"}
+                      y="50"
                       width={isLargeSegment ? "20" : "18"}
                       height="8"
                       fill={isActive ? "#5CE1E6" : "#5CE1E6"}
                       opacity={isActive ? "0.8" : "0.2"}
-                      transform={`rotate(${angle} 160 160)`}
+                      transform={`rotate(${angle} 192 192)`}
                       className={isActive ? "animate-pulse" : ""}
                       style={{ animationDelay: `${i * 0.05 + 0.1}s` }}
                     />
@@ -196,9 +196,9 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
 
               {/* Middle Ring Structure */}
               <circle
-                cx="160"
-                cy="160"
-                r="90"
+                cx="192"
+                cy="192"
+                r="108"
                 fill="none"
                 stroke="#5CE1E6"
                 strokeWidth="2"
@@ -212,13 +212,13 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                 return (
                   <rect
                     key={i}
-                    x="152"
-                    y="85"
+                    x="184"
+                    y="102"
                     width="16"
                     height="10"
                     fill="#5CE1E6"
                     opacity={isActive ? "0.8" : "0.4"}
-                    transform={`rotate(${angle} 160 160)`}
+                    transform={`rotate(${angle} 192 192)`}
                     className={isActive ? "animate-pulse" : ""}
                     style={{ animationDelay: `${i * 0.08}s` }}
                   />
@@ -227,9 +227,9 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
 
               {/* Drop Zone - No small circle inside */}
               <circle
-                cx="160"
-                cy="160"
-                r="60"
+                cx="192"
+                cy="192"
+                r="72"
                 fill={placedComponents.length > 0 ? "url(#metalGradient)" : "none"}
                 stroke="#5CE1E6"
                 strokeWidth="2"
@@ -241,9 +241,9 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
               {gameState === 'success' && (
                 <>
                   <circle
-                    cx="160"
-                    cy="160"
-                    r="70"
+                    cx="192"
+                    cy="192"
+                    r="84"
                     fill="none"
                     stroke="#5CE1E6"
                     strokeWidth="3"
@@ -254,9 +254,9 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
                   />
                   
                   <circle
-                    cx="160"
-                    cy="160"
-                    r="110"
+                    cx="192"
+                    cy="192"
+                    r="132"
                     fill="none"
                     stroke="#5CE1E6"
                     strokeWidth="2"
