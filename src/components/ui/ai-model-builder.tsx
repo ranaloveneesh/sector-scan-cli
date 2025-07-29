@@ -268,39 +268,6 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({ onGameComplete }) => {
               
               {gameState === 'success' && (
                 <>
-                  {/* Energy Flow Ring - Counter-clockwise */}
-                  <circle
-                    cx="192"
-                    cy="192"
-                    r="178"
-                    fill="none"
-                    stroke="#5CE1E6"
-                    strokeWidth="6"
-                    strokeDasharray="none"
-                    opacity="0.9"
-                    className="animate-spin"
-                    style={{ 
-                      animationDuration: '1.5s',
-                      animationDirection: 'reverse',
-                      filter: 'drop-shadow(0 0 10px #5CE1E6)'
-                    }}
-                  />
-                  {/* Inner Energy Ring */}
-                  <circle
-                    cx="192"
-                    cy="192"
-                    r="158"
-                    fill="none"
-                    stroke="#ffffff"
-                    strokeWidth="2"
-                    strokeDasharray="none"
-                    opacity="0.7"
-                    className="animate-spin"
-                    style={{ 
-                      animationDuration: '2s',
-                      animationDirection: 'reverse'
-                    }}
-                  />
                   {/* Pulse Ring */}
                   <circle
                     cx="192"
