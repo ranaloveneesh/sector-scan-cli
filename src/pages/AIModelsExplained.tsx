@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSurvey } from '@/contexts/SurveyContext';
 import { CompanySizeQuestion } from '@/components/ui/company-size-question';
 
-const AIModelsMinigame = () => {
+const AIModelsExplained = () => {
   const navigate = useNavigate();
   const { surveyData } = useSurvey();
 
@@ -12,35 +12,34 @@ const AIModelsMinigame = () => {
     
     switch (previousAnswer) {
       case "A way to store and retrieve data 📦":
-        return "Close, but there's much more to it. Try to guess what...🧐";
+        return "Now you see how AI models really work — they're pattern recognition engines.";
       case "A trained mathematical structure that learns patterns from data 🧮":
-        return "Solid answer. Now let's see if you can piece it together 🗿";
+        return "Perfect! You had it right — and now you've seen it in action.";
       case "An automation script with lots of IF/THEN rules ☝️":
-        return "Old-school thinking, but modern models are built differently. Try for yourself 🤗";
+        return "See the difference? Modern AI learns patterns, not rigid rules.";
       case "Not sure, I just use the output 😅":
-        return "Fair enough, but let's fix that. You're about to build your first AI model 😼";
+        return "Now you know what's happening under the hood when you use AI.";
       default:
-        return "Let's explore what AI models really are.";
+        return "Understanding AI models helps you use them more effectively.";
     }
   };
 
   const questionData = {
-    id: "aimodels-minigame",
+    id: "aimodels-explained",
     title: getTitleBasedOnAnswer(),
     ui: {
       logo_position: "top-left",
       animation_style: "terminal",
-      animation_text: "AI models components...",
+      animation_text: "AI model explanation complete...",
       next_button_color: "#5CE1E6",
       selector_style: "modern",
-      label: "ai_models"
+      label: "ai_models_explained"
     },
-    isStatic: true,
-    showBrainGame: true
+    isStatic: true
   };
 
   const handleSubmit = () => {
-    navigate('/aimodels-explained');
+    navigate('/LLMs');
   };
 
   return (
@@ -51,4 +50,4 @@ const AIModelsMinigame = () => {
   );
 };
 
-export default AIModelsMinigame;
+export default AIModelsExplained;

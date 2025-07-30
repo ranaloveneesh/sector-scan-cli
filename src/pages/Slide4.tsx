@@ -34,7 +34,7 @@ const Slide4 = () => {
 
   const handleSubmit = (selectedOptions: string[]) => {
     updateSurveyData('aiAgentKnowledge', selectedOptions[0]);
-    navigate('/aiagent-explained');
+    navigate('/aiagents-minigame');
   };
 
   return (

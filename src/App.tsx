@@ -15,8 +15,10 @@ import LLMsCompared from "./pages/LLMsCompared";
 import CompanyStats from "./pages/CompanyStats";
 import AIModels from "./pages/AIModels";
 import AIModelsMinigame from "./pages/AIModelsMinigame";
+import AIModelsExplained from "./pages/AIModelsExplained";
 import Slide4 from "./pages/Slide4";
 import Slide5 from "./pages/Slide5";
+import AIAgentsMinigame from "./pages/AIAgentsMinigame";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,15 +34,17 @@ const App = () => (
             <Route path="/" element={<PageTransition><Index /></PageTransition>} />
             <Route path="/company-size" element={<PageTransition><CompanySize /></PageTransition>} />
             <Route path="/department" element={<PageTransition><Department /></PageTransition>} />
-            <Route path="/rag-pipeline" element={<PageTransition><RagPipeline /></PageTransition>} />
-            <Route path="/ragpipeline-explained" element={<PageTransition><RagPipelineExplained /></PageTransition>} />
-            <Route path="/LLMs" element={<PageTransition><LLMs /></PageTransition>} />
-            <Route path="/llms-compared" element={<PageTransition><LLMsCompared /></PageTransition>} />
-            <Route path="/company-stats" element={<PageTransition><CompanyStats /></PageTransition>} />
             <Route path="/aimodels" element={<PageTransition><AIModels /></PageTransition>} />
             <Route path="/aimodels-minigame" element={<PageTransition><AIModelsMinigame /></PageTransition>} />
+            <Route path="/aimodels-explained" element={<PageTransition><AIModelsExplained /></PageTransition>} />
+            <Route path="/LLMs" element={<PageTransition><LLMs /></PageTransition>} />
+            <Route path="/llms-compared" element={<PageTransition><LLMsCompared /></PageTransition>} />
+            <Route path="/rag-pipeline" element={<PageTransition><RagPipeline /></PageTransition>} />
+            <Route path="/ragpipeline-explained" element={<PageTransition><RagPipelineExplained /></PageTransition>} />
             <Route path="/aiagents" element={<PageTransition><Slide4 /></PageTransition>} />
+            <Route path="/aiagents-minigame" element={<PageTransition><AIAgentsMinigame /></PageTransition>} />
             <Route path="/aiagent-explained" element={<PageTransition><Slide5 /></PageTransition>} />
+            <Route path="/company-stats" element={<PageTransition><CompanyStats /></PageTransition>} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
           </Routes>
