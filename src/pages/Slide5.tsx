@@ -41,7 +41,7 @@ const Slide5 = () => {
   };
 
   const handleSubmit = () => {
-    navigate('/rag-pipeline');
+    navigate('/model-utility');
   };
 
   return (

@@ -19,6 +19,12 @@ import AIModelsExplained from "./pages/AIModelsExplained";
 import Slide4 from "./pages/Slide4";
 import Slide5 from "./pages/Slide5";
 import AIAgentsMinigame from "./pages/AIAgentsMinigame";
+import ModelUtility from "./pages/ModelUtility";
+import DataAccessibility from "./pages/DataAccessibility";
+import RagImpact from "./pages/RagImpact";
+import AgentUtility from "./pages/AgentUtility";
+import AgentIntent from "./pages/AgentIntent";
+import AgentTimeline from "./pages/AgentTimeline";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -44,6 +50,12 @@ const App = () => (
             <Route path="/aiagents" element={<PageTransition><Slide4 /></PageTransition>} />
             <Route path="/aiagents-minigame" element={<PageTransition><AIAgentsMinigame /></PageTransition>} />
             <Route path="/aiagent-explained" element={<PageTransition><Slide5 /></PageTransition>} />
+            <Route path="/model-utility" element={<PageTransition><ModelUtility /></PageTransition>} />
+            <Route path="/data-accessibility" element={<PageTransition><DataAccessibility /></PageTransition>} />
+            <Route path="/rag-impact" element={<PageTransition><RagImpact /></PageTransition>} />
+            <Route path="/agent-utility" element={<PageTransition><AgentUtility /></PageTransition>} />
+            <Route path="/agent-intent" element={<PageTransition><AgentIntent /></PageTransition>} />
+            <Route path="/agent-timeline" element={<PageTransition><AgentTimeline /></PageTransition>} />
             <Route path="/company-stats" element={<PageTransition><CompanyStats /></PageTransition>} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
