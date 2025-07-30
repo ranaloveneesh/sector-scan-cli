@@ -105,13 +105,15 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
 
       {/* AI Model Builder Game */}
       {data.showBrainGame && (
-        <div className="absolute inset-x-4 md:inset-x-8 lg:inset-x-16 z-50 animate-fade-in" style={{ top: '50%', transform: 'translateY(-50%)', animationDelay: '200ms' }}>
-          <div className="text-center mb-4 md:mb-6">
-            <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-3.5xl font-bold text-white font-open-sauce leading-relaxed max-w-4xl mx-auto px-4">
+        <div className="w-full h-full flex flex-col justify-center items-center p-4 md:p-8 overflow-hidden" style={{ minHeight: 'calc(100vh - 8rem)' }}>
+          <div className="text-center mb-4 md:mb-6 animate-fade-in" style={{ animationDelay: '200ms' }}>
+            <h1 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-white font-open-sauce leading-tight max-w-full px-2">
               {data.title}
             </h1>
           </div>
-          <AIModelBuilder onGameComplete={handleBrainGameComplete} />
+          <div className="w-full max-w-7xl">
+            <AIModelBuilder onGameComplete={handleBrainGameComplete} />
+          </div>
         </div>
       )}
 
