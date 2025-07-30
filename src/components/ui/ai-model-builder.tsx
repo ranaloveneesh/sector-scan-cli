@@ -230,7 +230,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({
 
         {/* Placed Components List */}
         <div className="flex flex-col gap-3">
-          <h3 className="text-[#5CE1E6] font-mono text-sm text-center mb-2">In Reactor</h3>
+          <h3 className="text-[#5CE1E6] font-mono text-sm text-center mb-2">In the model</h3>
           {Array.from({
           length: 4
         }, (_, i) => {
