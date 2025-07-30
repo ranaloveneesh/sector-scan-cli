@@ -219,7 +219,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({
                 ${placedComponents.length === 4 && gameState === 'playing' ? 'bg-[#5CE1E6] text-black hover:bg-[#5CE1E6]/80 shadow-[0_0_15px_#5CE1E6]' : 'bg-slate-700 text-slate-400 cursor-not-allowed'}
                 ${gameState === 'testing' ? 'animate-pulse' : ''}
               `}>
-              {gameState === 'testing' ? 'Testing...' : 'Test Reactor'}
+              {gameState === 'testing' ? 'Testing...' : 'Test Model'}
             </button>
             
             <button onClick={handleReset} className="px-6 py-2 rounded-lg font-mono text-sm bg-slate-700 text-slate-300 hover:bg-slate-600 transition-all duration-300">
