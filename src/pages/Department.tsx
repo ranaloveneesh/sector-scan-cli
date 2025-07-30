@@ -41,7 +41,7 @@ const Department = () => {
   const handleSubmit = (selectedOptions: string[]) => {
     console.log('Selected department:', selectedOptions);
     updateSurveyData('department', selectedOptions[0]);
-    navigate('/aiagents');
+    navigate('/aimodels');
   };
 
   return <DepartmentQuestion data={questionData} onSubmit={handleSubmit} />;
