@@ -30,7 +30,7 @@ const AIModelsMinigame = () => {
     ui: {
       logo_position: "top-left",
       animation_style: "terminal",
-      animation_text: "> AI models components...",
+      animation_text: "AI models components...",
       next_button_color: "primary",
       selector_style: "modern",
       label: "ai_models"
