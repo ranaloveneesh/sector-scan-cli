@@ -105,9 +105,9 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
 
       {/* AI Model Builder Game */}
       {data.showBrainGame && (
-        <div className="absolute left-1/2 transform -translate-x-1/2 w-full z-50 animate-fade-in px-8" style={{ top: 'calc(50% - 2rem)', transform: 'translateX(-50%) translateY(-50%)', animationDelay: '200ms' }}>
-          <div className="text-center mb-1">
-            <h1 className="text-2xl md:text-3xl lg:text-3.5xl font-bold text-white font-open-sauce leading-relaxed max-w-4xl mx-auto">
+        <div className="absolute inset-x-4 md:inset-x-8 lg:inset-x-16 z-50 animate-fade-in" style={{ top: '50%', transform: 'translateY(-50%)', animationDelay: '200ms' }}>
+          <div className="text-center mb-4 md:mb-6">
+            <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-3.5xl font-bold text-white font-open-sauce leading-relaxed max-w-4xl mx-auto px-4">
               {data.title}
             </h1>
           </div>

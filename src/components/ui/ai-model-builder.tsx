@@ -101,7 +101,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({
     setGameState('playing');
     setShowFlash(false);
   };
-  return <div className="w-full max-w-7xl mx-auto space-y-3">
+  return <div className="w-full max-w-6xl mx-auto space-y-3 px-2 md:px-4">
       <style>{`
         @keyframes custom-pulse {
           0%, 100% { opacity: 1; }
@@ -110,32 +110,32 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({
       `}</style>
       {/* Instructions */}
       <div className="text-center">
-        <p className="text-white font-mono text-lg mb-0 py-[10px]">
+        <p className="text-white font-mono text-sm md:text-base lg:text-lg mb-0 py-[10px] px-2">
           Guess the 4 right components of an AI model. Then test it, and see if you are correct
         </p>
       </div>
 
-      <div className="flex gap-12 items-center justify-center mt-48">
+      <div className="flex flex-col lg:flex-row gap-4 lg:gap-8 xl:gap-12 items-center justify-center mt-8 md:mt-16 lg:mt-32 xl:mt-48">
         {/* Available Components */}
-        <div className="bg-slate-900 p-4 rounded-lg">
-          <h3 className="text-[#5CE1E6] font-mono text-sm text-center mb-4">Available Components</h3>
-          <div className="grid grid-cols-2 gap-4 max-w-xs">
+        <div className="bg-slate-900 p-3 md:p-4 rounded-lg w-full max-w-xs lg:max-w-none lg:w-auto order-3 lg:order-1">
+          <h3 className="text-[#5CE1E6] font-mono text-xs md:text-sm text-center mb-3 md:mb-4">Available Components</h3>
+          <div className="grid grid-cols-2 gap-2 md:gap-3 lg:gap-4">
             {availableComponents.map(component => <button key={component.id} type="button" onClick={() => {
             console.log('COMPONENT BUTTON CLICKED:', component.name);
             handleComponentClick(component);
-          }} onMouseEnter={() => console.log('Mouse entered:', component.name)} className="w-24 h-16 rounded-lg border-2 border-slate-500 bg-slate-800 text-white font-mono text-xs flex items-center justify-center hover:bg-slate-700 hover:border-[#5CE1E6] cursor-pointer transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#5CE1E6]">
+          }} onMouseEnter={() => console.log('Mouse entered:', component.name)} className="w-20 h-12 md:w-24 md:h-16 rounded-lg border-2 border-slate-500 bg-slate-800 text-white font-mono text-xs flex items-center justify-center hover:bg-slate-700 hover:border-[#5CE1E6] cursor-pointer transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#5CE1E6]">
                 {component.name}
               </button>)}
           </div>
         </div>
 
         {/* Arc Reactor */}
-        <div className="relative flex flex-col items-center">
+        <div className="relative flex flex-col items-center order-1 lg:order-2">
           <div className="relative">
             {/* Flash Effect */}
             {showFlash && <div className="absolute inset-0 bg-white rounded-full animate-ping z-30" />}
             
-            <div className="relative w-96 h-96">
+            <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
                 <svg viewBox="0 0 384 384" className="absolute inset-0 w-full h-full z-10" style={{
               filter: gameState === 'success' ? 'drop-shadow(0 0 30px #5CE1E6) drop-shadow(0 0 60px #5CE1E6)' : 'none',
               animation: gameState === 'success' ? 'custom-pulse 1s ease-in-out infinite' : 'none'
@@ -194,13 +194,13 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({
               
               {/* Placed Components in Center */}
               <div className="absolute inset-0 rounded-full flex items-center justify-center z-20">
-                <div className="grid grid-cols-2 gap-0 w-24 h-24 place-items-center">
+                <div className="grid grid-cols-2 gap-0 w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 place-items-center">
                   {Array.from({
                   length: 4
                 }, (_, i) => {
                   const component = placedComponents[i];
                   return <div key={i} onClick={() => component && handleComponentClick(component)} className={`
-                          w-12 h-12 rounded border text-xs flex items-center justify-center
+                          w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 rounded border text-xs flex items-center justify-center
                           cursor-pointer font-mono
                           ${component ? `${gameState === 'success' ? 'border-[#5CE1E6] text-[#5CE1E6]' : gameState === 'error' ? component.isCorrect ? 'bg-green-500/20 border-green-400 text-green-300' : 'bg-red-500/20 border-red-400 text-red-300' : 'bg-slate-700 border-slate-500 text-white hover:border-[#5CE1E6]'}` : 'border-dashed border-slate-600 text-slate-600'}
                         `}>
@@ -213,36 +213,38 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({
           </div>
 
           {/* Control Buttons - under reactor */}
-          <div className="flex justify-center gap-4 mt-6">
+          <div className="flex justify-center gap-2 md:gap-4 mt-4 md:mt-6">
             <button onClick={handleTest} disabled={placedComponents.length !== 4 || gameState === 'testing'} className={`
-                px-6 py-2 rounded-lg font-mono text-sm transition-all duration-300
+                px-3 md:px-6 py-2 rounded-lg font-mono text-xs md:text-sm transition-all duration-300
                 ${placedComponents.length === 4 && gameState === 'playing' ? 'bg-[#5CE1E6] text-black hover:bg-[#5CE1E6]/80 shadow-[0_0_15px_#5CE1E6]' : 'bg-slate-700 text-slate-400 cursor-not-allowed'}
                 ${gameState === 'testing' ? 'animate-pulse' : ''}
               `}>
               {gameState === 'testing' ? 'Testing...' : 'Test Model'}
             </button>
             
-            <button onClick={handleReset} className="px-6 py-2 rounded-lg font-mono text-sm bg-slate-700 text-slate-300 hover:bg-slate-600 transition-all duration-300">
+            <button onClick={handleReset} className="px-3 md:px-6 py-2 rounded-lg font-mono text-xs md:text-sm bg-slate-700 text-slate-300 hover:bg-slate-600 transition-all duration-300">
               Reset
             </button>
           </div>
         </div>
 
         {/* Placed Components List */}
-        <div className="flex flex-col gap-3">
-          <h3 className="text-[#5CE1E6] font-mono text-sm text-center mb-2">In the model</h3>
-          {Array.from({
-          length: 4
-        }, (_, i) => {
-          const component = placedComponents[i];
-          return <div key={i} onClick={() => component && handleComponentClick(component)} className={`
-                  w-20 h-12 rounded border text-xs flex items-center justify-center
-                  cursor-pointer font-mono hover:border-[#5CE1E6] hover:bg-[#5CE1E6]/10
-                  ${component ? `${gameState === 'success' ? 'border-[#5CE1E6] text-[#5CE1E6] shadow-[0_0_10px_#5CE1E6]' : gameState === 'error' ? component.isCorrect ? 'bg-green-500/20 border-green-400 text-green-300' : 'bg-red-500/20 border-red-400 text-red-300' : 'bg-slate-700 border-slate-500 text-white hover:border-[#5CE1E6]'}` : 'border-dashed border-slate-600 text-slate-600'}
-                `}>
-                {component ? component.name : `Slot ${i + 1}`}
-              </div>;
-        })}
+        <div className="flex flex-col gap-2 md:gap-3 w-full max-w-xs lg:max-w-none lg:w-auto order-2 lg:order-3">
+          <h3 className="text-[#5CE1E6] font-mono text-xs md:text-sm text-center mb-2">In the model</h3>
+          <div className="flex flex-row lg:flex-col gap-2 justify-center">
+            {Array.from({
+            length: 4
+          }, (_, i) => {
+            const component = placedComponents[i];
+            return <div key={i} onClick={() => component && handleComponentClick(component)} className={`
+                    w-16 h-10 md:w-20 md:h-12 rounded border text-xs flex items-center justify-center
+                    cursor-pointer font-mono hover:border-[#5CE1E6] hover:bg-[#5CE1E6]/10
+                    ${component ? `${gameState === 'success' ? 'border-[#5CE1E6] text-[#5CE1E6] shadow-[0_0_10px_#5CE1E6]' : gameState === 'error' ? component.isCorrect ? 'bg-green-500/20 border-green-400 text-green-300' : 'bg-red-500/20 border-red-400 text-red-300' : 'bg-slate-700 border-slate-500 text-white hover:border-[#5CE1E6]'}` : 'border-dashed border-slate-600 text-slate-600'}
+                  `}>
+                  {component ? component.name : `Slot ${i + 1}`}
+                </div>;
+          })}
+          </div>
         </div>
       </div>
 
