@@ -21,7 +21,7 @@ const AIModels = () => {
       logo_position: "top-left",
       animation_style: "terminal",
       animation_text: "evaluating user knowledge...",
-      next_button_color: "primary",
+      next_button_color: "#5CE1E6",
       selector_style: "modern",
       label: "ai_models_test"
     },

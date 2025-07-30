@@ -22,7 +22,7 @@ const RagPipeline = () => {
       logo_position: "top-left",
       animation_style: "terminal",
       animation_text: "analyzing RAG knowledge...",
-      next_button_color: "primary",
+      next_button_color: "#5CE1E6",
       selector_style: "modern",
       label: "rag_pipeline"
     },
