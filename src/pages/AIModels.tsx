@@ -23,7 +23,7 @@ const AIModels = () => {
       animation_text: "evaluating user knowledge...",
       next_button_color: "#5CE1E6",
       selector_style: "modern",
-      label: "ai_models_test"
+      label: "ai_models_definition"
     },
     validation: {
       required: true,
