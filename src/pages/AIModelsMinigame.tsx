@@ -30,10 +30,10 @@ const AIModelsMinigame = () => {
     ui: {
       logo_position: "top-left",
       animation_style: "terminal",
-      animation_text: "explaining AI models...",
+      animation_text: "> AI models components...",
       next_button_color: "primary",
       selector_style: "modern",
-      label: "ai_models_test"
+      label: "ai_models"
     },
     isStatic: true,
     showBrainGame: true
