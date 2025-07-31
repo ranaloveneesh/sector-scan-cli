@@ -62,7 +62,7 @@ const RagPipelineExplained = () => {
   };
 
   const handleSubmit = () => {
-    navigate('/LLMs');
+    navigate('/aiagents');
   };
 
   return (
@@ -93,7 +93,7 @@ const RagPipelineExplained = () => {
       </div>
 
       {/* RAG Pipeline Visual */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 md:px-16 lg:px-24 pt-48 animate-fade-in" style={{ animationDelay: '300ms' }}>
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 md:px-16 lg:px-24 pt-36 animate-fade-in" style={{ animationDelay: '300ms' }}>
         <RagPipelineVisual />
       </div>
 

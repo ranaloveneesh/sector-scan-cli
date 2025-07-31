@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSurvey } from '@/contexts/SurveyContext';
 import { CompanySizeQuestion } from '@/components/ui/company-size-question';
+import AgentFundamentalsGame from '@/components/ui/ai-agent-fundamentals-game';
 
 const AIAgentsMinigame = () => {
   const navigate = useNavigate();
@@ -38,7 +39,7 @@ const AIAgentsMinigame = () => {
       label: "ai_agents_minigame"
     },
     isStatic: true,
-    showBrainGame: true
+    showAgentFundamentalsGame: true
   };
 
   const handleSubmit = () => {

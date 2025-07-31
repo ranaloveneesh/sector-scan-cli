@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import AIModelBuilder from './ai-model-builder';
+import AgentFundamentalsGame from '@/components/ui/ai-agent-fundamentals-game';
 interface CompanySizeQuestionProps {
   data: {
     id: string;
@@ -23,6 +24,7 @@ interface CompanySizeQuestionProps {
     };
   isStatic?: boolean;
   showBrainGame?: boolean;
+  showAgentFundamentalsGame?: boolean;
   };
   onSubmit: (selectedOptions: string[]) => void;
 }
@@ -61,14 +63,21 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
     }
   };
 
+  const handleGameComplete = (success: boolean) => {
+    setBrainGameCompleted(true);
+    if (success) {
+      setShowError(false);
+    }
+  };
+
   const handleSubmit = () => {
-    // For AI model builder, allow submission after at least one try (game completed)
-    if (data.showBrainGame && !brainGameCompleted) {
+    // For AI model builder or agent fundamentals game, allow submission after at least one try (game completed)
+    if ((data.showBrainGame || data.showAgentFundamentalsGame) && !brainGameCompleted) {
       setShowError(true);
       return;
     }
     
-    if (data.validation?.required && !selectedOption && !data.isStatic && !data.showBrainGame) {
+    if (data.validation?.required && !selectedOption && !data.isStatic && !data.showBrainGame && !data.showAgentFundamentalsGame) {
       setShowError(true);
       return;
     }
@@ -91,7 +100,7 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
       </div>
 
       {/* Static text box positioned high */}
-      {data.isStatic && !data.showBrainGame && data.title && (
+      {data.isStatic && !data.showBrainGame && !data.showAgentFundamentalsGame && data.title && (
         <div className="absolute top-32 left-6 right-6 md:top-40 md:left-16 md:right-16 z-10 animate-fade-in flex flex-col items-center" style={{ animationDelay: '250ms' }}>
           <h1 className="text-2xl md:text-3xl lg:text-3.5xl font-bold text-white font-open-sauce leading-relaxed max-w-4xl text-center mb-2">
             {data.title}
@@ -116,10 +125,17 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
         </div>
       )}
 
+      {/* Agent Fundamentals Game */}
+      {data.showAgentFundamentalsGame && (
+        <div className="flex-1 flex items-center justify-center">
+          <AgentFundamentalsGame onComplete={handleGameComplete} />
+        </div>
+      )}
+
       {/* Main content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-8 md:px-32 lg:px-48 animate-fade-in" style={{ animationDelay: '200ms' }}>
         <div className="max-w-4xl w-full">
-          {!data.isStatic && !data.showBrainGame && (
+          {!data.isStatic && !data.showBrainGame && !data.showAgentFundamentalsGame && (
             <>
               {/* Question content */}
               <div className="text-left mb-16">
@@ -164,7 +180,7 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
             pointerEvents: 'auto',
             zIndex: 10
           }}
-          disabled={data.showBrainGame ? !brainGameCompleted : (!selectedOption && !data.isStatic)}
+          disabled={(data.showBrainGame || data.showAgentFundamentalsGame) ? !brainGameCompleted : (!selectedOption && !data.isStatic)}
         >
           next
         </button>
@@ -173,7 +189,7 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
       {/* Error message */}
       {showError && <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2">
           <p className="text-red-400 font-medium animate-pulse font-mono">
-            {data.showBrainGame ? "Complete the brain game to continue!" : (data.validation?.error_message || "Please complete the task to continue!")}
+            {(data.showBrainGame || data.showAgentFundamentalsGame) ? "Complete the game to continue!" : (data.validation?.error_message || "Please complete the task to continue!")}
           </p>
         </div>}
     </div>;
