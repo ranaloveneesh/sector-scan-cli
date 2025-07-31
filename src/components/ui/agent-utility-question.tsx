@@ -3,6 +3,8 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { useSurvey } from '@/contexts/SurveyContext';
 import { getQuestionForCombination } from '@/data/questionMatrix';
+import { getThoughtStarterText } from '@/data/agentUtilityThoughtStarters';
+import { agentUtilityOptions } from '@/data/agentUtilityOptions';
 
 interface AgentUtilityQuestionProps {
   data: {
@@ -35,13 +37,16 @@ export const AgentUtilityQuestion: React.FC<AgentUtilityQuestionProps> = ({
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [animationText, setAnimationText] = useState('');
   const [showError, setShowError] = useState(false);
+  const [otherText, setOtherText] = useState('');
   const { surveyData } = useSurvey();
   
-  const maxSelections = data.maxSelections || 1;
+  const maxSelections = data.maxSelections || 3;
   
-  // Get dynamic options based on industry and department
-  const questionData = getQuestionForCombination(surveyData.industry || '', surveyData.department || '');
-  const dynamicOptions = questionData?.options || data.options;
+  // Get dynamic subtitle based on industry and department
+  const dynamicSubtitle = getThoughtStarterText(
+    surveyData.industry || '',
+    surveyData.department || ''
+  );
 
   // Terminal animation effect
   useEffect(() => {
@@ -72,11 +77,18 @@ export const AgentUtilityQuestion: React.FC<AgentUtilityQuestionProps> = ({
   };
 
   const handleSubmit = () => {
-    if (data.validation?.required && selectedOptions.length === 0) {
+    let finalOptions = [...selectedOptions];
+    
+    if (selectedOptions.includes("Other (please specify)") && otherText.trim()) {
+      finalOptions = finalOptions.filter(opt => opt !== "Other (please specify)");
+      finalOptions.push(`Other: ${otherText.trim()}`);
+    }
+    
+    if (data.validation?.required && finalOptions.length === 0) {
       setShowError(true);
       return;
     }
-    onSubmit(selectedOptions);
+    onSubmit(finalOptions);
   };
 
   return (
@@ -102,41 +114,94 @@ export const AgentUtilityQuestion: React.FC<AgentUtilityQuestionProps> = ({
           {/* Question content */}
           <div className="text-left mb-12">
             <h1 className="text-2xl md:text-3xl lg:text-3.5xl font-bold mb-1 text-white font-open-sauce">{data.title}</h1>
-            <p className="text-lg md:text-xl lg:text-xl flex items-center text-slate-50 px-0 pt-2 pl-2 md:pl-8 font-normal font-open-sauce">
-              <span className="mr-2 text-slate-50 px-0 py-0 pl-2 md:pl-8">→</span>
-              {data.subtitle}
+            <p className="text-lg md:text-xl lg:text-xl text-slate-50 px-0 pt-2 pl-2 md:pl-8 font-normal font-open-sauce leading-relaxed">
+              <span className="mr-2 text-slate-50">→</span>
+              {dynamicSubtitle}
             </p>
           </div>
 
           {/* Options list */}
-          <div className="space-y-2 mb-16 max-w-2xl">
-            {dynamicOptions?.map((option, index) => (
-              <button
-                key={option}
-                onClick={() => handleOptionSelect(option)}
-                className={cn(
-                  "group relative w-full px-4 py-2 bg-transparent border-0 text-left flex items-center digital-glitch animate-fade-in rounded-lg transition-all duration-300",
-                  "hover:bg-[#5CE1E6]/5 hover:text-[#5CE1E6] focus:outline-none cursor-pointer",
-                  selectedOptions.includes(option) ? "text-[#5CE1E6] bg-[#5CE1E6]/5" : "text-white"
-                )}
-                style={{ animationDelay: `${300 + index * 50}ms` }}
-              >
-                {/* Custom bullet point */}
-                <div className={cn(
-                  "w-2 h-2 rounded-full mr-4 flex-shrink-0 transition-all duration-300",
-                  selectedOptions.includes(option) 
-                    ? "bg-[#5CE1E6] shadow-[0_0_12px_#5CE1E6] scale-110" 
-                    : "bg-[#5CE1E6]/80 hover:bg-[#5CE1E6]/90"
-                )}></div>
-                
-                <span className={cn(
-                  "text-responsive-base font-medium font-open-sauce transition-all duration-300",
-                  selectedOptions.includes(option) && "transform scale-102"
-                )} data-text={option}>
-                  {option}
-                </span>
-              </button>
+          <div className="space-y-6 mb-16 max-w-2xl">
+            {/* Categorized Options */}
+            {agentUtilityOptions.option_categories.map((category, categoryIndex) => (
+              <div key={categoryIndex} className="space-y-2">
+                <h3 className="text-[#5CE1E6] text-lg font-semibold mb-3 pl-6 font-open-sauce">
+                  {category.category_title}
+                </h3>
+                {category.options.map((option, index) => (
+                  <button
+                    key={`${categoryIndex}-${index}`}
+                    onClick={() => handleOptionSelect(option)}
+                    className={cn(
+                      "group relative w-full px-4 py-2 bg-transparent border-0 text-left flex items-center digital-glitch animate-fade-in rounded-lg transition-all duration-300",
+                      "hover:bg-[#5CE1E6]/5 hover:text-[#5CE1E6] focus:outline-none cursor-pointer",
+                      selectedOptions.includes(option) ? "text-[#5CE1E6] bg-[#5CE1E6]/5" : "text-white"
+                    )}
+                    style={{ animationDelay: `${300 + (categoryIndex * 2 + index) * 50}ms` }}
+                  >
+                    {/* Custom bullet point */}
+                    <div className={cn(
+                      "w-2 h-2 rounded-full mr-4 flex-shrink-0 transition-all duration-300",
+                      selectedOptions.includes(option) 
+                        ? "bg-[#5CE1E6] shadow-[0_0_12px_#5CE1E6] scale-110" 
+                        : "bg-[#5CE1E6]/80 hover:bg-[#5CE1E6]/90"
+                    )}></div>
+                    
+                    <span className={cn(
+                      "text-responsive-base font-medium font-open-sauce transition-all duration-300",
+                      selectedOptions.includes(option) && "transform scale-102"
+                    )} data-text={option}>
+                      {option}
+                    </span>
+                  </button>
+                ))}
+              </div>
             ))}
+
+            {/* Evergreen Options */}
+            <div className="border-t border-white/20 pt-6 space-y-2">
+              {agentUtilityOptions.evergreen_options.map((option, index) => (
+                <div key={`evergreen-${index}`} className="space-y-2">
+                  <button
+                    onClick={() => handleOptionSelect(option)}
+                    className={cn(
+                      "group relative w-full px-4 py-2 bg-transparent border-0 text-left flex items-center digital-glitch animate-fade-in rounded-lg transition-all duration-300",
+                      "hover:bg-[#5CE1E6]/5 hover:text-[#5CE1E6] focus:outline-none cursor-pointer",
+                      selectedOptions.includes(option) ? "text-[#5CE1E6] bg-[#5CE1E6]/5" : "text-white"
+                    )}
+                    style={{ animationDelay: `${500 + index * 50}ms` }}
+                  >
+                    {/* Custom bullet point */}
+                    <div className={cn(
+                      "w-2 h-2 rounded-full mr-4 flex-shrink-0 transition-all duration-300",
+                      selectedOptions.includes(option) 
+                        ? "bg-[#5CE1E6] shadow-[0_0_12px_#5CE1E6] scale-110" 
+                        : "bg-[#5CE1E6]/80 hover:bg-[#5CE1E6]/90"
+                    )}></div>
+                    
+                    <span className={cn(
+                      "text-responsive-base font-medium font-open-sauce transition-all duration-300",
+                      selectedOptions.includes(option) && "transform scale-102"
+                    )} data-text={option}>
+                      {option}
+                    </span>
+                  </button>
+                  
+                  {/* Other text input */}
+                  {option === "Other (please specify)" && selectedOptions.includes(option) && (
+                    <div className="ml-6 mt-2">
+                      <textarea
+                        value={otherText}
+                        onChange={(e) => setOtherText(e.target.value)}
+                        placeholder="Please specify..."
+                        className="w-full p-3 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-[#5CE1E6] focus:bg-white/15 transition-all duration-300 resize-none font-open-sauce"
+                        rows={3}
+                      />
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
           
           {/* Selection counter */}
