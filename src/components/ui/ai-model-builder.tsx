@@ -189,7 +189,11 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({
             {/* Flash Effect */}
             {showFlash && <div className="absolute inset-0 bg-white rounded-full animate-ping z-30" />}
             
-            <div className="relative w-54 h-54 md:w-68 md:h-68 lg:w-82 lg:h-82" style={{ transform: 'scale(1.15)' }}>
+            <div 
+              className="relative w-[216px] h-[216px] md:w-[272px] md:h-[272px] lg:w-[328px] lg:h-[328px] bg-red-500/20" 
+              style={{ transform: 'scale(1.15)' }}
+              onLoad={() => console.log('Reactor container loaded')}
+            >
                 <svg viewBox="0 0 384 384" className="absolute inset-0 w-full h-full z-10" style={{
               filter: gameState === 'success' ? 'drop-shadow(0 0 30px #5CE1E6) drop-shadow(0 0 60px #5CE1E6)' : 'none',
               animation: gameState === 'success' ? 'custom-pulse 1s ease-in-out infinite' : 'none'
