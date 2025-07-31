@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { useSurvey } from '@/contexts/SurveyContext';
-import { getQuestionForCombination } from '@/data/questionMatrix';
+import { getUseCasesForCombination } from '@/data/modelUtilityUseCases';
 
 interface ModelUtilityQuestionProps {
   data: {
@@ -37,8 +37,12 @@ export const ModelUtilityQuestion: React.FC<ModelUtilityQuestionProps> = ({
   const { surveyData } = useSurvey();
   
   // Get dynamic options based on industry and department
-  const questionData = getQuestionForCombination(surveyData.industry || '', surveyData.department || '');
-  const dynamicOptions = questionData?.options || data.options;
+  const dynamicUseCases = getUseCasesForCombination(surveyData.industry || '', surveyData.department || '');
+  const evergreenOptions = [
+    "I've explored AI, but it's not in daily use yet",
+    "Other: ____"
+  ];
+  const dynamicOptions = [...dynamicUseCases, ...evergreenOptions];
 
   // Terminal animation effect
   useEffect(() => {
