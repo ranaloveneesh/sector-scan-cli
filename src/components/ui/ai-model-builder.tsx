@@ -163,7 +163,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({
         }
       `}</style>
 
-      <div className="flex flex-col lg:flex-row gap-4 lg:gap-8 xl:gap-12 items-center justify-center mt-16 md:mt-24 lg:mt-32 xl:mt-40">
+      <div className="flex flex-col lg:flex-row gap-4 lg:gap-8 xl:gap-12 items-center justify-center mt-24 md:mt-32 lg:mt-40 xl:mt-48">
         {/* Available Components */}
         <div className="bg-slate-900 p-3 md:p-4 rounded-lg w-full max-w-xs lg:max-w-none lg:w-auto order-3 lg:order-1">
           <h3 className="text-[#5CE1E6] font-mono text-xs md:text-sm text-center mb-3 md:mb-4">Available Components</h3>
