@@ -10,9 +10,11 @@ const RagImpact = () => {
     type: "question",
     code_label: "rag_impact",
     code_label_color: "#000000",
-    title: "If an AI system could retrieve company knowledge instantly, how would it help?",
+    title: "What would change if your company's knowledge was always at your fingertips?",
     subtitle: "Imagine answers, insights, and documents served in seconds.",
     question_type: "multi_choice",
+    maxSelections: 3,
+    minSelections: 1,
     options_style: "block",
     options: [
       "Faster onboarding and internal training",
@@ -37,7 +39,7 @@ const RagImpact = () => {
 
   const handleSubmit = (selectedOptions: string[]) => {
     console.log('Selected RAG impact:', selectedOptions);
-    updateSurveyData('ragImpact', selectedOptions[0]);
+    updateSurveyData('ragImpact', selectedOptions.join(', '));
     navigate('/agent-utility');
   };
 

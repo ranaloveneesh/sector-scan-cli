@@ -62,6 +62,7 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
   };
 
   const handleSubmit = () => {
+    // For AI model builder, allow submission after at least one try (game completed)
     if (data.showBrainGame && !brainGameCompleted) {
       setShowError(true);
       return;

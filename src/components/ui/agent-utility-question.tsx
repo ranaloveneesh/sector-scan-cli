@@ -100,9 +100,9 @@ export const AgentUtilityQuestion: React.FC<AgentUtilityQuestionProps> = ({
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-8 md:px-32 lg:px-48 animate-fade-in" style={{ animationDelay: '200ms' }}>
         <div className="max-w-4xl w-full">
           {/* Question content */}
-          <div className="text-left mb-16">
-            <h1 className="text-responsive-title font-bold mb-1 text-white font-open-sauce">{data.title}</h1>
-            <p className="text-responsive-subtitle flex items-center text-slate-50 px-0 pt-2 pl-2 md:pl-8 font-normal font-open-sauce">
+          <div className="text-left mb-12">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white font-open-sauce">{data.title}</h1>
+            <p className="text-lg md:text-xl lg:text-2xl flex items-center text-slate-50 px-0 pt-2 pl-2 md:pl-8 font-normal font-open-sauce">
               <span className="mr-2 text-slate-50 px-0 py-0 pl-2 md:pl-8">→</span>
               {data.subtitle}
             </p>

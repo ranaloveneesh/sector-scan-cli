@@ -81,9 +81,11 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({
       const correctComponents = components.filter(c => c.isCorrect);
       const isCorrect = placedComponents.every(placed => correctComponents.some(correct => correct.id === placed.id)) && placedComponents.length === 4;
       console.log('Test result:', isCorrect);
+      // Always complete the game after one try
+      onGameComplete(true);
+      
       if (isCorrect) {
         setGameState('success');
-        onGameComplete(true);
       } else {
         setShowFlash(true);
         setGameState('flash');
@@ -222,7 +224,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({
               {gameState === 'testing' ? 'Testing...' : 'Test Model'}
             </button>
             
-            <button onClick={handleReset} className="px-3 md:px-6 py-2 rounded-lg font-mono text-xs md:text-sm bg-slate-700 text-slate-300 hover:bg-slate-600 transition-all duration-300">
+            <button onClick={handleReset} className={`px-3 md:px-6 py-2 rounded-lg font-mono text-xs md:text-sm bg-slate-700 text-slate-300 hover:bg-slate-600 transition-all duration-300 ${gameState === 'error' ? 'shadow-[0_0_10px_#5CE1E6] animate-pulse' : ''}`}>
               Reset
             </button>
           </div>

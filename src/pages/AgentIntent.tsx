@@ -20,7 +20,7 @@ const AgentIntent = () => {
       "Free up human resources",
       "Speed up workflows",
       "Deliver faster results to clients",
-      "We're already building toward this"
+      "All of the above"
     ],
     ui: {
       logo_position: "top_right",
@@ -39,7 +39,7 @@ const AgentIntent = () => {
   const handleSubmit = (selectedOptions: string[]) => {
     console.log('Selected agent intent:', selectedOptions);
     updateSurveyData('agentIntent', selectedOptions[0]);
-    navigate('/agent-timeline');
+    navigate('/company-stats');
   };
 
   return <CompanySizeQuestion data={questionData} onSubmit={handleSubmit} />;
