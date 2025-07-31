@@ -169,7 +169,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({
         </p>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-4 lg:gap-8 xl:gap-12 items-center justify-center mt-8 md:mt-16 lg:mt-32 xl:mt-48">
+      <div className="flex flex-col lg:flex-row gap-4 lg:gap-8 xl:gap-12 items-center justify-center mt-12 md:mt-20 lg:mt-40 xl:mt-56">
         {/* Available Components */}
         <div className="bg-slate-900 p-3 md:p-4 rounded-lg w-full max-w-xs lg:max-w-none lg:w-auto order-3 lg:order-1">
           <h3 className="text-[#5CE1E6] font-mono text-xs md:text-sm text-center mb-3 md:mb-4">Available Components</h3>
@@ -190,9 +190,8 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({
             {showFlash && <div className="absolute inset-0 bg-white rounded-full animate-ping z-30" />}
             
             <div 
-              className="relative w-[216px] h-[216px] md:w-[272px] md:h-[272px] lg:w-[328px] lg:h-[328px] bg-red-500/20" 
+              className="relative w-[216px] h-[216px] md:w-[272px] md:h-[272px] lg:w-[328px] lg:h-[328px]" 
               style={{ transform: 'scale(1.15)' }}
-              onLoad={() => console.log('Reactor container loaded')}
             >
                 <svg viewBox="0 0 384 384" className="absolute inset-0 w-full h-full z-10" style={{
               filter: gameState === 'success' ? 'drop-shadow(0 0 30px #5CE1E6) drop-shadow(0 0 60px #5CE1E6)' : 'none',
