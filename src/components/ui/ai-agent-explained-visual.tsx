@@ -48,57 +48,20 @@ const AgentExplainedVisual: React.FC<AgentExplainedVisualProps> = ({ className =
 
       {/* Main container */}
       <div className="relative w-full h-[500px] flex items-center justify-center">
-        {/* Connection lines - single SVG with all 4 lines */}
-        <svg 
-          className="absolute inset-0 w-full h-full pointer-events-none" 
-          style={{ zIndex: 1 }}
-          viewBox="0 0 100 100"
-          preserveAspectRatio="none"
-        >
-          {/* Line to top left node (TOOLS) */}
-          <line
-            x1="50"
-            y1="50"
-            x2="25"
-            y2="35"
-            stroke="hsl(var(--primary))"
-            strokeWidth="0.2"
-            opacity="0.6"
-            vectorEffect="non-scaling-stroke"
-          />
-          {/* Line to top right node (KNOWLEDGE/DATA) */}
-          <line
-            x1="50"
-            y1="50"
-            x2="75"
-            y2="35"
-            stroke="hsl(var(--primary))"
-            strokeWidth="0.2"
-            opacity="0.6"
-            vectorEffect="non-scaling-stroke"
-          />
-          {/* Line to bottom left node (PLANNING & REASONING) */}
-          <line
-            x1="50"
-            y1="50"
-            x2="25"
-            y2="65"
-            stroke="hsl(var(--primary))"
-            strokeWidth="0.2"
-            opacity="0.6"
-            vectorEffect="non-scaling-stroke"
-          />
-          {/* Line to bottom right node (EXECUTION) */}
-          <line
-            x1="50"
-            y1="50"
-            x2="75"
-            y2="65"
-            stroke="hsl(var(--primary))"
-            strokeWidth="0.2"
-            opacity="0.6"
-            vectorEffect="non-scaling-stroke"
-          />
+        {/* Connection lines - 4 lines connecting center to each node */}
+        <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1 }}>
+          {nodes.map((node) => (
+            <line
+              key={`connection-${node.id}`}
+              x1="50%"
+              y1="50%"
+              x2={`calc(50% + ${node.position.x}px)`}
+              y2={`calc(50% + ${node.position.y}px)`}
+              stroke="hsl(var(--primary))"
+              strokeWidth="2"
+              opacity="0.6"
+            />
+          ))}
         </svg>
 
         {/* Central Agent */}
