@@ -118,11 +118,20 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
       {/* AI Model Builder Game */}
       {data.showBrainGame && (
         <div className="absolute inset-x-4 md:inset-x-8 lg:inset-x-16 z-50 animate-fade-in" style={{ top: '50%', transform: 'translateY(-50%)', animationDelay: '200ms' }}>
-          <div className="text-center mb-4 md:mb-6">
+          {/* Independent Title */}
+          <div className="absolute top-[-120px] left-1/2 transform -translate-x-1/2 text-center w-full">
             <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-3.5xl font-bold text-white font-open-sauce leading-relaxed max-w-4xl mx-auto px-4">
               {data.title}
             </h1>
           </div>
+          
+          {/* Independent Subtitle */}
+          <div className="absolute top-[-60px] left-1/2 transform -translate-x-1/2 text-center w-full">
+            <p className="text-lg md:text-xl lg:text-xl font-normal text-slate-100 font-open-sauce leading-relaxed max-w-4xl mx-auto px-4">
+              Guess the 4 right components of an AI model. Then test it, and see if you are correct
+            </p>
+          </div>
+          
           <AIModelBuilder onGameComplete={handleBrainGameComplete} />
         </div>
       )}

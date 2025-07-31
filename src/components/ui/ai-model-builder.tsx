@@ -162,12 +162,6 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({
           50% { opacity: 0.7; }
         }
       `}</style>
-      {/* Instructions */}
-      <div className="text-center mb-8">
-        <p className="text-white font-mono text-sm md:text-base lg:text-lg mb-0 px-0 py-0">
-          Guess the 4 right components of an AI model. Then test it, and see if you are correct
-        </p>
-      </div>
 
       <div className="flex flex-col lg:flex-row gap-4 lg:gap-8 xl:gap-12 items-center justify-center mt-16 md:mt-24 lg:mt-32 xl:mt-40">
         {/* Available Components */}
