@@ -110,12 +110,12 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({
       `}</style>
       {/* Instructions */}
       <div className="text-center">
-        <p className="text-white font-mono text-sm md:text-base lg:text-lg mb-1 px-0 py-0">
+        <p className="text-white font-mono text-sm md:text-base lg:text-lg mb-0 px-0 py-0">
           Guess the 4 right components of an AI model. Then test it, and see if you are correct
         </p>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-4 lg:gap-8 xl:gap-12 items-start justify-center mt-8 md:mt-16 lg:mt-32 xl:mt-48">
+      <div className="flex flex-col lg:flex-row gap-4 lg:gap-8 xl:gap-12 items-center justify-center mt-8 md:mt-16 lg:mt-32 xl:mt-48">
         {/* Available Components */}
         <div className="bg-slate-900 p-3 md:p-4 rounded-lg w-full max-w-xs lg:max-w-none lg:w-auto order-3 lg:order-1">
           <h3 className="text-[#5CE1E6] font-mono text-xs md:text-sm text-center mb-3 md:mb-4">Available Components</h3>
@@ -222,7 +222,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({
               {gameState === 'testing' ? 'Testing...' : 'Test Model'}
             </button>
             
-            <button onClick={handleReset} className={`px-3 md:px-6 py-2 rounded-lg font-mono text-xs md:text-sm bg-slate-700 text-slate-300 hover:bg-slate-600 transition-all duration-300 ${gameState === 'error' ? 'shadow-[0_0_10px_rgba(148,163,184,0.5)] animate-pulse' : ''}`}>
+            <button onClick={handleReset} className="px-3 md:px-6 py-2 rounded-lg font-mono text-xs md:text-sm bg-slate-700 text-slate-300 hover:bg-slate-600 transition-all duration-300">
               Reset
             </button>
           </div>
@@ -239,7 +239,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({
             return <div key={i} onClick={() => component && handleComponentClick(component)} className={`
                     w-16 h-10 md:w-20 md:h-12 rounded border text-xs flex items-center justify-center
                     cursor-pointer font-mono hover:border-[#5CE1E6] hover:bg-[#5CE1E6]/10
-                    ${component ? `${gameState === 'success' ? 'bg-green-500/20 border-green-400 text-green-300 shadow-[0_0_10px_#22c55e]' : gameState === 'error' ? component.isCorrect ? 'bg-green-500/20 border-green-400 text-green-300' : 'bg-red-500/20 border-red-400 text-red-300' : 'bg-slate-700 border-slate-500 text-white hover:border-[#5CE1E6]'}` : 'border-dashed border-slate-600 text-slate-600'}
+                    ${component ? `${gameState === 'success' ? 'border-[#5CE1E6] text-[#5CE1E6] shadow-[0_0_10px_#5CE1E6]' : gameState === 'error' ? component.isCorrect ? 'bg-green-500/20 border-green-400 text-green-300' : 'bg-red-500/20 border-red-400 text-red-300' : 'bg-slate-700 border-slate-500 text-white hover:border-[#5CE1E6]'}` : 'border-dashed border-slate-600 text-slate-600'}
                   `}>
                   {component ? component.name : `Slot ${i + 1}`}
                 </div>;
