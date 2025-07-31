@@ -45,81 +45,104 @@ const llmData: LLMData[] = [
 ];
 
 const LLMComparison: React.FC = () => {
+  const getStatusIcon = (category: string, value: string | boolean) => {
+    if (category === 'complex_understanding') {
+      return value ? '✅' : '❌';
+    }
+    if (category === 'multimodal') {
+      const valueStr = String(value);
+      if (valueStr.includes('Yes, even voice') || valueStr.includes('Yes, includes video')) return '✅';
+      if (valueStr.includes('Can see images')) return '🟡';
+      return '🟢';
+    }
+    if (category === 'real_time') {
+      const valueStr = String(value);
+      if (valueStr.includes('Very current') || valueStr.includes('Taps into Google')) return '✅';
+      if (valueStr.includes('Can search')) return '✅';
+      return '🟡';
+    }
+    if (category === 'memory') {
+      return '📄';
+    }
+    return '';
+  };
+
   return (
-    <div className="w-full max-w-6xl mx-auto space-y-6 px-4">
-      {/* Header Row */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-2">
-        <div className="hidden md:block"></div>
-        {llmData.map((llm, index) => (
-          <div 
-            key={llm.model}
-            className="text-center animate-fade-in"
-            style={{ animationDelay: `${index * 100}ms` }}
-          >
-            <h3 className="text-[#5CE1E6] font-mono text-lg md:text-xl font-bold mb-2">
-              {llm.model}
-            </h3>
-          </div>
-        ))}
-      </div>
-
-      {/* Comparison Rows */}
-      <div className="space-y-4">
-        {/* Best At */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 animate-fade-in" style={{ animationDelay: '200ms' }}>
-          <div className="bg-slate-800/60 border border-slate-600 rounded-lg p-3 md:p-4">
-            <h4 className="text-[#5CE1E6] font-mono font-bold text-sm md:text-base mb-2">Best at</h4>
-          </div>
-          {llmData.map((llm) => (
-            <div key={`${llm.model}-best`} className="bg-slate-900/60 border border-slate-700 rounded-lg p-3 md:p-4 hover:border-[#5CE1E6]/50 transition-all duration-300">
-              <p className="text-slate-200 font-open-sauce text-sm md:text-base leading-relaxed">
-                {llm.best_at}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        {/* Multimodal */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 animate-fade-in" style={{ animationDelay: '300ms' }}>
-          <div className="bg-slate-800/60 border border-slate-600 rounded-lg p-3 md:p-4">
-            <h4 className="text-[#5CE1E6] font-mono font-bold text-sm md:text-base mb-2">Multimodal</h4>
-          </div>
-          {llmData.map((llm) => (
-            <div key={`${llm.model}-multimodal`} className="bg-slate-900/60 border border-slate-700 rounded-lg p-3 md:p-4 hover:border-[#5CE1E6]/50 transition-all duration-300">
-              <p className="text-slate-200 font-open-sauce text-sm md:text-base leading-relaxed">
-                {llm.multimodal}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        {/* Real Time */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 animate-fade-in" style={{ animationDelay: '400ms' }}>
-          <div className="bg-slate-800/60 border border-slate-600 rounded-lg p-3 md:p-4">
-            <h4 className="text-[#5CE1E6] font-mono font-bold text-sm md:text-base mb-2">Real-time</h4>
-          </div>
-          {llmData.map((llm) => (
-            <div key={`${llm.model}-realtime`} className="bg-slate-900/60 border border-slate-700 rounded-lg p-3 md:p-4 hover:border-[#5CE1E6]/50 transition-all duration-300">
-              <p className="text-slate-200 font-open-sauce text-sm md:text-base leading-relaxed">
-                {llm.real_time}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        {/* Memory */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 animate-fade-in" style={{ animationDelay: '500ms' }}>
-          <div className="bg-slate-800/60 border border-slate-600 rounded-lg p-3 md:p-4">
-            <h4 className="text-[#5CE1E6] font-mono font-bold text-sm md:text-base mb-2">Memory</h4>
-          </div>
-          {llmData.map((llm) => (
-            <div key={`${llm.model}-memory`} className="bg-slate-900/60 border border-slate-700 rounded-lg p-3 md:p-4 hover:border-[#5CE1E6]/50 transition-all duration-300">
-              <p className="text-slate-200 font-open-sauce text-sm md:text-base leading-relaxed">
-                {llm.memory}
-              </p>
-            </div>
-          ))}
-        </div>
+    <div className="w-full max-w-5xl mx-auto px-4">
+      <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+        <table className="w-full">
+          <thead>
+            <tr className="bg-gray-50">
+              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b">Model</th>
+              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b">
+                <div className="flex items-center gap-1">
+                  <span>What it's best at</span>
+                  <span>💪</span>
+                </div>
+              </th>
+              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b">
+                <div className="flex items-center gap-1">
+                  <span>Understands complex stuff</span>
+                  <span>🧠</span>
+                </div>
+              </th>
+              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b">
+                <div className="flex items-center gap-1">
+                  <span>Handles images or voice?</span>
+                  <span>🎨📹</span>
+                </div>
+              </th>
+              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b">
+                <div className="flex items-center gap-1">
+                  <span>Knows real-time things</span>
+                  <span>🌐</span>
+                </div>
+              </th>
+              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b">
+                <div className="flex items-center gap-1">
+                  <span>How much it can "remember"</span>
+                  <span>📝</span>
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {llmData.map((llm, index) => (
+              <tr key={llm.model} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                <td className="px-4 py-3 text-sm font-medium text-gray-900 border-b">
+                  {llm.model}
+                </td>
+                <td className="px-4 py-3 text-sm text-gray-700 border-b">
+                  {llm.best_at}
+                </td>
+                <td className="px-4 py-3 text-sm text-gray-700 border-b">
+                  <div className="flex items-center gap-2">
+                    <span>{getStatusIcon('complex_understanding', llm.complex_understanding)}</span>
+                    <span>{llm.complex_understanding ? 'Very smart and creative' : 'Basic understanding'}</span>
+                  </div>
+                </td>
+                <td className="px-4 py-3 text-sm text-gray-700 border-b">
+                  <div className="flex items-center gap-2">
+                    <span>{getStatusIcon('multimodal', llm.multimodal)}</span>
+                    <span>{llm.multimodal}</span>
+                  </div>
+                </td>
+                <td className="px-4 py-3 text-sm text-gray-700 border-b">
+                  <div className="flex items-center gap-2">
+                    <span>{getStatusIcon('real_time', llm.real_time)}</span>
+                    <span>{llm.real_time}</span>
+                  </div>
+                </td>
+                <td className="px-4 py-3 text-sm text-gray-700 border-b">
+                  <div className="flex items-center gap-2">
+                    <span>{getStatusIcon('memory', llm.memory)}</span>
+                    <span>{llm.memory}</span>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

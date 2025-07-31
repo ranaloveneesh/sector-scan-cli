@@ -61,11 +61,14 @@ const AIModelsExplained = () => {
         <span className="font-tomorrow text-responsive-label text-[#5CE1E6] neon-glow">{questionData.ui.label}</span>
       </div>
 
-      {/* Title */}
+      {/* Title and subtitle */}
       <div className="absolute top-32 left-6 right-6 md:top-40 md:left-16 md:right-16 z-10 animate-fade-in flex flex-col items-center" style={{ animationDelay: '250ms' }}>
-        <h1 className="text-2xl md:text-3xl lg:text-3.5xl font-bold text-white font-open-sauce leading-relaxed max-w-4xl text-center mb-8">
+        <h1 className="text-2xl md:text-3xl lg:text-3.5xl font-bold text-white font-open-sauce leading-relaxed max-w-4xl text-center mb-4">
           {questionData.title}
         </h1>
+        <p className="text-lg md:text-xl lg:text-xl font-normal text-slate-100 font-open-sauce leading-relaxed max-w-4xl text-center mb-8">
+          Here's a quick breakdown of the 4 key components that power every AI model
+        </p>
       </div>
 
       {/* AI Explanations */}
