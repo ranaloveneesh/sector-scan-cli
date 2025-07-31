@@ -139,7 +139,10 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
           </div>
           
           {/* Game centered with proper spacing from title */}
-          <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 md:px-16 lg:px-24 pt-32 animate-fade-in" style={{ animationDelay: '300ms' }}>
+          <div className="relative z-5 flex flex-col items-center justify-center px-4 md:px-16 lg:px-24 pt-32 pb-24 animate-fade-in" style={{ 
+            animationDelay: '300ms',
+            minHeight: 'calc(100vh - 12rem)' 
+          }}>
             <AgentFundamentalsGame onComplete={handleGameComplete} />
           </div>
         </>
@@ -176,7 +179,7 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
       </div>
 
       {/* Bottom left terminal text */}
-      <div className="absolute bottom-6 left-6 md:bottom-12 md:left-16 animate-fade-in" style={{ animationDelay: '400ms' }}>
+      <div className="absolute bottom-6 left-6 md:bottom-12 md:left-16 animate-fade-in z-50" style={{ animationDelay: '400ms' }}>
         <div className="font-mono text-gray-400 text-responsive-terminal flex items-baseline">
           <span className="mr-2">{'>'}</span>
           <span className="terminal-text">{animationText}</span>
@@ -184,14 +187,14 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
       </div>
 
       {/* Bottom right next button */}
-      <div className="absolute bottom-6 right-6 md:bottom-12 md:right-16 animate-fade-in" style={{ animationDelay: '450ms' }}>
+      <div className="absolute bottom-6 right-6 md:bottom-12 md:right-16 animate-fade-in z-50" style={{ animationDelay: '450ms' }}>
         <button 
           onClick={handleSubmit} 
           className="sci-fi-arrow font-mono text-[#5CE1E6] text-responsive-button neon-glow transition-all duration-300 relative hover:text-[#5CE1E6]/80 digital-glitch-click cursor-pointer"
           data-text="next" 
           style={{
             pointerEvents: 'auto',
-            zIndex: 10
+            zIndex: 100
           }}
           disabled={(data.showBrainGame || data.showAgentFundamentalsGame) ? !brainGameCompleted : (!selectedOption && !data.isStatic)}
         >
