@@ -73,7 +73,7 @@ const LLMComparison: React.FC = () => {
         <table className="w-full">
           <thead>
             <tr className="bg-gray-50">
-              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b">Model</th>
+              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b w-32">Model</th>
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b">
                 <div className="flex items-center gap-1">
                   <span>What it's best at</span>

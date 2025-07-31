@@ -21,8 +21,7 @@ const AgentUtility = () => {
       "Email or meeting preparation",
       "Tool coordination and workflow execution",
       "Monitoring and alerting",
-      "We already use agents for some of these",
-      "I'm not sure yet"
+      "We already use agents for some of these"
     ],
     ui: {
       logo_position: "top_right",
