@@ -68,7 +68,7 @@ const LLMComparison: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto px-4">
+    <div className="w-full max-w-6xl mx-auto px-4">
       <div className="bg-white rounded-lg shadow-lg overflow-hidden">
         <table className="w-full">
           <thead>
