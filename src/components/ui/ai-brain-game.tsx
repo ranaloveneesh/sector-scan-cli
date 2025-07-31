@@ -194,7 +194,7 @@ const BrainGame: React.FC<BrainGameProps> = ({ onComplete }) => {
           </div>
 
           {/* Center brain */}
-          <div className="relative flex-1 max-w-md" style={{ transform: 'scale(0.85)' }}>
+          <div className="relative flex-1 max-w-md" style={{ transform: 'scale(0.7225)' }}>
             <img src={brainOutline} alt="AI Brain" className="w-full h-auto" />
             
             {/* Drop zones */}

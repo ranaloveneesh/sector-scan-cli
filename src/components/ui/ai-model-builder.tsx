@@ -1,4 +1,54 @@
 import React, { useState } from 'react';
+
+const showConfetti = () => {
+  // Create confetti overlay
+  const confettiContainer = document.createElement('div');
+  confettiContainer.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+  `;
+  document.body.appendChild(confettiContainer);
+
+  // Create confetti pieces
+  for (let i = 0; i < 50; i++) {
+    const confetti = document.createElement('div');
+    confetti.style.cssText = `
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: ${['#5CE1E6', '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4'][Math.floor(Math.random() * 5)]};
+      top: -10px;
+      left: ${Math.random() * 100}%;
+      border-radius: 50%;
+      animation: confetti-fall ${2 + Math.random() * 2}s linear forwards;
+    `;
+    confettiContainer.appendChild(confetti);
+  }
+
+  // Add CSS animation
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes confetti-fall {
+      to {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Clean up after animation
+  setTimeout(() => {
+    document.body.removeChild(confettiContainer);
+    document.head.removeChild(style);
+  }, 4000);
+};
+
 interface Component {
   id: string;
   name: string;
@@ -81,11 +131,13 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({
       const correctComponents = components.filter(c => c.isCorrect);
       const isCorrect = placedComponents.every(placed => correctComponents.some(correct => correct.id === placed.id)) && placedComponents.length === 4;
       console.log('Test result:', isCorrect);
-      // Always complete the game after one try
-      onGameComplete(true);
-      
       if (isCorrect) {
         setGameState('success');
+        // Show confetti animation
+        showConfetti();
+        setTimeout(() => {
+          onGameComplete(true);
+        }, 2000);
       } else {
         setShowFlash(true);
         setGameState('flash');
@@ -137,7 +189,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({
             {/* Flash Effect */}
             {showFlash && <div className="absolute inset-0 bg-white rounded-full animate-ping z-30" />}
             
-            <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
+            <div className="relative w-54 h-54 md:w-68 md:h-68 lg:w-82 lg:h-82" style={{ transform: 'scale(0.85)' }}>
                 <svg viewBox="0 0 384 384" className="absolute inset-0 w-full h-full z-10" style={{
               filter: gameState === 'success' ? 'drop-shadow(0 0 30px #5CE1E6) drop-shadow(0 0 60px #5CE1E6)' : 'none',
               animation: gameState === 'success' ? 'custom-pulse 1s ease-in-out infinite' : 'none'

@@ -73,67 +73,52 @@ const LLMComparison: React.FC = () => {
         <table className="w-full">
           <thead>
             <tr className="bg-gray-50">
-              <th className="px-4 py-4 text-left text-sm font-semibold text-gray-900 border-b w-32">Model</th>
-              <th className="px-4 py-4 text-left text-sm font-semibold text-gray-900 border-b">
-                <div className="flex items-center gap-1">
-                  <span>What it's best at</span>
-                  <span>💪</span>
-                </div>
+              <th className="px-4 py-6 text-left text-sm font-semibold text-gray-900 border-b border-r border-gray-200 w-32">Model</th>
+              <th className="px-4 py-6 text-left text-sm font-semibold text-gray-900 border-b border-r border-gray-200/50">
+                <span>What it's best at 💪</span>
               </th>
-              <th className="px-4 py-4 text-left text-sm font-semibold text-gray-900 border-b">
-                <div className="flex items-center gap-1">
-                  <span>Understands complex stuff</span>
-                  <span>🧠</span>
-                </div>
+              <th className="px-4 py-6 text-left text-sm font-semibold text-gray-900 border-b border-r border-gray-200/50">
+                <span>Understands complex stuff 🧠</span>
               </th>
-              <th className="px-4 py-4 text-left text-sm font-semibold text-gray-900 border-b">
-                <div className="flex items-center gap-1">
-                  <span>Handles images or voice?</span>
-                  <span>🎨📹</span>
-                </div>
+              <th className="px-4 py-6 text-left text-sm font-semibold text-gray-900 border-b border-r border-gray-200/50">
+                <span>Handles images or voice? 🎨📹</span>
               </th>
-              <th className="px-4 py-4 text-left text-sm font-semibold text-gray-900 border-b">
-                <div className="flex items-center gap-1">
-                  <span>Knows real-time things</span>
-                  <span>🌐</span>
-                </div>
+              <th className="px-4 py-6 text-left text-sm font-semibold text-gray-900 border-b border-r border-gray-200/50">
+                <span>Knows real-time things 🌐</span>
               </th>
-              <th className="px-4 py-4 text-left text-sm font-semibold text-gray-900 border-b">
-                <div className="flex items-center gap-1">
-                  <span>How much it can "remember"</span>
-                  <span>📝</span>
-                </div>
+              <th className="px-4 py-6 text-left text-sm font-semibold text-gray-900 border-b">
+                <span>How much it can "remember" 📝</span>
               </th>
             </tr>
           </thead>
           <tbody>
             {llmData.map((llm, index) => (
               <tr key={llm.model} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                <td className="px-4 py-4 text-sm font-medium text-gray-900 border-b">
+                <td className="px-4 py-6 text-sm font-medium text-gray-900 border-b border-r border-gray-200">
                   {llm.model}
                 </td>
-                <td className="px-4 py-4 text-sm text-gray-700 border-b">
+                <td className="px-4 py-6 text-sm text-gray-700 border-b border-r border-gray-200/50">
                   {llm.best_at}
                 </td>
-                <td className="px-4 py-4 text-sm text-gray-700 border-b">
+                <td className="px-4 py-6 text-sm text-gray-700 border-b border-r border-gray-200/50">
                   <div className="flex items-center gap-2">
                     <span>{getStatusIcon('complex_understanding', llm.complex_understanding)}</span>
                     <span>{llm.complex_understanding ? 'Very smart and creative' : 'Basic understanding'}</span>
                   </div>
                 </td>
-                <td className="px-4 py-4 text-sm text-gray-700 border-b">
+                <td className="px-4 py-6 text-sm text-gray-700 border-b border-r border-gray-200/50">
                   <div className="flex items-center gap-2">
                     <span>{getStatusIcon('multimodal', llm.multimodal)}</span>
                     <span>{llm.multimodal}</span>
                   </div>
                 </td>
-                <td className="px-4 py-4 text-sm text-gray-700 border-b">
+                <td className="px-4 py-6 text-sm text-gray-700 border-b border-r border-gray-200/50">
                   <div className="flex items-center gap-2">
                     <span>{getStatusIcon('real_time', llm.real_time)}</span>
                     <span>{llm.real_time}</span>
                   </div>
                 </td>
-                <td className="px-4 py-4 text-sm text-gray-700 border-b">
+                <td className="px-4 py-6 text-sm text-gray-700 border-b">
                   <div className="flex items-center gap-2">
                     <span>{getStatusIcon('memory', llm.memory)}</span>
                     <span>{llm.memory}</span>
