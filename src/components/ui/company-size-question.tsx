@@ -127,26 +127,17 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
 
       {/* Agent Fundamentals Game */}
       {data.showAgentFundamentalsGame && (
-        <>
-          {/* Title and Subtitle positioned like other slides */}
-          <div className="absolute top-24 left-6 right-6 md:top-32 md:left-16 md:right-16 z-10 animate-fade-in flex flex-col items-center" style={{ animationDelay: '250ms' }}>
-            <h1 className="text-2xl md:text-3xl lg:text-3.5xl font-bold text-white font-open-sauce leading-relaxed max-w-4xl text-center mb-2">
+        <div className="absolute inset-x-4 md:inset-x-8 lg:inset-x-16 z-50 animate-fade-in" style={{ top: '50%', transform: 'translateY(-50%)', animationDelay: '200ms' }}>
+          <div className="text-center mb-4 md:mb-6">
+            <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-3.5xl font-bold text-white font-open-sauce leading-relaxed max-w-4xl mx-auto px-4 mb-2">
               What actually makes an AI agent?
             </h1>
-            <p className="text-lg md:text-xl lg:text-xl font-normal text-slate-100 font-open-sauce leading-relaxed max-w-4xl text-center">
+            <p className="text-lg md:text-xl lg:text-xl font-normal text-slate-100 font-open-sauce leading-relaxed max-w-4xl mx-auto px-4">
               Select the 4 fundamental elements of an AI agent
             </p>
           </div>
-          
-          {/* Game centered with proper spacing from title */}
-          <div className="relative flex flex-col items-center justify-center px-4 md:px-16 lg:px-24 pt-8 pb-24 animate-fade-in" style={{ 
-            animationDelay: '300ms',
-            marginTop: '8rem',
-            height: 'calc(100vh - 24rem)'
-          }}>
-            <AgentFundamentalsGame onComplete={handleGameComplete} />
-          </div>
-        </>
+          <AgentFundamentalsGame onComplete={handleGameComplete} />
+        </div>
       )}
 
       {/* Main content */}
