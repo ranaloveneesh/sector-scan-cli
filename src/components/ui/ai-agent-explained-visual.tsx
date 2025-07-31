@@ -48,21 +48,64 @@ const AgentExplainedVisual: React.FC<AgentExplainedVisualProps> = ({ className =
 
       {/* Main container */}
       <div className="relative w-full h-[500px] flex items-center justify-center">
-        {/* Connection lines - 4 lines connecting center to each node */}
-        <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1 }}>
-          {nodes.map((node) => (
-            <line
-              key={`connection-${node.id}`}
-              x1="50%"
-              y1="50%"
-              x2={`calc(50% + ${node.position.x}px)`}
-              y2={`calc(50% + ${node.position.y}px)`}
-              stroke="hsl(var(--primary))"
-              strokeWidth="2"
-              opacity="0.6"
-            />
-          ))}
-        </svg>
+        
+        {/* Debug: Red background to see container */}
+        <div className="absolute inset-0 bg-red-500/10 pointer-events-none" style={{ zIndex: 0 }}></div>
+        
+        {/* Connection lines - Simple approach with individual positioned lines */}
+        <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }}>
+          {/* Line to TOOLS (top left) */}
+          <div 
+            className="absolute bg-cyan-400"
+            style={{
+              left: '50%',
+              top: '50%',
+              width: '2px',
+              height: `${Math.sqrt(350*350 + 80*80)}px`,
+              transformOrigin: 'top center',
+              transform: `translate(-1px, 0) rotate(${Math.atan2(-80, -350) * 180 / Math.PI}deg)`
+            }}
+          ></div>
+          
+          {/* Line to KNOWLEDGE/DATA (top right) */}
+          <div 
+            className="absolute bg-cyan-400"
+            style={{
+              left: '50%',
+              top: '50%',
+              width: '2px',
+              height: `${Math.sqrt(350*350 + 80*80)}px`,
+              transformOrigin: 'top center',
+              transform: `translate(-1px, 0) rotate(${Math.atan2(-80, 350) * 180 / Math.PI}deg)`
+            }}
+          ></div>
+          
+          {/* Line to REASONING (bottom left) */}
+          <div 
+            className="absolute bg-cyan-400"
+            style={{
+              left: '50%',
+              top: '50%',
+              width: '2px',
+              height: `${Math.sqrt(350*350 + 80*80)}px`,
+              transformOrigin: 'top center',
+              transform: `translate(-1px, 0) rotate(${Math.atan2(80, -350) * 180 / Math.PI}deg)`
+            }}
+          ></div>
+          
+          {/* Line to EXECUTION (bottom right) */}
+          <div 
+            className="absolute bg-cyan-400"
+            style={{
+              left: '50%',
+              top: '50%',
+              width: '2px',
+              height: `${Math.sqrt(350*350 + 80*80)}px`,
+              transformOrigin: 'top center',
+              transform: `translate(-1px, 0) rotate(${Math.atan2(80, 350) * 180 / Math.PI}deg)`
+            }}
+          ></div>
+        </div>
 
         {/* Central Agent */}
         <div className="relative z-20">
