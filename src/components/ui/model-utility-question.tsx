@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 import { useSurvey } from '@/contexts/SurveyContext';
 import { getUseCasesForCombination } from '@/data/modelUtilityUseCases';
@@ -31,7 +32,8 @@ export const ModelUtilityQuestion: React.FC<ModelUtilityQuestionProps> = ({
   data,
   onSubmit
 }) => {
-  const [selectedOption, setSelectedOption] = useState<string>('');
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  const [otherText, setOtherText] = useState('');
   const [animationText, setAnimationText] = useState('');
   const [showError, setShowError] = useState(false);
   const { surveyData } = useSurvey();
@@ -40,7 +42,7 @@ export const ModelUtilityQuestion: React.FC<ModelUtilityQuestionProps> = ({
   const dynamicUseCases = getUseCasesForCombination(surveyData.industry || '', surveyData.department || '');
   const evergreenOptions = [
     "I've explored AI, but it's not in daily use yet",
-    "Other: ____"
+    "Other"
   ];
   const dynamicOptions = [...dynamicUseCases, ...evergreenOptions];
 
@@ -60,16 +62,32 @@ export const ModelUtilityQuestion: React.FC<ModelUtilityQuestionProps> = ({
   }, [data.ui.animation_text]);
 
   const handleOptionSelect = (option: string) => {
-    setSelectedOption(option);
+    if (option === "Other") return; // Don't handle "Other" click, it's handled by input
+    
+    setSelectedOptions(prev => {
+      if (prev.includes(option)) {
+        return prev.filter(o => o !== option);
+      } else {
+        if (prev.length >= 3) {
+          return [...prev.slice(1), option]; // Replace oldest if at max
+        }
+        return [...prev, option];
+      }
+    });
     setShowError(false);
   };
 
   const handleSubmit = () => {
-    if (data.validation?.required && !selectedOption) {
+    const finalOptions = [...selectedOptions];
+    if (otherText.trim()) {
+      finalOptions.push(`Other: ${otherText.trim()}`);
+    }
+    
+    if (data.validation?.required && finalOptions.length === 0) {
       setShowError(true);
       return;
     }
-    onSubmit([selectedOption]);
+    onSubmit(finalOptions);
   };
 
   return (
@@ -104,32 +122,53 @@ export const ModelUtilityQuestion: React.FC<ModelUtilityQuestionProps> = ({
           {/* Options list */}
           <div className="space-y-2 mb-16 max-w-2xl">
             {dynamicOptions?.map((option, index) => (
-              <button
-                key={option}
-                onClick={() => handleOptionSelect(option)}
-                className={cn(
-                  "group relative w-full px-4 py-2 bg-transparent border-0 text-left flex items-center digital-glitch animate-fade-in rounded-lg transition-all duration-300",
-                  "hover:bg-[#5CE1E6]/5 hover:text-[#5CE1E6] focus:outline-none cursor-pointer",
-                  selectedOption === option ? "text-[#5CE1E6] bg-[#5CE1E6]/5" : "text-white"
+              <div key={option} style={{ animationDelay: `${300 + index * 50}ms` }} className="animate-fade-in">
+                {option === "Other" ? (
+                  <div className="w-full px-4 py-2 flex items-center">
+                    <div className="w-2 h-2 rounded-full mr-4 flex-shrink-0 bg-[#5CE1E6]/80"></div>
+                    <span className="text-responsive-base font-medium font-open-sauce text-white mr-3">Other:</span>
+                    <Input
+                      value={otherText}
+                      onChange={(e) => setOtherText(e.target.value)}
+                      placeholder="Describe your use case..."
+                      className="flex-1 bg-transparent border border-[#5CE1E6]/30 text-white placeholder:text-slate-400 focus:border-[#5CE1E6] focus:ring-[#5CE1E6]"
+                    />
+                  </div>
+                ) : (
+                  <button
+                    onClick={() => handleOptionSelect(option)}
+                    className={cn(
+                      "group relative w-full px-4 py-2 bg-transparent border-0 text-left flex items-center digital-glitch rounded-lg transition-all duration-300",
+                      "hover:bg-[#5CE1E6]/5 hover:text-[#5CE1E6] focus:outline-none cursor-pointer",
+                      selectedOptions.includes(option) ? "text-[#5CE1E6] bg-[#5CE1E6]/5" : "text-white"
+                    )}
+                  >
+                    {/* Custom bullet point */}
+                    <div className={cn(
+                      "w-2 h-2 rounded-full mr-4 flex-shrink-0 transition-all duration-300",
+                      selectedOptions.includes(option)
+                        ? "bg-[#5CE1E6] shadow-[0_0_12px_#5CE1E6] scale-110" 
+                        : "bg-[#5CE1E6]/80 hover:bg-[#5CE1E6]/90"
+                    )}></div>
+                    
+                    <span className={cn(
+                      "text-responsive-base font-medium font-open-sauce transition-all duration-300",
+                      selectedOptions.includes(option) && "transform scale-102"
+                    )} data-text={option}>
+                      {option}
+                    </span>
+                  </button>
                 )}
-                style={{ animationDelay: `${300 + index * 50}ms` }}
-              >
-                {/* Custom bullet point */}
-                <div className={cn(
-                  "w-2 h-2 rounded-full mr-4 flex-shrink-0 transition-all duration-300",
-                  selectedOption === option 
-                    ? "bg-[#5CE1E6] shadow-[0_0_12px_#5CE1E6] scale-110" 
-                    : "bg-[#5CE1E6]/80 hover:bg-[#5CE1E6]/90"
-                )}></div>
-                
-                <span className={cn(
-                  "text-responsive-base font-medium font-open-sauce transition-all duration-300",
-                  selectedOption === option && "transform scale-102"
-                )} data-text={option}>
-                  {option}
-                </span>
-              </button>
+              </div>
             ))}
+          </div>
+          
+          {/* Selection counter */}
+          <div className="mb-4 text-center">
+            <p className="text-slate-400 text-sm font-mono">
+              Selected: {selectedOptions.length + (otherText.trim() ? 1 : 0)}/3 
+              {selectedOptions.length + (otherText.trim() ? 1 : 0) === 0 && " (minimum 1 required)"}
+            </p>
           </div>
         </div>
       </div>
@@ -152,7 +191,7 @@ export const ModelUtilityQuestion: React.FC<ModelUtilityQuestionProps> = ({
             pointerEvents: 'auto',
             zIndex: 10
           }}
-          disabled={!selectedOption}
+          disabled={selectedOptions.length === 0 && !otherText.trim()}
         >
           next
         </button>
