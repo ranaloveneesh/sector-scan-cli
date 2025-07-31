@@ -12,28 +12,28 @@ const AgentExplainedVisual: React.FC<AgentExplainedVisualProps> = ({ className =
       name: 'TOOLS',
       description: 'Domain-specific instruments\n(Industry APIs, specialized software...)',
       icon: Cog,
-      position: { x: -320, y: 0 }, // left
+      position: { x: -350, y: -80 }, // top left
     },
     {
       id: 'data',
       name: 'KNOWLEDGE / DATA', 
       description: 'Domain-specific information\n(Industry data, real-time inputs...)',
       icon: Database,
-      position: { x: 0, y: -160 }, // top
+      position: { x: 350, y: -80 }, // top right
     },
     {
       id: 'reasoning',
       name: 'PLANNING & REASONING',
       description: 'Domain-specific meta-heuristics\nalgorithms',
       icon: Brain,
-      position: { x: 320, y: 0 }, // right
+      position: { x: -350, y: 80 }, // bottom left
     },
     {
       id: 'workflows',
       name: 'EXECUTION',
       description: 'Domain-specific workflows\n(Industry processes, protocols...)',
       icon: Workflow,
-      position: { x: 0, y: 160 }, // bottom
+      position: { x: 350, y: 80 }, // bottom right
     }
   ];
 
