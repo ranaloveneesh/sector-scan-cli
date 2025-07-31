@@ -2,90 +2,81 @@ import React from 'react';
 
 const RagPipelineVisual: React.FC = () => {
   return (
-    <div className="w-full max-w-5xl mx-auto px-4">
-      <div className="bg-white/5 rounded-xl p-8 border border-white/10">
+    <div className="w-full max-w-6xl mx-auto px-4">
+      <div className="bg-white rounded-xl p-12 border border-gray-200 shadow-lg">
         {/* Title */}
-        <h2 className="text-2xl font-bold text-white text-center mb-8 font-open-sauce">
+        <h2 className="text-3xl font-bold text-black text-center mb-12 font-open-sauce">
           Basic RAG Pipeline
         </h2>
         
         {/* User Query */}
         <div className="flex flex-col items-center mb-8">
-          <span className="text-[#5CE1E6] font-medium mb-2 font-open-sauce">User Query</span>
-          <div className="bg-[#5CE1E6]/20 border border-[#5CE1E6]/50 rounded-lg px-6 py-3 min-w-32 text-center">
-            <span className="text-white font-mono">?</span>
+          <span className="text-blue-600 font-medium mb-3 text-lg font-open-sauce">User Query</span>
+          <div className="bg-blue-200 border-2 border-blue-400 rounded-lg px-8 py-4 min-w-40">
+            <span className="text-black font-medium"></span>
           </div>
         </div>
 
         {/* Arrow down */}
-        <div className="flex justify-center mb-6">
-          <div className="text-white/60 text-2xl">↓</div>
+        <div className="flex justify-center mb-8">
+          <div className="text-gray-600 text-3xl">↓</div>
         </div>
 
-        {/* Main Pipeline */}
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-6 mb-8">
-          {/* Step 1: Documents to Vector DB */}
-          <div className="flex flex-col items-center">
-            <div className="flex items-center gap-4 mb-4">
-              {/* Documents Stack */}
-              <div className="relative">
-                <div className="bg-gray-300 border border-gray-400 rounded-lg w-20 h-16 absolute top-1 left-1"></div>
-                <div className="bg-gray-200 border border-gray-400 rounded-lg w-20 h-16 absolute top-0.5 left-0.5"></div>
-                <div className="bg-gray-100 border border-gray-400 rounded-lg w-20 h-16 flex items-center justify-center relative z-10">
-                  <span className="text-gray-700 font-medium text-sm font-open-sauce">Documents</span>
-                </div>
-              </div>
-              
-              <div className="text-white/60 text-xl hidden lg:block">→</div>
-              
-              {/* Vector DB */}
-              <div className="bg-yellow-300 border border-yellow-400 rounded-lg w-24 h-16 flex items-center justify-center">
-                <span className="text-gray-800 font-medium text-sm font-open-sauce">Vector DB</span>
-              </div>
+        {/* Main Pipeline Flow */}
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 mb-12">
+          {/* Documents Stack */}
+          <div className="relative flex-shrink-0">
+            <div className="bg-gray-200 border-2 border-black rounded-xl w-32 h-24 absolute top-2 left-2"></div>
+            <div className="bg-gray-300 border-2 border-black rounded-xl w-32 h-24 absolute top-1 left-1"></div>
+            <div className="bg-gray-100 border-2 border-black rounded-xl w-32 h-24 flex items-center justify-center relative z-10">
+              <span className="text-black font-bold text-lg font-open-sauce">Documents</span>
             </div>
-            <span className="text-white font-medium text-sm font-open-sauce">Step 1: Data Indexing</span>
           </div>
-
-          <div className="text-white/60 text-xl hidden lg:block">→</div>
-
-          {/* Step 2: Retrieval and Generation */}
-          <div className="flex flex-col items-center">
-            <div className="flex items-center gap-4 mb-4">
-              {/* Top-K Chunks */}
-              <div className="flex flex-col gap-1">
-                <span className="text-red-400 font-medium text-xs font-open-sauce mb-1">Top-K Chunks</span>
-                <div className="bg-red-200 border border-red-300 rounded w-20 h-3"></div>
-                <div className="bg-red-200 border border-red-300 rounded w-20 h-3"></div>
-                <div className="bg-red-200 border border-red-300 rounded w-20 h-3"></div>
-              </div>
-              
-              <div className="text-white/60 text-xl hidden lg:block">→</div>
-              
-              {/* LLM */}
-              <div className="bg-purple-300 border border-purple-400 rounded-lg w-20 h-16 flex items-center justify-center">
-                <span className="text-gray-800 font-medium text-sm font-open-sauce">LLM</span>
-              </div>
-              
-              <div className="text-white/60 text-xl hidden lg:block">→</div>
-              
-              {/* Response */}
-              <div className="bg-teal-300 border border-teal-400 rounded-lg w-20 h-16 flex items-center justify-center">
-                <span className="text-gray-800 font-medium text-sm font-open-sauce">Response</span>
-              </div>
-            </div>
-            <span className="text-white font-medium text-sm font-open-sauce">Step 2: Data Retrieval & Generation</span>
+          
+          {/* Arrow */}
+          <div className="text-gray-600 text-3xl flex-shrink-0">→</div>
+          
+          {/* Vector DB */}
+          <div className="bg-yellow-200 border-2 border-black rounded-xl w-32 h-24 flex items-center justify-center flex-shrink-0">
+            <span className="text-black font-bold text-lg font-open-sauce">Vector DB</span>
+          </div>
+          
+          {/* Arrow */}
+          <div className="text-gray-600 text-3xl flex-shrink-0">→</div>
+          
+          {/* Split Docs in Chunks */}
+          <div className="flex flex-col gap-2 flex-shrink-0">
+            <span className="text-red-600 font-bold text-lg font-open-sauce text-center mb-2">Split docs in chunks</span>
+            <div className="bg-red-200 border-2 border-red-400 rounded w-28 h-4"></div>
+            <div className="bg-red-200 border-2 border-red-400 rounded w-28 h-4"></div>
+            <div className="bg-red-200 border-2 border-red-400 rounded w-28 h-4"></div>
+          </div>
+          
+          {/* Arrow */}
+          <div className="text-gray-600 text-3xl flex-shrink-0">→</div>
+          
+          {/* LLM */}
+          <div className="bg-purple-200 border-2 border-black rounded-xl w-32 h-24 flex items-center justify-center flex-shrink-0">
+            <span className="text-black font-bold text-lg font-open-sauce">LLM</span>
+          </div>
+          
+          {/* Arrow */}
+          <div className="text-gray-600 text-3xl flex-shrink-0">→</div>
+          
+          {/* Response */}
+          <div className="bg-teal-200 border-2 border-black rounded-xl w-32 h-24 flex items-center justify-center flex-shrink-0">
+            <span className="text-black font-bold text-lg font-open-sauce">Response</span>
           </div>
         </div>
 
-        {/* Mobile arrows for vertical layout */}
-        <div className="flex justify-center mb-4 lg:hidden">
-          <div className="text-white/60 text-2xl">↓</div>
-        </div>
-        <div className="flex justify-center mb-4 lg:hidden">
-          <div className="text-white/60 text-2xl">↓</div>
-        </div>
-        <div className="flex justify-center mb-4 lg:hidden">
-          <div className="text-white/60 text-2xl">↓</div>
+        {/* Step Labels */}
+        <div className="flex flex-col lg:flex-row justify-between items-center gap-8 mt-8">
+          <div className="text-center flex-1">
+            <span className="text-black font-bold text-xl font-open-sauce">Step 1: Data Ingestion</span>
+          </div>
+          <div className="text-center flex-1">
+            <span className="text-black font-bold text-xl font-open-sauce">Step 2: Data Retrieval & Generation</span>
+          </div>
         </div>
       </div>
     </div>
