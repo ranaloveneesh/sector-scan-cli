@@ -110,7 +110,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({
       `}</style>
       {/* Instructions */}
       <div className="text-center">
-        <p className="text-white font-mono text-sm md:text-base lg:text-lg mb-0 py-[10px] px-2">
+        <p className="text-white font-mono text-sm md:text-base lg:text-lg mb-0 px-0 py-0">
           Guess the 4 right components of an AI model. Then test it, and see if you are correct
         </p>
       </div>
@@ -193,7 +193,7 @@ const AIModelBuilder: React.FC<AIModelBuilderProps> = ({
                </svg>
               
               {/* Placed Components in Center */}
-              <div className="absolute inset-0 rounded-full flex items-center justify-center z-20">
+              <div className="absolute inset-0 rounded-full flex items-center justify-center z-20 py-0 px-0">
                 <div className="grid grid-cols-2 gap-0 w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 place-items-center">
                   {Array.from({
                   length: 4
