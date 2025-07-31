@@ -134,7 +134,7 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
             <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-3.5xl font-bold text-white font-open-sauce leading-relaxed max-w-4xl mx-auto px-4 mb-2">
               {data.title}
             </h1>
-            <p className="text-lg md:text-xl lg:text-xl font-normal text-slate-100 font-open-sauce leading-relaxed max-w-4xl mx-auto px-4 -mt-2">
+            <p className="text-lg md:text-xl lg:text-xl font-normal text-slate-100 font-open-sauce leading-relaxed max-w-4xl mx-auto px-4" style={{ marginTop: '-0.5rem' }}>
               Guess the 4 right components of an AI model. Then test it, and see if you are correct
             </p>
           </div>
@@ -156,7 +156,7 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
             <>
               {/* Question content */}
               <div className="text-left mb-16">
-                <h1 className="font-bold mb-1 text-white font-open-sauce" style={{ fontSize: 'var(--text-responsive-title)' }}>{data.title}</h1>
+                <h1 className="text-responsive-title font-bold mb-1 text-white font-open-sauce">{data.title}</h1>
                 <p className="text-responsive-subtitle flex items-center text-slate-50 px-0 pt-2 pl-2 md:pl-8 font-normal font-open-sauce">
                   <span className="mr-2 text-slate-50 px-0 py-0 pl-2 md:pl-8">→</span>
                   {data.subtitle}

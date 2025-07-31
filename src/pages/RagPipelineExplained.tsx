@@ -83,7 +83,7 @@ const RagPipelineExplained = () => {
       </div>
 
       {/* Title and subtitle */}
-      <div className="absolute top-24 left-6 right-6 md:top-32 md:left-16 md:right-16 z-10 animate-fade-in flex flex-col items-center" style={{ animationDelay: '250ms' }}>
+      <div className="absolute top-24 left-6 right-6 md:top-32 md:left-16 md:right-16 z-10 animate-fade-in flex flex-col items-center" style={{ animationDelay: '250ms', transform: 'translateY(30px)' }}>
         <h1 className="text-2xl md:text-3xl lg:text-3.5xl font-bold text-white font-open-sauce leading-relaxed max-w-4xl text-center mb-2">
           {content.title}
         </h1>
@@ -93,7 +93,7 @@ const RagPipelineExplained = () => {
       </div>
 
       {/* RAG Pipeline Visual */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 md:px-16 lg:px-24 pt-20 animate-fade-in" style={{ animationDelay: '300ms' }}>
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 md:px-16 lg:px-24 pt-20 animate-fade-in" style={{ animationDelay: '300ms', transform: 'translateY(-30px)' }}>
         <RagPipelineVisual />
       </div>
 

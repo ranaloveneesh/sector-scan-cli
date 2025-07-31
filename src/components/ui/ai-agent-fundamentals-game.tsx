@@ -28,11 +28,11 @@ const AgentFundamentalsGame: React.FC<AgentFundamentalsGameProps> = ({ onComplet
     { id: 'plugins', name: 'Plugins', isCorrect: false, angle: 315 },
   ];
 
-  // Continuous rotation animation - even slower speed
+  // Continuous rotation animation - very slow speed
   useEffect(() => {
     const interval = setInterval(() => {
-      setRotationAngle(prev => (prev + 0.2) % 360);
-    }, 100); // Much slower rotation speed
+      setRotationAngle(prev => (prev + 0.1) % 360);
+    }, 150); // Even slower rotation speed
 
     return () => clearInterval(interval);
   }, []);
@@ -72,7 +72,7 @@ const AgentFundamentalsGame: React.FC<AgentFundamentalsGameProps> = ({ onComplet
           <img 
             src="/lovable-uploads/f912e5d2-b459-41fc-a7e9-3eb49229a52a.png" 
             alt="AI Agent" 
-            className="w-24 h-24 object-contain"
+            className="w-32 h-32 object-contain"
           />
         </div>
 
