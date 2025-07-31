@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSurvey } from '@/contexts/SurveyContext';
 import { CompanySizeQuestion } from '@/components/ui/company-size-question';
+import AgentExplainedVisual from '@/components/ui/ai-agent-explained-visual';
 
 const Slide5 = () => {
   const navigate = useNavigate();
@@ -37,7 +38,8 @@ const Slide5 = () => {
       selector_style: "modern",
       label: "ai_agent_explained"
     },
-    isStatic: true
+    isStatic: true,
+    showAgentExplainedVisual: true
   };
 
   const handleSubmit = () => {

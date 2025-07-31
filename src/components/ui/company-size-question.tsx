@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import AIModelBuilder from './ai-model-builder';
 import AgentFundamentalsGame from '@/components/ui/ai-agent-fundamentals-game';
+import AgentExplainedVisual from './ai-agent-explained-visual';
 interface CompanySizeQuestionProps {
   data: {
     id: string;
@@ -25,6 +26,7 @@ interface CompanySizeQuestionProps {
   isStatic?: boolean;
   showBrainGame?: boolean;
   showAgentFundamentalsGame?: boolean;
+  showAgentExplainedVisual?: boolean;
   };
   onSubmit: (selectedOptions: string[]) => void;
 }
@@ -100,7 +102,7 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
       </div>
 
       {/* Static text box positioned high */}
-      {data.isStatic && !data.showBrainGame && !data.showAgentFundamentalsGame && data.title && (
+      {data.isStatic && !data.showBrainGame && !data.showAgentFundamentalsGame && !data.showAgentExplainedVisual && data.title && (
         <div className="absolute top-32 left-6 right-6 md:top-40 md:left-16 md:right-16 z-10 animate-fade-in flex flex-col items-center" style={{ animationDelay: '250ms' }}>
           <h1 className="text-2xl md:text-3xl lg:text-3.5xl font-bold text-white font-open-sauce leading-relaxed max-w-4xl text-center mb-2">
             {data.title}
@@ -140,10 +142,17 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
         </div>
       )}
 
+      {/* Agent Explained Visual */}
+      {data.showAgentExplainedVisual && (
+        <div className="absolute inset-x-4 md:inset-x-8 lg:inset-x-16 z-50 animate-fade-in" style={{ top: '50%', transform: 'translateY(-50%)', animationDelay: '200ms' }}>
+          <AgentExplainedVisual />
+        </div>
+      )}
+
       {/* Main content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-8 md:px-32 lg:px-48 animate-fade-in" style={{ animationDelay: '200ms' }}>
         <div className="max-w-4xl w-full">
-          {!data.isStatic && !data.showBrainGame && !data.showAgentFundamentalsGame && (
+          {!data.isStatic && !data.showBrainGame && !data.showAgentFundamentalsGame && !data.showAgentExplainedVisual && (
             <>
               {/* Question content */}
               <div className="text-left mb-16">
@@ -188,7 +197,7 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
             pointerEvents: 'auto',
             zIndex: 100
           }}
-          disabled={(data.showBrainGame || data.showAgentFundamentalsGame) ? !brainGameCompleted : (!selectedOption && !data.isStatic)}
+          disabled={(data.showBrainGame || data.showAgentFundamentalsGame) ? !brainGameCompleted : (!selectedOption && !data.isStatic && !data.showAgentExplainedVisual)}
         >
           next
         </button>
