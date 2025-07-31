@@ -28,11 +28,11 @@ const AgentFundamentalsGame: React.FC<AgentFundamentalsGameProps> = ({ onComplet
     { id: 'plugins', name: 'Plugins', isCorrect: false, angle: 315 },
   ];
 
-  // Continuous rotation animation
+  // Continuous rotation animation - slower speed
   useEffect(() => {
     const interval = setInterval(() => {
-      setRotationAngle(prev => (prev + 1) % 360);
-    }, 50); // Smooth rotation speed
+      setRotationAngle(prev => (prev + 0.5) % 360);
+    }, 100); // Slower rotation speed
 
     return () => clearInterval(interval);
   }, []);
@@ -66,22 +66,14 @@ const AgentFundamentalsGame: React.FC<AgentFundamentalsGameProps> = ({ onComplet
     <div className="w-full max-w-2xl mx-auto">
       {/* Game Area */}
       <div className="relative w-96 h-96 mx-auto flex items-center justify-center">
-        {/* Orbit Lines */}
-        <div className="absolute inset-0 rounded-full border-2 border-cyan-400/30" 
-             style={{ 
-               boxShadow: '0 0 20px rgba(6, 182, 212, 0.3)',
-               animation: 'pulse 3s infinite'
-             }} />
         
         {/* Central Agent */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-24 h-24 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-2xl flex items-center justify-center shadow-lg">
-            <img 
-              src="/lovable-uploads/f912e5d2-b459-41fc-a7e9-3eb49229a52a.png" 
-              alt="AI Agent" 
-              className="w-16 h-16 object-contain"
-            />
-          </div>
+          <img 
+            src="/lovable-uploads/f912e5d2-b459-41fc-a7e9-3eb49229a52a.png" 
+            alt="AI Agent" 
+            className="w-16 h-16 object-contain"
+          />
         </div>
 
         {/* Orbiting Elements */}

@@ -112,8 +112,8 @@ export const ModelUtilityQuestion: React.FC<ModelUtilityQuestionProps> = ({
         <div className="max-w-4xl w-full">
           {/* Question content */}
           <div className="text-left mb-16">
-            <h1 className="text-responsive-title font-bold mb-1 text-white font-open-sauce">{data.title}</h1>
-            <p className="text-responsive-subtitle flex items-center text-slate-50 px-0 pt-2 pl-2 md:pl-8 font-normal font-open-sauce">
+            <h1 className="font-bold mb-1 text-white font-open-sauce" style={{ fontSize: 'calc(var(--text-responsive-title) - 1px)' }}>{data.title}</h1>
+            <p className="flex items-center text-slate-50 px-0 pt-2 pl-2 md:pl-8 font-normal font-open-sauce" style={{ fontSize: 'calc(var(--text-responsive-subtitle) - 1px)' }}>
               <span className="mr-2 text-slate-50 px-0 py-0 pl-2 md:pl-8">→</span>
               {data.subtitle}
             </p>
@@ -152,9 +152,9 @@ export const ModelUtilityQuestion: React.FC<ModelUtilityQuestionProps> = ({
                     )}></div>
                     
                     <span className={cn(
-                      "text-responsive-base font-medium font-open-sauce transition-all duration-300",
+                      "font-medium font-open-sauce transition-all duration-300",
                       selectedOptions.includes(option) && "transform scale-102"
-                    )} data-text={option}>
+                    )} data-text={option} style={{ fontSize: 'calc(var(--text-responsive-base) - 1px)' }}>
                       {option}
                     </span>
                   </button>

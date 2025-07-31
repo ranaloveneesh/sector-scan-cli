@@ -31,6 +31,55 @@ const BrainGame: React.FC<BrainGameProps> = ({ onComplete }) => {
   const [draggedItem, setDraggedItem] = useState<string | null>(null);
   const dragCounter = useRef(0);
 
+  const showConfetti = () => {
+    // Create confetti overlay
+    const confettiContainer = document.createElement('div');
+    confettiContainer.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
+    `;
+    document.body.appendChild(confettiContainer);
+
+    // Create confetti pieces
+    for (let i = 0; i < 50; i++) {
+      const confetti = document.createElement('div');
+      confetti.style.cssText = `
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: ${['#5CE1E6', '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4'][Math.floor(Math.random() * 5)]};
+        top: -10px;
+        left: ${Math.random() * 100}%;
+        border-radius: 50%;
+        animation: confetti-fall ${2 + Math.random() * 2}s linear forwards;
+      `;
+      confettiContainer.appendChild(confetti);
+    }
+
+    // Add CSS animation
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes confetti-fall {
+        to {
+          transform: translateY(100vh) rotate(720deg);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Clean up after animation
+    setTimeout(() => {
+      document.body.removeChild(confettiContainer);
+      document.head.removeChild(style);
+    }, 4000);
+  };
+
   const handleDragStart = (e: React.DragEvent, componentId: string) => {
     setDraggedItem(componentId);
     e.dataTransfer.setData('text/plain', componentId);
@@ -84,6 +133,8 @@ const BrainGame: React.FC<BrainGameProps> = ({ onComplete }) => {
     setGameCompleted(true);
     
     if (isCorrect) {
+      // Show confetti animation
+      showConfetti();
       setTimeout(() => {
         onComplete();
       }, 2000);
@@ -116,11 +167,11 @@ const BrainGame: React.FC<BrainGameProps> = ({ onComplete }) => {
     <div className="flex flex-col items-center justify-center min-h-screen bg-background p-8">
       <div className="w-full max-w-6xl">
         {/* Question text */}
-        <div className="text-center mb-8">
-          <h2 className="text-2xl font-bold text-foreground mb-4">
-            Drag the 4 real components of an AI model into the brain.
-          </h2>
-        </div>
+          <div className="text-center mb-6">
+            <h2 className="text-2xl font-bold text-foreground mb-4">
+              Drag the 4 real components of an AI model into the brain.
+            </h2>
+          </div>
 
         <div className="flex items-center justify-between gap-8">
           {/* Left components */}
@@ -143,7 +194,7 @@ const BrainGame: React.FC<BrainGameProps> = ({ onComplete }) => {
           </div>
 
           {/* Center brain */}
-          <div className="relative flex-1 max-w-md">
+          <div className="relative flex-1 max-w-md" style={{ transform: 'scale(0.85)' }}>
             <img src={brainOutline} alt="AI Brain" className="w-full h-auto" />
             
             {/* Drop zones */}

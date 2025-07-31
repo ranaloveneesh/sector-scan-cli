@@ -13,33 +13,33 @@ const RagPipelineExplained = () => {
     switch (previousAnswer) {
       case "It's a tool that scrapes data from websites":
         return {
-          title: "Actually, RAG Does Something Different",
-          subtitle: "It helps AI give better answers by checking the right documents first"
+          title: "Here's a visual representation of RAG pipeline",
+          subtitle: "With this method all your company knowledge can be stored and accessible inside your Vector DB"
         };
       case "A method to teach AI how to generate images":
         return {
-          title: "Not About Images — It's About Answers",
-          subtitle: "Here's how RAG helps AI find and use the right info"
+          title: "Here's a visual representation of RAG pipeline",
+          subtitle: "With this method all your company knowledge can be stored and accessible inside your Vector DB"
         };
       case "A system where an AI model retrieves external data before generating a response":
         return {
-          title: "Exactly — That's What RAG Is",
-          subtitle: "Here's how the process works, step by step"
+          title: "Here's a visual representation of RAG pipeline",
+          subtitle: "With this method all your company knowledge can be stored and accessible inside your Vector DB"
         };
       case "I've seen it mentioned, but not sure what it means":
         return {
-          title: "Let's Make It Clear with a Visual",
-          subtitle: "This is how RAG helps AI use your data when answering"
+          title: "Here's a visual representation of RAG pipeline",
+          subtitle: "With this method all your company knowledge can be stored and accessible inside your Vector DB"
         };
       case "Nope, this is new to me":
         return {
-          title: "Here's a Simple Way to See How It Works",
-          subtitle: "This visual shows how AI can search before it speaks"
+          title: "Here's a visual representation of RAG pipeline",
+          subtitle: "With this method all your company knowledge can be stored and accessible inside your Vector DB"
         };
       default:
         return {
-          title: "Let's explore what RAG pipelines really are",
-          subtitle: "This visual shows how AI can search before it speaks"
+          title: "Here's a visual representation of RAG pipeline",
+          subtitle: "With this method all your company knowledge can be stored and accessible inside your Vector DB"
         };
     }
   };
@@ -83,17 +83,17 @@ const RagPipelineExplained = () => {
       </div>
 
       {/* Title and subtitle */}
-      <div className="absolute top-24 left-6 right-6 md:top-32 md:left-16 md:right-16 z-10 animate-fade-in flex flex-col items-center" style={{ animationDelay: '250ms' }}>
+      <div className="absolute top-28 left-6 right-6 md:top-36 md:left-16 md:right-16 z-10 animate-fade-in flex flex-col items-center" style={{ animationDelay: '250ms' }}>
         <h1 className="text-2xl md:text-3xl lg:text-3.5xl font-bold text-white font-open-sauce leading-relaxed max-w-4xl text-center mb-2">
           {content.title}
         </h1>
-        <p className="text-lg md:text-xl lg:text-xl font-normal text-slate-100 font-open-sauce leading-relaxed max-w-4xl text-center mb-8">
+        <p className="text-lg md:text-xl lg:text-xl font-normal text-slate-100 font-open-sauce leading-relaxed max-w-4xl text-center mb-4">
           {content.subtitle}
         </p>
       </div>
 
       {/* RAG Pipeline Visual */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 md:px-16 lg:px-24 pt-36 animate-fade-in" style={{ animationDelay: '300ms' }}>
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 md:px-16 lg:px-24 pt-28 animate-fade-in" style={{ animationDelay: '300ms' }}>
         <RagPipelineVisual />
       </div>
 
