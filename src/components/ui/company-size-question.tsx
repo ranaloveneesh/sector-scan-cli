@@ -127,9 +127,22 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
 
       {/* Agent Fundamentals Game */}
       {data.showAgentFundamentalsGame && (
-        <div className="flex-1 flex items-center justify-center">
-          <AgentFundamentalsGame onComplete={handleGameComplete} />
-        </div>
+        <>
+          {/* Title and Subtitle positioned like other slides */}
+          <div className="absolute top-24 left-6 right-6 md:top-32 md:left-16 md:right-16 z-10 animate-fade-in flex flex-col items-center" style={{ animationDelay: '250ms' }}>
+            <h1 className="text-2xl md:text-3xl lg:text-3.5xl font-bold text-white font-open-sauce leading-relaxed max-w-4xl text-center mb-2">
+              What actually makes an AI agent?
+            </h1>
+            <p className="text-lg md:text-xl lg:text-xl font-normal text-slate-100 font-open-sauce leading-relaxed max-w-4xl text-center">
+              Select the 4 fundamental elements of an AI agent
+            </p>
+          </div>
+          
+          {/* Game centered */}
+          <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 md:px-16 lg:px-24 animate-fade-in" style={{ animationDelay: '300ms' }}>
+            <AgentFundamentalsGame onComplete={handleGameComplete} />
+          </div>
+        </>
       )}
 
       {/* Main content */}

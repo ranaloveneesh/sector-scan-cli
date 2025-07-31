@@ -15,6 +15,7 @@ const AgentFundamentalsGame: React.FC<AgentFundamentalsGameProps> = ({ onComplet
   const [selectedElements, setSelectedElements] = useState<string[]>([]);
   const [gameComplete, setGameComplete] = useState(false);
   const [showNextMessage, setShowNextMessage] = useState(false);
+  const [rotationAngle, setRotationAngle] = useState(0);
 
   const elements: Element[] = [
     { id: 'tools', name: 'Tools', isCorrect: true, angle: 0 },
@@ -26,6 +27,15 @@ const AgentFundamentalsGame: React.FC<AgentFundamentalsGameProps> = ({ onComplet
     { id: 'prompts', name: 'Prompts', isCorrect: false, angle: 270 },
     { id: 'plugins', name: 'Plugins', isCorrect: false, angle: 315 },
   ];
+
+  // Continuous rotation animation
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRotationAngle(prev => (prev + 1) % 360);
+    }, 50); // Smooth rotation speed
+
+    return () => clearInterval(interval);
+  }, []);
 
   const handleElementClick = (elementId: string) => {
     if (selectedElements.includes(elementId) || selectedElements.length >= 4) return;
@@ -46,26 +56,16 @@ const AgentFundamentalsGame: React.FC<AgentFundamentalsGameProps> = ({ onComplet
   };
 
   const getElementPosition = (angle: number, radius: number) => {
-    const radian = (angle * Math.PI) / 180;
+    const radian = ((angle + rotationAngle) * Math.PI) / 180;
     const x = Math.cos(radian) * radius;
     const y = Math.sin(radian) * radius;
     return { x, y };
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-full">
-      {/* Title and Subtitle */}
-      <div className="text-center mb-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-          What actually makes an AI agent?
-        </h2>
-        <p className="text-lg text-gray-300">
-          Select the 4 fundamental elements of an AI agent
-        </p>
-      </div>
-
+    <div className="w-full max-w-2xl mx-auto">
       {/* Game Area */}
-      <div className="relative w-96 h-96 flex items-center justify-center">
+      <div className="relative w-96 h-96 mx-auto flex items-center justify-center">
         {/* Orbit Lines */}
         <div className="absolute inset-0 rounded-full border-2 border-cyan-400/30" 
              style={{ 
@@ -96,9 +96,7 @@ const AgentFundamentalsGame: React.FC<AgentFundamentalsGameProps> = ({ onComplet
               className={`absolute w-16 h-16 rounded-full border-2 cursor-pointer transition-all duration-300 flex items-center justify-center text-xs font-semibold text-center leading-tight ${
                 isSelected
                   ? 'bg-cyan-400 border-cyan-400 text-black shadow-lg shadow-cyan-400/50'
-                  : element.isCorrect
-                  ? 'bg-gray-800 border-cyan-400/50 text-cyan-400 hover:bg-cyan-400/10'
-                  : 'bg-gray-800 border-red-400/50 text-red-400 hover:bg-red-400/10'
+                  : 'bg-gray-800 border-cyan-400/50 text-cyan-400 hover:bg-cyan-400/10'
               }`}
               style={{
                 transform: `translate(${position.x}px, ${position.y}px)`,
@@ -113,7 +111,7 @@ const AgentFundamentalsGame: React.FC<AgentFundamentalsGameProps> = ({ onComplet
       </div>
 
       {/* Progress Indicator */}
-      <div className="mt-8 flex space-x-2">
+      <div className="mt-8 flex justify-center space-x-2">
         {Array.from({ length: 4 }).map((_, index) => (
           <div
             key={index}
