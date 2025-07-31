@@ -139,9 +139,10 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
           </div>
           
           {/* Game centered with proper spacing from title */}
-          <div className="relative z-10 flex flex-col items-center justify-center px-4 md:px-16 lg:px-24 pt-40 pb-32 animate-fade-in" style={{ 
+          <div className="relative flex flex-col items-center justify-center px-4 md:px-16 lg:px-24 pt-8 pb-24 animate-fade-in" style={{ 
             animationDelay: '300ms',
-            minHeight: 'calc(100vh - 18rem)' 
+            marginTop: '8rem',
+            height: 'calc(100vh - 24rem)'
           }}>
             <AgentFundamentalsGame onComplete={handleGameComplete} />
           </div>
