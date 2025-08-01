@@ -23,10 +23,10 @@ interface CompanySizeQuestionProps {
       required: boolean;
       error_message: string;
     };
-  isStatic?: boolean;
-  showBrainGame?: boolean;
-  showAgentFundamentalsGame?: boolean;
-  showAgentExplainedVisual?: boolean;
+    isStatic?: boolean;
+    showBrainGame?: boolean;
+    showAgentFundamentalsGame?: boolean;
+    showAgentExplainedVisual?: boolean;
   };
   onSubmit: (selectedOptions: string[]) => void;
 }
@@ -57,28 +57,24 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
     setSelectedOption(option);
     setShowError(false);
   };
-
   const handleBrainGameComplete = (success: boolean) => {
     setBrainGameCompleted(true);
     if (success) {
       setShowError(false);
     }
   };
-
   const handleGameComplete = (success: boolean) => {
     setBrainGameCompleted(true);
     if (success) {
       setShowError(false);
     }
   };
-
   const handleSubmit = () => {
     // For AI model builder or agent fundamentals game, allow submission after at least one try (game completed)
     if ((data.showBrainGame || data.showAgentFundamentalsGame) && !brainGameCompleted) {
       setShowError(true);
       return;
     }
-    
     if (data.validation?.required && !selectedOption && !data.isStatic && !data.showBrainGame && !data.showAgentFundamentalsGame) {
       setShowError(true);
       return;
@@ -87,7 +83,9 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
   };
   return <div className="min-h-screen bg-[#0a1628] text-white relative overflow-hidden">
       {/* Hexagonal logo in top left */}
-      <div className="absolute top-6 left-6 md:top-12 md:left-16 z-10 flex items-end animate-fade-in" style={{ animationDelay: '100ms' }}>
+      <div className="absolute top-6 left-6 md:top-12 md:left-16 z-10 flex items-end animate-fade-in" style={{
+      animationDelay: '100ms'
+    }}>
         <div className="flex items-center justify-center" style={{
         width: 'clamp(4rem, 6vw, 6.25rem)',
         height: 'clamp(4rem, 6vw, 6.25rem)'
@@ -97,27 +95,30 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
       </div>
 
       {/* User label in top right */}
-      <div className="absolute top-6 right-6 md:top-12 md:right-16 z-10 flex items-end animate-fade-in" style={{ animationDelay: '150ms' }}>
+      <div className="absolute top-6 right-6 md:top-12 md:right-16 z-10 flex items-end animate-fade-in" style={{
+      animationDelay: '150ms'
+    }}>
         <span className="font-tomorrow text-responsive-label text-[#5CE1E6] neon-glow">{data.ui.label || 'company_size'}</span>
       </div>
 
       {/* Static text box positioned lower to align with logo */}
-      {data.isStatic && !data.showBrainGame && !data.showAgentFundamentalsGame && !data.showAgentExplainedVisual && data.title && (
-        <div className="absolute top-44 left-6 right-6 md:top-52 md:left-16 md:right-16 z-10 animate-fade-in flex flex-col items-center" style={{ animationDelay: '250ms' }}>
+      {data.isStatic && !data.showBrainGame && !data.showAgentFundamentalsGame && !data.showAgentExplainedVisual && data.title && <div className="absolute top-44 left-6 right-6 md:top-52 md:left-16 md:right-16 z-10 animate-fade-in flex flex-col items-center" style={{
+      animationDelay: '250ms'
+    }}>
           <h1 className="text-2xl md:text-3xl lg:text-3.5xl font-bold text-white font-open-sauce leading-relaxed max-w-4xl text-center mb-2">
             {data.title}
           </h1>
-          {data.description && (
-            <p className="text-lg md:text-xl lg:text-xl font-normal text-slate-100 font-open-sauce leading-relaxed max-w-4xl text-center">
+          {data.description && <p className="text-lg md:text-xl lg:text-xl font-normal text-slate-100 font-open-sauce leading-relaxed max-w-4xl text-center">
               {data.description}
-            </p>
-          )}
-        </div>
-      )}
+            </p>}
+        </div>}
 
       {/* AI Model Builder Game */}
-      {data.showBrainGame && (
-        <div className="absolute inset-x-4 md:inset-x-8 lg:inset-x-16 z-50 animate-fade-in" style={{ top: '50%', transform: 'translateY(-50%)', animationDelay: '200ms' }}>
+      {data.showBrainGame && <div style={{
+      top: '50%',
+      transform: 'translateY(-50%)',
+      animationDelay: '200ms'
+    }} className="absolute inset-x-4 md:inset-x-8 lg:inset-x-16 z-50 animate-fade-in my-[250px]">
           {/* Independent Title */}
           <div className="absolute top-[-120px] left-1/2 transform -translate-x-1/2 text-center w-full">
             <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-3.5xl font-bold text-white font-open-sauce leading-relaxed max-w-4xl mx-auto px-4">
@@ -133,39 +134,45 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
           </div>
           
           <AIModelBuilder onGameComplete={handleBrainGameComplete} />
-        </div>
-      )}
+        </div>}
 
       {/* Agent Fundamentals Game */}
-      {data.showAgentFundamentalsGame && (
-        <div className="absolute inset-x-4 md:inset-x-8 lg:inset-x-16 z-50 animate-fade-in" style={{ top: '50%', transform: 'translateY(-50%)', animationDelay: '200ms' }}>
+      {data.showAgentFundamentalsGame && <div className="absolute inset-x-4 md:inset-x-8 lg:inset-x-16 z-50 animate-fade-in" style={{
+      top: '50%',
+      transform: 'translateY(-50%)',
+      animationDelay: '200ms'
+    }}>
           <div className="text-center mb-4 md:mb-6">
             <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-3.5xl font-bold text-white font-open-sauce leading-relaxed max-w-4xl mx-auto px-4 mb-2">
               {data.title}
             </h1>
-            <p className="text-lg md:text-xl lg:text-xl font-normal text-slate-100 font-open-sauce leading-relaxed max-w-4xl mx-auto px-4" style={{ marginTop: '-0.5rem' }}>
+            <p className="text-lg md:text-xl lg:text-xl font-normal text-slate-100 font-open-sauce leading-relaxed max-w-4xl mx-auto px-4" style={{
+          marginTop: '-0.5rem'
+        }}>
               Guess the 4 right components of an AI model. Then test it, and see if you are correct
             </p>
           </div>
           <AgentFundamentalsGame onComplete={handleGameComplete} />
-        </div>
-      )}
+        </div>}
 
       {/* Agent Explained Visual */}
-      {data.showAgentExplainedVisual && (
-        <div className="absolute inset-x-4 md:inset-x-8 lg:inset-x-16 z-50 animate-fade-in" style={{ top: '50%', transform: 'translateY(-50%)', animationDelay: '200ms' }}>
+      {data.showAgentExplainedVisual && <div className="absolute inset-x-4 md:inset-x-8 lg:inset-x-16 z-50 animate-fade-in" style={{
+      top: '50%',
+      transform: 'translateY(-50%)',
+      animationDelay: '200ms'
+    }}>
           <AgentExplainedVisual />
-        </div>
-      )}
+        </div>}
 
       {/* Main content */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-8 md:px-32 lg:px-48 animate-fade-in" style={{ animationDelay: '200ms' }}>
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-8 md:px-32 lg:px-48 animate-fade-in" style={{
+      animationDelay: '200ms'
+    }}>
         <div className="max-w-4xl w-full">
-          {!data.isStatic && !data.showBrainGame && !data.showAgentFundamentalsGame && !data.showAgentExplainedVisual && (
-            <>
+          {!data.isStatic && !data.showBrainGame && !data.showAgentFundamentalsGame && !data.showAgentExplainedVisual && <>
               {/* Question content */}
               <div className="text-left mb-16">
-                <h1 className="text-responsive-title font-bold mb-1 text-white font-open-sauce">{data.title}</h1>
+                <h1 className="text-responsive-title font-bold mb-1 text-white font-open-sauce my-0">{data.title}</h1>
                 <p className="text-responsive-subtitle flex items-center text-slate-50 px-0 pt-2 pl-2 md:pl-8 font-normal font-open-sauce">
                   <span className="mr-2 text-slate-50 px-0 py-0 pl-2 md:pl-8">→</span>
                   {data.subtitle}
@@ -174,7 +181,9 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
 
               {/* Options list */}
               <div className="space-y-2 mb-16 max-w-2xl">
-                {data.options?.map((option, index) => <button key={option} onClick={() => handleOptionSelect(option)} className={cn("group relative w-full px-4 py-2 bg-transparent border-0 text-left flex items-center digital-glitch animate-fade-in rounded-lg transition-all duration-300", "hover:bg-[#5CE1E6]/5 hover:text-[#5CE1E6] focus:outline-none cursor-pointer", selectedOption === option ? "text-[#5CE1E6] bg-[#5CE1E6]/5" : "text-white")} style={{ animationDelay: `${300 + index * 50}ms` }}>
+                {data.options?.map((option, index) => <button key={option} onClick={() => handleOptionSelect(option)} className={cn("group relative w-full px-4 py-2 bg-transparent border-0 text-left flex items-center digital-glitch animate-fade-in rounded-lg transition-all duration-300", "hover:bg-[#5CE1E6]/5 hover:text-[#5CE1E6] focus:outline-none cursor-pointer", selectedOption === option ? "text-[#5CE1E6] bg-[#5CE1E6]/5" : "text-white")} style={{
+              animationDelay: `${300 + index * 50}ms`
+            }}>
                     {/* Custom bullet point */}
                     <div className={cn("w-2 h-2 rounded-full mr-4 flex-shrink-0 transition-all duration-300", selectedOption === option ? "bg-[#5CE1E6] shadow-[0_0_12px_#5CE1E6] scale-110" : "bg-[#5CE1E6]/80 hover:bg-[#5CE1E6]/90")}></div>
                     
@@ -183,13 +192,14 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
                     </span>
                   </button>)}
               </div>
-            </>
-          )}
+            </>}
         </div>
       </div>
 
       {/* Bottom left terminal text */}
-      <div className="absolute bottom-6 left-6 md:bottom-12 md:left-16 animate-fade-in z-50" style={{ animationDelay: '400ms' }}>
+      <div className="absolute bottom-6 left-6 md:bottom-12 md:left-16 animate-fade-in z-50" style={{
+      animationDelay: '400ms'
+    }}>
         <div className="font-mono text-gray-400 text-responsive-terminal flex items-baseline">
           <span className="mr-2">{'>'}</span>
           <span className="terminal-text">{animationText}</span>
@@ -197,20 +207,13 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
       </div>
 
       {/* Bottom right next button */}
-      <div className="absolute bottom-6 right-6 md:bottom-12 md:right-16 animate-fade-in z-50" style={{ animationDelay: '450ms' }}>
-        <button 
-          onClick={handleSubmit} 
-          className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 font-open-sauce ${
-            (data.showBrainGame || data.showAgentFundamentalsGame) ? !brainGameCompleted : (!selectedOption && !data.isStatic && !data.showAgentExplainedVisual)
-              ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
-              : 'bg-[#5CE1E6] text-[#0a1628] hover:bg-[#5CE1E6]/80'
-          }`}
-          style={{
-            pointerEvents: 'auto',
-            zIndex: 100
-          }}
-          disabled={(data.showBrainGame || data.showAgentFundamentalsGame) ? !brainGameCompleted : (!selectedOption && !data.isStatic && !data.showAgentExplainedVisual)}
-        >
+      <div className="absolute bottom-6 right-6 md:bottom-12 md:right-16 animate-fade-in z-50" style={{
+      animationDelay: '450ms'
+    }}>
+        <button onClick={handleSubmit} className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 font-open-sauce ${data.showBrainGame || data.showAgentFundamentalsGame ? !brainGameCompleted : !selectedOption && !data.isStatic && !data.showAgentExplainedVisual ? 'bg-gray-600 text-gray-400 cursor-not-allowed' : 'bg-[#5CE1E6] text-[#0a1628] hover:bg-[#5CE1E6]/80'}`} style={{
+        pointerEvents: 'auto',
+        zIndex: 100
+      }} disabled={data.showBrainGame || data.showAgentFundamentalsGame ? !brainGameCompleted : !selectedOption && !data.isStatic && !data.showAgentExplainedVisual}>
           Next →
         </button>
       </div>
@@ -218,7 +221,7 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
       {/* Error message */}
       {showError && <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2">
           <p className="text-red-400 font-medium animate-pulse font-mono">
-            {(data.showBrainGame || data.showAgentFundamentalsGame) ? "Complete the game to continue!" : (data.validation?.error_message || "Please complete the task to continue!")}
+            {data.showBrainGame || data.showAgentFundamentalsGame ? "Complete the game to continue!" : data.validation?.error_message || "Please complete the task to continue!"}
           </p>
         </div>}
     </div>;
