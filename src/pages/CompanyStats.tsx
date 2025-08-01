@@ -38,11 +38,11 @@ const CompanyStats = () => {
           {/* Chart and stats combined */}
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 mb-8">
             {/* Chart */}
-            <div className="bg-white/5 border border-white/20 rounded-lg p-4 md:p-6 flex-1 max-w-md">
+            <div className="bg-white/5 border border-white/20 rounded-lg p-4 md:p-6 flex-1 max-w-md h-[200px] flex items-center justify-center">
               <img 
                 src={aiAdoptionChart} 
                 alt="AI Adoption Statistics" 
-                className="w-full h-auto rounded"
+                className="w-full h-full object-contain rounded"
               />
             </div>
 
@@ -66,7 +66,7 @@ const CompanyStats = () => {
 
           {/* Brief insight */}
           <p className="text-sm md:text-base text-slate-400 font-open-sauce max-w-2xl mx-auto">
-            The gap between intent and readiness reveals a significant opportunity for AI education and accessible implementation strategies.
+            Many companies want to integrate AI in their workflows, but few are truly prepared for it. This gap between desire and readiness reveals a major need for straightforward AI training and practical implementation roadmaps.
           </p>
         </div>
       </div>
