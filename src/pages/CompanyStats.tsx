@@ -37,13 +37,37 @@ const CompanyStats = () => {
 
           {/* Chart and stats combined */}
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 mb-8">
-            {/* Chart */}
-            <div className="bg-white/5 border border-white/20 rounded-lg p-4 md:p-6 flex-1 max-w-md h-[200px] flex items-center justify-center">
-              <img 
-                src={aiAdoptionChart} 
-                alt="AI Adoption Statistics" 
-                className="w-full h-full object-contain rounded"
-              />
+            {/* Animated Trend Chart */}
+            <div className="bg-white/5 border border-white/20 rounded-lg p-4 md:p-6 flex-1 max-w-md h-[216px] flex items-center justify-center">
+              <svg width="100%" height="100%" viewBox="0 0 300 180" className="w-full h-full">
+                {/* Grid lines */}
+                <defs>
+                  <pattern id="grid" width="30" height="18" patternUnits="userSpaceOnUse">
+                    <path d="M 30 0 L 0 0 0 18" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5"/>
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#grid)" />
+                
+                {/* Trend line path */}
+                <path
+                  d="M 20 160 Q 80 140 120 100 Q 160 60 200 40 Q 240 20 280 10"
+                  fill="none"
+                  stroke="#5CE1E6"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  className="animate-[draw-line_2s_ease-out_forwards]"
+                  style={{
+                    strokeDasharray: '400',
+                    strokeDashoffset: '400',
+                  }}
+                />
+                
+                {/* Data points */}
+                <circle cx="20" cy="160" r="4" fill="#5CE1E6" className="animate-[fade-in_0.5s_ease-out_0.3s_forwards]" style={{ opacity: 0 }} />
+                <circle cx="120" cy="100" r="4" fill="#5CE1E6" className="animate-[fade-in_0.5s_ease-out_0.8s_forwards]" style={{ opacity: 0 }} />
+                <circle cx="200" cy="40" r="4" fill="#5CE1E6" className="animate-[fade-in_0.5s_ease-out_1.3s_forwards]" style={{ opacity: 0 }} />
+                <circle cx="280" cy="10" r="4" fill="#5CE1E6" className="animate-[fade-in_0.5s_ease-out_1.8s_forwards]" style={{ opacity: 0 }} />
+              </svg>
             </div>
 
             {/* Key stats */}
