@@ -1,5 +1,5 @@
 export const ragDemoData = {
-  explainer_title: "The RAG Difference: An Interactive Example",
+  explainer_title: "LLM vs RAG workflow: An interactive example",
   explainer_description: "This short simulation will demonstrate the power of Retrieval-Augmented Generation (RAG). You will see how providing an AI with specific, relevant information dramatically improves the quality of its answers.",
   topics: [
     {

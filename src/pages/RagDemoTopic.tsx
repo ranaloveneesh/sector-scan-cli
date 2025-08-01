@@ -227,8 +227,8 @@ const RagDemoTopic = () => {
 
       {/* Terminal text in bottom left */}
       <div className="absolute bottom-6 left-6 md:bottom-12 md:left-16 z-10 animate-fade-in" style={{ animationDelay: '350ms' }}>
-        <span className="font-tomorrow text-responsive-terminal text-[#5CE1E6] opacity-60">
-          step {currentStep === 'llm' ? '1' : currentStep === 'rag' ? '2' : '3'} of 3...
+        <span className="font-tomorrow text-responsive-terminal text-gray-400">
+          {`> step ${currentStep === 'llm' ? '1' : currentStep === 'rag' ? '2' : '3'} of 3...`}
         </span>
       </div>
 

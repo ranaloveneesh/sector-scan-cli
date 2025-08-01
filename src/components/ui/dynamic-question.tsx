@@ -125,11 +125,10 @@ export const DynamicQuestion: React.FC<DynamicQuestionProps> = ({ onSubmit }) =>
       <div className="absolute bottom-6 right-6 md:bottom-12 md:right-16">
         <button
           onClick={handleSubmit}
-          className="sci-fi-arrow font-mono text-[#5CE1E6] text-responsive-button neon-glow transition-all duration-300 relative hover:text-[#5CE1E6]/80 digital-glitch-click cursor-pointer"
-          data-text="next"
+          className="px-6 py-3 rounded-lg font-medium transition-all duration-300 font-open-sauce bg-[#5CE1E6] text-[#0a1628] hover:bg-[#5CE1E6]/80"
           style={{ pointerEvents: 'auto', zIndex: 10 }}
         >
-          next
+          Next →
         </button>
       </div>
     </div>
