@@ -48,7 +48,7 @@ const AIModelsBreakdown = () => {
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 md:px-8 animate-fade-in" style={{ animationDelay: '200ms' }}>
         <div className="max-w-4xl w-full text-center">
           {/* Title - positioned to align with logo */}
-          <div className="mb-8 md:mb-12" style={{ paddingTop: 'clamp(4rem, 8vh, 5rem)' }}>
+          <div className="mb-8 md:mb-12" style={{ paddingTop: 'clamp(2rem, 5vh, 3rem)' }}>
             <h1 className="text-2xl md:text-3xl lg:text-3.5xl font-bold text-white font-open-sauce leading-relaxed mb-4">
               {getTitleBasedOnAnswer()}
             </h1>
