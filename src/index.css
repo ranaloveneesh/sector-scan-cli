@@ -236,6 +236,36 @@ All colors MUST be HSL.
     }
   }
 
+  @keyframes grow-bar {
+    to {
+      height: 125px;
+    }
+  }
+
+  @keyframes grow-bar-small {
+    to {
+      height: 45px;
+    }
+  }
+
+  @keyframes grow-bar-tiny {
+    to {
+      height: 35px;
+    }
+  }
+
+  @keyframes grow-bar-micro {
+    to {
+      height: 25px;
+    }
+  }
+
+  @keyframes grow-bar-nano {
+    to {
+      height: 18px;
+    }
+  }
+
   .glow-text {
     text-shadow: 0 0 10px hsl(var(--neon-cyan)), 0 0 20px hsl(var(--neon-cyan)), 0 0 30px hsl(var(--neon-cyan));
   }

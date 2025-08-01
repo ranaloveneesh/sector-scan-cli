@@ -37,36 +37,71 @@ const CompanyStats = () => {
 
           {/* Chart and stats combined */}
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 mb-8">
-            {/* Animated Trend Chart */}
-            <div className="bg-white/5 border border-white/20 rounded-lg p-4 md:p-6 flex-1 max-w-md h-[216px] flex items-center justify-center">
-              <svg width="100%" height="100%" viewBox="0 0 300 180" className="w-full h-full">
-                {/* Grid lines */}
+            {/* Animated Professional Chart */}
+            <div className="bg-white/5 border border-white/20 rounded-lg p-4 md:p-6 flex-1 max-w-md h-[240px] flex items-center justify-center">
+              <svg width="100%" height="100%" viewBox="0 0 320 200" className="w-full h-full">
+                {/* Professional grid */}
                 <defs>
-                  <pattern id="grid" width="30" height="18" patternUnits="userSpaceOnUse">
-                    <path d="M 30 0 L 0 0 0 18" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5"/>
+                  <pattern id="grid" width="32" height="20" patternUnits="userSpaceOnUse">
+                    <path d="M 32 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="0.5"/>
                   </pattern>
+                  <linearGradient id="barGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#5CE1E6" stopOpacity="0.8"/>
+                    <stop offset="100%" stopColor="#5CE1E6" stopOpacity="0.3"/>
+                  </linearGradient>
                 </defs>
+                
+                {/* Grid background */}
                 <rect width="100%" height="100%" fill="url(#grid)" />
                 
-                {/* Trend line path */}
-                <path
-                  d="M 20 160 Q 80 140 120 100 Q 160 60 200 40 Q 240 20 280 10"
-                  fill="none"
-                  stroke="#5CE1E6"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  className="animate-[draw-line_2s_ease-out_forwards]"
-                  style={{
-                    strokeDasharray: '400',
-                    strokeDashoffset: '400',
-                  }}
-                />
+                {/* Y-axis labels */}
+                <text x="15" y="25" fill="rgba(255,255,255,0.6)" fontSize="10" textAnchor="end">100%</text>
+                <text x="15" y="65" fill="rgba(255,255,255,0.6)" fontSize="10" textAnchor="end">75%</text>
+                <text x="15" y="105" fill="rgba(255,255,255,0.6)" fontSize="10" textAnchor="end">50%</text>
+                <text x="15" y="145" fill="rgba(255,255,255,0.6)" fontSize="10" textAnchor="end">25%</text>
+                <text x="15" y="185" fill="rgba(255,255,255,0.6)" fontSize="10" textAnchor="end">0%</text>
                 
-                {/* Data points */}
-                <circle cx="20" cy="160" r="4" fill="#5CE1E6" className="animate-[fade-in_0.5s_ease-out_0.3s_forwards]" style={{ opacity: 0 }} />
-                <circle cx="120" cy="100" r="4" fill="#5CE1E6" className="animate-[fade-in_0.5s_ease-out_0.8s_forwards]" style={{ opacity: 0 }} />
-                <circle cx="200" cy="40" r="4" fill="#5CE1E6" className="animate-[fade-in_0.5s_ease-out_1.3s_forwards]" style={{ opacity: 0 }} />
-                <circle cx="280" cy="10" r="4" fill="#5CE1E6" className="animate-[fade-in_0.5s_ease-out_1.8s_forwards]" style={{ opacity: 0 }} />
+                {/* Horizontal grid lines */}
+                <line x1="25" y1="20" x2="310" y2="20" stroke="rgba(255,255,255,0.15)" strokeWidth="0.5"/>
+                <line x1="25" y1="60" x2="310" y2="60" stroke="rgba(255,255,255,0.15)" strokeWidth="0.5"/>
+                <line x1="25" y1="100" x2="310" y2="100" stroke="rgba(255,255,255,0.15)" strokeWidth="0.5"/>
+                <line x1="25" y1="140" x2="310" y2="140" stroke="rgba(255,255,255,0.15)" strokeWidth="0.5"/>
+                <line x1="25" y1="180" x2="310" y2="180" stroke="rgba(255,255,255,0.15)" strokeWidth="0.5"/>
+                
+                {/* Animated bars */}
+                <g>
+                  {/* Bar 1: AI Interest */}
+                  <rect x="40" y="180" width="35" height="0" fill="url(#barGradient)" 
+                        className="animate-[grow-bar_1.5s_ease-out_0.2s_forwards]"
+                        style={{ transformOrigin: 'bottom' }} />
+                  
+                  {/* Bar 2: Current Implementation */}
+                  <rect x="90" y="180" width="35" height="0" fill="url(#barGradient)" 
+                        className="animate-[grow-bar-small_1.5s_ease-out_0.5s_forwards]"
+                        style={{ transformOrigin: 'bottom' }} />
+                  
+                  {/* Bar 3: Ready to Implement */}
+                  <rect x="140" y="180" width="35" height="0" fill="url(#barGradient)" 
+                        className="animate-[grow-bar-tiny_1.5s_ease-out_0.8s_forwards]"
+                        style={{ transformOrigin: 'bottom' }} />
+                  
+                  {/* Bar 4: Have Infrastructure */}
+                  <rect x="190" y="180" width="35" height="0" fill="url(#barGradient)" 
+                        className="animate-[grow-bar-micro_1.5s_ease-out_1.1s_forwards]"
+                        style={{ transformOrigin: 'bottom' }} />
+                  
+                  {/* Bar 5: Successful Implementation */}
+                  <rect x="240" y="180" width="35" height="0" fill="url(#barGradient)" 
+                        className="animate-[grow-bar-nano_1.5s_ease-out_1.4s_forwards]"
+                        style={{ transformOrigin: 'bottom' }} />
+                </g>
+                
+                {/* X-axis labels */}
+                <text x="57" y="195" fill="rgba(255,255,255,0.7)" fontSize="9" textAnchor="middle">Want AI</text>
+                <text x="107" y="195" fill="rgba(255,255,255,0.7)" fontSize="9" textAnchor="middle">Have AI</text>
+                <text x="157" y="195" fill="rgba(255,255,255,0.7)" fontSize="9" textAnchor="middle">Ready</text>
+                <text x="207" y="195" fill="rgba(255,255,255,0.7)" fontSize="9" textAnchor="middle">Infrastructure</text>
+                <text x="257" y="195" fill="rgba(255,255,255,0.7)" fontSize="9" textAnchor="middle">Success</text>
               </svg>
             </div>
 
