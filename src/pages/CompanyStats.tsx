@@ -112,7 +112,7 @@ const CompanyStats = () => {
 
           {/* Brief insight */}
           <p className="text-sm md:text-base text-slate-400 font-open-sauce max-w-2xl mx-auto">
-            Many companies want to integrate AI in their workflows, but few are truly prepared for it. This gap between desire and readiness reveals a major need for straightforward AI training and practical implementation roadmaps.
+            This gap between desire and readiness reveals a major need for straightforward AI training and practical implementation roadmaps.
           </p>
         </div>
       </div>
