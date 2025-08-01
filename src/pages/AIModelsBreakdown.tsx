@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSurvey } from '@/contexts/SurveyContext';
 
-const AIModelsMinigame = () => {
+const AIModelsBreakdown = () => {
   const navigate = useNavigate();
   const { surveyData } = useSurvey();
 
@@ -24,7 +24,7 @@ const AIModelsMinigame = () => {
   };
 
   const handleSubmit = () => {
-    navigate('/aimodels-explained');
+    navigate('/LLMs');
   };
 
   return (
@@ -113,4 +113,4 @@ const AIModelsMinigame = () => {
   );
 };
 
-export default AIModelsMinigame;
+export default AIModelsBreakdown;

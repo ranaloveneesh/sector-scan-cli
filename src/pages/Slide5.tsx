@@ -36,28 +36,28 @@ const Slide5 = () => {
       name: 'TOOLS',
       description: 'Domain-specific instruments\n(APIs, specialized software)',
       icon: Cog,
-      position: { x: -280, y: -60 },
+      position: { x: -200, y: -120 }, // top left
     },
     {
       id: 'data',
       name: 'KNOWLEDGE',
       description: 'Domain-specific information\n(Real-time data, documentation)',
       icon: Database,
-      position: { x: 280, y: -60 },
+      position: { x: 200, y: -120 }, // top right
     },
     {
       id: 'reasoning',
       name: 'PLANNING',
       description: 'Strategic thinking\n(Breaking down complex tasks)',
       icon: Brain,
-      position: { x: -280, y: 60 },
+      position: { x: -200, y: 120 }, // bottom left
     },
     {
       id: 'workflows',
       name: 'EXECUTION',
       description: 'Action workflows\n(Coordinated task completion)',
       icon: Workflow,
-      position: { x: 280, y: 60 },
+      position: { x: 200, y: 120 }, // bottom right
     }
   ];
 
@@ -80,8 +80,9 @@ const Slide5 = () => {
 
       {/* Main content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 md:px-8 animate-fade-in" style={{ animationDelay: '200ms' }}>
+        
         {/* Title - positioned to align with logo */}
-        <div className="text-center mb-8 md:mb-12" style={{ paddingTop: 'clamp(2rem, 8vh, 4rem)' }}>
+        <div className="text-center mb-8 md:mb-12 mt-20 md:mt-24">
           <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-white font-open-sauce leading-relaxed mb-4">
             {getTitleBasedOnAnswer()}
           </h1>
@@ -90,72 +91,116 @@ const Slide5 = () => {
           </p>
         </div>
 
-        {/* Visual diagram */}
-        <div className="relative w-full max-w-4xl h-96 md:h-[500px] flex items-center justify-center">
-          {/* Connection lines */}
-          <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }}>
-            {components.map((component) => (
-              <div 
-                key={component.id}
-                className="absolute bg-[#5CE1E6]/60"
-                style={{
-                  left: '50%',
-                  top: '50%',
-                  width: '2px',
-                  height: `${Math.sqrt(component.position.x * component.position.x + component.position.y * component.position.y)}px`,
-                  transformOrigin: 'top center',
-                  transform: `translate(-1px, 0) rotate(${Math.atan2(component.position.y, component.position.x) * 180 / Math.PI}deg)`
-                }}
+        {/* Visual diagram container */}
+        <div className="relative w-full max-w-5xl mx-auto">
+          <div className="relative flex items-center justify-center" style={{ height: '400px' }}>
+            
+            {/* Connection lines with proper calculations */}
+            <svg 
+              className="absolute inset-0 w-full h-full pointer-events-none" 
+              style={{ zIndex: 1 }}
+              viewBox="0 0 100 100" 
+              preserveAspectRatio="xMidYMid meet"
+            >
+              {/* Line to TOOLS (top left) */}
+              <line 
+                x1="50" 
+                y1="50" 
+                x2="20" 
+                y2="25" 
+                stroke="#5CE1E6" 
+                strokeWidth="0.5" 
+                opacity="0.8"
               />
-            ))}
-          </div>
-
-          {/* Central Agent */}
-          <div className="relative z-20">
-            <div className="w-24 h-24 md:w-32 md:h-32 flex items-center justify-center">
-              <img 
-                src="/lovable-uploads/f912e5d2-b459-41fc-a7e9-3eb49229a52a.png" 
-                alt="AI Agent" 
-                className="w-16 h-16 md:w-24 md:h-24 object-contain"
+              
+              {/* Line to KNOWLEDGE (top right) */}
+              <line 
+                x1="50" 
+                y1="50" 
+                x2="80" 
+                y2="25" 
+                stroke="#5CE1E6" 
+                strokeWidth="0.5" 
+                opacity="0.8"
               />
-            </div>
-            <div className="absolute -bottom-8 md:-bottom-12 left-1/2 transform -translate-x-1/2 text-center">
-              <div className="text-sm md:text-lg font-bold text-[#5CE1E6]">AI AGENT</div>
-            </div>
-          </div>
+              
+              {/* Line to PLANNING (bottom left) */}
+              <line 
+                x1="50" 
+                y1="50" 
+                x2="20" 
+                y2="75" 
+                stroke="#5CE1E6" 
+                strokeWidth="0.5" 
+                opacity="0.8"
+              />
+              
+              {/* Line to EXECUTION (bottom right) */}
+              <line 
+                x1="50" 
+                y1="50" 
+                x2="80" 
+                y2="75" 
+                stroke="#5CE1E6" 
+                strokeWidth="0.5" 
+                opacity="0.8"
+              />
+            </svg>
 
-          {/* Component nodes */}
-          {components.map((component) => {
-            const IconComponent = component.icon;
-            return (
-              <div
-                key={component.id}
-                className="absolute z-30"
-                style={{
-                  transform: `translate(${component.position.x * 0.7}px, ${component.position.y * 0.7}px)`,
-                }}
-              >
-                <div className="flex flex-col items-center max-w-48 md:max-w-64">
-                  {/* Node icon */}
-                  <div className="w-8 h-8 md:w-12 md:h-12 bg-[#0a1628] border-2 border-[#5CE1E6] rounded-full flex items-center justify-center mb-2 md:mb-3">
-                    <IconComponent className="w-4 h-4 md:w-5 md:h-5 text-[#5CE1E6]" />
-                  </div>
-                  
-                  {/* Node content */}
-                  <div className="text-center">
-                    <h3 className="text-xs md:text-sm font-bold text-[#5CE1E6] mb-1 md:mb-2 tracking-wide">
-                      {component.name}
-                    </h3>
-                    <div className="bg-[#0a1628]/80 border border-[#5CE1E6]/20 rounded-lg p-2 md:p-3">
-                      <p className="text-xs text-slate-300 leading-relaxed whitespace-pre-line">
-                        {component.description}
-                      </p>
+            {/* Central Agent */}
+            <div className="absolute z-20" style={{ left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
+              <div className="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center">
+                <img 
+                  src="/lovable-uploads/f912e5d2-b459-41fc-a7e9-3eb49229a52a.png" 
+                  alt="AI Agent" 
+                  className="w-16 h-16 md:w-20 md:h-20 object-contain"
+                />
+              </div>
+              <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-center">
+                <div className="text-sm md:text-base font-bold text-[#5CE1E6]">AI AGENT</div>
+              </div>
+            </div>
+
+            {/* Component nodes positioned precisely */}
+            {components.map((component) => {
+              const IconComponent = component.icon;
+              
+              // Calculate position as percentage
+              const leftPercent = 50 + (component.position.x / 400) * 100; // Scale to percentage
+              const topPercent = 50 + (component.position.y / 400) * 100;
+              
+              return (
+                <div
+                  key={component.id}
+                  className="absolute z-30"
+                  style={{
+                    left: `${leftPercent}%`,
+                    top: `${topPercent}%`,
+                    transform: 'translate(-50%, -50%)',
+                  }}
+                >
+                  <div className="flex flex-col items-center w-48 md:w-56">
+                    {/* Node icon */}
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-[#0a1628] border-2 border-[#5CE1E6] rounded-full flex items-center justify-center mb-3">
+                      <IconComponent className="w-5 h-5 md:w-6 md:h-6 text-[#5CE1E6]" />
+                    </div>
+                    
+                    {/* Node content */}
+                    <div className="text-center">
+                      <h3 className="text-sm md:text-base font-bold text-[#5CE1E6] mb-2 tracking-wide">
+                        {component.name}
+                      </h3>
+                      <div className="bg-[#0a1628]/90 border border-[#5CE1E6]/20 rounded-lg p-3">
+                        <p className="text-xs md:text-sm text-slate-300 leading-relaxed whitespace-pre-line">
+                          {component.description}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
 

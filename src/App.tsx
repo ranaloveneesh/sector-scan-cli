@@ -19,8 +19,7 @@ import LLMs from "./pages/LLMs";
 // import LLMsCompared from "./pages/LLMsCompared";
 import CompanyStats from "./pages/CompanyStats";
 import AIModels from "./pages/AIModels";
-import AIModelsMinigame from "./pages/AIModelsMinigame";
-import AIModelsExplained from "./pages/AIModelsExplained";
+import AIModelsBreakdown from "./pages/AIModelsBreakdown";
 import Slide4 from "./pages/Slide4";
 import Slide5 from "./pages/Slide5";
 import AIAgentsMinigame from "./pages/AIAgentsMinigame";
@@ -46,8 +45,7 @@ const App = () => (
             <Route path="/company-size" element={<PageTransition><CompanySize /></PageTransition>} />
             <Route path="/department" element={<PageTransition><Department /></PageTransition>} />
             <Route path="/aimodels" element={<PageTransition><AIModels /></PageTransition>} />
-            <Route path="/aimodels-minigame" element={<PageTransition><AIModelsMinigame /></PageTransition>} />
-            <Route path="/aimodels-explained" element={<PageTransition><AIModelsExplained /></PageTransition>} />
+            <Route path="/aimodels-breakdown" element={<PageTransition><AIModelsBreakdown /></PageTransition>} />
             <Route path="/LLMs" element={<PageTransition><LLMs /></PageTransition>} />
             {/* <Route path="/llms-compared" element={<PageTransition><LLMsCompared /></PageTransition>} /> */}
             <Route path="/rag-pipeline" element={<PageTransition><RagPipeline /></PageTransition>} />

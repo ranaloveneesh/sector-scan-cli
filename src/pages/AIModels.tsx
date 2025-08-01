@@ -33,7 +33,7 @@ const AIModels = () => {
 
   const handleSubmit = (selectedOptions: string[]) => {
     updateSurveyData('aiAgentKnowledge', selectedOptions[0]);
-    navigate('/aimodels-minigame');
+    navigate('/aimodels-breakdown');
   };
 
   return (
