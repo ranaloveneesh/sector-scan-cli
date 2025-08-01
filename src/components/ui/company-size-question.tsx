@@ -101,9 +101,9 @@ export const CompanySizeQuestion: React.FC<CompanySizeQuestionProps> = ({
         <span className="font-tomorrow text-responsive-label text-[#5CE1E6] neon-glow">{data.ui.label || 'company_size'}</span>
       </div>
 
-      {/* Static text box positioned high */}
+      {/* Static text box positioned lower to align with logo */}
       {data.isStatic && !data.showBrainGame && !data.showAgentFundamentalsGame && !data.showAgentExplainedVisual && data.title && (
-        <div className="absolute top-32 left-6 right-6 md:top-40 md:left-16 md:right-16 z-10 animate-fade-in flex flex-col items-center" style={{ animationDelay: '250ms' }}>
+        <div className="absolute top-44 left-6 right-6 md:top-52 md:left-16 md:right-16 z-10 animate-fade-in flex flex-col items-center" style={{ animationDelay: '250ms' }}>
           <h1 className="text-2xl md:text-3xl lg:text-3.5xl font-bold text-white font-open-sauce leading-relaxed max-w-4xl text-center mb-2">
             {data.title}
           </h1>

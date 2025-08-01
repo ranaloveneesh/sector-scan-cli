@@ -9,9 +9,11 @@ import Index from "./pages/Index";
 import CompanySize from "./pages/CompanySize";
 import Department from "./pages/Department";
 import RagPipeline from "./pages/RagPipeline";
-import RagPipelineExplained from "./pages/RagPipelineExplained";
+import RagDemo from "./pages/RagDemo";
+import RagDemoTopic from "./pages/RagDemoTopic";
 import LLMs from "./pages/LLMs";
-import LLMsCompared from "./pages/LLMsCompared";
+// import RagPipelineExplained from "./pages/RagPipelineExplained";
+// import LLMsCompared from "./pages/LLMsCompared";
 import CompanyStats from "./pages/CompanyStats";
 import AIModels from "./pages/AIModels";
 import AIModelsMinigame from "./pages/AIModelsMinigame";
@@ -44,9 +46,11 @@ const App = () => (
             <Route path="/aimodels-minigame" element={<PageTransition><AIModelsMinigame /></PageTransition>} />
             <Route path="/aimodels-explained" element={<PageTransition><AIModelsExplained /></PageTransition>} />
             <Route path="/LLMs" element={<PageTransition><LLMs /></PageTransition>} />
-            <Route path="/llms-compared" element={<PageTransition><LLMsCompared /></PageTransition>} />
+            {/* <Route path="/llms-compared" element={<PageTransition><LLMsCompared /></PageTransition>} /> */}
             <Route path="/rag-pipeline" element={<PageTransition><RagPipeline /></PageTransition>} />
-            <Route path="/ragpipeline-explained" element={<PageTransition><RagPipelineExplained /></PageTransition>} />
+            <Route path="/rag-demo" element={<PageTransition><RagDemo /></PageTransition>} />
+            <Route path="/rag-demo/:topicId" element={<PageTransition><RagDemoTopic /></PageTransition>} />
+            {/* <Route path="/ragpipeline-explained" element={<PageTransition><RagPipelineExplained /></PageTransition>} /> */}
             <Route path="/aiagents" element={<PageTransition><Slide4 /></PageTransition>} />
             <Route path="/aiagents-minigame" element={<PageTransition><AIAgentsMinigame /></PageTransition>} />
             <Route path="/aiagent-explained" element={<PageTransition><Slide5 /></PageTransition>} />
