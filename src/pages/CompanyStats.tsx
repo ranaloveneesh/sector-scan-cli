@@ -26,37 +26,48 @@ const CompanyStats = () => {
         <span className="font-tomorrow text-responsive-label text-[#5CE1E6] neon-glow">company_stats</span>
       </div>
 
-      {/* Main content */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-8 md:px-32 lg:px-48 animate-fade-in" style={{ animationDelay: '200ms' }}>
-        <div className="max-w-6xl w-full text-center">
-          {/* Title */}
-          <h1 className="text-2xl md:text-3xl lg:text-3.5xl font-bold mb-6 text-white font-open-sauce leading-relaxed">
-            The AI Adoption Gap: Intent vs. Reality
-          </h1>
+      {/* Main content - positioned to align with logo */}
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 md:px-8 animate-fade-in" style={{ animationDelay: '200ms' }}>
+        <div className="max-w-4xl w-full text-center" style={{ paddingTop: 'clamp(2rem, 5vh, 3rem)' }}>
           
-          {/* Subtitle */}
-          <p className="text-lg md:text-xl lg:text-xl font-normal text-slate-100 font-open-sauce leading-relaxed max-w-4xl mx-auto mb-12">
-            78% of companies want to integrate AI into their workflows, but most aren't ready to take the leap. Here's what the data shows about the growing demand for AI solutions.
-          </p>
+          {/* Compact title */}
+          <h1 className="text-xl md:text-2xl lg:text-3xl font-bold mb-6 text-white font-open-sauce leading-relaxed">
+            78% of companies want to integrate AI into their workflows, but most aren't ready for it
+          </h1>
 
-          {/* Chart */}
-          <div className="flex justify-center mb-12">
-            <div className="bg-white/5 border border-white/20 rounded-xl p-8 max-w-3xl w-full">
+          {/* Chart and stats combined */}
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 mb-8">
+            {/* Chart */}
+            <div className="bg-white/5 border border-white/20 rounded-lg p-4 md:p-6 flex-1 max-w-md">
               <img 
                 src={aiAdoptionChart} 
-                alt="AI Adoption Statistics Chart" 
-                className="w-full h-auto rounded-lg"
+                alt="AI Adoption Statistics" 
+                className="w-full h-auto rounded"
               />
+            </div>
+
+            {/* Key stats */}
+            <div className="flex-1 max-w-sm space-y-4">
+              <div className="bg-[#5CE1E6]/10 border border-[#5CE1E6]/30 rounded-lg p-4 md:p-6">
+                <div className="text-2xl md:text-3xl font-bold text-[#5CE1E6] mb-2">78%</div>
+                <p className="text-sm md:text-base text-slate-300 font-open-sauce">
+                  Want AI integration
+                </p>
+              </div>
+              
+              <div className="bg-orange-500/10 border border-orange-500/30 rounded-lg p-4 md:p-6">
+                <div className="text-2xl md:text-3xl font-bold text-orange-400 mb-2">22%</div>
+                <p className="text-sm md:text-base text-slate-300 font-open-sauce">
+                  Actually ready to implement
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* Key statistic */}
-          <div className="bg-[#5CE1E6]/10 border border-[#5CE1E6]/30 rounded-xl p-8 max-w-2xl mx-auto">
-            <div className="text-4xl md:text-5xl font-bold text-[#5CE1E6] mb-2">78%</div>
-            <p className="text-lg text-slate-100 font-open-sauce">
-              of companies recognize AI's potential to transform their workflows, but lack the knowledge and infrastructure to implement it effectively.
-            </p>
-          </div>
+          {/* Brief insight */}
+          <p className="text-sm md:text-base text-slate-400 font-open-sauce max-w-2xl mx-auto">
+            The gap between intent and readiness reveals a significant opportunity for AI education and accessible implementation strategies.
+          </p>
         </div>
       </div>
 
@@ -72,10 +83,8 @@ const CompanyStats = () => {
       <div className="absolute bottom-6 right-6 md:bottom-12 md:right-16 animate-fade-in" style={{ animationDelay: '450ms' }}>
         <button 
           onClick={handleSubmit} 
-          className="px-6 py-3 rounded-lg font-medium transition-all duration-300 font-open-sauce"
+          className="px-6 py-3 rounded-lg font-medium transition-all duration-300 font-open-sauce bg-[#5CE1E6] text-[#0a1628] hover:bg-[#5CE1E6]/80"
           style={{
-            backgroundColor: '#5CE1E6',
-            color: '#0a1628',
             pointerEvents: 'auto',
             zIndex: 10
           }}
