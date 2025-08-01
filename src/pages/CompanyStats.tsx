@@ -68,24 +68,27 @@ const CompanyStats = () => {
                 <line x1="25" y1="140" x2="310" y2="140" stroke="rgba(255,255,255,0.15)" strokeWidth="0.5"/>
                 <line x1="25" y1="180" x2="310" y2="180" stroke="rgba(255,255,255,0.15)" strokeWidth="0.5"/>
                 
-                {/* Trend line from origin to infinity */}
+                {/* Trend line following specific percentages: 0%, 25%, 20%, 55%, 48%, 78% */}
                 <path
-                  d="M 25 180 L 70 55 L 120 70 L 170 90 L 220 60 L 250 40 L 270 35 L 285 30 L 295 20 L 305 25 L 310 15"
+                  d="M 25 180 L 75 140 L 125 148 L 175 92 L 225 103 L 275 55"
                   fill="none"
                   stroke="#5CE1E6"
                   strokeWidth="2.5"
                   strokeLinecap="round"
                   className="animate-[draw-trend_2s_ease-out_forwards]"
                   style={{
-                    strokeDasharray: '450',
-                    strokeDashoffset: '450',
+                    strokeDasharray: '400',
+                    strokeDashoffset: '400',
                   }}
                 />
                 
-                {/* Data points */}
-                <circle cx="70" cy="55" r="3" fill="#5CE1E6" className="animate-[fade-in_0.3s_ease-out_1.2s_forwards]" style={{ opacity: 0 }} />
-                <circle cx="170" cy="90" r="3" fill="#5CE1E6" className="animate-[fade-in_0.3s_ease-out_1.5s_forwards]" style={{ opacity: 0 }} />
-                <circle cx="250" cy="40" r="3" fill="#5CE1E6" className="animate-[fade-in_0.3s_ease-out_1.8s_forwards]" style={{ opacity: 0 }} />
+                {/* Data points at specified percentages */}
+                <circle cx="25" cy="180" r="3" fill="#5CE1E6" className="animate-[fade-in_0.3s_ease-out_0.3s_forwards]" style={{ opacity: 0 }} />
+                <circle cx="75" cy="140" r="3" fill="#5CE1E6" className="animate-[fade-in_0.3s_ease-out_0.6s_forwards]" style={{ opacity: 0 }} />
+                <circle cx="125" cy="148" r="3" fill="#5CE1E6" className="animate-[fade-in_0.3s_ease-out_0.9s_forwards]" style={{ opacity: 0 }} />
+                <circle cx="175" cy="92" r="3" fill="#5CE1E6" className="animate-[fade-in_0.3s_ease-out_1.2s_forwards]" style={{ opacity: 0 }} />
+                <circle cx="225" cy="103" r="3" fill="#5CE1E6" className="animate-[fade-in_0.3s_ease-out_1.5s_forwards]" style={{ opacity: 0 }} />
+                <circle cx="275" cy="55" r="3" fill="#5CE1E6" className="animate-[fade-in_0.3s_ease-out_1.8s_forwards]" style={{ opacity: 0 }} />
               </svg>
             </div>
 
