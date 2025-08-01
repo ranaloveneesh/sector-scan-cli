@@ -41,7 +41,7 @@ const AIModelsExplained = () => {
   };
 
   const handleSubmit = () => {
-    navigate('/LLMs');
+    navigate('/ai-model-test');
   };
 
   return (
