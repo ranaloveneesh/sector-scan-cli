@@ -41,7 +41,7 @@ const AIModelsExplained = () => {
   };
 
   const handleSubmit = () => {
-    navigate('/ai-model-test');
+    navigate('/ai-model-summary');
   };
 
   return (

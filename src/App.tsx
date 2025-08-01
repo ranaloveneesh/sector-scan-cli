@@ -11,8 +11,8 @@ import Department from "./pages/Department";
 import RagPipeline from "./pages/RagPipeline";
 import RagDemo from "./pages/RagDemo";
 import RagDemoTopic from "./pages/RagDemoTopic";
-import AIModelKnowledgeTest from "./pages/AIModelKnowledgeTest";
-import AIModelGame from "./pages/AIModelGame";
+// import AIModelKnowledgeTest from "./pages/AIModelKnowledgeTest";
+// import AIModelGame from "./pages/AIModelGame";
 import AIModelSummary from "./pages/AIModelSummary";
 import LLMs from "./pages/LLMs";
 // import RagPipelineExplained from "./pages/RagPipelineExplained";
@@ -53,8 +53,8 @@ const App = () => (
             <Route path="/rag-pipeline" element={<PageTransition><RagPipeline /></PageTransition>} />
             <Route path="/rag-demo" element={<PageTransition><RagDemo /></PageTransition>} />
             <Route path="/rag-demo/:topicId" element={<PageTransition><RagDemoTopic /></PageTransition>} />
-            <Route path="/ai-model-test" element={<PageTransition><AIModelKnowledgeTest /></PageTransition>} />
-            <Route path="/ai-model-game" element={<PageTransition><AIModelGame /></PageTransition>} />
+            {/* <Route path="/ai-model-test" element={<PageTransition><AIModelKnowledgeTest /></PageTransition>} /> */}
+            {/* <Route path="/ai-model-game" element={<PageTransition><AIModelGame /></PageTransition>} /> */}
             <Route path="/ai-model-summary" element={<PageTransition><AIModelSummary /></PageTransition>} />
             {/* <Route path="/ragpipeline-explained" element={<PageTransition><RagPipelineExplained /></PageTransition>} /> */}
             <Route path="/aiagents" element={<PageTransition><Slide4 /></PageTransition>} />
