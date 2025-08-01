@@ -103,11 +103,11 @@ const AIAgentsComponents = () => {
               viewBox="0 0 100 100" 
               preserveAspectRatio="xMidYMid meet"
             >
-              {/* Lines connecting center agent to each component node */}
-              <line x1="50" y1="50" x2="27.5" y2="35" stroke="#5CE1E6" strokeWidth="0.4" opacity="0.8" />
-              <line x1="50" y1="50" x2="72.5" y2="35" stroke="#5CE1E6" strokeWidth="0.4" opacity="0.8" />
-              <line x1="50" y1="50" x2="27.5" y2="65" stroke="#5CE1E6" strokeWidth="0.4" opacity="0.8" />
-              <line x1="50" y1="50" x2="72.5" y2="65" stroke="#5CE1E6" strokeWidth="0.4" opacity="0.8" />
+              {/* Lines connecting center agent to each component node - exact positioning */}
+              <line x1="50" y1="50" x2="27.5" y2="20" stroke="#5CE1E6" strokeWidth="0.5" opacity="0.9" />
+              <line x1="50" y1="50" x2="72.5" y2="20" stroke="#5CE1E6" strokeWidth="0.5" opacity="0.9" />
+              <line x1="50" y1="50" x2="27.5" y2="80" stroke="#5CE1E6" strokeWidth="0.5" opacity="0.9" />
+              <line x1="50" y1="50" x2="72.5" y2="80" stroke="#5CE1E6" strokeWidth="0.5" opacity="0.9" />
             </svg>
 
             {/* Central AI Agent Character */}
