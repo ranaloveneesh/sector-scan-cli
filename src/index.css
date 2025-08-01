@@ -236,6 +236,12 @@ All colors MUST be HSL.
     }
   }
 
+  @keyframes draw-trend {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
   @keyframes grow-bar {
     to {
       height: 125px;

@@ -38,7 +38,7 @@ const CompanyStats = () => {
           {/* Chart and stats combined */}
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 mb-8">
             {/* Animated Professional Chart */}
-            <div className="bg-white/5 border border-white/20 rounded-lg p-4 md:p-6 flex-1 max-w-md h-[240px] flex items-center justify-center">
+            <div className="bg-white/5 border border-white/20 rounded-lg p-4 md:p-6 flex-1 max-w-md h-[250px] flex items-center justify-center">
               <svg width="100%" height="100%" viewBox="0 0 320 200" className="w-full h-full">
                 {/* Professional grid */}
                 <defs>
@@ -68,6 +68,20 @@ const CompanyStats = () => {
                 <line x1="25" y1="140" x2="310" y2="140" stroke="rgba(255,255,255,0.15)" strokeWidth="0.5"/>
                 <line x1="25" y1="180" x2="310" y2="180" stroke="rgba(255,255,255,0.15)" strokeWidth="0.5"/>
                 
+                {/* Trend line from origin */}
+                <path
+                  d="M 25 180 L 70 55 L 120 70 L 170 90 L 220 110 L 270 130"
+                  fill="none"
+                  stroke="#5CE1E6"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  className="animate-[draw-trend_2s_ease-out_forwards]"
+                  style={{
+                    strokeDasharray: '350',
+                    strokeDashoffset: '350',
+                  }}
+                />
+                
                 {/* Animated bars */}
                 <g>
                   {/* Bar 1: AI Interest */}
@@ -95,13 +109,6 @@ const CompanyStats = () => {
                         className="animate-[grow-bar-nano_1.5s_ease-out_1.4s_forwards]"
                         style={{ transformOrigin: 'bottom' }} />
                 </g>
-                
-                {/* X-axis labels */}
-                <text x="57" y="195" fill="rgba(255,255,255,0.7)" fontSize="9" textAnchor="middle">Want AI</text>
-                <text x="107" y="195" fill="rgba(255,255,255,0.7)" fontSize="9" textAnchor="middle">Have AI</text>
-                <text x="157" y="195" fill="rgba(255,255,255,0.7)" fontSize="9" textAnchor="middle">Ready</text>
-                <text x="207" y="195" fill="rgba(255,255,255,0.7)" fontSize="9" textAnchor="middle">Infrastructure</text>
-                <text x="257" y="195" fill="rgba(255,255,255,0.7)" fontSize="9" textAnchor="middle">Success</text>
               </svg>
             </div>
 
