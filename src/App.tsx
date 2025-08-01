@@ -23,6 +23,7 @@ import AIModelsBreakdown from "./pages/AIModelsBreakdown";
 import Slide4 from "./pages/Slide4";
 import Slide5 from "./pages/Slide5";
 import AIAgentsMinigame from "./pages/AIAgentsMinigame";
+import AIAgentsComponents from "./pages/AIAgentsComponents";
 import ModelUtility from "./pages/ModelUtility";
 import DataAccessibility from "./pages/DataAccessibility";
 import RagImpact from "./pages/RagImpact";
@@ -57,6 +58,7 @@ const App = () => (
             {/* <Route path="/ragpipeline-explained" element={<PageTransition><RagPipelineExplained /></PageTransition>} /> */}
             <Route path="/aiagents" element={<PageTransition><Slide4 /></PageTransition>} />
             <Route path="/aiagents-minigame" element={<PageTransition><AIAgentsMinigame /></PageTransition>} />
+            <Route path="/aiagents-components" element={<PageTransition><AIAgentsComponents /></PageTransition>} />
             <Route path="/aiagent-explained" element={<PageTransition><Slide5 /></PageTransition>} />
             <Route path="/model-utility" element={<PageTransition><ModelUtility /></PageTransition>} />
             <Route path="/data-accessibility" element={<PageTransition><DataAccessibility /></PageTransition>} />
