@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSurvey } from '@/contexts/SurveyContext';
+import { Database, Cog, Brain, Workflow } from 'lucide-react';
 
 const AIAgentsComponents = () => {
   const navigate = useNavigate();
@@ -11,17 +12,17 @@ const AIAgentsComponents = () => {
     
     switch (previousAnswer) {
       case "A chatbot":
-        return "Great job! Now you see how AI agents work beyond simple chatbots.";
+        return "Great job! Here's what makes AI agents intelligent:";
       case "A tool that automates repetitive tasks":
-        return "Perfect! You've discovered how agents think and act autonomously.";
+        return "Perfect! You've discovered the 4 core components:";
       case "A software entity that can perceive, reason, and act autonomously":
-        return "Excellent! You had the right idea — now you've seen it in action.";
+        return "Excellent! Here are the 4 components you just assembled:";
       case "No idea, but I'm curious":
-        return "Perfect! You've just built your first AI agent. Here's what you discovered.";
+        return "Perfect! You've just built an AI agent with these 4 parts:";
       case "I thought I did... now I'm not so sure":
-        return "Now you know for sure! Here are the 4 core components you just assembled.";
+        return "Now you know! These are the 4 core components:";
       default:
-        return "Great work! Here are the 4 core components of every AI agent.";
+        return "Great work! Here are the 4 core components:";
     }
   };
 
@@ -31,27 +32,35 @@ const AIAgentsComponents = () => {
 
   const components = [
     {
+      id: 'tools',
       title: "TOOLS",
-      description: "Domain-specific instruments that extend the agent's capabilities",
-      examples: "APIs, databases, calculators, web browsers, specialized software",
+      subtitle: "Specialized instruments",
+      icon: Cog,
+      position: { x: -180, y: -120 },
       color: "#5CE1E6"
     },
     {
+      id: 'knowledge',
       title: "KNOWLEDGE",
-      description: "Domain-specific information the agent can access and reference",
-      examples: "Documentation, real-time data, training materials, context files",
+      subtitle: "Domain expertise",
+      icon: Database,
+      position: { x: 180, y: -120 },
       color: "#5CE1E6"
     },
     {
+      id: 'planning',
       title: "PLANNING",
-      description: "Strategic reasoning to break down complex tasks into steps",
-      examples: "Goal decomposition, task prioritization, decision trees, logic chains",
+      subtitle: "Strategic thinking",
+      icon: Brain,
+      position: { x: -180, y: 120 },
       color: "#5CE1E6"
     },
     {
+      id: 'execution',
       title: "EXECUTION",
-      description: "Coordinated workflows to complete tasks autonomously",
-      examples: "Action sequences, process automation, result validation, error handling",
+      subtitle: "Action workflows",
+      icon: Workflow,
+      position: { x: 180, y: 120 },
       color: "#5CE1E6"
     }
   ];
@@ -75,53 +84,92 @@ const AIAgentsComponents = () => {
 
       {/* Main content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 md:px-8 animate-fade-in" style={{ animationDelay: '200ms' }}>
-        <div className="max-w-4xl w-full">
-          
-          {/* Title - positioned to align with logo */}
-          <div className="text-center mb-8 md:mb-12" style={{ paddingTop: 'clamp(4rem, 10vh, 6rem)' }}>
-            <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-white font-open-sauce leading-relaxed mb-4">
-              {getTitleBasedOnAnswer()}
-            </h1>
-            <p className="text-base md:text-lg text-slate-100 font-open-sauce leading-relaxed max-w-3xl mx-auto">
-              Every intelligent agent combines these 4 core components to work autonomously
-            </p>
-          </div>
+        
+        {/* Title - positioned to align with logo */}
+        <div className="text-center mb-8 md:mb-12" style={{ paddingTop: 'clamp(2rem, 8vh, 4rem)' }}>
+          <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-white font-open-sauce leading-relaxed mb-4">
+            {getTitleBasedOnAnswer()}
+          </h1>
+        </div>
 
-          {/* Components explanation */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-5xl mx-auto">
-            {components.map((component, index) => (
-              <div 
-                key={component.title}
-                className="bg-[#5CE1E6]/5 border border-[#5CE1E6]/20 rounded-lg p-4 md:p-6 animate-fade-in hover:bg-[#5CE1E6]/10 transition-all duration-300"
-                style={{ animationDelay: `${300 + index * 100}ms` }}
-              >
-                <div className="flex items-center mb-3">
-                  <div className="w-3 h-3 rounded-full bg-[#5CE1E6] mr-3 shadow-[0_0_10px_#5CE1E6]"></div>
-                  <h3 className="text-base md:text-lg font-bold text-[#5CE1E6] font-open-sauce tracking-wide">
-                    {component.title}
-                  </h3>
-                </div>
-                
-                <p className="text-sm md:text-base text-white font-open-sauce leading-relaxed mb-3">
-                  {component.description}
-                </p>
-                
-                <div className="text-xs md:text-sm text-slate-300 font-mono leading-relaxed">
-                  <span className="text-slate-400">Examples: </span>
-                  {component.examples}
-                </div>
+        {/* Visual diagram container */}
+        <div className="relative w-full max-w-4xl mx-auto">
+          <div className="relative flex items-center justify-center" style={{ height: '400px' }}>
+            
+            {/* Connection lines */}
+            <svg 
+              className="absolute inset-0 w-full h-full pointer-events-none" 
+              style={{ zIndex: 1 }}
+              viewBox="0 0 100 100" 
+              preserveAspectRatio="xMidYMid meet"
+            >
+              {/* Lines connecting center to each component */}
+              <line x1="50" y1="50" x2="25" y2="30" stroke="#5CE1E6" strokeWidth="0.3" opacity="0.6" />
+              <line x1="50" y1="50" x2="75" y2="30" stroke="#5CE1E6" strokeWidth="0.3" opacity="0.6" />
+              <line x1="50" y1="50" x2="25" y2="70" stroke="#5CE1E6" strokeWidth="0.3" opacity="0.6" />
+              <line x1="50" y1="50" x2="75" y2="70" stroke="#5CE1E6" strokeWidth="0.3" opacity="0.6" />
+            </svg>
+
+            {/* Central AI Agent Character */}
+            <div className="absolute z-20" style={{ left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
+              <div className="w-24 h-24 md:w-32 md:h-32 flex items-center justify-center animate-fade-in" style={{ animationDelay: '300ms' }}>
+                <img 
+                  src="/lovable-uploads/4d22ecc4-3670-475b-a26e-69d839e33fd8.png" 
+                  alt="AI Agent" 
+                  className="w-20 h-20 md:w-28 md:h-28 object-contain drop-shadow-lg"
+                />
               </div>
-            ))}
-          </div>
-
-          {/* Summary */}
-          <div className="text-center mt-8 md:mt-12 max-w-3xl mx-auto">
-            <div className="bg-[#5CE1E6]/5 border border-[#5CE1E6]/20 rounded-lg p-4 md:p-6 animate-fade-in" style={{ animationDelay: '700ms' }}>
-              <p className="text-sm md:text-base text-slate-100 font-open-sauce leading-relaxed">
-                <span className="text-[#5CE1E6] font-semibold">Together,</span> these components enable AI agents to perceive their environment, reason about complex problems, and take autonomous actions — making them far more capable than simple automation scripts.
-              </p>
+              <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-center">
+                <div className="text-sm md:text-base font-bold text-[#5CE1E6]">AI AGENT</div>
+              </div>
             </div>
+
+            {/* Component nodes */}
+            {components.map((component, index) => {
+              const IconComponent = component.icon;
+              
+              // Calculate position as percentage
+              const leftPercent = 50 + (component.position.x / 400) * 100;
+              const topPercent = 50 + (component.position.y / 400) * 100;
+              
+              return (
+                <div
+                  key={component.id}
+                  className="absolute z-30 animate-fade-in"
+                  style={{
+                    left: `${leftPercent}%`,
+                    top: `${topPercent}%`,
+                    transform: 'translate(-50%, -50%)',
+                    animationDelay: `${400 + index * 100}ms`
+                  }}
+                >
+                  <div className="flex flex-col items-center w-32 md:w-40">
+                    {/* Component icon with glow effect */}
+                    <div className="w-12 h-12 md:w-16 md:h-16 bg-[#0a1628] border-2 border-[#5CE1E6] rounded-full flex items-center justify-center mb-3 shadow-[0_0_20px_rgba(92,225,230,0.4)]">
+                      <IconComponent className="w-6 h-6 md:w-8 md:h-8 text-[#5CE1E6]" />
+                    </div>
+                    
+                    {/* Component labels */}
+                    <div className="text-center">
+                      <h3 className="text-xs md:text-sm font-bold text-[#5CE1E6] mb-1 tracking-wide">
+                        {component.title}
+                      </h3>
+                      <p className="text-xs text-slate-300 font-open-sauce">
+                        {component.subtitle}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
+        </div>
+
+        {/* Simple summary */}
+        <div className="text-center mt-8 animate-fade-in" style={{ animationDelay: '800ms' }}>
+          <p className="text-sm md:text-base text-slate-300 font-open-sauce max-w-2xl mx-auto">
+            These 4 components work together to make AI agents autonomous and intelligent
+          </p>
         </div>
       </div>
 
