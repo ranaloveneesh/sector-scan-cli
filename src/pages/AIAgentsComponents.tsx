@@ -36,7 +36,7 @@ const AIAgentsComponents = () => {
       title: "TOOLS",
       subtitle: "Specialized instruments",
       icon: Cog,
-      position: { x: -220, y: -140 },
+      position: { x: -180, y: -120 },
       color: "#5CE1E6"
     },
     {
@@ -44,7 +44,7 @@ const AIAgentsComponents = () => {
       title: "KNOWLEDGE",
       subtitle: "Domain expertise",
       icon: Database,
-      position: { x: 220, y: -140 },
+      position: { x: 180, y: -120 },
       color: "#5CE1E6"
     },
     {
@@ -52,7 +52,7 @@ const AIAgentsComponents = () => {
       title: "PLANNING",
       subtitle: "Strategic thinking",
       icon: Brain,
-      position: { x: -220, y: 140 },
+      position: { x: -180, y: 120 },
       color: "#5CE1E6"
     },
     {
@@ -60,7 +60,7 @@ const AIAgentsComponents = () => {
       title: "EXECUTION",
       subtitle: "Action workflows",
       icon: Workflow,
-      position: { x: 220, y: 140 },
+      position: { x: 180, y: 120 },
       color: "#5CE1E6"
     }
   ];
@@ -103,11 +103,11 @@ const AIAgentsComponents = () => {
               viewBox="0 0 100 100" 
               preserveAspectRatio="xMidYMid meet"
             >
-              {/* Lines connecting center to each component - longer lines that reach the nodes */}
-              <line x1="50" y1="50" x2="18" y2="25" stroke="#5CE1E6" strokeWidth="0.4" opacity="0.8" />
-              <line x1="50" y1="50" x2="82" y2="25" stroke="#5CE1E6" strokeWidth="0.4" opacity="0.8" />
-              <line x1="50" y1="50" x2="18" y2="75" stroke="#5CE1E6" strokeWidth="0.4" opacity="0.8" />
-              <line x1="50" y1="50" x2="82" y2="75" stroke="#5CE1E6" strokeWidth="0.4" opacity="0.8" />
+              {/* Lines connecting center agent to each component node */}
+              <line x1="50" y1="50" x2="27.5" y2="35" stroke="#5CE1E6" strokeWidth="0.4" opacity="0.8" />
+              <line x1="50" y1="50" x2="72.5" y2="35" stroke="#5CE1E6" strokeWidth="0.4" opacity="0.8" />
+              <line x1="50" y1="50" x2="27.5" y2="65" stroke="#5CE1E6" strokeWidth="0.4" opacity="0.8" />
+              <line x1="50" y1="50" x2="72.5" y2="65" stroke="#5CE1E6" strokeWidth="0.4" opacity="0.8" />
             </svg>
 
             {/* Central AI Agent Character */}
