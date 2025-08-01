@@ -68,47 +68,24 @@ const CompanyStats = () => {
                 <line x1="25" y1="140" x2="310" y2="140" stroke="rgba(255,255,255,0.15)" strokeWidth="0.5"/>
                 <line x1="25" y1="180" x2="310" y2="180" stroke="rgba(255,255,255,0.15)" strokeWidth="0.5"/>
                 
-                {/* Trend line from origin */}
+                {/* Trend line from origin to infinity */}
                 <path
-                  d="M 25 180 L 70 55 L 120 70 L 170 90 L 220 110 L 270 130"
+                  d="M 25 180 L 70 55 L 120 70 L 170 90 L 220 60 L 250 40 L 270 35 L 285 30 L 295 20 L 305 25 L 310 15"
                   fill="none"
                   stroke="#5CE1E6"
                   strokeWidth="2.5"
                   strokeLinecap="round"
                   className="animate-[draw-trend_2s_ease-out_forwards]"
                   style={{
-                    strokeDasharray: '350',
-                    strokeDashoffset: '350',
+                    strokeDasharray: '450',
+                    strokeDashoffset: '450',
                   }}
                 />
                 
-                {/* Animated bars */}
-                <g>
-                  {/* Bar 1: AI Interest */}
-                  <rect x="40" y="180" width="35" height="0" fill="url(#barGradient)" 
-                        className="animate-[grow-bar_1.5s_ease-out_0.2s_forwards]"
-                        style={{ transformOrigin: 'bottom' }} />
-                  
-                  {/* Bar 2: Current Implementation */}
-                  <rect x="90" y="180" width="35" height="0" fill="url(#barGradient)" 
-                        className="animate-[grow-bar-small_1.5s_ease-out_0.5s_forwards]"
-                        style={{ transformOrigin: 'bottom' }} />
-                  
-                  {/* Bar 3: Ready to Implement */}
-                  <rect x="140" y="180" width="35" height="0" fill="url(#barGradient)" 
-                        className="animate-[grow-bar-tiny_1.5s_ease-out_0.8s_forwards]"
-                        style={{ transformOrigin: 'bottom' }} />
-                  
-                  {/* Bar 4: Have Infrastructure */}
-                  <rect x="190" y="180" width="35" height="0" fill="url(#barGradient)" 
-                        className="animate-[grow-bar-micro_1.5s_ease-out_1.1s_forwards]"
-                        style={{ transformOrigin: 'bottom' }} />
-                  
-                  {/* Bar 5: Successful Implementation */}
-                  <rect x="240" y="180" width="35" height="0" fill="url(#barGradient)" 
-                        className="animate-[grow-bar-nano_1.5s_ease-out_1.4s_forwards]"
-                        style={{ transformOrigin: 'bottom' }} />
-                </g>
+                {/* Data points */}
+                <circle cx="70" cy="55" r="3" fill="#5CE1E6" className="animate-[fade-in_0.3s_ease-out_1.2s_forwards]" style={{ opacity: 0 }} />
+                <circle cx="170" cy="90" r="3" fill="#5CE1E6" className="animate-[fade-in_0.3s_ease-out_1.5s_forwards]" style={{ opacity: 0 }} />
+                <circle cx="250" cy="40" r="3" fill="#5CE1E6" className="animate-[fade-in_0.3s_ease-out_1.8s_forwards]" style={{ opacity: 0 }} />
               </svg>
             </div>
 
