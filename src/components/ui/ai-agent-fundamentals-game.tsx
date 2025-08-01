@@ -28,11 +28,11 @@ const AgentFundamentalsGame: React.FC<AgentFundamentalsGameProps> = ({ onComplet
     { id: 'plugins', name: 'Plugins', isCorrect: false, angle: 315 },
   ];
 
-  // Continuous rotation animation - faster speed
+  // Continuous rotation animation - increased speed
   useEffect(() => {
     const interval = setInterval(() => {
-      setRotationAngle(prev => (prev + 0.2) % 360);
-    }, 100); // Faster rotation speed
+      setRotationAngle(prev => (prev + 0.3) % 360);
+    }, 80); // Even faster rotation speed
 
     return () => clearInterval(interval);
   }, []);

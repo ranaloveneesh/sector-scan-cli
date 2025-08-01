@@ -155,7 +155,10 @@ export const DepartmentQuestion: React.FC<DepartmentQuestionProps> = ({
               ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
               : 'bg-[#5CE1E6] text-[#0a1628] hover:bg-[#5CE1E6]/80'
           }`}
-          style={{ pointerEvents: 'auto', zIndex: 10 }}
+          style={{ 
+            pointerEvents: selectedOption ? 'auto' : 'none', 
+            zIndex: 10 
+          }}
           disabled={!selectedOption}
         >
           Next →

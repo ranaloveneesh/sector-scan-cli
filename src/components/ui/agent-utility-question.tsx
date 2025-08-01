@@ -136,7 +136,7 @@ export const AgentUtilityQuestion: React.FC<AgentUtilityQuestionProps> = ({
                         key={`${categoryIndex}-${index}`}
                         onClick={() => handleOptionSelect(option)}
                         className={cn(
-                          "group relative w-full px-4 py-2 bg-transparent border-0 text-left flex items-center digital-glitch animate-fade-in rounded-lg transition-all duration-300",
+                          "group relative w-full px-3 md:px-4 py-1.5 md:py-2 bg-transparent border-0 text-left flex items-center digital-glitch animate-fade-in rounded-lg transition-all duration-300",
                           "hover:bg-[#5CE1E6]/5 hover:text-[#5CE1E6] focus:outline-none cursor-pointer",
                           selectedOptions.includes(option) ? "text-[#5CE1E6] bg-[#5CE1E6]/5" : "text-white"
                         )}
@@ -174,7 +174,7 @@ export const AgentUtilityQuestion: React.FC<AgentUtilityQuestionProps> = ({
                         key={`${categoryIndex + 2}-${index}`}
                         onClick={() => handleOptionSelect(option)}
                         className={cn(
-                          "group relative w-full px-4 py-2 bg-transparent border-0 text-left flex items-center digital-glitch animate-fade-in rounded-lg transition-all duration-300",
+                          "group relative w-full px-3 md:px-4 py-1.5 md:py-2 bg-transparent border-0 text-left flex items-center digital-glitch animate-fade-in rounded-lg transition-all duration-300",
                           "hover:bg-[#5CE1E6]/5 hover:text-[#5CE1E6] focus:outline-none cursor-pointer",
                           selectedOptions.includes(option) ? "text-[#5CE1E6] bg-[#5CE1E6]/5" : "text-white"
                         )}

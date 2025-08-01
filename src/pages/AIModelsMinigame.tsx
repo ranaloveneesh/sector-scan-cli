@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSurvey } from '@/contexts/SurveyContext';
-import { CompanySizeQuestion } from '@/components/ui/company-size-question';
 
 const AIModelsMinigame = () => {
   const navigate = useNavigate();
@@ -12,31 +11,16 @@ const AIModelsMinigame = () => {
     
     switch (previousAnswer) {
       case "A way to store and retrieve data":
-        return "Close, but there's much more to it. Try to guess what...🧐";
+        return "Let's explore what AI models really are.";
       case "A trained mathematical structure that learns patterns from data":
-        return "Solid answer. Now let's see if you can piece it together 🗿";
+        return "Perfect understanding — let's see how it works.";
       case "An automation script with lots of IF/THEN rules":
-        return "Old-school thinking, but modern models are built differently. Try for yourself 🤗";
+        return "Modern AI is much more sophisticated — let's see how.";
       case "Not sure, I just use the output":
-        return "Fair enough, but let's fix that. You're about to build your first AI model 😼";
+        return "Understanding the basics will make you more effective.";
       default:
         return "Let's explore what AI models really are.";
     }
-  };
-
-  const questionData = {
-    id: "aimodels-minigame",
-    title: getTitleBasedOnAnswer(),
-    ui: {
-      logo_position: "top-left",
-      animation_style: "terminal",
-      animation_text: "AI models components...",
-      next_button_color: "cyan",
-      selector_style: "modern",
-      label: "ai_models"
-    },
-    isStatic: true,
-    showBrainGame: true
   };
 
   const handleSubmit = () => {
@@ -44,10 +28,88 @@ const AIModelsMinigame = () => {
   };
 
   return (
-    <CompanySizeQuestion
-      data={questionData}
-      onSubmit={handleSubmit}
-    />
+    <div className="min-h-screen bg-[#0a1628] text-white relative overflow-hidden">
+      {/* Hexagonal logo in top left */}
+      <div className="absolute top-6 left-6 md:top-12 md:left-16 z-10 flex items-end animate-fade-in" style={{ animationDelay: '100ms' }}>
+        <div className="flex items-center justify-center" style={{
+          width: 'clamp(4rem, 6vw, 6.25rem)',
+          height: 'clamp(4rem, 6vw, 6.25rem)'
+        }}>
+          <img src="/lovable-uploads/a8d760f4-8e0c-410d-ae83-a3e6dd4b23e9.png" alt="Logo" className="w-full h-full object-contain" />
+        </div>
+      </div>
+
+      {/* User label in top right */}
+      <div className="absolute top-6 right-6 md:top-12 md:right-16 z-10 flex items-end animate-fade-in" style={{ animationDelay: '150ms' }}>
+        <span className="font-tomorrow text-responsive-label text-[#5CE1E6] neon-glow">ai_models</span>
+      </div>
+
+      {/* Main content */}
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 md:px-8 animate-fade-in" style={{ animationDelay: '200ms' }}>
+        <div className="max-w-4xl w-full text-center">
+          {/* Title - positioned to align with logo */}
+          <div className="mb-8 md:mb-12" style={{ paddingTop: 'clamp(6rem, 12vh, 8rem)' }}>
+            <h1 className="text-2xl md:text-3xl lg:text-3.5xl font-bold text-white font-open-sauce leading-relaxed mb-4">
+              {getTitleBasedOnAnswer()}
+            </h1>
+            <p className="text-lg md:text-xl text-slate-100 font-open-sauce leading-relaxed">
+              An AI model is like a digital brain trained on data to recognize patterns and make predictions.
+            </p>
+          </div>
+
+          {/* Simple visual explanation */}
+          <div className="max-w-2xl mx-auto mb-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+              <div className="bg-[#5CE1E6]/10 border border-[#5CE1E6]/30 rounded-lg p-4 md:p-6">
+                <div className="text-[#5CE1E6] text-2xl md:text-3xl mb-2">📊</div>
+                <h3 className="text-sm md:text-base font-semibold text-[#5CE1E6] mb-2">Data</h3>
+                <p className="text-xs md:text-sm text-slate-300">Training examples</p>
+              </div>
+              
+              <div className="bg-[#5CE1E6]/10 border border-[#5CE1E6]/30 rounded-lg p-4 md:p-6">
+                <div className="text-[#5CE1E6] text-2xl md:text-3xl mb-2">⚙️</div>
+                <h3 className="text-sm md:text-base font-semibold text-[#5CE1E6] mb-2">Algorithm</h3>
+                <p className="text-xs md:text-sm text-slate-300">Learning method</p>
+              </div>
+              
+              <div className="bg-[#5CE1E6]/10 border border-[#5CE1E6]/30 rounded-lg p-4 md:p-6">
+                <div className="text-[#5CE1E6] text-2xl md:text-3xl mb-2">🧠</div>
+                <h3 className="text-sm md:text-base font-semibold text-[#5CE1E6] mb-2">Weights</h3>
+                <p className="text-xs md:text-sm text-slate-300">Learned patterns</p>
+              </div>
+              
+              <div className="bg-[#5CE1E6]/10 border border-[#5CE1E6]/30 rounded-lg p-4 md:p-6">
+                <div className="text-[#5CE1E6] text-2xl md:text-3xl mb-2">💡</div>
+                <h3 className="text-sm md:text-base font-semibold text-[#5CE1E6] mb-2">Inference</h3>
+                <p className="text-xs md:text-sm text-slate-300">Making predictions</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom left terminal text */}
+      <div className="absolute bottom-6 left-6 md:bottom-12 md:left-16 animate-fade-in" style={{ animationDelay: '400ms' }}>
+        <div className="font-mono text-gray-400 text-responsive-terminal flex items-baseline">
+          <span className="mr-2">{'>'}</span>
+          <span className="terminal-text">AI model components identified...</span>
+        </div>
+      </div>
+
+      {/* Bottom right next button */}
+      <div className="absolute bottom-6 right-6 md:bottom-12 md:right-16 animate-fade-in" style={{ animationDelay: '450ms' }}>
+        <button 
+          onClick={handleSubmit} 
+          className="px-6 py-3 rounded-lg font-medium transition-all duration-300 font-open-sauce bg-[#5CE1E6] text-[#0a1628] hover:bg-[#5CE1E6]/80"
+          style={{
+            pointerEvents: 'auto',
+            zIndex: 10
+          }}
+        >
+          Next →
+        </button>
+      </div>
+    </div>
   );
 };
 

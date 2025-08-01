@@ -62,17 +62,17 @@ const AIModelsExplained = () => {
       </div>
 
       {/* Title and subtitle */}
-      <div className="absolute top-32 left-6 right-6 md:top-40 md:left-16 md:right-16 z-10 animate-fade-in flex flex-col items-center" style={{ animationDelay: '250ms' }}>
-        <h1 className="text-2xl md:text-3xl lg:text-3.5xl font-bold text-white font-open-sauce leading-relaxed max-w-4xl text-center mb-4">
+      <div className="absolute top-32 left-6 right-6 md:top-40 md:left-16 md:right-16 z-10 animate-fade-in flex flex-col items-center" style={{ animationDelay: '250ms', paddingTop: 'clamp(2rem, 8vh, 4rem)' }}>
+        <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-white font-open-sauce leading-relaxed max-w-4xl text-center mb-4">
           {questionData.title}
         </h1>
-        <p className="text-lg md:text-xl lg:text-xl font-normal text-slate-100 font-open-sauce leading-relaxed max-w-4xl text-center mb-8">
+        <p className="text-base md:text-lg lg:text-xl font-normal text-slate-100 font-open-sauce leading-relaxed max-w-4xl text-center mb-8">
           Here's a quick breakdown of the 4 key components that power every AI model
         </p>
       </div>
 
       {/* AI Explanations */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-8 md:px-32 lg:px-48 pt-32 animate-fade-in" style={{ animationDelay: '300ms' }}>
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 md:px-8 lg:px-16 pt-48 md:pt-56 animate-fade-in" style={{ animationDelay: '300ms' }}>
         <AIExplanations />
       </div>
 

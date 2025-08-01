@@ -120,7 +120,7 @@ export const ModelUtilityQuestion: React.FC<ModelUtilityQuestionProps> = ({
           </div>
 
           {/* Options list */}
-          <div className="space-y-2 mb-16 max-w-2xl">
+          <div className="space-y-1 md:space-y-2 mb-16 max-w-2xl">
             {dynamicOptions?.map((option, index) => (
               <div key={option} style={{ animationDelay: `${300 + index * 50}ms` }} className="animate-fade-in">
                 {option === "Other" ? (
@@ -138,7 +138,7 @@ export const ModelUtilityQuestion: React.FC<ModelUtilityQuestionProps> = ({
                   <button
                     onClick={() => handleOptionSelect(option)}
                     className={cn(
-                      "group relative w-full px-4 py-2 bg-transparent border-0 text-left flex items-center digital-glitch rounded-lg transition-all duration-300",
+                      "group relative w-full px-3 md:px-4 py-1.5 md:py-2 bg-transparent border-0 text-left flex items-center digital-glitch rounded-lg transition-all duration-300",
                       "hover:bg-[#5CE1E6]/5 hover:text-[#5CE1E6] focus:outline-none cursor-pointer",
                       selectedOptions.includes(option) ? "text-[#5CE1E6] bg-[#5CE1E6]/5" : "text-white"
                     )}

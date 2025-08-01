@@ -16,7 +16,7 @@ const Slide4 = () => {
       "A tool that automates repetitive tasks", 
       "A software entity that can perceive, reason, and act autonomously",
       "No idea, but I'm curious",
-      "I thought I did... now I'm not so sure 😅"
+      "I thought I did... now I'm not so sure"
     ],
     ui: {
       logo_position: "top-left",
