@@ -49,8 +49,6 @@ const AgentExplainedVisual: React.FC<AgentExplainedVisualProps> = ({ className =
       {/* Main container */}
       <div className="relative w-full h-[500px] flex items-center justify-center">
         
-        {/* Debug: Red background to see container */}
-        <div className="absolute inset-0 bg-red-500/10 pointer-events-none" style={{ zIndex: 0 }}></div>
         
         {/* Connection lines - Simple approach with individual positioned lines */}
         <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }}>
@@ -136,8 +134,8 @@ const AgentExplainedVisual: React.FC<AgentExplainedVisualProps> = ({ className =
             >
               <div className="flex flex-col items-center max-w-72">
                 {/* Node icon */}
-                <div className="w-12 h-12 bg-background border border-primary/30 rounded-full flex items-center justify-center mb-3">
-                  <IconComponent className="w-5 h-5 text-primary" />
+                <div className="w-12 h-12 bg-background border-2 border-cyan-400 rounded-full flex items-center justify-center mb-3">
+                  <IconComponent className="w-5 h-5 text-cyan-400" />
                 </div>
                 
                 {/* Node content */}

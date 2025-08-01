@@ -27,7 +27,7 @@ const RagDemo = () => {
       </div>
 
       {/* Main content */}
-      <div className="absolute top-44 left-6 right-6 md:top-52 md:left-16 md:right-16 z-10 animate-fade-in flex flex-col items-center" style={{ animationDelay: '250ms' }}>
+      <div className="absolute left-6 right-6 md:left-16 md:right-16 z-10 animate-fade-in flex flex-col items-center" style={{ animationDelay: '250ms', top: 'calc(clamp(4rem, 6vw, 6.25rem) + 4rem)' }}>
         <h1 className="text-2xl md:text-3xl lg:text-3.5xl font-bold text-white font-open-sauce leading-relaxed max-w-4xl text-center mb-2">
           {ragDemoData.explainer_title}
         </h1>

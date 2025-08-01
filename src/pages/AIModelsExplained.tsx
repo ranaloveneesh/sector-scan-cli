@@ -41,7 +41,7 @@ const AIModelsExplained = () => {
   };
 
   const handleSubmit = () => {
-    navigate('/ai-model-summary');
+    navigate('/LLMs');
   };
 
   return (
@@ -88,14 +88,15 @@ const AIModelsExplained = () => {
       <div className="absolute bottom-6 right-6 md:bottom-12 md:right-16 animate-fade-in" style={{ animationDelay: '450ms' }}>
         <button 
           onClick={handleSubmit} 
-          className="sci-fi-arrow font-mono text-[#5CE1E6] text-responsive-button neon-glow transition-all duration-300 relative hover:text-[#5CE1E6]/80 digital-glitch-click cursor-pointer"
-          data-text="next" 
+          className="px-6 py-3 rounded-lg font-medium transition-all duration-300 font-open-sauce"
           style={{
+            backgroundColor: '#5CE1E6',
+            color: '#0a1628',
             pointerEvents: 'auto',
             zIndex: 10
           }}
         >
-          next
+          Next →
         </button>
       </div>
     </div>

@@ -28,17 +28,26 @@ const AgentFundamentalsGame: React.FC<AgentFundamentalsGameProps> = ({ onComplet
     { id: 'plugins', name: 'Plugins', isCorrect: false, angle: 315 },
   ];
 
-  // Continuous rotation animation - very slow speed
+  // Continuous rotation animation - faster speed
   useEffect(() => {
     const interval = setInterval(() => {
-      setRotationAngle(prev => (prev + 0.1) % 360);
-    }, 150); // Even slower rotation speed
+      setRotationAngle(prev => (prev + 0.2) % 360);
+    }, 100); // Faster rotation speed
 
     return () => clearInterval(interval);
   }, []);
 
   const handleElementClick = (elementId: string) => {
-    if (selectedElements.includes(elementId) || selectedElements.length >= 4) return;
+    if (selectedElements.includes(elementId)) {
+      // Allow deselection by clicking again
+      const newSelected = selectedElements.filter(id => id !== elementId);
+      setSelectedElements(newSelected);
+      setGameComplete(false);
+      setShowNextMessage(false);
+      return;
+    }
+    
+    if (selectedElements.length >= 4) return;
     
     const newSelected = [...selectedElements, elementId];
     setSelectedElements(newSelected);

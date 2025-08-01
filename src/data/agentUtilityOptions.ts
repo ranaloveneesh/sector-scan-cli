@@ -39,8 +39,5 @@ export const agentUtilityOptions: AgentUtilityOptionsData = {
       ]
     }
   ],
-  "evergreen_options": [
-    "Other (please specify)",
-    "I don't believe AI agents could realistically take over tasks in my team."
-  ]
+  "evergreen_options": []
 };
