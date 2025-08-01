@@ -149,14 +149,17 @@ export const DepartmentQuestion: React.FC<DepartmentQuestionProps> = ({
       {/* Bottom right next button */}
       <div className="absolute bottom-6 right-6 md:bottom-12 md:right-16">
         <button 
-          onClick={handleSubmit} 
+          onClick={() => {
+            console.log('Department question button clicked', { selectedOption, validation: data.validation });
+            handleSubmit();
+          }}
           className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 font-open-sauce ${
             !selectedOption
               ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
               : 'bg-[#5CE1E6] text-[#0a1628] hover:bg-[#5CE1E6]/80'
           }`}
           style={{ 
-            pointerEvents: selectedOption ? 'auto' : 'none', 
+            pointerEvents: 'auto', 
             zIndex: 10 
           }}
           disabled={!selectedOption}
