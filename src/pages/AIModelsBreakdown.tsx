@@ -10,14 +10,14 @@ const AIModelsBreakdown = () => {
     const previousAnswer = surveyData.aiAgentKnowledge;
     
     switch (previousAnswer) {
-      case "A way to store and retrieve data":
-        return "Let's explore what AI models really are.";
       case "A trained mathematical structure that learns patterns from data":
-        return "Perfect understanding — let's see how it works.";
+        return "You've got it!";
+      case "A way to store and retrieve data":
+        return "That's one ingredient! There are 3 more";
       case "An automation script with lots of IF/THEN rules":
-        return "Modern AI is much more sophisticated — let's see how.";
+        return "A great thought! Here's how modern AI learns instead of just following rules.";
       case "Not sure, I just use the output":
-        return "Understanding the basics will make you more effective.";
+        return "No problem! Let's break it down piece by piece.";
       default:
         return "Let's explore what AI models really are.";
     }

@@ -27,7 +27,7 @@ const Slide5 = () => {
   };
 
   const handleSubmit = () => {
-    navigate('/model-utility');
+    navigate('/company-stats');
   };
 
   const components = [
