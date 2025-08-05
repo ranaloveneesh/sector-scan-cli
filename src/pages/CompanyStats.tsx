@@ -32,7 +32,7 @@ const CompanyStats = () => {
           
           {/* Compact title */}
           <h1 className="text-xl md:text-2xl lg:text-3xl font-bold mb-6 text-white font-open-sauce leading-relaxed">
-            Did you know that 78% of companies want to integrate AI into their workflows, but most aren't ready for it
+            78% of companies want to integrate AI into their workflows. But most aren't ready for it
           </h1>
 
           {/* Chart and stats combined */}
