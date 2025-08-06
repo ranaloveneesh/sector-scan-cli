@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSurvey } from '@/contexts/SurveyContext';
-import { Database, Cog, Brain, Workflow } from 'lucide-react';
+import { Database, Cog, Brain, Workflow, Search, FileCheck, Wrench, Settings, Target } from 'lucide-react';
 
 const Slide5 = () => {
   const navigate = useNavigate();
@@ -34,29 +34,29 @@ const Slide5 = () => {
     {
       id: 'tools',
       name: 'TOOLS',
-      description: 'Domain-specific instruments\n(APIs, specialized software)',
-      icon: Cog,
+      description: 'Industry standard tools',
+      icon: Wrench,
       position: { x: -200, y: -120 }, // top left
     },
     {
       id: 'data',
-      name: 'KNOWLEDGE',
-      description: 'Domain-specific information\n(Real-time data, documentation)',
+      name: 'KNOWLEDGE / DATA',
+      description: 'Industry Public / Proprietary Data',
       icon: Database,
       position: { x: 200, y: -120 }, // top right
     },
     {
       id: 'reasoning',
-      name: 'PLANNING',
-      description: 'Strategic thinking\n(Breaking down complex tasks)',
-      icon: Brain,
+      name: 'PLANNING & REASONING',
+      description: 'Domain-specific meta-heuristics algorithms',
+      icon: Search,
       position: { x: -200, y: 120 }, // bottom left
     },
     {
       id: 'workflows',
       name: 'EXECUTION',
-      description: 'Action workflows\n(Coordinated task completion)',
-      icon: Workflow,
+      description: 'Domain Specific Workflows',
+      icon: FileCheck,
       position: { x: 200, y: 120 }, // bottom right
     }
   ];
@@ -108,9 +108,9 @@ const Slide5 = () => {
                 y1="50" 
                 x2="20" 
                 y2="25" 
-                stroke="#5CE1E6" 
-                strokeWidth="0.5" 
-                opacity="0.8"
+                stroke="white" 
+                strokeWidth="0.3" 
+                opacity="0.9"
               />
               
               {/* Line to KNOWLEDGE (top right) */}
@@ -119,9 +119,9 @@ const Slide5 = () => {
                 y1="50" 
                 x2="80" 
                 y2="25" 
-                stroke="#5CE1E6" 
-                strokeWidth="0.5" 
-                opacity="0.8"
+                stroke="white" 
+                strokeWidth="0.3" 
+                opacity="0.9"
               />
               
               {/* Line to PLANNING (bottom left) */}
@@ -130,9 +130,9 @@ const Slide5 = () => {
                 y1="50" 
                 x2="20" 
                 y2="75" 
-                stroke="#5CE1E6" 
-                strokeWidth="0.5" 
-                opacity="0.8"
+                stroke="white" 
+                strokeWidth="0.3" 
+                opacity="0.9"
               />
               
               {/* Line to EXECUTION (bottom right) */}
@@ -141,23 +141,29 @@ const Slide5 = () => {
                 y1="50" 
                 x2="80" 
                 y2="75" 
-                stroke="#5CE1E6" 
-                strokeWidth="0.5" 
-                opacity="0.8"
+                stroke="white" 
+                strokeWidth="0.3" 
+                opacity="0.9"
               />
             </svg>
 
             {/* Central Agent */}
             <div className="absolute z-20" style={{ left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
-              <div className="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center">
+              {/* AI Agent Image Placeholder */}
+              <div className="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center mb-3">
                 <img 
                   src="/lovable-uploads/f912e5d2-b459-41fc-a7e9-3eb49229a52a.png" 
                   alt="AI Agent" 
                   className="w-16 h-16 md:w-20 md:h-20 object-contain"
                 />
               </div>
-              <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-center">
-                <div className="text-sm md:text-base font-bold text-[#5CE1E6]">AI AGENT</div>
+              
+              {/* Purple highlighted section with circular icon */}
+              <div className="bg-purple-600/20 border border-purple-400/30 rounded-lg p-3 flex flex-col items-center">
+                <div className="w-8 h-8 bg-purple-500/20 border border-purple-400 rounded-full flex items-center justify-center mb-2">
+                  <Target className="w-4 h-4 text-purple-300" />
+                </div>
+                <div className="text-xs md:text-sm font-bold text-[#5CE1E6] text-center">AI AGENT</div>
               </div>
             </div>
 
