@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
-interface SurveyData {
+export interface SurveyData {
   industry?: string;
   companySize?: string;
   department?: string;

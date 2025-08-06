@@ -39,7 +39,7 @@ const AgentIntent = () => {
   const handleSubmit = (selectedOptions: string[]) => {
     console.log('Selected agent intent:', selectedOptions);
     updateSurveyData('agentIntent', selectedOptions[0]);
-    navigate('/company-stats');
+    navigate('/agent-timeline');
   };
 
   return <CompanySizeQuestion data={questionData} onSubmit={handleSubmit} />;

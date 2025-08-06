@@ -39,7 +39,7 @@ const AgentTimeline = () => {
   const handleSubmit = (selectedOptions: string[]) => {
     console.log('Selected agent timeline:', selectedOptions);
     updateSurveyData('agentTimeline', selectedOptions[0]);
-    navigate('/company-stats');
+    navigate('/arl-results');
   };
 
   return <CompanySizeQuestion data={questionData} onSubmit={handleSubmit} />;
