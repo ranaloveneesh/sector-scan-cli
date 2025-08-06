@@ -12,22 +12,22 @@ const AIAgentsMinigame = () => {
     
     switch (previousAnswer) {
       case "A chatbot":
-        return "Let's build an AI agent together — you'll see it's much more than a chatbot.";
+        return "That's a piece of the puzzle! Let's build the full picture.";
       case "A tool that automates repetitive tasks":
-        return "Time to build your first agent and see how it thinks autonomously.";
+        return "Exactly! Automation is key. Now let's add its other elements.";
       case "A software entity that can perceive, reason, and act autonomously":
-        return "Perfect understanding — now let's build one together.";
+        return "You nailed it! Now, let's put one together piece by piece.";
       case "No idea, but I'm curious":
-        return "Best way to learn? Build one yourself — let's go.";
+        return "Perfect, let's dive in! We'll build your first AI agent together.";
       case "I thought I did... now I'm not so sure":
-        return "Building one will make it crystal clear — ready?";
+        return "No problem, that's what we're here for. Let's build one and make it all click.";
       default:
         return "Let's build your first AI agent together.";
     }
   };
 
   const handleSubmit = () => {
-    navigate('/aiagents-components');
+    navigate('/company-stats');
   };
 
   return (

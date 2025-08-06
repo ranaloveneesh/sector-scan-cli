@@ -109,26 +109,26 @@ export const AgentUtilityQuestion: React.FC<AgentUtilityQuestionProps> = ({
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-8 md:px-32 lg:px-48 animate-fade-in" style={{ animationDelay: '200ms' }}>
-        <div className="max-w-4xl w-full">
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 md:px-8 lg:px-16 animate-fade-in" style={{ animationDelay: '200ms' }}>
+        <div className="max-w-6xl w-full">
           {/* Question content */}
-          <div className="text-left mb-12">
-            <h1 className="text-2xl md:text-3xl lg:text-3.5xl font-bold mb-1 text-white font-open-sauce">{data.title}</h1>
-            <p className="text-lg md:text-xl lg:text-xl text-slate-50 px-0 pt-2 pl-2 md:pl-8 font-normal font-open-sauce leading-relaxed">
+          <div className="text-left mb-8 md:mb-12">
+            <h1 className="text-xl md:text-2xl lg:text-3xl font-bold mb-2 md:mb-4 text-white font-open-sauce">{data.title}</h1>
+            <p className="text-base md:text-lg lg:text-xl text-slate-50 px-0 pt-2 pl-2 md:pl-4 font-normal font-open-sauce leading-relaxed">
               <span className="mr-2 text-slate-50">→</span>
               {dynamicSubtitle}
             </p>
           </div>
 
           {/* Options list */}
-          <div className="mb-16 max-w-5xl w-full">
-            {/* Two-column layout for categories */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="mb-12 md:mb-16 max-w-6xl w-full">
+            {/* Two-column layout for categories - responsive */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
               {/* Left column - first 2 categories */}
-              <div className="space-y-8">
+              <div className="space-y-6 md:space-y-8">
                 {agentUtilityOptions.option_categories.slice(0, 2).map((category, categoryIndex) => (
-                  <div key={categoryIndex} className="space-y-2">
-                    <h3 className="text-[#5CE1E6] text-lg font-semibold mb-3 pl-6 font-open-sauce">
+                  <div key={categoryIndex} className="space-y-3 bg-white/5 border border-white/10 rounded-lg p-4 md:p-6 backdrop-blur-sm">
+                    <h3 className="text-[#5CE1E6] text-base md:text-lg font-semibold mb-3 md:mb-4 pl-2 font-open-sauce">
                       {category.category_title}
                     </h3>
                     {category.options.map((option, index) => (
@@ -136,22 +136,22 @@ export const AgentUtilityQuestion: React.FC<AgentUtilityQuestionProps> = ({
                         key={`${categoryIndex}-${index}`}
                         onClick={() => handleOptionSelect(option)}
                         className={cn(
-                          "group relative w-full px-3 md:px-4 py-1.5 md:py-2 bg-transparent border-0 text-left flex items-center digital-glitch animate-fade-in rounded-lg transition-all duration-300",
-                          "hover:bg-[#5CE1E6]/5 hover:text-[#5CE1E6] focus:outline-none cursor-pointer",
-                          selectedOptions.includes(option) ? "text-[#5CE1E6] bg-[#5CE1E6]/5" : "text-white"
+                          "group relative w-full px-3 md:px-4 py-2 md:py-3 bg-transparent border-0 text-left flex items-center digital-glitch animate-fade-in rounded-lg transition-all duration-300",
+                          "hover:bg-[#5CE1E6]/10 hover:text-[#5CE1E6] focus:outline-none cursor-pointer",
+                          selectedOptions.includes(option) ? "text-[#5CE1E6] bg-[#5CE1E6]/10" : "text-white"
                         )}
                         style={{ animationDelay: `${300 + (categoryIndex * 2 + index) * 50}ms` }}
                       >
                         {/* Custom bullet point */}
                         <div className={cn(
-                          "w-2 h-2 rounded-full mr-4 flex-shrink-0 transition-all duration-300",
+                          "w-2 h-2 rounded-full mr-3 md:mr-4 flex-shrink-0 transition-all duration-300",
                           selectedOptions.includes(option) 
                             ? "bg-[#5CE1E6] shadow-[0_0_12px_#5CE1E6] scale-110" 
                             : "bg-[#5CE1E6]/80 hover:bg-[#5CE1E6]/90"
                         )}></div>
                         
                         <span className={cn(
-                          "text-responsive-base font-medium font-open-sauce transition-all duration-300",
+                          "text-sm md:text-base font-medium font-open-sauce transition-all duration-300 leading-relaxed",
                           selectedOptions.includes(option) && "transform scale-102"
                         )} data-text={option}>
                           {option}
@@ -163,10 +163,10 @@ export const AgentUtilityQuestion: React.FC<AgentUtilityQuestionProps> = ({
               </div>
               
               {/* Right column - last 2 categories */}
-              <div className="space-y-8">
+              <div className="space-y-6 md:space-y-8">
                 {agentUtilityOptions.option_categories.slice(2, 4).map((category, categoryIndex) => (
-                  <div key={categoryIndex + 2} className="space-y-2">
-                    <h3 className="text-[#5CE1E6] text-lg font-semibold mb-3 pl-6 font-open-sauce">
+                  <div key={categoryIndex + 2} className="space-y-3 bg-white/5 border border-white/10 rounded-lg p-4 md:p-6 backdrop-blur-sm">
+                    <h3 className="text-[#5CE1E6] text-base md:text-lg font-semibold mb-3 md:mb-4 pl-2 font-open-sauce">
                       {category.category_title}
                     </h3>
                     {category.options.map((option, index) => (
@@ -174,22 +174,22 @@ export const AgentUtilityQuestion: React.FC<AgentUtilityQuestionProps> = ({
                         key={`${categoryIndex + 2}-${index}`}
                         onClick={() => handleOptionSelect(option)}
                         className={cn(
-                          "group relative w-full px-3 md:px-4 py-1.5 md:py-2 bg-transparent border-0 text-left flex items-center digital-glitch animate-fade-in rounded-lg transition-all duration-300",
-                          "hover:bg-[#5CE1E6]/5 hover:text-[#5CE1E6] focus:outline-none cursor-pointer",
-                          selectedOptions.includes(option) ? "text-[#5CE1E6] bg-[#5CE1E6]/5" : "text-white"
+                          "group relative w-full px-3 md:px-4 py-2 md:py-3 bg-transparent border-0 text-left flex items-center digital-glitch animate-fade-in rounded-lg transition-all duration-300",
+                          "hover:bg-[#5CE1E6]/10 hover:text-[#5CE1E6] focus:outline-none cursor-pointer",
+                          selectedOptions.includes(option) ? "text-[#5CE1E6] bg-[#5CE1E6]/10" : "text-white"
                         )}
                         style={{ animationDelay: `${300 + ((categoryIndex + 2) * 2 + index) * 50}ms` }}
                       >
                         {/* Custom bullet point */}
                         <div className={cn(
-                          "w-2 h-2 rounded-full mr-4 flex-shrink-0 transition-all duration-300",
+                          "w-2 h-2 rounded-full mr-3 md:mr-4 flex-shrink-0 transition-all duration-300",
                           selectedOptions.includes(option) 
                             ? "bg-[#5CE1E6] shadow-[0_0_12px_#5CE1E6] scale-110" 
                             : "bg-[#5CE1E6]/80 hover:bg-[#5CE1E6]/90"
                         )}></div>
                         
                         <span className={cn(
-                          "text-responsive-base font-medium font-open-sauce transition-all duration-300",
+                          "text-sm md:text-base font-medium font-open-sauce transition-all duration-300 leading-relaxed",
                           selectedOptions.includes(option) && "transform scale-102"
                         )} data-text={option}>
                           {option}
@@ -224,7 +224,7 @@ export const AgentUtilityQuestion: React.FC<AgentUtilityQuestionProps> = ({
       <div className="absolute bottom-6 right-6 md:bottom-12 md:right-16 animate-fade-in" style={{ animationDelay: '450ms' }}>
         <button 
           onClick={handleSubmit} 
-          className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 font-open-sauce ${
+          className={`px-4 md:px-6 py-2 md:py-3 rounded-lg font-medium transition-all duration-300 font-open-sauce text-sm md:text-base ${
             selectedOptions.length === 0
               ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
               : 'bg-[#5CE1E6] text-[#0a1628] hover:bg-[#5CE1E6]/80'
