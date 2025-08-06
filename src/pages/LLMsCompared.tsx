@@ -78,12 +78,15 @@ const LLMsCompared = () => {
       {/* Bottom right next button */}
       <div className="absolute bottom-6 right-6 md:bottom-12 md:right-16 animate-fade-in" style={{ animationDelay: '450ms' }}>
         <button 
-          onClick={handleSubmit} 
+          onClick={() => {
+            console.log('LLMsCompared button clicked');
+            handleSubmit();
+          }}
           className="sci-fi-arrow font-mono text-[#5CE1E6] text-responsive-button neon-glow transition-all duration-300 relative hover:text-[#5CE1E6]/80 digital-glitch-click cursor-pointer"
           data-text="next" 
           style={{
             pointerEvents: 'auto',
-            zIndex: 10
+            zIndex: 100
           }}
         >
           next

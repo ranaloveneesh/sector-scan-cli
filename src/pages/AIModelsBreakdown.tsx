@@ -100,13 +100,13 @@ const AIModelsBreakdown = () => {
       <div className="absolute bottom-6 right-6 md:bottom-12 md:right-16 animate-fade-in" style={{ animationDelay: '450ms' }}>
         <button 
           onClick={() => {
-            console.log('AIModelsBreakdown button clicked');
+            console.log('AIModelsBreakdown button clicked - starting navigation');
             handleSubmit();
           }}
           className="px-6 py-3 rounded-lg font-medium transition-all duration-300 font-open-sauce bg-[#5CE1E6] text-[#0a1628] hover:bg-[#5CE1E6]/80"
           style={{
             pointerEvents: 'auto',
-            zIndex: 10
+            zIndex: 100
           }}
         >
           Next →

@@ -112,10 +112,9 @@ export const AgentUtilityQuestion: React.FC<AgentUtilityQuestionProps> = ({
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 md:px-8 lg:px-16 animate-fade-in" style={{ animationDelay: '200ms' }}>
         <div className="max-w-6xl w-full">
           {/* Question content */}
-          <div className="text-left mb-8 md:mb-12">
+          <div className="text-center mb-8 md:mb-12">
             <h1 className="text-xl md:text-2xl lg:text-3xl font-bold mb-2 md:mb-4 text-white font-open-sauce">{data.title}</h1>
-            <p className="text-base md:text-lg lg:text-xl text-slate-50 px-0 pt-2 pl-2 md:pl-4 font-normal font-open-sauce leading-relaxed">
-              <span className="mr-2 text-slate-50">→</span>
+            <p className="text-base md:text-lg lg:text-xl text-slate-50 font-normal font-open-sauce leading-relaxed">
               {dynamicSubtitle}
             </p>
           </div>
@@ -123,18 +122,21 @@ export const AgentUtilityQuestion: React.FC<AgentUtilityQuestionProps> = ({
           {/* Options list */}
           <div className="mb-12 md:mb-16 max-w-6xl w-full">
             {/* Two-column layout for categories - responsive */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
               {/* Left column - first 2 categories */}
-              <div className="space-y-6 md:space-y-8">
+              <div className="space-y-4 md:space-y-6">
                 {agentUtilityOptions.option_categories.slice(0, 2).map((category, categoryIndex) => (
-                  <div key={categoryIndex} className="space-y-3 bg-white/5 border border-white/10 rounded-lg p-4 md:p-6 backdrop-blur-sm">
-                    <h3 className="text-[#5CE1E6] text-base md:text-lg font-semibold mb-3 md:mb-4 pl-2 font-open-sauce">
+                  <div key={categoryIndex} className="space-y-3 bg-white/5 border border-white/10 rounded-lg p-3 md:p-4 backdrop-blur-sm">
+                    <h3 className="text-[#5CE1E6] text-base md:text-lg font-semibold mb-3 pl-2 font-open-sauce">
                       {category.category_title}
                     </h3>
                     {category.options.map((option, index) => (
                       <button
                         key={`${categoryIndex}-${index}`}
-                        onClick={() => handleOptionSelect(option)}
+                        onClick={() => {
+                          console.log('Option clicked:', option);
+                          handleOptionSelect(option);
+                        }}
                         className={cn(
                           "group relative w-full px-3 md:px-4 py-2 md:py-3 bg-transparent border-0 text-left flex items-center digital-glitch animate-fade-in rounded-lg transition-all duration-300",
                           "hover:bg-[#5CE1E6]/10 hover:text-[#5CE1E6] focus:outline-none cursor-pointer",
@@ -163,16 +165,19 @@ export const AgentUtilityQuestion: React.FC<AgentUtilityQuestionProps> = ({
               </div>
               
               {/* Right column - last 2 categories */}
-              <div className="space-y-6 md:space-y-8">
+              <div className="space-y-4 md:space-y-6">
                 {agentUtilityOptions.option_categories.slice(2, 4).map((category, categoryIndex) => (
-                  <div key={categoryIndex + 2} className="space-y-3 bg-white/5 border border-white/10 rounded-lg p-4 md:p-6 backdrop-blur-sm">
-                    <h3 className="text-[#5CE1E6] text-base md:text-lg font-semibold mb-3 md:mb-4 pl-2 font-open-sauce">
+                  <div key={categoryIndex + 2} className="space-y-3 bg-white/5 border border-white/10 rounded-lg p-3 md:p-4 backdrop-blur-sm">
+                    <h3 className="text-[#5CE1E6] text-base md:text-lg font-semibold mb-3 pl-2 font-open-sauce">
                       {category.category_title}
                     </h3>
                     {category.options.map((option, index) => (
                       <button
                         key={`${categoryIndex + 2}-${index}`}
-                        onClick={() => handleOptionSelect(option)}
+                        onClick={() => {
+                          console.log('Option clicked:', option);
+                          handleOptionSelect(option);
+                        }}
                         className={cn(
                           "group relative w-full px-3 md:px-4 py-2 md:py-3 bg-transparent border-0 text-left flex items-center digital-glitch animate-fade-in rounded-lg transition-all duration-300",
                           "hover:bg-[#5CE1E6]/10 hover:text-[#5CE1E6] focus:outline-none cursor-pointer",
@@ -223,7 +228,10 @@ export const AgentUtilityQuestion: React.FC<AgentUtilityQuestionProps> = ({
       {/* Bottom right next button */}
       <div className="absolute bottom-6 right-6 md:bottom-12 md:right-16 animate-fade-in" style={{ animationDelay: '450ms' }}>
         <button 
-          onClick={handleSubmit} 
+          onClick={() => {
+            console.log('Next button clicked, selected options:', selectedOptions);
+            handleSubmit();
+          }}
           className={`px-4 md:px-6 py-2 md:py-3 rounded-lg font-medium transition-all duration-300 font-open-sauce text-sm md:text-base ${
             selectedOptions.length === 0
               ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
@@ -231,7 +239,7 @@ export const AgentUtilityQuestion: React.FC<AgentUtilityQuestionProps> = ({
           }`}
           style={{
             pointerEvents: 'auto',
-            zIndex: 10
+            zIndex: 100
           }}
           disabled={selectedOptions.length === 0}
         >
