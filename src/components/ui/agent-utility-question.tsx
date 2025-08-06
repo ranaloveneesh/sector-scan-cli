@@ -226,20 +226,19 @@ export const AgentUtilityQuestion: React.FC<AgentUtilityQuestionProps> = ({
       </div>
 
       {/* Bottom right next button */}
-      <div className="absolute bottom-6 right-6 md:bottom-12 md:right-16 animate-fade-in" style={{ animationDelay: '450ms' }}>
+      <div className="absolute bottom-6 right-6 md:bottom-12 md:right-16 animate-fade-in z-[999]" style={{ animationDelay: '450ms' }}>
         <button 
           onClick={() => {
             console.log('Next button clicked, selected options:', selectedOptions);
             handleSubmit();
           }}
-          className={`px-4 md:px-6 py-2 md:py-3 rounded-lg font-medium transition-all duration-300 font-open-sauce text-sm md:text-base ${
+          className={`px-4 md:px-6 py-2 md:py-3 rounded-lg font-medium transition-all duration-300 font-open-sauce text-sm md:text-base relative z-[999] ${
             selectedOptions.length === 0
               ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
               : 'bg-[#5CE1E6] text-[#0a1628] hover:bg-[#5CE1E6]/80'
           }`}
           style={{
-            pointerEvents: 'auto',
-            zIndex: 100
+            pointerEvents: selectedOptions.length > 0 ? 'auto' : 'none'
           }}
           disabled={selectedOptions.length === 0}
         >
