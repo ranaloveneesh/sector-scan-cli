@@ -78,16 +78,16 @@ const AIAgentsMinigame = () => {
       </div>
 
       {/* Bottom right next button */}
-      <div className="absolute bottom-6 right-6 md:bottom-12 md:right-16 animate-fade-in" style={{ animationDelay: '450ms' }}>
+      <div className="absolute bottom-6 right-6 md:bottom-12 md:right-16 animate-fade-in z-50" style={{ animationDelay: '450ms' }}>
         <button 
           onClick={() => {
             console.log('AIAgentsMinigame button clicked');
             handleSubmit();
           }}
-          className="px-6 py-3 rounded-lg font-medium transition-all duration-300 font-open-sauce bg-[#5CE1E6] text-[#0a1628] hover:bg-[#5CE1E6]/80"
+          className="px-6 py-3 rounded-lg font-medium transition-all duration-300 font-open-sauce bg-[#5CE1E6] text-[#0a1628] hover:bg-[#5CE1E6]/80 relative"
           style={{
             pointerEvents: 'auto',
-            zIndex: 100
+            zIndex: 999
           }}
         >
           Next →
