@@ -160,7 +160,7 @@ export const DepartmentQuestion: React.FC<DepartmentQuestionProps> = ({
           }`}
           style={{ 
             pointerEvents: 'auto', 
-            zIndex: 10 
+            zIndex: 100
           }}
           disabled={!selectedOption}
         >

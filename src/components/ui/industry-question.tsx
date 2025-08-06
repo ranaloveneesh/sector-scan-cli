@@ -145,7 +145,7 @@ export const IndustryQuestion: React.FC<IndustryQuestionProps> = ({
               ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
               : 'bg-[#5CE1E6] text-[#0a1628] hover:bg-[#5CE1E6]/80'
           }`}
-          style={{ pointerEvents: 'auto', zIndex: 10 }}
+          style={{ pointerEvents: 'auto', zIndex: 100 }}
           disabled={!selectedOption}
         >
           Next →

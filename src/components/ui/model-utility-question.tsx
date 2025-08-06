@@ -192,7 +192,7 @@ export const ModelUtilityQuestion: React.FC<ModelUtilityQuestionProps> = ({
           }`}
           style={{
             pointerEvents: 'auto',
-            zIndex: 10
+            zIndex: 100
           }}
           disabled={selectedOptions.length === 0 && !otherText.trim()}
         >

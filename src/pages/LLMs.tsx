@@ -38,7 +38,7 @@ const LLMs = () => {
 
   const handleSubmit = (selectedOptions: string[]) => {
     updateSurveyData('llmKnowledge', selectedOptions.join(', '));
-    navigate('/llms-compared');
+    navigate('/aiagents');
   };
 
   return (

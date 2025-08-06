@@ -50,7 +50,7 @@ const App = () => (
             <Route path="/aimodels" element={<PageTransition><AIModels /></PageTransition>} />
             <Route path="/aimodels-breakdown" element={<PageTransition><AIModelsBreakdown /></PageTransition>} />
             <Route path="/LLMs" element={<PageTransition><LLMs /></PageTransition>} />
-            {/* <Route path="/llms-compared" element={<PageTransition><LLMsCompared /></PageTransition>} /> */}
+            
             <Route path="/rag-pipeline" element={<PageTransition><RagPipeline /></PageTransition>} />
             <Route path="/rag-demo" element={<PageTransition><RagDemo /></PageTransition>} />
             <Route path="/rag-demo/:topicId" element={<PageTransition><RagDemoTopic /></PageTransition>} />
