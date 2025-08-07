@@ -103,16 +103,16 @@ const ARLResults = () => {
               
               {/* Left: Speedometer */}
               <div className="flex justify-center xl:justify-end">
-                <div className="relative w-96 h-56">
+                <div className="relative w-96 h-72">
                   <svg
                     width="384"
-                    height="216"
-                    viewBox="0 0 384 216"
+                    height="280"
+                    viewBox="0 0 384 280"
                     className="w-full h-full"
                   >
                     {/* Background arc */}
                     <path
-                      d="M 60 180 A 144 144 0 0 1 324 180"
+                      d="M 60 220 A 144 144 0 0 1 324 220"
                       fill="none"
                       stroke="rgba(255,255,255,0.2)"
                       strokeWidth="14"
@@ -131,7 +131,7 @@ const ARLResults = () => {
                     
                     {/* Progress arc based on score */}
                     <path
-                      d="M 60 180 A 144 144 0 0 1 324 180"
+                      d="M 60 220 A 144 144 0 0 1 324 220"
                       fill="none"
                       stroke="url(#speedometerGradient)"
                       strokeWidth="14"
@@ -141,12 +141,12 @@ const ARLResults = () => {
                     />
                     
                     {/* Needle */}
-                    <g transform={`rotate(${needleRotation} 192 180)`} className="transition-transform duration-2000 ease-out">
+                    <g transform={`rotate(${needleRotation} 192 220)`} className="transition-transform duration-2000 ease-out">
                       <line
                         x1="192"
-                        y1="180"
+                        y1="220"
                         x2="192"
-                        y2="60"
+                        y2="90"
                         stroke="#5CE1E6"
                         strokeWidth="4"
                         strokeLinecap="round"
@@ -154,47 +154,36 @@ const ARLResults = () => {
                       />
                       <circle
                         cx="192"
-                        cy="180"
-                        r="8"
+                        cy="220"
+                        r="10"
                         fill="#5CE1E6"
                         className="drop-shadow-lg"
                       />
                     </g>
                     
-                    {/* Scale numbers - Fixed positioning */}
+                    {/* Scale numbers - Only 1 and 9 */}
                     <text
                       x="80"
-                      y="190"
+                      y="235"
                       textAnchor="middle"
-                      className="text-sm font-bold fill-white opacity-70"
+                      className="text-lg font-bold fill-white opacity-80"
                     >
                       1
                     </text>
                     <text
-                      x="192"
-                      y="205"
-                      textAnchor="middle"
-                      className="text-sm font-bold fill-white opacity-70"
-                    >
-                      6
-                    </text>
-                    <text
                       x="304"
-                      y="190"
+                      y="235"
                       textAnchor="middle"
-                      className="text-sm font-bold fill-white opacity-70"
+                      className="text-lg font-bold fill-white opacity-80"
                     >
                       9
                     </text>
                   </svg>
                   
                   {/* Score display - positioned below the arc */}
-                  <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-center">
-                    <div className="text-5xl md:text-6xl font-bold text-[#5CE1E6] tabular-nums mb-2">
+                  <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center">
+                    <div className="text-6xl md:text-7xl font-bold text-[#5CE1E6] tabular-nums">
                       {animatedScore}
-                    </div>
-                    <div className="text-sm text-slate-400 font-open-sauce">
-                      out of 9
                     </div>
                   </div>
                 </div>
@@ -213,12 +202,12 @@ const ARLResults = () => {
               </div>
             </div>
 
-            {/* Bottom section: User stats and Email signup side by side */}
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 xl:gap-16 items-start">
+            {/* Bottom section: User stats and Email signup */}
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 xl:gap-16 items-start">
               
-              {/* Left: User completion number */}
-              <div className="flex justify-center xl:justify-end">
-                <div className="bg-[#5CE1E6]/10 border border-[#5CE1E6]/30 rounded-lg p-6 max-w-md w-full">
+              {/* Left: User completion number - centered under speedometer */}
+              <div className="flex justify-center">
+                <div className="bg-[#5CE1E6]/10 border border-[#5CE1E6]/30 rounded-lg p-6 max-w-md w-full text-center">
                   <div className="text-3xl font-bold text-[#5CE1E6] mb-3">#{scoreResult.userNumber}</div>
                   <p className="text-base text-slate-300 font-open-sauce">
                     You're the {scoreResult.userNumber}th professional to complete this assessment!
@@ -226,49 +215,55 @@ const ARLResults = () => {
                 </div>
               </div>
 
-              {/* Right: Industry report email signup */}
+              {/* Right: Industry report email signup - enhanced highlighting */}
               <div className="flex justify-center xl:justify-start">
                 <div className="w-full max-w-md">
-                  <div className="bg-gradient-to-r from-[#5CE1E6]/20 to-blue-500/20 border-2 border-[#5CE1E6]/50 rounded-xl p-8 shadow-xl shadow-[#5CE1E6]/20 relative overflow-hidden">
-                    {/* Glow effect */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#5CE1E6]/10 to-blue-500/10 blur-xl"></div>
-                    <div className="relative z-10">
-                      {!emailSubmitted ? (
-                        <form onSubmit={handleEmailSubmit} className="space-y-4">
-                          <div className="text-center space-y-3 mb-6">
-                            <h3 className="text-xl font-bold text-white font-open-sauce">
-                              📊 Get Your Industry Report
-                            </h3>
+                  <div className="relative">
+                    {/* Enhanced glow effects */}
+                    <div className="absolute -inset-2 bg-gradient-to-r from-[#5CE1E6]/30 to-blue-500/30 rounded-xl blur-xl animate-pulse"></div>
+                    <div className="relative bg-gradient-to-r from-[#5CE1E6]/25 to-blue-500/25 border-2 border-[#5CE1E6]/60 rounded-xl p-8 shadow-2xl shadow-[#5CE1E6]/30 backdrop-blur-sm">
+                      {/* Content */}
+                      <div className="relative z-10">
+                        {!emailSubmitted ? (
+                          <form onSubmit={handleEmailSubmit} className="space-y-4">
+                            <div className="text-center space-y-3 mb-6">
+                              <div className="inline-flex items-center justify-center w-16 h-16 bg-[#5CE1E6]/20 rounded-full mb-2">
+                                <span className="text-3xl">📊</span>
+                              </div>
+                              <h3 className="text-xl font-bold text-white font-open-sauce">
+                                Get Your Industry Report
+                              </h3>
+                              <p className="text-sm text-slate-300 font-open-sauce leading-relaxed">
+                                Discover how your industry ranks in AI readiness compared to others. Get personalized insights and benchmark data.
+                              </p>
+                            </div>
+                            <div className="flex gap-3">
+                              <Input
+                                type="email"
+                                placeholder="your@email.com"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                                className="flex-1 bg-white/10 border-white/30 text-white placeholder:text-slate-400"
+                              />
+                              <Button 
+                                type="submit" 
+                                className="bg-[#5CE1E6] hover:bg-[#5CE1E6]/80 text-[#0a1628] font-open-sauce px-8 py-3 font-bold shadow-lg hover:shadow-xl transition-all duration-200"
+                              >
+                                Send Report
+                              </Button>
+                            </div>
+                          </form>
+                        ) : (
+                          <div className="text-center space-y-4">
+                            <div className="text-[#5CE1E6] text-3xl">✅</div>
+                            <p className="text-white font-bold font-open-sauce text-lg">Report Sent!</p>
                             <p className="text-sm text-slate-300 font-open-sauce">
-                              See how your industry stacks up against others in AI readiness
+                              Check your inbox for industry insights
                             </p>
                           </div>
-                          <div className="flex gap-3">
-                            <Input
-                              type="email"
-                              placeholder="your@email.com"
-                              value={email}
-                              onChange={(e) => setEmail(e.target.value)}
-                              required
-                              className="flex-1 bg-white/10 border-white/30 text-white placeholder:text-slate-400"
-                            />
-                            <Button 
-                              type="submit" 
-                              className="bg-[#5CE1E6] hover:bg-[#5CE1E6]/80 text-[#0a1628] font-open-sauce px-6"
-                            >
-                              Send Report
-                            </Button>
-                          </div>
-                        </form>
-                      ) : (
-                        <div className="text-center space-y-4">
-                          <div className="text-[#5CE1E6] text-3xl">✅</div>
-                          <p className="text-white font-bold font-open-sauce text-lg">Report Sent!</p>
-                          <p className="text-sm text-slate-300 font-open-sauce">
-                            Check your inbox for industry insights
-                          </p>
-                        </div>
-                      )}
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
