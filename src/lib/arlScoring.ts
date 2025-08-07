@@ -130,18 +130,33 @@ export const calculateARLScore = (surveyData: SurveyData): ScoreResult => {
   let level: string;
   let comment: string;
 
-  if (normalizedScore >= 8) {
-    level = "AI Pioneer";
-    comment = "Impressive! You have a deep understanding of AI technologies and clear implementation strategies. You're well-positioned to lead AI initiatives in your organization.";
-  } else if (normalizedScore >= 6) {
-    level = "AI Practitioner"; 
-    comment = "Great job! You have solid knowledge of AI concepts and realistic implementation plans. You're ready to start experimenting with AI solutions.";
-  } else if (normalizedScore >= 4) {
+  if (normalizedScore === 9) {
+    level = "AI Visionary";
+    comment = "Outstanding! You're at the forefront of AI innovation with deep technical knowledge and strategic vision. You're ready to lead transformational AI initiatives.";
+  } else if (normalizedScore === 8) {
+    level = "AI Leader";
+    comment = "Impressive! You have comprehensive AI knowledge and strong leadership capabilities. You're well-positioned to drive AI adoption across your organization.";
+  } else if (normalizedScore === 7) {
+    level = "AI Strategist";
+    comment = "Excellent! You combine solid technical understanding with strategic thinking. You're ready to develop and execute AI roadmaps.";
+  } else if (normalizedScore === 6) {
+    level = "AI Professional";
+    comment = "Great job! You have strong AI fundamentals and practical implementation skills. You're ready to lead AI projects and initiatives.";
+  } else if (normalizedScore === 5) {
+    level = "AI Practitioner";
+    comment = "Well done! You have solid AI knowledge and realistic implementation plans. You're ready to start experimenting with AI solutions.";
+  } else if (normalizedScore === 4) {
+    level = "AI Apprentice";
+    comment = "Good progress! You understand key AI concepts and are building practical skills. Focus on hands-on experience to advance further.";
+  } else if (normalizedScore === 3) {
+    level = "AI Beginner";
+    comment = "Good foundation! You're learning AI fundamentals. Continue exploring different AI technologies and use cases to grow your expertise.";
+  } else if (normalizedScore === 2) {
     level = "AI Explorer";
-    comment = "Good foundation! You understand key AI concepts but could benefit from more hands-on experience and strategic planning for implementation.";
+    comment = "You're on the right path! You have basic AI awareness. Consider taking courses or starting small experiments to deepen your knowledge.";
   } else {
-    level = "AI Newcomer";
-    comment = "Welcome to your AI journey! There's exciting potential ahead. Consider starting with small AI experiments and building your knowledge step by step.";
+    level = "AI Aware";
+    comment = "Welcome to your AI journey! There's exciting potential ahead. Start with AI fundamentals and explore how AI could benefit your work.";
   }
 
   return {

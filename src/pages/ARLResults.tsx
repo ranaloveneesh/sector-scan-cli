@@ -96,22 +96,22 @@ const ARLResults = () => {
           </div>
 
           {/* Main content area with speedometer and info */}
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-8 mb-8">
+          <div className="flex flex-col xl:flex-row items-center justify-center gap-12 xl:gap-16 mb-8 max-w-7xl mx-auto">
             
             {/* Speedometer */}
-            <div className="relative w-80 h-48 flex-shrink-0">
+            <div className="relative w-96 h-56 flex-shrink-0">
               <svg
-                width="320"
-                height="180"
-                viewBox="0 0 320 180"
+                width="384"
+                height="216"
+                viewBox="0 0 384 216"
                 className="w-full h-full"
               >
                 {/* Background arc */}
                 <path
-                  d="M 40 150 A 120 120 0 0 1 280 150"
+                  d="M 60 180 A 144 144 0 0 1 324 180"
                   fill="none"
                   stroke="rgba(255,255,255,0.2)"
-                  strokeWidth="12"
+                  strokeWidth="14"
                   strokeLinecap="round"
                 />
                 
@@ -127,42 +127,55 @@ const ARLResults = () => {
                 
                 {/* Progress arc based on score */}
                 <path
-                  d="M 40 150 A 120 120 0 0 1 280 150"
+                  d="M 60 180 A 144 144 0 0 1 324 180"
                   fill="none"
                   stroke="url(#speedometerGradient)"
-                  strokeWidth="12"
+                  strokeWidth="14"
                   strokeLinecap="round"
-                  strokeDasharray={`${(animatedScore / 9) * 377} 377`}
+                  strokeDasharray={`${(animatedScore / 9) * 452} 452`}
                   className="transition-all duration-2000 ease-out"
                 />
                 
                 {/* Needle */}
-                <g transform={`rotate(${needleRotation} 160 150)`} className="transition-transform duration-2000 ease-out">
+                <g transform={`rotate(${needleRotation} 192 180)`} className="transition-transform duration-2000 ease-out">
                   <line
-                    x1="160"
-                    y1="150"
-                    x2="160"
-                    y2="50"
+                    x1="192"
+                    y1="180"
+                    x2="192"
+                    y2="60"
                     stroke="#5CE1E6"
-                    strokeWidth="3"
+                    strokeWidth="4"
                     strokeLinecap="round"
                     className="drop-shadow-lg"
                   />
                   <circle
-                    cx="160"
-                    cy="150"
-                    r="6"
+                    cx="192"
+                    cy="180"
+                    r="8"
                     fill="#5CE1E6"
                     className="drop-shadow-lg"
                   />
                 </g>
                 
                 {/* Scale numbers */}
-                {[1, 3, 5, 7, 9].map((num) => {
-                  const angle = -90 + ((num - 1) * 22.5);
-                  const rad = (angle * Math.PI) / 180;
-                  const x = 160 + 100 * Math.cos(rad);
-                  const y = 150 + 100 * Math.sin(rad) + 5;
+                {[1, 6, 9].map((num) => {
+                  let angle, rad, x, y;
+                  if (num === 1) {
+                    angle = -90;
+                    rad = (angle * Math.PI) / 180;
+                    x = 192 + 110 * Math.cos(rad);
+                    y = 180 + 110 * Math.sin(rad) + 5;
+                  } else if (num === 6) {
+                    angle = 0;
+                    rad = (angle * Math.PI) / 180;
+                    x = 192 + 110 * Math.cos(rad);
+                    y = 180 + 110 * Math.sin(rad) + 5;
+                  } else { // num === 9
+                    angle = 90;
+                    rad = (angle * Math.PI) / 180;
+                    x = 192 + 110 * Math.cos(rad);
+                    y = 180 + 110 * Math.sin(rad) + 5;
+                  }
                   
                   return (
                     <text
@@ -170,7 +183,7 @@ const ARLResults = () => {
                       x={x}
                       y={y}
                       textAnchor="middle"
-                      className="text-sm font-bold fill-white"
+                      className="text-sm font-bold fill-white opacity-70"
                     >
                       {num}
                     </text>
@@ -179,18 +192,18 @@ const ARLResults = () => {
               </svg>
               
               {/* Score display */}
-              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center">
-                <div className="text-4xl md:text-5xl font-bold text-[#5CE1E6] tabular-nums mb-1">
+              <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-center">
+                <div className="text-5xl md:text-6xl font-bold text-[#5CE1E6] tabular-nums mb-2">
                   {animatedScore}
                 </div>
-                <div className="text-xs text-slate-400 font-open-sauce">
+                <div className="text-sm text-slate-400 font-open-sauce">
                   out of 9
                 </div>
               </div>
             </div>
 
             {/* Feedback and stats */}
-            <div className="flex-1 max-w-md space-y-6">
+            <div className="flex-1 max-w-lg space-y-6">
               {/* Comment */}
               <div className="bg-white/5 border border-white/20 rounded-lg p-4 md:p-6">
                 <p className="text-sm md:text-base text-slate-300 font-open-sauce leading-relaxed">
@@ -209,8 +222,11 @@ const ARLResults = () => {
           </div>
 
           {/* Industry report section - highlighted */}
-          <div className="max-w-md mx-auto">
-            <div className="bg-gradient-to-r from-[#5CE1E6]/20 to-blue-500/20 border-2 border-[#5CE1E6]/50 rounded-xl p-6 shadow-lg shadow-[#5CE1E6]/10">
+          <div className="max-w-lg mx-auto mt-12">
+            <div className="bg-gradient-to-r from-[#5CE1E6]/20 to-blue-500/20 border-2 border-[#5CE1E6]/50 rounded-xl p-8 shadow-xl shadow-[#5CE1E6]/20 relative overflow-hidden">
+              {/* Glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#5CE1E6]/10 to-blue-500/10 blur-xl"></div>
+              <div className="relative z-10">
               {!emailSubmitted ? (
                 <form onSubmit={handleEmailSubmit} className="space-y-4">
                   <div className="text-center space-y-2 mb-4">
@@ -247,6 +263,7 @@ const ARLResults = () => {
                   </p>
                 </div>
               )}
+              </div>
             </div>
           </div>
         </div>
