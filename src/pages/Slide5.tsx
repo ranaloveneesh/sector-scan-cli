@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSurvey } from '@/contexts/SurveyContext';
-import { Database, Cog, Brain, Workflow, Search, FileCheck, Wrench, Settings, Target } from 'lucide-react';
+import { Database, Search, FileCheck, Wrench } from 'lucide-react';
 
 const Slide5 = () => {
   const navigate = useNavigate();
@@ -36,30 +36,36 @@ const Slide5 = () => {
       name: 'TOOLS',
       description: 'Industry standard tools',
       icon: Wrench,
-      position: { x: -200, y: -120 }, // top left
+      position: { x: -200, y: 0 }, // left
     },
     {
       id: 'data',
       name: 'KNOWLEDGE / DATA',
       description: 'Industry Public / Proprietary Data',
       icon: Database,
-      position: { x: 200, y: -120 }, // top right
+      position: { x: 200, y: 0 }, // right
     },
     {
       id: 'reasoning',
       name: 'PLANNING & REASONING',
       description: 'Domain-specific meta-heuristics algorithms',
       icon: Search,
-      position: { x: -200, y: 120 }, // bottom left
+      position: { x: 0, y: -160 }, // top
     },
     {
       id: 'workflows',
       name: 'EXECUTION',
       description: 'Domain Specific Workflows',
       icon: FileCheck,
-      position: { x: 200, y: 120 }, // bottom right
+      position: { x: 0, y: 160 }, // bottom
     }
   ];
+
+  const computedNodes = components.map((c) => {
+    const left = 50 + (c.position.x / 400) * 100; // percent
+    const top = 50 + (c.position.y / 400) * 100;  // percent
+    return { ...c, left, top };
+  });
 
   return (
     <div className="min-h-screen bg-[#0a1628] text-white relative overflow-hidden">
@@ -92,115 +98,51 @@ const Slide5 = () => {
         </div>
 
         {/* Visual diagram container */}
-        <div className="relative w-full max-w-5xl mx-auto">
-          <div className="relative flex items-center justify-center" style={{ height: '400px' }}>
-            
-            {/* Connection lines with proper calculations */}
-            <svg 
-              className="absolute inset-0 w-full h-full pointer-events-none" 
-              style={{ zIndex: 1 }}
-              viewBox="0 0 100 100" 
-              preserveAspectRatio="xMidYMid meet"
-            >
-              {/* Line to TOOLS (top left) */}
-              <line 
-                x1="50" 
-                y1="50" 
-                x2="20" 
-                y2="25" 
-                stroke="white" 
-                strokeWidth="0.3" 
-                opacity="0.9"
-              />
-              
-              {/* Line to KNOWLEDGE (top right) */}
-              <line 
-                x1="50" 
-                y1="50" 
-                x2="80" 
-                y2="25" 
-                stroke="white" 
-                strokeWidth="0.3" 
-                opacity="0.9"
-              />
-              
-              {/* Line to PLANNING (bottom left) */}
-              <line 
-                x1="50" 
-                y1="50" 
-                x2="20" 
-                y2="75" 
-                stroke="white" 
-                strokeWidth="0.3" 
-                opacity="0.9"
-              />
-              
-              {/* Line to EXECUTION (bottom right) */}
-              <line 
-                x1="50" 
-                y1="50" 
-                x2="80" 
-                y2="75" 
-                stroke="white" 
-                strokeWidth="0.3" 
-                opacity="0.9"
-              />
+        <div className="relative w-full max-w-7xl mx-auto px-4 md:px-8">
+          <div className="relative h-[460px] md:h-[560px] flex items-center justify-center">
+            {/* Decorative concentric rings */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#5CE1E6]/20 w-[72%] aspect-square" />
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#5CE1E6]/10 w-[48%] aspect-square" />
+
+            {/* Connection lines (soft glow + core) */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+              {computedNodes.map((n) => (
+                <g key={`line-${n.id}`}> 
+                  <line x1="50" y1="50" x2={n.left} y2={n.top} stroke="#5CE1E6" strokeWidth="0.8" opacity="0.15" />
+                  <line x1="50" y1="50" x2={n.left} y2={n.top} stroke="#5CE1E6" strokeWidth="0.25" opacity="0.8" />
+                </g>
+              ))}
             </svg>
 
-            {/* Central Agent */}
-            <div className="absolute z-20" style={{ left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
-              {/* AI Agent Image Placeholder */}
-              <div className="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center mb-3">
-                <img 
-                  src="/lovable-uploads/f912e5d2-b459-41fc-a7e9-3eb49229a52a.png" 
-                  alt="AI Agent" 
-                  className="w-16 h-16 md:w-20 md:h-20 object-contain"
-                />
-              </div>
-              
-              {/* Purple highlighted section with circular icon */}
-              <div className="bg-purple-600/20 border border-purple-400/30 rounded-lg p-3 flex flex-col items-center">
-                <div className="w-8 h-8 bg-purple-500/20 border border-purple-400 rounded-full flex items-center justify-center mb-2">
-                  <Target className="w-4 h-4 text-purple-300" />
+            {/* Central Robot (kept) */}
+            <div className="absolute z-20 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+              <div className="relative">
+                <div className="absolute -inset-6 rounded-full bg-[#5CE1E6]/5 blur-2xl" />
+                <div className="w-24 h-24 md:w-28 md:h-28 flex items-center justify-center">
+                  <img
+                    src="/lovable-uploads/f912e5d2-b459-41fc-a7e9-3eb49229a52a.png"
+                    alt="AI agent robot"
+                    className="w-20 h-20 md:w-24 md:h-24 object-contain drop-shadow"
+                  />
                 </div>
-                <div className="text-xs md:text-sm font-bold text-[#5CE1E6] text-center">AI AGENT</div>
               </div>
             </div>
 
-            {/* Component nodes positioned precisely */}
-            {components.map((component) => {
-              const IconComponent = component.icon;
-              
-              // Calculate position as percentage
-              const leftPercent = 50 + (component.position.x / 400) * 100; // Scale to percentage
-              const topPercent = 50 + (component.position.y / 400) * 100;
-              
+            {/* Nodes - minimal, pill style */}
+            {computedNodes.map((n) => {
+              const Icon = n.icon;
               return (
                 <div
-                  key={component.id}
+                  key={n.id}
                   className="absolute z-30"
-                  style={{
-                    left: `${leftPercent}%`,
-                    top: `${topPercent}%`,
-                    transform: 'translate(-50%, -50%)',
-                  }}
+                  style={{ left: `${n.left}%`, top: `${n.top}%`, transform: 'translate(-50%, -50%)' }}
                 >
-                  <div className="flex flex-col items-center w-48 md:w-56">
-                    {/* Node icon */}
-                    <div className="w-10 h-10 md:w-12 md:h-12 bg-[#0a1628] border-2 border-[#5CE1E6] rounded-full flex items-center justify-center mb-3">
-                      <IconComponent className="w-5 h-5 md:w-6 md:h-6 text-[#5CE1E6]" />
+                  <div className="group flex items-center gap-3 bg-[#0a1628]/60 backdrop-blur-md border border-[#5CE1E6]/20 hover:border-[#5CE1E6]/40 rounded-xl px-4 py-3 transition-colors">
+                    <div className="w-10 h-10 rounded-full border border-[#5CE1E6]/30 flex items-center justify-center">
+                      <Icon className="w-5 h-5 text-[#5CE1E6]" />
                     </div>
-                    
-                    {/* Node content */}
-                    <div className="text-center">
-                      <h3 className="text-sm md:text-base font-bold text-[#5CE1E6] mb-2 tracking-wide">
-                        {component.name}
-                      </h3>
-                      <div className="bg-[#0a1628]/90 border border-[#5CE1E6]/20 rounded-lg p-3">
-                        <p className="text-xs md:text-sm text-slate-300 leading-relaxed whitespace-pre-line">
-                          {component.description}
-                        </p>
-                      </div>
+                    <div className="text-sm md:text-base font-semibold tracking-wide text-[#5CE1E6]">
+                      {n.name}
                     </div>
                   </div>
                 </div>
