@@ -60,7 +60,7 @@ const RagDemo = () => {
       {/* Next button in bottom right */}
       <div className="absolute bottom-6 right-6 md:bottom-12 md:right-16 z-10 animate-fade-in" style={{ animationDelay: '400ms' }}>
         <button
-          onClick={() => navigate('/company-stats')}
+          onClick={() => navigate('/aiagents')}
           className="px-6 py-3 rounded-lg font-medium transition-all duration-300 font-open-sauce"
           style={{
             backgroundColor: '#5CE1E6',

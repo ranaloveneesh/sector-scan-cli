@@ -15,6 +15,7 @@ export interface SurveyData {
   agentUtility?: string;
   agentIntent?: string;
   agentTimeline?: string;
+  aiKnowledgeSelfAssessment?: string;
   // Add more fields as we build more slides
 }
 

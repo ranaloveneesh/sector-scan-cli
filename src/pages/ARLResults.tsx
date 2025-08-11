@@ -171,14 +171,6 @@ const ARLResults = () => {
                       1
                     </text>
                     <text
-                      x="192"
-                      y="205"
-                      textAnchor="middle"
-                      className="text-sm font-bold fill-white opacity-70"
-                    >
-                      6
-                    </text>
-                    <text
                       x="304"
                       y="190"
                       textAnchor="middle"
@@ -189,12 +181,9 @@ const ARLResults = () => {
                   </svg>
                   
                   {/* Score display - positioned below the arc */}
-                  <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-center">
-                    <div className="text-5xl md:text-6xl font-bold text-[#5CE1E6] tabular-nums mb-2">
+                  <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center">
+                    <div className="text-5xl md:text-6xl font-bold text-[#5CE1E6] tabular-nums">
                       {animatedScore}
-                    </div>
-                    <div className="text-sm text-slate-400 font-open-sauce">
-                      out of 9
                     </div>
                   </div>
                 </div>
@@ -216,9 +205,9 @@ const ARLResults = () => {
             {/* Bottom section: User stats and Email signup side by side */}
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 xl:gap-16 items-start">
               
-              {/* Left: User completion number */}
-              <div className="flex justify-center xl:justify-end">
-                <div className="bg-[#5CE1E6]/10 border border-[#5CE1E6]/30 rounded-lg p-6 max-w-md w-full">
+              {/* Left: User completion number - centered below speedometer */}
+              <div className="flex justify-center xl:justify-end xl:mt-8">
+                <div className="bg-[#5CE1E6]/10 border border-[#5CE1E6]/30 rounded-lg p-6 max-w-md w-full text-center">
                   <div className="text-3xl font-bold text-[#5CE1E6] mb-3">#{scoreResult.userNumber}</div>
                   <p className="text-base text-slate-300 font-open-sauce">
                     You're the {scoreResult.userNumber}th professional to complete this assessment!
@@ -229,15 +218,16 @@ const ARLResults = () => {
               {/* Right: Industry report email signup */}
               <div className="flex justify-center xl:justify-start">
                 <div className="w-full max-w-md">
-                  <div className="bg-gradient-to-r from-[#5CE1E6]/20 to-blue-500/20 border-2 border-[#5CE1E6]/50 rounded-xl p-8 shadow-xl shadow-[#5CE1E6]/20 relative overflow-hidden">
+                  <div className="bg-gradient-to-r from-[#5CE1E6]/20 to-blue-500/20 border-2 border-[#5CE1E6]/50 rounded-xl p-6 shadow-xl shadow-[#5CE1E6]/20 relative overflow-hidden">
                     {/* Glow effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-[#5CE1E6]/10 to-blue-500/10 blur-xl"></div>
                     <div className="relative z-10">
                       {!emailSubmitted ? (
                         <form onSubmit={handleEmailSubmit} className="space-y-4">
-                          <div className="text-center space-y-3 mb-6">
-                            <h3 className="text-xl font-bold text-white font-open-sauce">
-                              📊 Get Your Industry Report
+                          <div className="text-center space-y-2 mb-4">
+                            <h3 className="text-lg font-bold text-white font-open-sauce flex items-center justify-center gap-2">
+                              <span className="text-2xl">📊</span>
+                              Get Your Industry Report
                             </h3>
                             <p className="text-sm text-slate-300 font-open-sauce">
                               See how your industry stacks up against others in AI readiness

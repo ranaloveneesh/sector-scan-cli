@@ -27,7 +27,7 @@ const Slide5 = () => {
   };
 
   const handleSubmit = () => {
-    navigate('/company-stats');
+    navigate('/aiagent-explained');
   };
 
   const components = [
@@ -97,19 +97,19 @@ const Slide5 = () => {
           </p>
         </div>
 
-        {/* Visual diagram container */}
-        <div className="relative w-full max-w-7xl mx-auto px-4 md:px-8">
-          <div className="relative h-[460px] md:h-[560px] flex items-center justify-center">
+        {/* Visual diagram container - responsive and contained */}
+        <div className="relative w-full max-w-5xl mx-auto px-4 md:px-8">
+          <div className="relative w-full h-[400px] md:h-[480px] lg:h-[520px] flex items-center justify-center">
             {/* Decorative concentric rings */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#5CE1E6]/20 w-[72%] aspect-square" />
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#5CE1E6]/10 w-[48%] aspect-square" />
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#5CE1E6]/20 w-[65%] aspect-square" />
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#5CE1E6]/10 w-[45%] aspect-square" />
 
             {/* Connection lines (soft glow + core) */}
             <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
               {computedNodes.map((n) => (
                 <g key={`line-${n.id}`}> 
-                  <line x1="50" y1="50" x2={n.left} y2={n.top} stroke="#5CE1E6" strokeWidth="0.8" opacity="0.15" />
-                  <line x1="50" y1="50" x2={n.left} y2={n.top} stroke="#5CE1E6" strokeWidth="0.25" opacity="0.8" />
+                  <line x1="50" y1="50" x2={n.left} y2={n.top} stroke="#5CE1E6" strokeWidth="0.6" opacity="0.15" />
+                  <line x1="50" y1="50" x2={n.left} y2={n.top} stroke="#5CE1E6" strokeWidth="0.2" opacity="0.8" />
                 </g>
               ))}
             </svg>
@@ -117,18 +117,18 @@ const Slide5 = () => {
             {/* Central Robot (kept) */}
             <div className="absolute z-20 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
               <div className="relative">
-                <div className="absolute -inset-6 rounded-full bg-[#5CE1E6]/5 blur-2xl" />
-                <div className="w-24 h-24 md:w-28 md:h-28 flex items-center justify-center">
+                <div className="absolute -inset-4 rounded-full bg-[#5CE1E6]/5 blur-xl" />
+                <div className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 flex items-center justify-center">
                   <img
                     src="/lovable-uploads/f912e5d2-b459-41fc-a7e9-3eb49229a52a.png"
                     alt="AI agent robot"
-                    className="w-20 h-20 md:w-24 md:h-24 object-contain drop-shadow"
+                    className="w-full h-full object-contain drop-shadow"
                   />
                 </div>
               </div>
             </div>
 
-            {/* Nodes - minimal, pill style */}
+            {/* Nodes - minimal, pill style with responsive positioning */}
             {computedNodes.map((n) => {
               const Icon = n.icon;
               return (
@@ -137,11 +137,11 @@ const Slide5 = () => {
                   className="absolute z-30"
                   style={{ left: `${n.left}%`, top: `${n.top}%`, transform: 'translate(-50%, -50%)' }}
                 >
-                  <div className="group flex items-center gap-3 bg-[#0a1628]/60 backdrop-blur-md border border-[#5CE1E6]/20 hover:border-[#5CE1E6]/40 rounded-xl px-4 py-3 transition-colors">
-                    <div className="w-10 h-10 rounded-full border border-[#5CE1E6]/30 flex items-center justify-center">
-                      <Icon className="w-5 h-5 text-[#5CE1E6]" />
+                  <div className="group flex items-center gap-2 md:gap-3 bg-[#0a1628]/60 backdrop-blur-md border border-[#5CE1E6]/20 hover:border-[#5CE1E6]/40 rounded-lg md:rounded-xl px-3 py-2 md:px-4 md:py-3 transition-colors">
+                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-full border border-[#5CE1E6]/30 flex items-center justify-center">
+                      <Icon className="w-4 h-4 md:w-5 md:h-5 text-[#5CE1E6]" />
                     </div>
-                    <div className="text-sm md:text-base font-semibold tracking-wide text-[#5CE1E6]">
+                    <div className="text-xs md:text-sm lg:text-base font-semibold tracking-wide text-[#5CE1E6] whitespace-nowrap">
                       {n.name}
                     </div>
                   </div>

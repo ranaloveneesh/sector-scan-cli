@@ -24,12 +24,13 @@ import Slide4 from "./pages/Slide4";
 import Slide5 from "./pages/Slide5";
 import AIAgentsMinigame from "./pages/AIAgentsMinigame";
 import AIAgentsComponents from "./pages/AIAgentsComponents";
-import ModelUtility from "./pages/ModelUtility";
+import ModelUtilityOpenText from "./pages/ModelUtilityOpenText";
 import DataAccessibility from "./pages/DataAccessibility";
 import RagImpact from "./pages/RagImpact";
-import AgentUtility from "./pages/AgentUtility";
+import AgentUtilitySimple from "./pages/AgentUtilitySimple";
 import AgentIntent from "./pages/AgentIntent";
 import AgentTimeline from "./pages/AgentTimeline";
+import AIKnowledgeSelfAssessment from "./pages/AIKnowledgeSelfAssessment";
 import ARLResults from "./pages/ARLResults";
 
 import NotFound from "./pages/NotFound";
@@ -60,14 +61,14 @@ const App = () => (
             {/* <Route path="/ragpipeline-explained" element={<PageTransition><RagPipelineExplained /></PageTransition>} /> */}
             <Route path="/aiagents" element={<PageTransition><Slide4 /></PageTransition>} />
             <Route path="/aiagents-minigame" element={<PageTransition><AIAgentsMinigame /></PageTransition>} />
-            
             <Route path="/aiagent-explained" element={<PageTransition><Slide5 /></PageTransition>} />
-            <Route path="/model-utility" element={<PageTransition><ModelUtility /></PageTransition>} />
+            <Route path="/model-utility" element={<PageTransition><ModelUtilityOpenText /></PageTransition>} />
             <Route path="/data-accessibility" element={<PageTransition><DataAccessibility /></PageTransition>} />
             <Route path="/rag-impact" element={<PageTransition><RagImpact /></PageTransition>} />
-            <Route path="/agent-utility" element={<PageTransition><AgentUtility /></PageTransition>} />
+            <Route path="/agent-utility" element={<PageTransition><AgentUtilitySimple /></PageTransition>} />
             <Route path="/agent-intent" element={<PageTransition><AgentIntent /></PageTransition>} />
             <Route path="/agent-timeline" element={<PageTransition><AgentTimeline /></PageTransition>} />
+            <Route path="/ai-knowledge-assessment" element={<PageTransition><AIKnowledgeSelfAssessment /></PageTransition>} />
             <Route path="/arl-results" element={<PageTransition><ARLResults /></PageTransition>} />
             
             <Route path="/company-stats" element={<PageTransition><CompanyStats /></PageTransition>} />

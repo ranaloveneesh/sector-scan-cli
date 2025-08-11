@@ -38,7 +38,7 @@ const LLMs = () => {
 
   const handleSubmit = (selectedOptions: string[]) => {
     updateSurveyData('llmKnowledge', selectedOptions.join(', '));
-    navigate('/aiagents');
+    navigate('/rag-pipeline');
   };
 
   return (

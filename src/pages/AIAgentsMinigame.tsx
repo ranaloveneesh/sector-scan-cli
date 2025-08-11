@@ -27,7 +27,7 @@ const AIAgentsMinigame = () => {
   };
 
   const handleSubmit = () => {
-    navigate('/company-stats');
+    navigate('/aiagent-explained');
   };
 
   return (
