@@ -24,21 +24,6 @@ const AIKnowledgeSelfAssessment = () => {
 
   return (
     <div className="min-h-screen bg-[#0a1628] text-white relative overflow-hidden">
-      {/* Hexagonal logo in top left */}
-      <div className="absolute top-6 left-6 md:top-12 md:left-16 z-10 flex items-end animate-fade-in" style={{ animationDelay: '100ms' }}>
-        <button
-          onClick={() => navigate('/')}
-          aria-label="Go to home"
-          className="flex items-center justify-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          style={{
-            width: 'clamp(4rem, 6vw, 6.25rem)',
-            height: 'clamp(4rem, 6vw, 6.25rem)'
-          }}
-        >
-          <img src="/lovable-uploads/a8d760f4-8e0c-410d-ae83-a3e6dd4b23e9.png" alt="Home" className="w-full h-full object-contain" />
-        </button>
-      </div>
-
       {/* User label in top right */}
       <div className="absolute top-6 right-6 md:top-12 md:right-16 z-10 flex items-end animate-fade-in" style={{ animationDelay: '150ms' }}>
         <span className="font-tomorrow text-responsive-label text-[#5CE1E6] neon-glow">ai_self_assessment</span>
