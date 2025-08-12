@@ -34,6 +34,7 @@ import AIKnowledgeSelfAssessment from "./pages/AIKnowledgeSelfAssessment";
 import ARLResults from "./pages/ARLResults";
 
 import NotFound from "./pages/NotFound";
+import GlobalNavOverlay from "./components/GlobalNavOverlay";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +45,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <GlobalNavOverlay />
           <Routes>
             <Route path="/" element={<PageTransition><Index /></PageTransition>} />
             <Route path="/company-size" element={<PageTransition><CompanySize /></PageTransition>} />
