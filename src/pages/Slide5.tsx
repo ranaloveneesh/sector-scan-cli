@@ -88,38 +88,36 @@ const Slide5 = () => {
           </p>
         </div>
 
-        {/* Visual diagram container - responsive and contained */}
-        <div className="relative w-full max-w-5xl mx-auto px-4 md:px-8">
-          <div className="relative w-full h-[400px] md:h-[480px] lg:h-[520px] flex items-center justify-center">
-            {/* Decorative concentric rings */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#5CE1E6]/20 w-[65%] aspect-square" />
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#5CE1E6]/10 w-[45%] aspect-square" />
-
-            {/* Connection lines (soft glow + core) */}
+        {/* Visual diagram container - clean and minimal */}
+        <div className="relative w-full max-w-4xl mx-auto px-8 md:px-16 py-8">
+          <div className="relative w-full h-[320px] flex items-center justify-center">
+            
+            {/* Connection lines - simple and clean */}
             <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
               {computedNodes.map((n) => (
-                <g key={`line-${n.id}`}> 
-                  <line x1="50" y1="50" x2={n.left} y2={n.top} stroke="#5CE1E6" strokeWidth="0.6" opacity="0.15" />
-                  <line x1="50" y1="50" x2={n.left} y2={n.top} stroke="#5CE1E6" strokeWidth="0.2" opacity="0.8" />
-                </g>
+                <line 
+                  key={`line-${n.id}`}
+                  x1="50" y1="50" 
+                  x2={n.left} y2={n.top} 
+                  stroke="#5CE1E6" 
+                  strokeWidth="0.3" 
+                  opacity="0.6" 
+                />
               ))}
             </svg>
 
-            {/* Central Robot (kept) */}
+            {/* Central AI Agent */}
             <div className="absolute z-20 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-              <div className="relative">
-                <div className="absolute -inset-4 rounded-full bg-[#5CE1E6]/5 blur-xl" />
-                <div className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 flex items-center justify-center">
-                  <img
-                    src="/lovable-uploads/f912e5d2-b459-41fc-a7e9-3eb49229a52a.png"
-                    alt="AI agent robot"
-                    className="w-full h-full object-contain drop-shadow"
-                  />
-                </div>
+              <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center bg-[#0a1628]/80 rounded-full border border-[#5CE1E6]/30">
+                <img
+                  src="/lovable-uploads/f912e5d2-b459-41fc-a7e9-3eb49229a52a.png"
+                  alt="AI agent"
+                  className="w-10 h-10 md:w-12 md:h-12 object-contain"
+                />
               </div>
             </div>
 
-            {/* Nodes - minimal, pill style with responsive positioning */}
+            {/* Component nodes - minimal circles with labels */}
             {computedNodes.map((n) => {
               const Icon = n.icon;
               return (
@@ -128,11 +126,13 @@ const Slide5 = () => {
                   className="absolute z-30"
                   style={{ left: `${n.left}%`, top: `${n.top}%`, transform: 'translate(-50%, -50%)' }}
                 >
-                  <div className="group flex items-center gap-2 md:gap-3 bg-[#0a1628]/60 backdrop-blur-md border border-[#5CE1E6]/20 hover:border-[#5CE1E6]/40 rounded-lg md:rounded-xl px-3 py-2 md:px-4 md:py-3 transition-colors">
-                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-full border border-[#5CE1E6]/30 flex items-center justify-center">
+                  <div className="flex flex-col items-center">
+                    {/* Icon circle */}
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#0a1628]/80 border border-[#5CE1E6]/40 flex items-center justify-center mb-2">
                       <Icon className="w-4 h-4 md:w-5 md:h-5 text-[#5CE1E6]" />
                     </div>
-                    <div className="text-xs md:text-sm lg:text-base font-semibold tracking-wide text-[#5CE1E6] whitespace-nowrap">
+                    {/* Label */}
+                    <div className="text-xs md:text-sm font-medium text-[#5CE1E6] text-center max-w-20 md:max-w-24 leading-tight">
                       {n.name}
                     </div>
                   </div>
