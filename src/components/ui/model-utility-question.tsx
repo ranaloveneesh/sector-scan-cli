@@ -92,15 +92,6 @@ export const ModelUtilityQuestion: React.FC<ModelUtilityQuestionProps> = ({
 
   return (
     <div className="min-h-screen bg-[#0a1628] text-white relative overflow-hidden">
-      {/* Hexagonal logo in top left */}
-      <div className="absolute top-6 left-6 md:top-12 md:left-16 z-10 flex items-end animate-fade-in" style={{ animationDelay: '100ms' }}>
-        <div className="flex items-center justify-center" style={{
-          width: 'clamp(4rem, 6vw, 6.25rem)',
-          height: 'clamp(4rem, 6vw, 6.25rem)'
-        }}>
-          <img src="/lovable-uploads/a8d760f4-8e0c-410d-ae83-a3e6dd4b23e9.png" alt="Logo" className="w-full h-full object-contain" />
-        </div>
-      </div>
 
       {/* User label in top right */}
       <div className="absolute top-6 right-6 md:top-12 md:right-16 z-10 flex items-end animate-fade-in" style={{ animationDelay: '150ms' }}>
@@ -186,14 +177,14 @@ export const ModelUtilityQuestion: React.FC<ModelUtilityQuestionProps> = ({
         <button 
           onClick={handleSubmit} 
           className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 font-open-sauce relative z-[999] ${
-            selectedOptions.length === 0 && !otherText.trim()
+            selectedOptions.length === 0 && otherText.trim().length === 0
               ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
               : 'bg-[#5CE1E6] text-[#0a1628] hover:bg-[#5CE1E6]/80'
           }`}
           style={{
-            pointerEvents: (selectedOptions.length > 0 || otherText.trim()) ? 'auto' : 'none'
+            pointerEvents: (selectedOptions.length > 0 || otherText.trim().length > 0) ? 'auto' : 'none'
           }}
-          disabled={selectedOptions.length === 0 && !otherText.trim()}
+          disabled={selectedOptions.length === 0 && otherText.trim().length === 0}
         >
           Next →
         </button>
