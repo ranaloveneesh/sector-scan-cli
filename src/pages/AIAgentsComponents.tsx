@@ -66,7 +66,7 @@ const AIAgentExplained = () => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    navigate('/next-page'); // a new page
+    navigate('/model-utility');
   };
 
   const components = [
