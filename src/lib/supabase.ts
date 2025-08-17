@@ -1,10 +1,4 @@
-import { createClient } from '@supabase/supabase-js'
-
-// These environment variables are automatically provided by Lovable
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || ''
-const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || ''
-
-export const supabase = createClient(supabaseUrl, supabaseKey)
+import { supabase } from '@/integrations/supabase/client'
 
 // Function to increment and get the current submission count
 export const incrementSubmissionCount = async (): Promise<number> => {
