@@ -8,9 +8,9 @@ export const incrementSubmissionCount = async (): Promise<number> => {
       .from('submission_counter')
       .select('count')
       .eq('id', 1)
-      .single()
+      .maybeSingle()
 
-    if (fetchError && fetchError.code !== 'PGRST116') {
+    if (fetchError) {
       console.error('Error fetching count:', fetchError)
       return 75 // Fallback
     }
@@ -44,7 +44,7 @@ export const getSubmissionCount = async (): Promise<number> => {
       .from('submission_counter')
       .select('count')
       .eq('id', 1)
-      .single()
+      .maybeSingle()
 
     if (error) {
       console.error('Error fetching count:', error)
