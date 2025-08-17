@@ -14,7 +14,27 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      submission_counter: {
+        Row: {
+          count: number
+          created_at: string | null
+          id: number
+          updated_at: string | null
+        }
+        Insert: {
+          count?: number
+          created_at?: string | null
+          id?: number
+          updated_at?: string | null
+        }
+        Update: {
+          count?: number
+          created_at?: string | null
+          id?: number
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
