@@ -106,9 +106,6 @@ const AIAgentExplained = () => {
     <div className="min-h-screen bg-[#0A1628] text-white flex flex-col items-center justify-center font-sans relative overflow-hidden">
 
       {/* Header Elements */}
-       <div className="absolute top-8 left-10 md:left-16 z-10">
-         <img src="https://i.imgur.com/your-logo.png" alt="Logo" className="w-16 h-16"/>
-       </div>
        <div className="absolute top-8 right-10 md:right-16 z-10">
          <span className="font-mono text-lg text-[#5CE1E6] neon-glow-subtle">ai_agent_explained</span>
        </div>
@@ -140,7 +137,7 @@ const AIAgentExplained = () => {
                     <foreignObject x={center.x - 75} y={center.y - 75} width="150" height="150">
                         <div className="w-full h-full flex items-center justify-center animate-fade-in">
                             <img 
-                                src="https://i.imgur.com/your-agent-image.png" 
+                                src="/lovable-uploads/f912e5d2-b459-41fc-a7e9-3eb49229a52a.png" 
                                 alt="AI Agent"
                                 className="w-28 h-28 object-contain drop-shadow-xl"
                             />

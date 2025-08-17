@@ -78,10 +78,6 @@ const AIModelGame = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-secondary/20 relative overflow-hidden">
-      {/* Logo */}
-      <div className="absolute top-8 left-8 z-10">
-        <img src={brainIcon} alt="Brain Logo" className="h-12 w-12" />
-      </div>
 
       {/* Label */}
       <div className="absolute top-8 right-8 z-10">
