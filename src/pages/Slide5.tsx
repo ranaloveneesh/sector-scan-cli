@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSurvey } from '@/contexts/SurveyContext';
 import { Database, Search, FileCheck, Wrench } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const Slide5 = () => {
   const navigate = useNavigate();
@@ -152,20 +153,16 @@ const Slide5 = () => {
       </div>
 
       {/* Bottom right next button */}
-      <div className="absolute bottom-6 right-6 md:bottom-12 md:right-16 animate-fade-in" style={{ animationDelay: '450ms' }}>
-        <button 
+      <div className="absolute bottom-6 right-6 md:bottom-12 md:right-16 z-50 animate-fade-in" style={{ animationDelay: '450ms' }}>
+        <Button 
           onClick={() => {
             console.log('Slide5 (AI Agent Explained) button clicked');
             handleSubmit();
           }}
           className="px-6 py-3 rounded-lg font-medium transition-all duration-300 font-open-sauce bg-[#5CE1E6] text-[#0a1628] hover:bg-[#5CE1E6]/80"
-          style={{
-            pointerEvents: 'auto',
-            zIndex: 100
-          }}
         >
           Next →
-        </button>
+        </Button>
       </div>
     </div>
   );
